@@ -1,0 +1,7 @@
+<fonts>
+    <font id="ClockFont" filename="ClockFont.fnt" filter="0123456789:" antialias="true" />
+    <font id="ClockFontSmall" filename="ClockFontSmall.fnt" filter="0123456789" antialias="true" />
+    <font id="Normal" filename="FontNormal.fnt" antialias="true" />
+    <font id="Small" filename="FontSmall.fnt" antialias="true" />
+    <font id="Tiny" filename="FontTiny.fnt" antialias="true" />
+</fonts>

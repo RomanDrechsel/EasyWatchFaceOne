@@ -1,0 +1,4 @@
+<layout id="WatchFace">
+    <drawable class="YAWFBackground" id="Background" />
+    <drawable class="Widgets.Clock" id="Clock" />
+</layout>

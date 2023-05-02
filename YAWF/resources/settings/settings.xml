@@ -1,0 +1,11 @@
+<settings>
+
+    <setting propertyKey="@Properties.ClockMainColor" title="@Strings.ClockMainColorTitle">
+        <settingConfig type="numeric" required="true" />
+    </setting>
+
+    <setting propertyKey="@Properties.ClockMainColor" title="@Strings.ClockMainColorTitle">
+        <settingConfig type="numeric" required="true" />
+    </setting>
+
+</settings>

@@ -1,0 +1,9 @@
+<strings>
+
+    <string id="AppName">Yet another WatchFace</string>
+
+    <string id="BackgroundColorTitle">Background Color</string>
+    <string id="ClockMainColorTitle">Main Clock Color</string>
+    <string id="MilitaryFormatTitle">Military Format for 24 Hour Time</string>
+
+</strings>
