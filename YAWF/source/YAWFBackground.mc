@@ -12,7 +12,7 @@ class YAWFBackground extends WatchUi.Drawable {
 
     function draw(dc as Dc) as Void 
     {
-        dc.setColor(Graphics.COLOR_TRANSPARENT, getApp().getProperty("BackgroundColor") as Number);
+        dc.setColor(Graphics.COLOR_TRANSPARENT, Application.Properties.getValue("BackgroundColor") as Number);
         dc.clear();
     }
 

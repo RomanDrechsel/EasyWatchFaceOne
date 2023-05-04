@@ -4,14 +4,16 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
-class YAWFView extends WatchUi.WatchFace {
-
+class YAWFView extends WatchUi.WatchFace 
+{
     function initialize() {
         WatchFace.initialize();
     }
 
     // Load your resources here
-    function onLayout(dc as Dc) as Void {
+    function onLayout(dc as Dc) as Void 
+    {
+        ViewDC = dc;
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
