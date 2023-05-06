@@ -8,15 +8,15 @@ module Widgets
 {
     class Clock extends WidgetBase
     {
-        private var _ClockColor = 0xFFFFFF;
-        private var _SecondsColor = 0xFFFFFF;
+        private var _ClockColor = 0xFFFFFF as Number;
+        private var _SecondsColor = 0xFFFFFF as Number;
         private var _Font = null;
         private  var _FontSmall = null;
         private var _FontBold = null;
 
-        private var _hours_pos = -1;
-        private var _min_pos = -1;
-        private var _sec_pos = -1;
+        private var _hours_pos = -1 as Number;
+        private var _min_pos = -1 as Number;
+        private var _sec_pos = -1 as Number;
 
         function initialize() 
         {

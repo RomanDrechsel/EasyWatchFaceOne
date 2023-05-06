@@ -9,7 +9,7 @@ module CustomDrawables
     {
         protected var _Widget = null as WidgetBase;
 
-        function initialize(params)
+        function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
         }

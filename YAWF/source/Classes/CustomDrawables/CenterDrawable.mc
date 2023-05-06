@@ -1,10 +1,11 @@
 import Toybox.WatchUi;
+import Toybox.Lang;
 
 module CustomDrawables
 {
     class CenterDrawable extends DrawableBase 
     {
-        function initialize(params)
+        function initialize(params as Dictionary)
         {
             DrawableBase.initialize(params);
 
