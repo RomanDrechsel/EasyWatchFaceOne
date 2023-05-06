@@ -1,13 +1,10 @@
 import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
+import Toybox.Graphics;
 
-var ViewDC = null;
-
-class YAWFApp extends Application.AppBase {
-
-    public var ViewDC = null;
-
+class YAWFApp extends Application.AppBase 
+{
     function initialize() {
         AppBase.initialize();
     }
@@ -29,14 +26,8 @@ class YAWFApp extends Application.AppBase {
     function onSettingsChanged() as Void {
         WatchUi.requestUpdate();
     }
-
 }
 
 function getApp() as YAWFApp {
     return Application.getApp() as YAWFApp;
-}
-
-function getViewDC() as Toybox.Graphics.Dc
-{
-    return ViewDC;
 }

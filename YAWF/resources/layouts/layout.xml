@@ -1,7 +1,7 @@
 <layout id="WatchFace">
     <drawable class="YAWFBackground" id="Background" />
-    <drawable class="Widgets.Clock" id="Clock">
-        <param name="PosX">"center"</param>
-        <param name="PosY">"center"</param>
+    <drawable class="CustomDrawables.CenterDrawable" id="Center">
+        <param name="locX">dc.getWidth() * .5</param>
+        <param name="locY">dc.getHeight() * .5</param>
     </drawable>
 </layout>

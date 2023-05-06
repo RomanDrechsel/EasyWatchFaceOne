@@ -4,6 +4,9 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
+
+//https://forums.garmin.com/developer/connect-iq/f/discussion/2768/datafields-best-practices-for-using-layouts-should-i-use-layouts-at-all
+
 class YAWFView extends WatchUi.WatchFace 
 {
     function initialize() {
@@ -13,7 +16,6 @@ class YAWFView extends WatchUi.WatchFace
     // Load your resources here
     function onLayout(dc as Dc) as Void 
     {
-        ViewDC = dc;
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
