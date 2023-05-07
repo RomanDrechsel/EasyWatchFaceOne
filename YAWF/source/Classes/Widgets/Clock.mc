@@ -21,8 +21,11 @@ module Widgets
         function initialize() 
         {
             WidgetBase.initialize();
-            self._ClockColor = Application.Properties.getValue("ClockMainColor") as Number;
-            self._SecondsColor = Application.Properties.getValue("ClockSecondsColor") as Number;
+
+            var theme =  $.getTheme();
+
+            self._ClockColor = theme.ClockMainColor as Number;
+            self._SecondsColor = theme.ClockSecondsColor as Number;
             self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont);
             self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall);
             self._FontBold = WatchUi.loadResource(Rez.Fonts.ClockFontBold);

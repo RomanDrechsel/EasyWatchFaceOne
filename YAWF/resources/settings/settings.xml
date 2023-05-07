@@ -1,17 +1,9 @@
 <settings>
 
-    <setting propertyKey="@Properties.BackgroundColor" title="@Strings.BackgroundColorTitle">
-        <settingConfig type="numeric" required="true" />
+    <setting propertyKey="@Properties.Theme" title="@Strings.Theme">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.ThemeBlackAndBlue</listEntry>
+        </settingConfig>
     </setting>
-
-    <setting propertyKey="@Properties.ClockMainColor" title="@Strings.ClockMainColorTitle">
-        <settingConfig type="numeric" required="true" />
-    </setting>
-
-    <setting propertyKey="@Properties.ClockMainColor" title="@Strings.ClockMainColorTitle">
-        <settingConfig type="numeric" required="true" />
-    </setting>
-
-
 
 </settings>

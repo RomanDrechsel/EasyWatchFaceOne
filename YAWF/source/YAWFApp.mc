@@ -28,6 +28,12 @@ class YAWFApp extends Application.AppBase
     }
 }
 
-function getApp() as YAWFApp {
+function getApp() as YAWFApp 
+{
     return Application.getApp() as YAWFApp;
+}
+
+function getTheme() as Themes.ThemeSettingsBase
+{
+    return Themes.ThemesLoader.getTheme();
 }

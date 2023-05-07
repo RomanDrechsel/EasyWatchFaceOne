@@ -1,7 +1,5 @@
 <properties>
 
-    <property type="number" id="BackgroundColor">0x000000</property>
-    <property type="number" id="ClockMainColor">0x0071a2</property>
-    <property type="number" id="ClockSecondsColor">0xffffff</property>
+    <property type="number" id="Theme">0</property>
 
 </properties>
