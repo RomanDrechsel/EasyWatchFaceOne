@@ -1,6 +1,7 @@
 <strings>
 
     <string id="AppName">Yet another WatchFace</string>
+    <string id="AppVersion">Version</string>
 
     <string id="Theme">Theme</string>
     <string id="ThemeBlackAndBlue">Black and Blue</string>
