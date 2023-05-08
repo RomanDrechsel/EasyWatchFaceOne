@@ -1,0 +1,60 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 3; ]
+module Themes {
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 3; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 5; ]
+    class ThemeSettingsBase{
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 5; ]
+        <init> {
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 8 12 ]
+            %tmp.1 = NaN;
+            %tmp.2 = as %tmp.1 Number;
+            putv self :BackgroundColor %tmp.2;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 11 12 ]
+            %tmp.3 = NaN;
+            %tmp.4 = as %tmp.3 Number;
+            putv self :ClockMainColor %tmp.4;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 12 12 ]
+            %tmp.5 = NaN;
+            %tmp.6 = as %tmp.5 Number;
+            putv self :ClockSecondsColor %tmp.6;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 15 12 ]
+            %tmp.7 = NaN;
+            %tmp.8 = as %tmp.7 Number;
+            putv self :DateWeekdayColor %tmp.8;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 16 12 ]
+            %tmp.9 = NaN;
+            %tmp.10 = as %tmp.9 Number;
+            putv self :DateDayColor %tmp.10;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc" 17 12 ]
+            %tmp.11 = NaN;
+            %tmp.12 = as %tmp.11 Number;
+            putv self :DateYearColor %tmp.12;
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 5; ]
+        static
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 5; ]
+        function initialize() as Void {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 8; @position = 12; ]
+        var BackgroundColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 11; @position = 12; ]
+        var ClockMainColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 12; @position = 12; ]
+        var ClockSecondsColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 15; @position = 12; ]
+        var DateWeekdayColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 16; @position = 12; ]
+        var DateDayColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 17; @position = 12; ]
+        var DateYearColor;
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\Settings\ThemeSettingsBase.mc"; @line = 1; ]
+<init> {
+}

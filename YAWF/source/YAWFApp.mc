@@ -11,6 +11,7 @@ class YAWFApp extends Application.AppBase
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
+        Helper.Date.loadResource();//localization for dates
     }
 
     // onStop() is called when your application is exiting
@@ -36,4 +37,9 @@ function getApp() as YAWFApp
 function getTheme() as Themes.ThemeSettingsBase
 {
     return Themes.ThemesLoader.getTheme();
+}
+
+function debug(text) 
+{
+    Toybox.System.println(text);
 }

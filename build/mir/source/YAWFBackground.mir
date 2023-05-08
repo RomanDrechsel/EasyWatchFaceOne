@@ -1,0 +1,61 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 1; ]
+import Toybox.Application;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 2; ]
+import Toybox.Graphics;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 3; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 4; ]
+import Toybox.WatchUi;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 6; ]
+class YAWFBackground extends WatchUi.Drawable{
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 6; ]
+    <init> {
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc" 8 16 ]
+        %tmp.1 = 0;
+        %tmp.2 = as %tmp.1 Number;
+        putv self :_color %tmp.2;
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 6; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 8; @position = 16; ]
+    private
+    var _color;
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 10; ]
+    function initialize(params) as Void {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFBackground_mc_11_4_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc" 12 8 ]
+        %tmp.2 = getv ? :Drawable;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        %tmp.5 = lgetv %params;
+        invoke %tmp.2 %tmp.3(%tmp.5);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc" 14 8 ]
+        %tmp.6 = self;
+        %tmp.7 = getv function %tmp.6 :getTheme;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        %tmp.9 = getv %tmp.8 :BackgroundColor;
+        putv self :_color %tmp.9;
+C_Programmierung_Github_YAWF_YAWF_source_YAWFBackground_mc_11_4_stop:
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 17; ]
+    function draw(dc as Dc) as Void {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFBackground_mc_18_4_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc" 19 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :setColor;
+        %tmp.3 = getm $.Toybox.Graphics;
+        %tmp.4 = getv %tmp.3 :COLOR_TRANSPARENT;
+        %tmp.5 = lgetv %self;
+        %tmp.6 = getv %tmp.5 :_color;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc" 20 8 ]
+        %tmp.7 = lgetv %dc;
+        %tmp.8 = getv function %tmp.7 :clear;
+        invoke %tmp.7 %tmp.8();
+C_Programmierung_Github_YAWF_YAWF_source_YAWFBackground_mc_18_4_stop:
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFBackground.mc"; @line = 1; ]
+<init> {
+}

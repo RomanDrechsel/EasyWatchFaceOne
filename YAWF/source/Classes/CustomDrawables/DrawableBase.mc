@@ -12,6 +12,12 @@ module CustomDrawables
         function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
+            self._Widget = self.getWidget();
+            
+            if (self._Widget != null)
+            {
+                self._Widget.setPosition(self.locX, self.locY);
+            }
         }
 
         function draw(dc as Dc) as Void 
@@ -21,5 +27,7 @@ module CustomDrawables
                 self._Widget.draw(dc);
             }
         }
+
+        protected function getWidget();
     }
 }

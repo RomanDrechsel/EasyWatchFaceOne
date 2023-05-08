@@ -1,0 +1,96 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 1; ]
+import Toybox.Application;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 2; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 3; ]
+import Toybox.WatchUi;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 4; ]
+import Toybox.Graphics;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 6; ]
+class YAWFApp extends Application.AppBase{
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 6; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 8; ]
+    function initialize() as Void {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_8_26_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 9 8 ]
+        %tmp.2 = getv ? :AppBase;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_8_26_stop:
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 13; ]
+    function onStart(state as Dictionary or Null) as Void {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_13_51_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 14 8 ]
+        %tmp.2 = getv ? :Helper;
+        %tmp.3 = getv %tmp.2 :Date;
+        %tmp.4 = getv function %tmp.3 :loadResource;
+        invoke %tmp.3 %tmp.4();
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_13_51_stop:
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 18; ]
+    function onStop(state as Dictionary or Null) as Void {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 22; ]
+    function getInitialView() as Array<Views or InputDelegates> or Null {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_22_65_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 23 8 ]
+        %tmp.1 = newa Array<Views or InputDelegates> 1;
+        %tmp.5 = getv ? :YAWFView;
+        %tmp.2 = newc %tmp.5 ();
+        %tmp.6 = dup %tmp.1;
+        %tmp.7 = aputv %tmp.6 0 %tmp.2;
+        ret %tmp.7;
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_22_65_stop:
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 27; ]
+    function onSettingsChanged() as Void {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_27_41_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 28 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :requestUpdate;
+        invoke %tmp.1 %tmp.2();
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_27_41_stop:
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 32; ]
+function getApp() as YAWFApp {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_33_0_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 34 4 ]
+    %tmp.1 = getm $.Toybox.Application;
+    %tmp.2 = getv function %tmp.1 :getApp;
+    %tmp.3 = invoke %tmp.1 %tmp.2();
+    %tmp.4 = as %tmp.3 YAWFApp;
+    ret %tmp.4;
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_33_0_stop:
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 37; ]
+function getTheme() as Themes.ThemeSettingsBase {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_38_0_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 39 4 ]
+    %tmp.2 = getv ? :Themes;
+    %tmp.3 = getv %tmp.2 :ThemesLoader;
+    %tmp.4 = getv function %tmp.3 :getTheme;
+    %tmp.5 = invoke %tmp.3 %tmp.4();
+    ret %tmp.5;
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_38_0_stop:
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 42; ]
+function debug(text) {
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_43_0_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc" 44 4 ]
+    %tmp.1 = getm $.Toybox.System;
+    %tmp.2 = getv function %tmp.1 :println;
+    %tmp.4 = lgetv %text;
+    invoke %tmp.1 %tmp.2(%tmp.4);
+C_Programmierung_Github_YAWF_YAWF_source_YAWFApp_mc_43_0_stop:
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\YAWFApp.mc"; @line = 1; ]
+<init> {
+}

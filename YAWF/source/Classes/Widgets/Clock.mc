@@ -1,4 +1,3 @@
-import Toybox.Application;
 using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
@@ -10,9 +9,9 @@ module Widgets
     {
         private var _ClockColor = 0xFFFFFF as Number;
         private var _SecondsColor = 0xFFFFFF as Number;
-        private var _Font = null;
-        private  var _FontSmall = null;
-        private var _FontBold = null;
+        private var _Font = null as FontResource;
+        private  var _FontSmall = null as FontResource;
+        private var _FontBold = null as FontResource;
 
         private var _hours_pos = -1 as Number;
         private var _min_pos = -1 as Number;
@@ -22,13 +21,11 @@ module Widgets
         {
             WidgetBase.initialize();
 
-            var theme =  $.getTheme();
-
-            self._ClockColor = theme.ClockMainColor as Number;
-            self._SecondsColor = theme.ClockSecondsColor as Number;
-            self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont);
-            self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall);
-            self._FontBold = WatchUi.loadResource(Rez.Fonts.ClockFontBold);
+            self._ClockColor = self._theme.ClockMainColor as Number;
+            self._SecondsColor = self._theme.ClockSecondsColor as Number;
+            self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont) as FontResource;
+            self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall) as FontResource;
+            self._FontBold = WatchUi.loadResource(Rez.Fonts.ClockFontBold) as FontResource;
         }
 
         function draw(dc as Gfx.Dc) as Void 

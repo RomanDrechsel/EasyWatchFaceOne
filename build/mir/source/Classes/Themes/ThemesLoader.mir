@@ -1,0 +1,86 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 2; ]
+import Toybox.Application;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 4; ]
+module Themes {
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 6; ]
+    class ThemesLoader{
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 6; ]
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 6; ]
+        static
+        <init> {
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 8 27 ]
+            %tmp.1 = null;
+            %tmp.2 = as %tmp.1 ThemeSettingsBase;
+            putv self :_theme %tmp.2;
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 6; ]
+        function initialize() as Void {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 8; @position = 27; ]
+        private static
+        var _theme;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 10; ]
+        static
+        function getTheme() as ThemeSettingsBase {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_11_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 12 12 ]
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_12_12_if_stmt:
+            %tmp.1 = lgetv %self;
+            %tmp.2 = getv %tmp.1 :_theme;
+            %tmp.3 = null;
+            %tmp.4 = eq %tmp.2 %tmp.3;
+            bf %tmp.4 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_12_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_12_12_if_true:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_13_12_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 14 16 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_13_12_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_13_12_stop" ]
+            %theme.1 = local;
+            %tmp.5 = getm $.Toybox.Application;
+            %tmp.6 = getv %tmp.5 :Properties;
+            %tmp.7 = getv function %tmp.6 :getValue;
+            %tmp.8 = "Theme";
+            %tmp.9 = invoke %tmp.6 %tmp.7(%tmp.8);
+            %tmp.10 = as %tmp.9 Number;
+            lputv %theme.1 %tmp.10;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 15 16 ]
+            %tmp.12 = lgetv %theme.1;
+            push %tmp.12;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_15_16_switchCaseBegin:
+            %tmp.13 = dup %tmp.12;
+            %tmp.14 = 0;
+            %tmp.15 = getv function %tmp.13 :equals;
+            %tmp.16 = invoke %tmp.13 %tmp.15 (%tmp.14);
+            bt %tmp.16 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_18_20;
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_15_16_defaultCodeBegin;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_17_20:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_15_16_defaultCodeBegin:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_18_20:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 19 24 ]
+            %tmp.20 = getv ? :BlackAndBlue;
+            %tmp.17 = newc %tmp.20 ();
+            putv self :_theme %tmp.17;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 20 24 ]
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_15_16_switchCaseEnd;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_15_16_switchCaseEnd:
+            pop;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_13_12_stop:
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_12_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_12_12_if_end:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc" 24 12 ]
+            %tmp.21 = lgetv %self;
+            %tmp.22 = getv %tmp.21 :_theme;
+            ret %tmp.22;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Themes_ThemesLoader_mc_11_8_stop:
+        }
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Themes\ThemesLoader.mc"; @line = 1; ]
+<init> {
+}

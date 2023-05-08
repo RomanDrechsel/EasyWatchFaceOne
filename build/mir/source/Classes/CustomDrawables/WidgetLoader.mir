@@ -1,0 +1,72 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 1; ]
+import Widgets;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 3; ]
+module CustomDrawables {
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 3; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 5; ]
+    enum DrawablePosition {
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 5; @position = 28; ]
+        WIDGET_CENTER = 0,
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 5; @position = 47; ]
+        WIDGET_UPPERCENTER
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 7; ]
+    class WidgetLoader{
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 7; ]
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 7; ]
+        static
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 7; ]
+        function initialize() as Void {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 9; ]
+        static
+        function GetWidget(pos as DrawablePosition) as Widgets.WidgetBase {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_10_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc" 11 12 ]
+            %tmp.2 = lgetv %pos;
+            push %tmp.2;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_11_12_switchCaseBegin:
+            %tmp.3 = dup %tmp.2;
+            %tmp.5 = getv ? :WIDGET_CENTER;
+            %tmp.6 = getv function %tmp.3 :equals;
+            %tmp.7 = invoke %tmp.3 %tmp.6 (%tmp.5);
+            bt %tmp.7 @C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_13_16;
+            %tmp.8 = dup %tmp.2;
+            %tmp.10 = getv ? :WIDGET_UPPERCENTER;
+            %tmp.11 = getv function %tmp.8 :equals;
+            %tmp.12 = invoke %tmp.8 %tmp.11 (%tmp.10);
+            bt %tmp.12 @C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_15_16;
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_11_12_defaultCodeBegin;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_13_16:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc" 14 20 ]
+            %tmp.15 = getm $.Widgets;
+            %tmp.16 = getv function ? %tmp.15 :Clock;
+            %tmp.13 = newc %tmp.16 ();
+            ret %tmp.13;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_15_16:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc" 16 20 ]
+            %tmp.19 = getm $.Widgets;
+            %tmp.20 = getv function ? %tmp.19 :Date;
+            %tmp.17 = newc %tmp.20 ();
+            ret %tmp.17;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_11_12_defaultCodeBegin:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_11_12_switchCaseEnd:
+            pop;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc" 19 12 ]
+            %tmp.23 = getm $.Widgets;
+            %tmp.24 = getv function ? %tmp.23 :WidgetBase;
+            %tmp.21 = newc %tmp.24 ();
+            ret %tmp.21;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_CustomDrawables_WidgetLoader_mc_10_8_stop:
+        }
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\CustomDrawables\WidgetLoader.mc"; @line = 1; ]
+<init> {
+}

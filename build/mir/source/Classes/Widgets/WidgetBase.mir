@@ -1,0 +1,72 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 1; ]
+import Toybox.Graphics;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 2; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 4; ]
+module Widgets {
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 6; ]
+    class WidgetBase{
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 6; ]
+        <init> {
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 8 12 ]
+            %tmp.1 = NaN;
+            %tmp.2 = as %tmp.1 Float;
+            putv self :locX %tmp.2;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 9 12 ]
+            %tmp.3 = NaN;
+            %tmp.4 = as %tmp.3 Float;
+            putv self :locY %tmp.4;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 10 22 ]
+            %tmp.5 = null;
+            %tmp.6 = as %tmp.5 Themes.ThemeSettingsBase;
+            putv self :_theme %tmp.6;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 12 22 ]
+            %tmp.7 = false;
+            %tmp.8 = as %tmp.7 Boolean;
+            putv self :_initialized %tmp.8;
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 6; ]
+        static
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 8; @position = 12; ]
+        var locX;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 9; @position = 12; ]
+        var locY;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 10; @position = 22; ]
+        protected
+        var _theme;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 12; @position = 22; ]
+        protected
+        var _initialized;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 14; ]
+        function initialize() as Void {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_WidgetBase_mc_15_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 16 12 ]
+            %tmp.1 = getm $;
+            %tmp.2 = getv function %tmp.1 :getTheme;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            putv self :_theme %tmp.3;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_WidgetBase_mc_15_8_stop:
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 19; ]
+        function setPosition(posx as Float, posy as Float) {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_WidgetBase_mc_20_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 21 12 ]
+            %tmp.2 = lgetv %posx;
+            putv self :locX %tmp.2;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc" 22 12 ]
+            %tmp.4 = lgetv %posy;
+            putv self :locY %tmp.4;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_WidgetBase_mc_20_8_stop:
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 25; ]
+        function draw(dc as Dc);
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\WidgetBase.mc"; @line = 1; ]
+<init> {
+}

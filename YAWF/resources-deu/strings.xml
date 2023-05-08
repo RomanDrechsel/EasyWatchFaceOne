@@ -3,4 +3,25 @@
     <string id="Theme">Theme</string>
     <string id="ThemeBlackAndBlue">Schwarz und Blau</string>
 
+    <string id="ShortMonday">Mo</string>
+    <string id="ShortTuesday">Di</string>
+    <string id="ShortWednesday">Mi</string>
+    <string id="ShortThursday">Do</string>
+    <string id="ShortFriday">Fr</string>
+    <string id="ShortSaturday">Sa</string>
+    <string id="ShortSunday">So</string>
+
+    <string id="ShortJanuar">Jan</string>
+    <string id="ShortFebruary">Feb</string>
+    <string id="ShortMarch">März</string>
+    <string id="ShortApril">Apr</string>
+    <string id="ShortMay">Mai</string>
+    <string id="ShortJune">Jun</string>
+    <string id="ShortJuly">Jul</string>
+    <string id="ShortAugust">Aug</string>
+    <string id="ShortSeptember">Sept</string>
+    <string id="ShortOctober">Okt</string>
+    <string id="ShortNovember">Nov</string>
+    <string id="ShortDecember">Dez</string>
+
 </strings>

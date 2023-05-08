@@ -1,5 +1,6 @@
 import Toybox.WatchUi;
 import Toybox.Lang;
+import Widgets;
 
 module CustomDrawables
 {
@@ -8,12 +9,11 @@ module CustomDrawables
         function initialize(params as Dictionary)
         {
             DrawableBase.initialize(params);
+        }
 
-            self._Widget = WidgetLoader.GetWidget(WIDGET_CENTER);
-            if (self._Widget != null)
-            {
-                self._Widget.setPosition(self.locX, self.locY);
-            }
+        protected function getWidget() as WidgetBase
+        {
+            return WidgetLoader.GetWidget(WIDGET_CENTER);
         }
     }
 }

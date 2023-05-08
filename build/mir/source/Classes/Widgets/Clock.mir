@@ -1,0 +1,397 @@
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 1; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 2; ]
+import Toybox.Lang;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 3; ]
+import Toybox.System;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 4; ]
+import Toybox.WatchUi;
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 6; ]
+module Widgets {
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 8; ]
+    class Clock extends WidgetBase{
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 8; ]
+        <init> {
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 10 20 ]
+            %tmp.1 = 0xFFFFFF;
+            %tmp.2 = as %tmp.1 Number;
+            putv self :_ClockColor %tmp.2;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 11 20 ]
+            %tmp.3 = 0xFFFFFF;
+            %tmp.4 = as %tmp.3 Number;
+            putv self :_SecondsColor %tmp.4;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 12 20 ]
+            %tmp.5 = null;
+            %tmp.6 = as %tmp.5 FontResource;
+            putv self :_Font %tmp.6;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 13 21 ]
+            %tmp.7 = null;
+            %tmp.8 = as %tmp.7 FontResource;
+            putv self :_FontSmall %tmp.8;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 14 20 ]
+            %tmp.9 = null;
+            %tmp.10 = as %tmp.9 FontResource;
+            putv self :_FontBold %tmp.10;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 16 20 ]
+            %tmp.11 = 1;
+            %tmp.12 = sub 0 %tmp.11;
+            %tmp.13 = as %tmp.12 Number;
+            putv self :_hours_pos %tmp.13;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 17 20 ]
+            %tmp.14 = 1;
+            %tmp.15 = sub 0 %tmp.14;
+            %tmp.16 = as %tmp.15 Number;
+            putv self :_min_pos %tmp.16;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 18 20 ]
+            %tmp.17 = 1;
+            %tmp.18 = sub 0 %tmp.17;
+            %tmp.19 = as %tmp.18 Number;
+            putv self :_sec_pos %tmp.19;
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 8; ]
+        static
+        <init> {
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 10; @position = 20; ]
+        private
+        var _ClockColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 11; @position = 20; ]
+        private
+        var _SecondsColor;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 12; @position = 20; ]
+        private
+        var _Font;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 13; @position = 21; ]
+        private
+        var _FontSmall;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 14; @position = 20; ]
+        private
+        var _FontBold;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 16; @position = 20; ]
+        private
+        var _hours_pos;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 17; @position = 20; ]
+        private
+        var _min_pos;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 18; @position = 20; ]
+        private
+        var _sec_pos;
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 20; ]
+        function initialize() as Void {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_21_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 22 12 ]
+            %tmp.2 = getv ? :WidgetBase;
+            %tmp.3 = getv function %tmp.2 :initialize;
+            invoke %tmp.2 %tmp.3();
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 24 12 ]
+            %tmp.4 = lgetv %self;
+            %tmp.5 = getv %tmp.4 :_theme;
+            %tmp.6 = getv %tmp.5 :ClockMainColor;
+            %tmp.7 = as %tmp.6 Number;
+            putv self :_ClockColor %tmp.7;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 25 12 ]
+            %tmp.8 = lgetv %self;
+            %tmp.9 = getv %tmp.8 :_theme;
+            %tmp.10 = getv %tmp.9 :ClockSecondsColor;
+            %tmp.11 = as %tmp.10 Number;
+            putv self :_SecondsColor %tmp.11;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 26 12 ]
+            %tmp.12 = getm $.Toybox.WatchUi;
+            %tmp.13 = getv function %tmp.12 :loadResource;
+            %tmp.15 = getv ? :Rez;
+            %tmp.16 = getv %tmp.15 :Fonts;
+            %tmp.17 = getv %tmp.16 :ClockFont;
+            %tmp.18 = invoke %tmp.12 %tmp.13(%tmp.17);
+            %tmp.19 = as %tmp.18 FontResource;
+            putv self :_Font %tmp.19;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 27 12 ]
+            %tmp.20 = getm $.Toybox.WatchUi;
+            %tmp.21 = getv function %tmp.20 :loadResource;
+            %tmp.23 = getv ? :Rez;
+            %tmp.24 = getv %tmp.23 :Fonts;
+            %tmp.25 = getv %tmp.24 :ClockFontSmall;
+            %tmp.26 = invoke %tmp.20 %tmp.21(%tmp.25);
+            %tmp.27 = as %tmp.26 FontResource;
+            putv self :_FontSmall %tmp.27;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 28 12 ]
+            %tmp.28 = getm $.Toybox.WatchUi;
+            %tmp.29 = getv function %tmp.28 :loadResource;
+            %tmp.31 = getv ? :Rez;
+            %tmp.32 = getv %tmp.31 :Fonts;
+            %tmp.33 = getv %tmp.32 :ClockFontBold;
+            %tmp.34 = invoke %tmp.28 %tmp.29(%tmp.33);
+            %tmp.35 = as %tmp.34 FontResource;
+            putv self :_FontBold %tmp.35;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_21_8_stop:
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 31; ]
+        function draw(dc as Gfx.Dc) as Void {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 33 12 ]
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_33_12_if_stmt:
+            %tmp.1 = lgetv %self;
+            %tmp.2 = getv %tmp.1 :_initialized;
+            %tmp.3 = false;
+            %tmp.4 = eq %tmp.2 %tmp.3;
+            bf %tmp.4 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_33_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_33_12_if_true:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_34_12_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 35 16 ]
+            %tmp.5 = lgetv %self;
+            %tmp.6 = getv function %tmp.5 :CalcPos;
+            %tmp.8 = lgetv %dc;
+            invoke %tmp.5 %tmp.6(%tmp.8);
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_34_12_stop:
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_33_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_33_12_if_end:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 38 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_stop" ]
+            %clockTime.1 = local;
+            %tmp.9 = getm $.Toybox.System;
+            %tmp.10 = getv function %tmp.9 :getClockTime;
+            %tmp.11 = invoke %tmp.9 %tmp.10();
+            lputv %clockTime.1 %tmp.11;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 39 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_stop" ]
+            %hour.2 = local;
+            %tmp.12 = lgetv %clockTime.1;
+            %tmp.13 = getv %tmp.12 :hour;
+            lputv %hour.2 %tmp.13;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 40 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_stop" ]
+            %ampm.3 = local;
+            %tmp.14 = "";
+            lputv %ampm.3 %tmp.14;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 41 12 ]
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_41_12_if_stmt:
+            %tmp.15 = getm $.Toybox.System;
+            %tmp.16 = getv function %tmp.15 :getDeviceSettings;
+            %tmp.17 = invoke %tmp.15 %tmp.16();
+            %tmp.18 = getv %tmp.17 :is24Hour;
+            %tmp.19 = false;
+            %tmp.20 = eq %tmp.18 %tmp.19;
+            bf %tmp.20 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_41_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_41_12_if_true:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_42_12_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 43 16 ]
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_stmt:
+            %tmp.22 = lgetv %hour.2;
+            %tmp.23 = 12;
+            %tmp.24 = lt %tmp.22 %tmp.23;
+            bf %tmp.24 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_false;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_true:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_44_16_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 45 20 ]
+            %tmp.25 = "AM";
+            lputv %ampm.3 %tmp.25;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_44_16_stop:
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_false:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_48_16_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 49 20 ]
+            %tmp.26 = "PM";
+            lputv %ampm.3 %tmp.26;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_48_16_stop:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_43_16_if_end:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 51 16 ]
+            %tmp.27 = lgetv %hour.2;
+            %tmp.28 = 12;
+            %tmp.29 = mod %tmp.27 %tmp.28;
+            lputv %hour.2 %tmp.29;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_42_12_stop:
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_41_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_41_12_if_end:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 54 12 ]
+            %tmp.30 = lgetv %dc;
+            %tmp.31 = getv function %tmp.30 :setColor;
+            %tmp.32 = lgetv %self;
+            %tmp.33 = getv %tmp.32 :_ClockColor;
+            %tmp.34 = getm $.Toybox.Graphics;
+            %tmp.35 = getv %tmp.34 :COLOR_TRANSPARENT;
+            invoke %tmp.30 %tmp.31(%tmp.33, %tmp.35);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 55 12 ]
+            %tmp.36 = lgetv %dc;
+            %tmp.37 = getv function %tmp.36 :drawText;
+            %tmp.38 = lgetv %self;
+            %tmp.39 = getv %tmp.38 :_hours_pos;
+            %tmp.40 = lgetv %self;
+            %tmp.41 = getv %tmp.40 :locY;
+            %tmp.42 = lgetv %self;
+            %tmp.43 = getv %tmp.42 :_Font;
+            %tmp.44 = lgetv %hour.2;
+            %tmp.45 = getv function %tmp.44 :format;
+            %tmp.46 = "%02d";
+            %tmp.47 = invoke %tmp.44 %tmp.45(%tmp.46);
+            %tmp.48 = getm $.Toybox.Graphics;
+            %tmp.49 = getv %tmp.48 :TEXT_JUSTIFY_VCENTER;
+            %tmp.50 = getm $.Toybox.Graphics;
+            %tmp.51 = getv %tmp.50 :TEXT_JUSTIFY_CENTER;
+            %tmp.52 = bitor %tmp.49 %tmp.51;
+            invoke %tmp.36 %tmp.37(%tmp.39, %tmp.41, %tmp.43, %tmp.47, %tmp.52);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 56 12 ]
+            %tmp.53 = lgetv %dc;
+            %tmp.54 = getv function %tmp.53 :drawText;
+            %tmp.55 = lgetv %self;
+            %tmp.56 = getv %tmp.55 :_min_pos;
+            %tmp.57 = lgetv %self;
+            %tmp.58 = getv %tmp.57 :locY;
+            %tmp.59 = lgetv %self;
+            %tmp.60 = getv %tmp.59 :_Font;
+            %tmp.61 = lgetv %clockTime.1;
+            %tmp.62 = getv %tmp.61 :min;
+            %tmp.63 = getv function %tmp.62 :format;
+            %tmp.64 = "%02d";
+            %tmp.65 = invoke %tmp.62 %tmp.63(%tmp.64);
+            %tmp.66 = getm $.Toybox.Graphics;
+            %tmp.67 = getv %tmp.66 :TEXT_JUSTIFY_VCENTER;
+            %tmp.68 = getm $.Toybox.Graphics;
+            %tmp.69 = getv %tmp.68 :TEXT_JUSTIFY_CENTER;
+            %tmp.70 = bitor %tmp.67 %tmp.69;
+            invoke %tmp.53 %tmp.54(%tmp.56, %tmp.58, %tmp.60, %tmp.65, %tmp.70);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 58 12 ]
+            %tmp.71 = lgetv %dc;
+            %tmp.72 = getv function %tmp.71 :setColor;
+            %tmp.73 = lgetv %self;
+            %tmp.74 = getv %tmp.73 :_SecondsColor;
+            %tmp.75 = getm $.Toybox.Graphics;
+            %tmp.76 = getv %tmp.75 :COLOR_TRANSPARENT;
+            invoke %tmp.71 %tmp.72(%tmp.74, %tmp.76);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 59 12 ]
+            %tmp.77 = lgetv %dc;
+            %tmp.78 = getv function %tmp.77 :drawText;
+            %tmp.79 = lgetv %self;
+            %tmp.80 = getv %tmp.79 :_sec_pos;
+            %tmp.81 = lgetv %self;
+            %tmp.82 = getv %tmp.81 :locY;
+            %tmp.83 = 12;
+            %tmp.84 = sub %tmp.82 %tmp.83;
+            %tmp.85 = lgetv %self;
+            %tmp.86 = getv %tmp.85 :_FontSmall;
+            %tmp.87 = lgetv %clockTime.1;
+            %tmp.88 = getv %tmp.87 :sec;
+            %tmp.89 = getv function %tmp.88 :format;
+            %tmp.90 = "%02d";
+            %tmp.91 = invoke %tmp.88 %tmp.89(%tmp.90);
+            %tmp.92 = getm $.Toybox.Graphics;
+            %tmp.93 = getv %tmp.92 :TEXT_JUSTIFY_VCENTER;
+            %tmp.94 = getm $.Toybox.Graphics;
+            %tmp.95 = getv %tmp.94 :TEXT_JUSTIFY_LEFT;
+            %tmp.96 = bitor %tmp.93 %tmp.95;
+            invoke %tmp.77 %tmp.78(%tmp.80, %tmp.84, %tmp.86, %tmp.91, %tmp.96);
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 61 12 ]
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_61_12_if_stmt:
+            %tmp.97 = lgetv %ampm.3;
+            %tmp.98 = getv function %tmp.97 :length;
+            %tmp.99 = invoke %tmp.97 %tmp.98();
+            %tmp.100 = 0;
+            %tmp.101 = gt %tmp.99 %tmp.100;
+            bf %tmp.101 @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_61_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_61_12_if_true:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_62_12_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 63 16 ]
+            %tmp.102 = lgetv %dc;
+            %tmp.103 = getv function %tmp.102 :drawText;
+            %tmp.104 = lgetv %self;
+            %tmp.105 = getv %tmp.104 :_sec_pos;
+            %tmp.106 = lgetv %self;
+            %tmp.107 = getv %tmp.106 :locY;
+            %tmp.108 = 20;
+            %tmp.109 = add %tmp.107 %tmp.108;
+            %tmp.110 = lgetv %self;
+            %tmp.111 = getv %tmp.110 :_FontBold;
+            %tmp.113 = lgetv %ampm.3;
+            %tmp.114 = getm $.Toybox.Graphics;
+            %tmp.115 = getv %tmp.114 :TEXT_JUSTIFY_VCENTER;
+            %tmp.116 = getm $.Toybox.Graphics;
+            %tmp.117 = getv %tmp.116 :TEXT_JUSTIFY_LEFT;
+            %tmp.118 = bitor %tmp.115 %tmp.117;
+            invoke %tmp.102 %tmp.103(%tmp.105, %tmp.109, %tmp.111, %tmp.113, %tmp.118);
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_62_12_stop:
+            goto @C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_61_12_if_end;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_61_12_if_end:
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_32_8_stop:
+        }
+        [ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 67; ]
+        private
+        function CalcPos(dc as Gfx.Dc) as Void {
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_start:
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 69 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_stop" ]
+            %bigtextwidth.1 = local;
+            %tmp.1 = lgetv %dc;
+            %tmp.2 = getv function %tmp.1 :getTextWidthInPixels;
+            %tmp.3 = "01";
+            %tmp.4 = lgetv %self;
+            %tmp.5 = getv %tmp.4 :_Font;
+            %tmp.6 = invoke %tmp.1 %tmp.2(%tmp.3, %tmp.5);
+            lputv %bigtextwidth.1 %tmp.6;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 70 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_stop" ]
+            %space_between.2 = local;
+            %tmp.7 = 16;
+            lputv %space_between.2 %tmp.7;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 71 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_stop" ]
+            %space_seconds.3 = local;
+            %tmp.8 = 8;
+            lputv %space_seconds.3 %tmp.8;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 72 12 ]
+            [ "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_start" "C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_stop" ]
+            %offset.4 = local;
+            %tmp.9 = 32;
+            lputv %offset.4 %tmp.9;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 74 12 ]
+            %tmp.10 = lgetv %self;
+            %tmp.11 = getv %tmp.10 :locX;
+            %tmp.13 = lgetv %bigtextwidth.1;
+            %tmp.14 = 2;
+            %tmp.15 = div %tmp.13 %tmp.14;
+            %tmp.16 = sub %tmp.11 %tmp.15;
+            %tmp.18 = lgetv %space_between.2;
+            %tmp.19 = 2;
+            %tmp.20 = div %tmp.18 %tmp.19;
+            %tmp.21 = sub %tmp.16 %tmp.20;
+            %tmp.23 = lgetv %offset.4;
+            %tmp.24 = sub %tmp.21 %tmp.23;
+            putv self :_hours_pos %tmp.24;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 75 12 ]
+            %tmp.25 = lgetv %self;
+            %tmp.26 = getv %tmp.25 :locX;
+            %tmp.28 = lgetv %bigtextwidth.1;
+            %tmp.29 = 2;
+            %tmp.30 = div %tmp.28 %tmp.29;
+            %tmp.31 = add %tmp.26 %tmp.30;
+            %tmp.33 = lgetv %space_between.2;
+            %tmp.34 = 2;
+            %tmp.35 = div %tmp.33 %tmp.34;
+            %tmp.36 = add %tmp.31 %tmp.35;
+            %tmp.38 = lgetv %offset.4;
+            %tmp.39 = sub %tmp.36 %tmp.38;
+            putv self :_min_pos %tmp.39;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 76 12 ]
+            %tmp.40 = lgetv %self;
+            %tmp.41 = getv %tmp.40 :locX;
+            %tmp.43 = lgetv %offset.4;
+            %tmp.44 = sub %tmp.41 %tmp.43;
+            %tmp.46 = lgetv %bigtextwidth.1;
+            %tmp.47 = add %tmp.44 %tmp.46;
+            %tmp.49 = lgetv %space_between.2;
+            %tmp.50 = 2;
+            %tmp.51 = div %tmp.49 %tmp.50;
+            %tmp.52 = add %tmp.47 %tmp.51;
+            %tmp.54 = lgetv %space_seconds.3;
+            %tmp.55 = add %tmp.52 %tmp.54;
+            putv self :_sec_pos %tmp.55;
+[ "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc" 78 12 ]
+            %tmp.56 = true;
+            putv self :_initialized %tmp.56;
+C_Programmierung_Github_YAWF_YAWF_source_Classes_Widgets_Clock_mc_68_8_stop:
+        }
+    }
+}
+[ @file = "C:\Programmierung\Github\YAWF\YAWF\source\Classes\Widgets\Clock.mc"; @line = 1; ]
+<init> {
+}
