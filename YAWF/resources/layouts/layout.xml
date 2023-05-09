@@ -11,7 +11,11 @@
     </drawable>
 
     <drawable class="DrawableContainers.TopLeftContainer" id="TopLeft">
-        <param name="locX">40</param>
-        <param name="locY">40</param>
+        <param name="locX">0</param>
+        <param name="locY">0</param>
+    </drawable>
+    <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
+        <param name="locX">dc.getWidth()</param>
+        <param name="locY">0</param>
     </drawable>
 </layout>

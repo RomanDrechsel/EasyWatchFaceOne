@@ -7,12 +7,12 @@ module DrawableContainers
     {
         function initialize(params as Dictionary)
         {
-            BaseContainer.initialize(params);      
+            BaseContainer.initialize(params);
         }
 
-        protected function getWidget() as WidgetBase
+        protected function getWidget(params) as WidgetBase
         {
-            return WidgetLoader.GetWidget(WIDGET_UPPERCENTER);
+            return WidgetLoader.GetWidget(WIDGET_UPPERCENTER, params);
         }
     }
 }

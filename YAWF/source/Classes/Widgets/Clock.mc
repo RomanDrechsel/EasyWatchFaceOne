@@ -15,9 +15,9 @@ module Widgets
         private var _min_pos = -1 as Number;
         private var _sec_pos = -1 as Number;
 
-        function initialize() 
+        function initialize(params as Dictionary) 
         {
-            WidgetBase.initialize();
+            WidgetBase.initialize(params);
             
             self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont) as FontResource;
             self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall) as FontResource;

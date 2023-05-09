@@ -15,24 +15,21 @@ module Widgets
         private var _Theme = null as Themes.ThemeSettingsBase;
         private var _Texts = new[3] as Array<ExtTextPart>;
 
-        function initialize()
+        function initialize(params as Dictionary)
         {
-            WidgetBase.initialize();
+            WidgetBase.initialize(params);
             self._Font = WatchUi.loadResource(Rez.Fonts.DateFont) as FontResource;
             self._Theme =  $.getTheme();
+
+            self._textContainer = new ExtText(self.locX, self.locY, ExtText.HJUST_CENTER, ExtText.VJUST_CENTER);
+            self._Texts[0] = new ExtTextPart("", self._Theme.DateWeekdayColor, self._Font);
+            self._Texts[1] = new ExtTextPart("", self._Theme.DateDayColor, self._Font);
+            self._Texts[2] = new ExtTextPart("", self._Theme.DateYearColor, self._Font);
+            self._initialized = true;
         }
 
         function draw(dc as Gfx.Dc)
         {
-            if (self._initialized == false)
-            {
-                self._textContainer = new ExtText(self.locX, self.locY, ExtText.HJUST_CENTER, ExtText.VJUST_CENTER);
-                self._Texts[0] = new ExtTextPart("", self._Theme.DateWeekdayColor, self._Font);
-                self._Texts[1] = new ExtTextPart("", self._Theme.DateDayColor, self._Font);
-                self._Texts[2] = new ExtTextPart("", self._Theme.DateYearColor, self._Font);
-                self._initialized = true;
-            }
-
             var now = Time.now();
             var time = D.info(now, Time.FORMAT_SHORT);
 

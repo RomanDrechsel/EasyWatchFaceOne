@@ -22,10 +22,9 @@ module Widgets
         private var _FontHeight = 1 as Number;
         private var _hasBatteryInDays = false;
 
-        function initialize() 
+        function initialize(params as Dictionary) 
         {
-            WidgetBase.initialize();
-
+            WidgetBase.initialize(params);
             self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
             if (Application.Properties.getValue("WidgetBatteryShowDays") == false)
             {
@@ -73,12 +72,16 @@ module Widgets
             }
             else
             {
-                dc.drawText(self.locX, self.locY - 3, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                dc.drawText(WidgetBase.locX, WidgetBase.locY - 3, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
             }            
         }
 
         private function Init(dc as Gfx.Dc)
         {
+            //adjust position to center of widget
+            self.locX = (self.locX + self._arcRadius + (self._arcWidth / 2) + 1).toFloat();
+            self.locY = (self.locY + self._arcRadius + (self._arcWidth / 2) + 1).toFloat();
+
             self._arc = new Helper.DrawArc(self.locX, self.locY, self._arcRadius, self._arcWidth, self._arcStart, self._arcLength, Gfx.ARC_CLOCKWISE);
             self._arc.Parts = self._arcParts;
             self._arc.PartSeparatorWidth = self._arcPartSeparatorWidth;

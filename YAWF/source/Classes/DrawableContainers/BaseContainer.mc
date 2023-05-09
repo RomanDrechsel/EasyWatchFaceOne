@@ -12,12 +12,7 @@ module DrawableContainers
         function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
-            self._Widget = self.getWidget();
-            
-            if (self._Widget != null)
-            {
-                self._Widget.setPosition(self.locX, self.locY);
-            }
+            self._Widget = self.getWidget(params);
         }
 
         function draw(dc as Dc) as Void 
@@ -27,7 +22,5 @@ module DrawableContainers
                 self._Widget.draw(dc);
             }
         }
-
-        protected function getWidget();
     }
 }

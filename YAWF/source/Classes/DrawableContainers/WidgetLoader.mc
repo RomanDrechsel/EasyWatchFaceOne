@@ -1,21 +1,29 @@
 import Widgets;
+import Toybox.Lang;
 
 module DrawableContainers
 {
-    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_TOPLEFT }
+    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_TOPLEFT, WIDGET_TOPRIGHT }
 
     class WidgetLoader
     {
-        static function GetWidget(pos as ContainerPosition) as WidgetBase
+        static function GetWidgetWithoutParams(pos as ContainerPosition) as WidgetBase
+        {
+            return self.GetWidget(pos, {});
+        }
+
+        static function GetWidget(pos as ContainerPosition, container_params as Dictionary) as WidgetBase
         {
             switch (pos)
             {
                 case WIDGET_CENTER:
-                    return new Clock();
+                    return new Clock(container_params);
                 case WIDGET_UPPERCENTER:
-                    return new Date();
+                    return new Date(container_params);
                 case WIDGET_TOPLEFT:
-                    return new BatteryStatus();
+                    return new BatteryStatus(container_params);
+                case WIDGET_TOPRIGHT:
+                    return new Icons(container_params);
             }
 
             return new WidgetBase();

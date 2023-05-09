@@ -3,7 +3,7 @@ import Widgets;
 
 module DrawableContainers
 {
-    class TopLeftContainer extends BaseContainer 
+    class TopRightContainer extends BaseContainer 
     {
         function initialize(params as Dictionary)
         {
@@ -12,7 +12,7 @@ module DrawableContainers
 
         protected function getWidget(params) as WidgetBase
         {
-            return WidgetLoader.GetWidget(WIDGET_TOPLEFT, params);
+            return WidgetLoader.GetWidget(WIDGET_TOPRIGHT, params);
         }
     }
 }
