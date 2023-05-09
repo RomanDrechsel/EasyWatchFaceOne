@@ -1,9 +1,12 @@
 <strings>
 
     <string id="AppName">Yet another WatchFace</string>
-    <string id="AppVersion">Version</string>
 
-    <string id="Theme">Theme</string>
+    <string id="SettingsAppVersion">App Version</string>
+    <string id="SettingsTheme">Theme</string>
+    <string id="SettingsgroupWidgetsTitle">Widget settings</string>
+    <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>
+    
     <string id="ThemeBlackAndBlue">Black and Blue</string>
 
     <string id="ShortMonday">Mon</string>

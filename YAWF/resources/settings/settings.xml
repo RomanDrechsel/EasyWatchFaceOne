@@ -1,13 +1,19 @@
 <settings>
 
-    <setting propertyKey="@Properties.appVersion" title="@Strings.AppVersion">
+    <setting propertyKey="@Properties.appVersion" title="@Strings.SettingsAppVersion">
         <settingConfig type="alphaNumeric" readonly="true" />
     </setting>
 
-    <setting propertyKey="@Properties.Theme" title="@Strings.Theme">
+    <setting propertyKey="@Properties.Theme" title="@Strings.SettingsTheme">
         <settingConfig type="list">
             <listEntry value="0">@Strings.ThemeBlackAndBlue</listEntry>
         </settingConfig>
     </setting>
+
+    <group id="groupWidgets" title="@Strings.SettingsgroupWidgetsTitle">
+        <setting propertyKey="@Properties.WidgetBatteryShowDays" title="@Strings.SettingsWidgetBatteryShowDays">
+            <settingConfig type="boolean"/>
+        </setting>
+    </group>
 
 </settings>

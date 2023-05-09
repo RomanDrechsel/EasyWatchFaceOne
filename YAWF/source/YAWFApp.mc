@@ -11,7 +11,7 @@ class YAWFApp extends Application.AppBase
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
-        Helper.Date.loadResource();//localization for dates
+        Application.Properties.setValue("appVersion", "2023.5.9rc3");
     }
 
     // onStop() is called when your application is exiting

@@ -1,14 +1,13 @@
-import Toybox.WatchUi;
 import Toybox.Lang;
 import Widgets;
 
-module CustomDrawables
+module DrawableContainers
 {
-    class UpperCenterDrawable extends DrawableBase 
+    class UpperCenterContainer extends BaseContainer 
     {
         function initialize(params as Dictionary)
         {
-            DrawableBase.initialize(params);      
+            BaseContainer.initialize(params);      
         }
 
         protected function getWidget() as WidgetBase

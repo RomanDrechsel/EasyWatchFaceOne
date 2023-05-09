@@ -5,15 +5,21 @@ module Themes
     class ThemeSettingsBase
     {
         //Background
-        var BackgroundColor = NaN as Number;
+        var BackgroundColor = 0 as Number;
 
         //Clock Widget
-        var ClockMainColor = NaN as Number;
-        var ClockSecondsColor = NaN as Number;
+        var ClockMainColor = 0xFFFFFF as Number;
+        var ClockSecondsColor = 0xFFFFFF as Number;
 
         //Date Widget
-        var DateWeekdayColor = NaN as Number;
-        var DateDayColor = NaN as Number;
-        var DateYearColor = NaN as Number;
+        var DateWeekdayColor = 0xFFFFFF as Number;
+        var DateDayColor = 0xFFFFFF as Number;
+        var DateYearColor = 0xFFFFFF as Number;
+
+        //Battery Widget
+        var BatteryIndicatorBackgroundColor = 0x535353;
+        var BatteryIndicatorFullColor = 0x3dd33a;
+        var BatteryIndicatorHalfColor = 0xe1ef1a;
+        var BatteryIndicatorLowColor = 0xee0520;
     }
 }

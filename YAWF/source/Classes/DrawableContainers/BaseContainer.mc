@@ -3,9 +3,9 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Widgets;
 
-module CustomDrawables
+module DrawableContainers
 {
-    class DrawableBase extends Drawable 
+    class BaseContainer extends Drawable 
     {
         protected var _Widget = null as WidgetBase;
 

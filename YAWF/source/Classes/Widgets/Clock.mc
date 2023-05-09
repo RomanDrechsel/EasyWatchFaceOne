@@ -7,8 +7,6 @@ module Widgets
 {
     class Clock extends WidgetBase
     {
-        private var _ClockColor = 0xFFFFFF as Number;
-        private var _SecondsColor = 0xFFFFFF as Number;
         private var _Font = null as FontResource;
         private  var _FontSmall = null as FontResource;
         private var _FontBold = null as FontResource;
@@ -20,9 +18,7 @@ module Widgets
         function initialize() 
         {
             WidgetBase.initialize();
-
-            self._ClockColor = self._theme.ClockMainColor as Number;
-            self._SecondsColor = self._theme.ClockSecondsColor as Number;
+            
             self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont) as FontResource;
             self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall) as FontResource;
             self._FontBold = WatchUi.loadResource(Rez.Fonts.ClockFontBold) as FontResource;
@@ -51,11 +47,11 @@ module Widgets
                 hour %= 12;
             }
 
-            dc.setColor(self._ClockColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(self._theme.ClockMainColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._hours_pos, self.locY, self._Font, hour.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_CENTER);
             dc.drawText(self._min_pos, self.locY, self._Font, clockTime.min.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_CENTER);
 
-            dc.setColor(self._SecondsColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(self._theme.ClockSecondsColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._sec_pos, self.locY - 12, self._FontSmall, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
 
             if (ampm.length() > 0)

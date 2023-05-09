@@ -9,12 +9,6 @@ module Helper
         static var ShortWeekdays = {} as Dictionary<Number, String>;
         static var ShortMonths = {} as Dictionary<Number, String>;
 
-        //loads strings from resources
-        static function loadResource()
-        {
-            
-        }
-
         //short version of day of week
         static function ShortWeekyday(greg_dayofweek as Number) as String
         {
