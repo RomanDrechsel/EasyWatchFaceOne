@@ -4,6 +4,7 @@ module Themes
     {
         //Background
         var BackgroundColor = 0x000000;
+        var BackgroundImage = Rez.Drawables.BackgroundImageBnB;
 
         //Clock Widget
         var ClockMainColor = 0x0071a2;

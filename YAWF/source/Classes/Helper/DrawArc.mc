@@ -57,9 +57,17 @@ module Helper
                 for (var i = 0; i < self.Parts; i++)
                 {
                     var partend = deg - partdeg;
+                    if (i == self.Parts - 1)
+                    {
+                        partend -= self.PartSeparatorWidth;
+                    }
                     if (self.Direction == Gfx.ARC_COUNTER_CLOCKWISE)
                     {
                         partend = deg + partdeg;
+                        if (i == self.Parts - 1)
+                        {
+                            partend += self.PartSeparatorWidth;
+                        }
                         if (partend > end)
                         {
                             partend = end;

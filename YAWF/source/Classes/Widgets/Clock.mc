@@ -48,8 +48,8 @@ module Widgets
             }
 
             dc.setColor(self._theme.ClockMainColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._hours_pos, self.locY, self._Font, hour.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_CENTER);
-            dc.drawText(self._min_pos, self.locY, self._Font, clockTime.min.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_CENTER);
+            dc.drawText(self._hours_pos, self.locY, self._Font, hour.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
+            dc.drawText(self._min_pos, self.locY, self._Font, clockTime.min.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
 
             dc.setColor(self._theme.ClockSecondsColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._sec_pos, self.locY - 12, self._FontSmall, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
@@ -62,13 +62,13 @@ module Widgets
 
         private function CalcPos(dc as Gfx.Dc) as Void
         {
-            var bigtextwidth = dc.getTextWidthInPixels("01", self._Font); //width of 2 numbers (monochrome)
-            var space_between = 16; //Space between hour and min
-            var space_seconds = 8; //Space between min and sec
-            var offset = 32; //Offset to the left side            
+            var bigtextwidth = dc.getTextWidthInPixels("00", self._Font); //width of 2 numbers
+            var space_between = 15; //Space between hour and min
+            var space_seconds = 2; //Space between min and sec
+            var offset = 24; //Offset to the left side            
 
-            self._hours_pos = self.locX - (bigtextwidth / 2) - (space_between / 2) - offset;
-            self._min_pos = self.locX + (bigtextwidth / 2) + (space_between / 2) - offset;
+            self._hours_pos = self.locX - (space_between / 2) - offset;
+            self._min_pos = self.locX + (space_between / 2) - offset;
             self._sec_pos = self.locX - offset + bigtextwidth + (space_between / 2) + space_seconds;
 
             self._initialized = true;

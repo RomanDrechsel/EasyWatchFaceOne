@@ -28,4 +28,6 @@
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dez</string>
 
+    <string id="ShortBatteryDays">T</string>
+
 </strings>

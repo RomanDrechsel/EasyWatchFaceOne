@@ -6,6 +6,7 @@ module Themes
     {
         //Background
         var BackgroundColor = 0 as Number;
+        var BackgroundImage = -1 as Number;
 
         //Clock Widget
         var ClockMainColor = 0xFFFFFF as Number;

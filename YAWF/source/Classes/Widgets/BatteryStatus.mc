@@ -22,6 +22,8 @@ module Widgets
         private var _FontHeight = 1 as Number;
         private var _hasBatteryInDays = false;
 
+        private var _BatteryDays = "d" as String;
+
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
@@ -34,6 +36,7 @@ module Widgets
             if (self._hasBatteryInDays == true)
             {
                 self._Font = WatchUi.loadResource(Rez.Fonts.Tiny) as FontResource;
+                self._BatteryDays = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
             }
             else
             {
@@ -68,7 +71,7 @@ module Widgets
             if (self._hasBatteryInDays == true)
             {
                 dc.drawText(self.locX, self.locY - self._FontHeight + 2, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER);
-                dc.drawText(self.locX, self.locY - 2, self._Font, stats.batteryInDays.format("%2d") + "d", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX, self.locY - 2, self._Font, stats.batteryInDays.format("%2d") + self._BatteryDays, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {

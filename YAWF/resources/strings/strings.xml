@@ -30,4 +30,6 @@
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dec</string>
 
+    <string id="ShortBatteryDays">d</string>
+
 </strings>

@@ -13,7 +13,7 @@ module Widgets
 
         function draw(dc as Gfx.Dc) as Void 
         {
-
+            
         }
     }
 }
