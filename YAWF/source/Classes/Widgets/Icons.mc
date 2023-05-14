@@ -11,7 +11,7 @@ module Widgets
         private var _BTWidth = 25 as Number;
         private var _MsgWidth = 40 as Number;
 
-        private var _Padding = 8 as Number;
+        private var _Padding = 12 as Number;
 
         function initialize(params as Dictionary) 
         {
@@ -36,7 +36,7 @@ module Widgets
             {
                 dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self.locX, self.locY, self._Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
-                dc.drawText(self.locX + 34, self.locY + 7, self._MsgFont, msgCount.toString(), Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX + 35, self.locY + 6, self._MsgFont, msgCount.toString(), Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {
