@@ -15,8 +15,8 @@
         <param name="locY">2</param>
     </drawable>
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
-        <param name="locX">dc.getWidth() - 8</param>
-        <param name="locY">8</param>
+        <param name="locX">dc.getWidth() - 10</param>
+        <param name="locY">12</param>
         <param name="Just">"right"</param>
     </drawable>
 </layout>
