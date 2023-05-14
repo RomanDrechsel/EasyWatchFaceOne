@@ -1,6 +1,5 @@
 <strings>
 
-    <string id="SettingsAppVersion">App-Version</string>
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>

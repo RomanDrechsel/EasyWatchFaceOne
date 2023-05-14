@@ -22,5 +22,9 @@ module Themes
         var BatteryIndicatorFullColor = 0x3dd33a;
         var BatteryIndicatorHalfColor = 0xe1ef1a;
         var BatteryIndicatorLowColor = 0xee0520;
+
+        //Icons Widget
+        var IconsOff = 0x797979;
+        var IconsOn = 0x3dd33a;
     }
 }

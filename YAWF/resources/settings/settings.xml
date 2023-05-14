@@ -1,9 +1,5 @@
 <settings>
 
-    <setting propertyKey="@Properties.appVersion" title="@Strings.SettingsAppVersion">
-        <settingConfig type="alphaNumeric" readonly="true" />
-    </setting>
-
     <setting propertyKey="@Properties.Theme" title="@Strings.SettingsTheme">
         <settingConfig type="list">
             <listEntry value="0">@Strings.ThemeBlackAndBlue</listEntry>

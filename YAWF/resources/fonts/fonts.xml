@@ -5,4 +5,6 @@
     <font id="DateFont" filename="DateFont.fnt" antialias="true" filter=" abcdefghijklmnopqrstuvwxyz.1234567890" />
     <font id="Small" filename="FontSmall.fnt" antialias="true" />
     <font id="Tiny" filename="FontTiny.fnt" antialias="true" />
+
+    <font id="Icons" filename="Icons.fnt" antialias="true" />
 </fonts>

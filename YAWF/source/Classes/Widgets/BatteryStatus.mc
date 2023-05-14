@@ -16,7 +16,7 @@ module Widgets
         private var _arcParts = 6 as Number;
         private var _arcPartSeparatorWidth = 5 as Number;
 
-        private var _arc = null as Helper.DrawArc;
+        private var _arc = null as Helper.Gfx.DrawArc;
 
         private var _Font = null as FontResource;
         private var _FontHeight = 1 as Number;
@@ -82,10 +82,18 @@ module Widgets
         private function Init(dc as Gfx.Dc)
         {
             //adjust position to center of widget
-            self.locX = (self.locX + self._arcRadius + (self._arcWidth / 2) + 1).toFloat();
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                self.locX = (self.locX - (self._arcRadius / 2) - (self._arcWidth / 2) - 1).toFloat();
+            }
+            else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
+            {
+                self.locX = (self.locX + self._arcRadius + (self._arcWidth / 2) + 1).toFloat();
+            }   
+
             self.locY = (self.locY + self._arcRadius + (self._arcWidth / 2) + 1).toFloat();
 
-            self._arc = new Helper.DrawArc(self.locX, self.locY, self._arcRadius, self._arcWidth, self._arcStart, self._arcLength, Gfx.ARC_CLOCKWISE);
+            self._arc = new Helper.Gfx.DrawArc(self.locX, self.locY, self._arcRadius, self._arcWidth, self._arcStart, self._arcLength, Gfx.ARC_CLOCKWISE);
             self._arc.Parts = self._arcParts;
             self._arc.PartSeparatorWidth = self._arcPartSeparatorWidth;
 

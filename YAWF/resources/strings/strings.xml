@@ -2,7 +2,6 @@
 
     <string id="AppName">Yet another WatchFace</string>
 
-    <string id="SettingsAppVersion">App Version</string>
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>

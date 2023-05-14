@@ -1,7 +1,5 @@
 <properties>
 
-    <property id="appVersion" type="string">2023.5.9</property>
-
     <property type="number" id="Theme">0</property>
 
     <property type="boolean" id="WidgetBatteryShowDays">true</property>

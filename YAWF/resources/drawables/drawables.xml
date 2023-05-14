@@ -1,4 +1,4 @@
 <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
-    <bitmap id="BackgroundImageBnB" filename="Background.png" />
+    <bitmap id="BackgroundImageBnB" filename="Background.png" scaleY="100%" scaleRelativeTo="screen" packingFormat="default" />
 </drawables>
