@@ -18,6 +18,9 @@ module Themes
                     case 0:
                         self._theme = new BlackAndBlue();
                         break;
+                    case 1:
+                        self._theme = new Grey();
+                        break;
                 }
             }
 

@@ -3,6 +3,7 @@
     <setting propertyKey="@Properties.Theme" title="@Strings.SettingsTheme">
         <settingConfig type="list">
             <listEntry value="0">@Strings.ThemeBlackAndBlue</listEntry>
+            <listEntry value="1">@Strings.ThemeGrey</listEntry>
         </settingConfig>
     </setting>
 
