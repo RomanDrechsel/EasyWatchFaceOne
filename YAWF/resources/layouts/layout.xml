@@ -1,5 +1,6 @@
 <layout id="WatchFace">
     <drawable class="YAWFBackground" id="Background" />
+
     <drawable class="DrawableContainers.CenterContainer" id="Center">
         <param name="locX">dc.getWidth() * .5</param>
         <param name="locY">dc.getHeight() * .45</param>
@@ -14,9 +15,17 @@
         <param name="locX">2</param>
         <param name="locY">2</param>
     </drawable>
+
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
         <param name="locX">dc.getWidth() - 10</param>
         <param name="locY">12</param>
         <param name="Just">"right"</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.BottomLeftContainer" id="BottomLeft">
+        <param name="locX">10</param>
+        <param name="locY">dc.getHeight() - 10</param>
+        <param name="Width">(dc.getWidth() / 2) * 0.9</param>
+        <param name="VJust">"bottom"</param>
     </drawable>
 </layout>

@@ -3,7 +3,7 @@ import Toybox.Lang;
 
 module DrawableContainers
 {
-    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_TOPLEFT, WIDGET_TOPRIGHT }
+    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_TOPLEFT, WIDGET_TOPRIGHT, WIDGET_BOTTOMLEFT }
 
     class WidgetLoader
     {
@@ -24,6 +24,8 @@ module DrawableContainers
                     return new BatteryStatus(container_params);
                 case WIDGET_TOPRIGHT:
                     return new Icons(container_params);
+                case WIDGET_BOTTOMLEFT:
+                    return new Distance(container_params);
             }
 
             return new WidgetBase();

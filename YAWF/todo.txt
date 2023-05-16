@@ -1,0 +1,3 @@
+- Distance-Widgit: Bar in verschiedenen Farben
+- Test auf Gerät
+- Heartbeat Widgit

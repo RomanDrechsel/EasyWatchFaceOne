@@ -1,6 +1,6 @@
 module Themes
 {
-    class Grey
+    class Grey extends ThemeSettingsBase
     {
         //Background
         var BackgroundColor = 0x000000;
