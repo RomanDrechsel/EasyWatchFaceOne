@@ -30,6 +30,5 @@ module Themes
         //Distance Widget
         var DistanceColor = 0x3dd33a;
         var DistanceIndicatorBackground = 0x535353;
-        var DistanceIndicatorForeground = 0x3dd33a;
     }
 }

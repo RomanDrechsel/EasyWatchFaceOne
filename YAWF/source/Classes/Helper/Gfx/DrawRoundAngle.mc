@@ -14,7 +14,8 @@ module Helper
             var AngleRadius = 10 as Number;
 
             var BackgroundColor = 0 as Number;
-            var BarColor = 0xFFFFFF as Number;
+            var BarColors = [] as Array<RoundAngleColor>;
+            var DotDiameter = 5 as Number;
 
             var Thickness = 1 as Number; //Line-Thickness
             var ThicknessBold = 2 as Number; //Bold line-thickness
@@ -34,6 +35,7 @@ module Helper
                 self.Width = width;
                 self.Height = height;
                 self.AngleRadius = angleradius;
+
                 self.Reset();
             }
 
@@ -59,17 +61,27 @@ module Helper
                     amount = 0.0;
                 }
 
+                var color = 0xFFFFFF;
+                for (var i = 0; i < self.BarColors.size(); i++)
+                {
+                    if (self.BarColors[i].MaxAmount >= amount)
+                    {
+                        color = self.BarColors[i].Color;
+                        break;
+                    }
+                }
+
                 if (self.Direction == Gfx.ARC_COUNTER_CLOCKWISE)
                 {
-                    self.drawCounterClockwise(dc, amount);
+                    self.drawCounterClockwise(dc, amount, color);
                 }
                 else
                 {
-                    self.drawClockwise(dc, amount);
+                    self.drawClockwise(dc, amount, color);
                 }
             }
 
-            private function drawCounterClockwise(dc as Gfx.Dc, amount as Float)
+            private function drawCounterClockwise(dc as Gfx.Dc, amount as Float, color as Number)
             {
                 //Background - from top to right
                 dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
@@ -88,7 +100,7 @@ module Helper
                 //Foreground - from right to top
                 if (amount > 0.0)
                 {
-                    dc.setColor(self.BarColor, Gfx.COLOR_TRANSPARENT);
+                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
                     dc.setPenWidth(self.ThicknessBold);
 
                     startx = startx + self._lineWidth;
@@ -129,10 +141,22 @@ module Helper
                 }
             }
 
-            private function drawClockwise(dc as Gfx.Dc, percent as Number)
+            private function drawClockwise(dc as Gfx.Dc, percent as Number, color as Number)
             {
                 
             }
+        }
+
+        class RoundAngleColor
+        {
+            var MaxAmount as Float;
+            var Color as Number;
+
+            function initialize(amount as Float, color as Number)
+            {
+                self.MaxAmount = amount;
+                self.Color = color;
+            }            
         }
     }
 }

@@ -19,9 +19,10 @@ module Widgets
         private var _lineHeight = 33 as Number;
         private var _iconXpos = self.locX as Number;
 
-        private var _indicatorLineWidth = 6;
-        private var _indicatorLineWidthBold = 8;
-        private var _indicatorPadding = 8;
+        private var _indicatorLineWidth = 4;
+        private var _indicatorLineWidthBold = 6;
+        private var _indicatorDiameter = 10;
+        private var _indicatorPadding = 10;
         private var _indicatorDrawing = null as Draw.DrawRoundAngle;
 
         private const CENTIMETER_TO_FEET = 0.0328084 as Float;
@@ -52,9 +53,17 @@ module Widgets
 
             self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight + self._indicatorPadding + (self._lineHeight / 2), self._WidgetHeight / 4);
             self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
-            self._indicatorDrawing.BarColor = self._theme.DistanceIndicatorForeground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
+            self._indicatorDrawing.DotDiameter = self._indicatorDiameter;
+            self._indicatorDrawing.BarColors = [
+                new Draw.RoundAngleColor(0.2, 0xfa0000),
+                new Draw.RoundAngleColor(0.4, 0xfa7a00),
+                new Draw.RoundAngleColor(0.6, 0xf7fa00),
+                new Draw.RoundAngleColor(0.8, 0xc4ff31),
+                new Draw.RoundAngleColor(1.0, 0x00ad15)
+            ];
+
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
                 self._indicatorDrawing.Direction = Gfx.ARC_CLOCKWISE;
