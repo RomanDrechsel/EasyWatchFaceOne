@@ -28,4 +28,11 @@
         <param name="Width">(dc.getWidth() / 2) * 0.9</param>
         <param name="VJust">"bottom"</param>
     </drawable>
+
+    <drawable class="DrawableContainers.BottomRightContainer" id="BottomRight">
+        <param name="locX">dc.getWidth() - 10</param>
+        <param name="locY">dc.getHeight() - 10</param>
+        <param name="Width">(dc.getWidth() / 2) * 0.9</param>
+        <param name="VJust">"bottom"</param>
+    </drawable>
 </layout>
