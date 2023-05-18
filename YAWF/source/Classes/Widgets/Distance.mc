@@ -21,7 +21,7 @@ module Widgets
 
         private var _indicatorLineWidth = 4;
         private var _indicatorLineWidthBold = 6;
-        private var _indicatorDiameter = 10;
+        private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
         private var _indicatorDrawing = null as Draw.DrawRoundAngle;
 
@@ -55,7 +55,7 @@ module Widgets
             self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
-            self._indicatorDrawing.DotDiameter = self._indicatorDiameter;
+            self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.BarColors = [
                 new Draw.RoundAngleColor(0.2, 0xfa0000),
                 new Draw.RoundAngleColor(0.4, 0xfa7a00),

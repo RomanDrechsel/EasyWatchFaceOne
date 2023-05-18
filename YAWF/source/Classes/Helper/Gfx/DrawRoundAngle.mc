@@ -15,7 +15,7 @@ module Helper
 
             var BackgroundColor = 0 as Number;
             var BarColors = [] as Array<RoundAngleColor>;
-            var DotDiameter = 5 as Number;
+            var DotRadius = 3 as Number;
 
             var Thickness = 1 as Number; //Line-Thickness
             var ThicknessBold = 2 as Number; //Bold line-thickness
@@ -41,9 +41,9 @@ module Helper
 
             function Reset()
             {
-                self._totalBarLength = (self.Width - self.AngleRadius) + (self.Height - self.AngleRadius) + ((self.AngleRadius.toFloat() * Math.PI * 2.0) / 4.0);
                 self._lineWidth = self.Width - (self.AngleRadius * 2) - (self.ThicknessBold / 2);
                 self._lineHeight = self.Height - ( self.AngleRadius * 2) - (self.ThicknessBold / 2);
+                self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Math.PI * 2.0) / 4.0);                
                 self._horLineValue = self._lineWidth / self._totalBarLength;
                 self._vertLineValue = self._lineHeight / self._totalBarLength;
                 self._arcValue = 1 - self._horLineValue - self._vertLineValue;
@@ -136,7 +136,19 @@ module Helper
                                 height *= (rest / self._vertLineValue);
                             }
                             dc.drawLine(startx, starty, startx, starty - height);
+                            self.drawDot(dc, startx, starty - height);
                         }
+                        else
+                        {
+                            //dot on arc
+                            var y = Math.sin(Math.toRadians(270 - deg)) * self.AngleRadius;
+                            var x = Math.cos(Math.toRadians(270 - deg)) * self.AngleRadius;
+                            self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
+                        }
+                    }
+                    else
+                    {
+                        self.drawDot(dc, startx - width, starty);
                     }
                 }
             }
@@ -144,6 +156,16 @@ module Helper
             private function drawClockwise(dc as Gfx.Dc, percent as Number, color as Number)
             {
                 
+            }
+
+            private function drawDot(dc as Gfx.Dc, x as Number, y as Number)
+            {
+                if (self.DotRadius <= 0)
+                {
+                    return;
+                }
+
+                dc.fillCircle(x, y, self.DotRadius);
             }
         }
 
