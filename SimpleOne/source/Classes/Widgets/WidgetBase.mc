@@ -1,4 +1,4 @@
-import Toybox.Graphics;
+using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 
 module Widgets 
@@ -60,6 +60,8 @@ module Widgets
         }
 
         function Init();
+
+        function draw(dc as Gfx.Dc);
 
         function setPosition(posx as Float, posy as Float)
         {

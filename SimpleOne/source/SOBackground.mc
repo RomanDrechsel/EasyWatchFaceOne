@@ -3,7 +3,7 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-class YAWFBackground extends WatchUi.Drawable 
+class SOBackground extends WatchUi.Drawable 
 {
     private var _color = 0 as Number;
     private var _image = null as BitmapResource;

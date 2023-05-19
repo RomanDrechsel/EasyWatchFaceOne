@@ -3,7 +3,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
 
-class YAWFApp extends Application.AppBase 
+class SOApp extends Application.AppBase 
 {
     function initialize() {
         AppBase.initialize();
@@ -20,7 +20,7 @@ class YAWFApp extends Application.AppBase
 
     // Return the initial view of your application here
     function getInitialView() as Array<Views or InputDelegates>? {
-        return [ new YAWFView() ] as Array<Views or InputDelegates>;
+        return [ new SOView() ] as Array<Views or InputDelegates>;
     }
 
     // New app settings have been received so trigger a UI update
@@ -29,9 +29,14 @@ class YAWFApp extends Application.AppBase
     }
 }
 
-function getApp() as YAWFApp 
+function getApp() as SOApp 
 {
-    return Application.getApp() as YAWFApp;
+    return Application.getApp() as SOApp;
+}
+
+function getView() as SOView
+{
+    return getApp().getInitialView()[0] as SOView;
 }
 
 function getTheme() as Themes.ThemeSettingsBase

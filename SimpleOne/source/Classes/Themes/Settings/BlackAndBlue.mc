@@ -24,5 +24,8 @@ module Themes
         //Icons Widget
         var IconsOff = 0x797979;
         var IconsOn = 0x3dd33a;
+
+        //Distance Widget
+        var DistanceColor = 0x73b9e0;
     }
 }

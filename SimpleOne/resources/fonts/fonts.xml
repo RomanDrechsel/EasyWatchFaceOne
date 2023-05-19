@@ -3,6 +3,7 @@
     <font id="ClockFontSmall" filename="ClockFontSmall.fnt" filter="0123456789" antialias="true" />
     <font id="ClockFontBold" filename="ClockFontBold.fnt" filter="APM" antialias="true" />
     <font id="DateFont" filename="DateFont.fnt" antialias="true" filter=" abcdefghijklmnopqrstuvwxyz.1234567890" />
+    <font id="Normal" filename="FontNormal.fnt" antialias="true" />
     <font id="Small" filename="FontSmall.fnt" antialias="true" />
     <font id="Tiny" filename="FontTiny.fnt" antialias="true" />
 

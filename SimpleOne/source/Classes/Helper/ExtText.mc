@@ -65,7 +65,7 @@ module Helper
                 var yoffset = 0;
                 if (text.Vjust != VJUST_TOP)
                 {
-                    var h = dc.getFontHeight(text.Text.toString(), text.Font);
+                    var h = dc.getFontHeight(text.Font);
                     if (text.Vjust == VJUST_CENTER)
                     {
                         yoffset = (self._height - h) / 2;
@@ -77,7 +77,7 @@ module Helper
                 }
 
                 dc.setColor(text.Color, text.BackgroundColor);
-                dc.drawText(posx, posy - yoffset, text.Font, text.Text, Gfx.TEXT_JUSTIFY_LEFT);
+                dc.drawText(posx, posy + yoffset, text.Font, text.Text, Gfx.TEXT_JUSTIFY_LEFT);
                 posx += dc.getTextWidthInPixels(text.Text.toString(), text.Font);
             }
         }

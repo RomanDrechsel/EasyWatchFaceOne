@@ -12,17 +12,19 @@ module Widgets
         private var _Icons = null as FontResource;
         private var _Font = null as FontResource;
 
-        private var _WidgetHeight as Number;
+        private var _WidgetHeight = 200 as Number;
         private var _WidgetWidth = 150 as Number;
         private var _inMiles = false as Boolean;
         private var _drawYpos as Number;
+        private var _startdrawYpos as Number;
         private var _lineHeight = 33 as Number;
         private var _iconXpos = self.locX as Number;
 
-        private var _indicatorLineWidth = 4;
-        private var _indicatorLineWidthBold = 6;
-        private var _indicatorDotRadius = 5;
-        private var _indicatorPadding = 10;
+        private var _indicatorLineWidth = 4 * 2;
+        private var _indicatorLineWidthBold = 6 * 2;
+        private var _indicatorDotRadius = 5 * 2;
+        private var _indicatorPadding = 12;
+        private var _indicatorVPadding = 12;
         private var _indicatorDrawing = null as Draw.DrawRoundAngle;
 
         private const CENTIMETER_TO_FEET = 0.0328084 as Float;
@@ -34,12 +36,14 @@ module Widgets
 
             self._Icons = WatchUi.loadResource(Rez.Fonts.Icons) as FontResource;
             self._Font = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
-
-            self._WidgetHeight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorPadding;
-
             if (params[:Width] != null)
             {
                 self._WidgetWidth = params[:Width];
+            }
+
+            if (params[:Height] != null)
+            {
+                self._WidgetHeight = params[:Height];
             }
 
             if (self.VJustification == WIDGET_JUSTIFICATION_BOTTOM)
@@ -51,7 +55,10 @@ module Widgets
                 self.locX = self.locX - self._WidgetWidth;   
             }
 
-            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight + self._indicatorPadding + (self._lineHeight / 2), self._WidgetHeight / 4);
+            var textheight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorVPadding;
+            self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
+
+            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth - (self._indicatorDotRadius / 2), self._WidgetHeight - (self._indicatorDotRadius / 2), self._WidgetHeight / 4);
             self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
@@ -84,7 +91,7 @@ module Widgets
 
             dc.setColor(self._theme.DistanceColor, Gfx.COLOR_TRANSPARENT);
 
-            self._drawYpos = self.locY;
+            self._drawYpos = self._startdrawYpos;
 
             self.drawCalories(dc, info);
             self.drawDistance(dc, info);

@@ -41,8 +41,8 @@ module Helper
 
             function Reset()
             {
-                self._lineWidth = self.Width - (self.AngleRadius * 2) - (self.ThicknessBold / 2);
-                self._lineHeight = self.Height - ( self.AngleRadius * 2) - (self.ThicknessBold / 2);
+                self._lineWidth = self.Width - self.AngleRadius - (self.ThicknessBold / 2);
+                self._lineHeight = self.Height - self.AngleRadius - (self.ThicknessBold / 2);
                 self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Math.PI * 2.0) / 4.0);                
                 self._horLineValue = self._lineWidth / self._totalBarLength;
                 self._vertLineValue = self._lineHeight / self._totalBarLength;
@@ -89,6 +89,7 @@ module Helper
                 
                 var startx = self.AnchorX + (self.ThicknessBold / 2);
                 var starty = self.AnchorY;
+
                 dc.drawLine(startx, starty, startx, starty + self._lineHeight);
 
                 dc.drawArc(startx + self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 180, 270);
