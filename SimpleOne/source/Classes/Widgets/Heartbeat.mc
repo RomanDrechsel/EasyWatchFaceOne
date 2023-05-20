@@ -33,11 +33,12 @@ module Widgets
         private var _heartbeatColors = [
             0x00ad15,
             0xf7fa00,
+            0xfa7a00,
             0xfa0000
         ];
         private var _heartbeatZones = [];
-        private var _heartbeatMin = 0;
         private var _texts = [] as Array<Helper.ExtTextPart>;
+        private var _heartbeatMin = 0;
 
         function initialize(params as Dictionary) 
         {
@@ -111,8 +112,8 @@ module Widgets
         function WakeUp()
         {   
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
-            self._heartbeatZones = [ zones[2], zones[3], zones[5] ];
-            self._heartbeatMin = zones[0];
+            self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
+            self._heartbeatMin = zones[0] * 0.6;
 
             self.InitHeartbeat();
         }
@@ -171,7 +172,15 @@ module Widgets
                 dc.drawText(self._textPosX, self._textPosY, self._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
             }
 
-            var amount = (heartrate - self._heartbeatMin).toFloat() / (self._heartbeatZones[2] - self._heartbeatMin).toFloat();
+            var amount = 0.0;
+            if (heartrate >= self._heartbeatMin)
+            {
+                amount = (heartrate - self._heartbeatMin).toFloat() / (self._heartbeatZones[3] - self._heartbeatMin).toFloat();
+            }
+            else if (heartrate <= 0)
+            {
+                amount = 0.001;
+            }
             self._indicatorDrawing.drawWithColor(dc, amount, color);
         }
     }
