@@ -115,20 +115,7 @@ module Widgets
 
         private function drawHeartbeat(dc as Gfx.Dcm, info as Toybox.Activity.Info)
         {
-            var heartrate = 0;
-            if (info.averageHeartRate != null)
-            {
-                heartrate = info.averageHeartRate;
-            }
-            else
-            {
-                var hrs = Toybox.ActivityMonitor.getHeartRateHistory(1, true).next();
-                if (hrs != null && hrs.heartRate != Toybox.ActivityMonitor.INVALID_HR_SAMPLE)
-                {
-                    heartrate = hrs.heartRate;
-                }
-            }
-
+            var heartrate = self.getHeartrate(info);
             var color = self._theme.IconsOff;
             if (heartrate > 0)
             {
@@ -167,6 +154,30 @@ module Widgets
             {
                 dc.drawText(self._textPosX, self._textPosY, self._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
             }
+        }
+
+        private function getHeartrate(info as Toybox.Activity.Info) as Number
+        {
+            if (info == null)
+            {
+                info = Toybox.Activity.getActivityInfo();
+            }
+
+            var heartrate = 0;
+            if (info.currentHeartRate != null)
+            {
+                heartrate = info.currentHeartRate;
+            }
+            else
+            {
+                var hrs = Toybox.ActivityMonitor.getHeartRateHistory(1, true).next();
+                if (hrs != null && hrs.heartRate != Toybox.ActivityMonitor.INVALID_HR_SAMPLE)
+                {
+                    heartrate = hrs.heartRate;
+                }
+            }
+
+            return heartrate;
         }
     }
 }

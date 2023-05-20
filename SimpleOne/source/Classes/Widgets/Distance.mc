@@ -20,9 +20,9 @@ module Widgets
         private var _lineHeight = 33 as Number;
         private var _iconXpos = self.locX as Number;
 
-        private var _indicatorLineWidth = 4 * 2;
-        private var _indicatorLineWidthBold = 6 * 2;
-        private var _indicatorDotRadius = 5 * 2;
+        private var _indicatorLineWidth = 4;
+        private var _indicatorLineWidthBold = 6;
+        private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 12;
         private var _indicatorVPadding = 12;
         private var _indicatorDrawing = null as Draw.DrawRoundAngle;

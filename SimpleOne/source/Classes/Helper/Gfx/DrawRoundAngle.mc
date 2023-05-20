@@ -87,7 +87,7 @@ module Helper
                 dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
                 dc.setPenWidth(self.Thickness);
                 
-                var startx = self.AnchorX + (self.ThicknessBold / 2);
+                var startx = self.AnchorX + self.ThicknessBold;
                 var starty = self.AnchorY;
 
                 dc.drawLine(startx, starty, startx, starty + self._lineHeight);
@@ -97,6 +97,9 @@ module Helper
                 startx += self.AngleRadius;
                 starty += self.AngleRadius + self._lineHeight;
                 dc.drawLine(startx, starty, startx + self._lineWidth, starty);
+
+                //fix,
+                starty -= (self.Thickness / 2);
 
                 //Foreground - from right to top
                 if (amount > 0.0)
