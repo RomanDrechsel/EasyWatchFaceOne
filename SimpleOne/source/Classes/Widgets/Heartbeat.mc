@@ -177,7 +177,7 @@ module Widgets
             {
                 amount = (heartrate - self._heartbeatMin).toFloat() / (self._heartbeatZones[3] - self._heartbeatMin).toFloat();
             }
-            else if (heartrate <= 0)
+            else if (heartrate > 0)
             {
                 amount = 0.001;
             }
