@@ -58,7 +58,7 @@ module Widgets
             var textheight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
-            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth - (self._indicatorDotRadius / 2), self._WidgetHeight - (self._indicatorDotRadius / 2), self._WidgetHeight / 4);
+            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
             self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;

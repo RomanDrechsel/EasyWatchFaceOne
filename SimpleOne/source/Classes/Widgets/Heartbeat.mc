@@ -36,6 +36,7 @@ module Widgets
             0xfa0000
         ];
         private var _heartbeatZones = [];
+        private var _heartbeatMin = 0;
         private var _texts = [] as Array<Helper.ExtTextPart>;
 
         function initialize(params as Dictionary) 
@@ -67,6 +68,13 @@ module Widgets
 
             self._iconColor = self._theme.IconsOn;
 
+            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX + self._WidgetWidth, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
+            self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
+            self._indicatorDrawing.Thickness = self._indicatorLineWidth;
+            self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
+            self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
+            self._indicatorDrawing.Direction = Gfx.ARC_CLOCKWISE;
+
             $.getView().OnWakeup.add(self.WakeUp);
         }
 
@@ -86,15 +94,15 @@ module Widgets
         {
             var iconHeight = dc.getFontHeight(self._Icons);
             var fontHeight = dc.getFontHeight(self._Font);
-            var centerX = self.locX + (self._WidgetWidth / 2 * 1.2);
-            var centerY = self.locY + (self._WidgetHeight / 2 * 1.1);
+            var centerX = self.locX + (self._WidgetWidth / 2.4);
+            var centerY = self.locY + (self._WidgetHeight / 2.2);
 
             self._iconPosX = centerX;
             self._iconPosY = centerY - (iconHeight / 2) - 10;
-            var textPosX = centerX;
-            var textPosY = centerY + (fontHeight / 2) - 5;
+            self._textPosX = centerX;
+            self._textPosY = centerY + (fontHeight / 2) - 5;
 
-            self._textContainer = new Helper.ExtText(textPosX, textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
+            self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
 
             self.WakeUp();
             self._initialized = true;
@@ -103,7 +111,8 @@ module Widgets
         function WakeUp()
         {   
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
-            self._heartbeatZones = [ zones[3], zones[4], zones[5] ];
+            self._heartbeatZones = [ zones[2], zones[3], zones[5] ];
+            self._heartbeatMin = zones[0];
 
             self.InitHeartbeat();
         }
@@ -115,7 +124,12 @@ module Widgets
 
         private function drawHeartbeat(dc as Gfx.Dcm, info as Toybox.Activity.Info)
         {
-            var heartrate = self.getHeartrate(info);
+            var heartrate = 0;
+            if (info.currentHeartRate != null)
+            {
+                heartrate = info.currentHeartRate;
+            }
+
             var color = self._theme.IconsOff;
             if (heartrate > 0)
             {
@@ -130,14 +144,14 @@ module Widgets
                         }
                     }
                 }
-            }            
-
-            dc.setColor(self._iconColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconPosX, self._iconPosY, self._Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-            dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+            }
 
             if (heartrate > 0)
             {
+                dc.setColor(self._iconColor, Gfx.COLOR_TRANSPARENT);
+                dc.drawText(self._iconPosX, self._iconPosY, self._Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+
                 if (self._texts.size() < 2)
                 {
                     self._texts = [
@@ -152,32 +166,13 @@ module Widgets
             }
             else
             {
+                dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                dc.drawText(self._iconPosX, self._iconPosY, self._Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 dc.drawText(self._textPosX, self._textPosY, self._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
             }
-        }
 
-        private function getHeartrate(info as Toybox.Activity.Info) as Number
-        {
-            if (info == null)
-            {
-                info = Toybox.Activity.getActivityInfo();
-            }
-
-            var heartrate = 0;
-            if (info.currentHeartRate != null)
-            {
-                heartrate = info.currentHeartRate;
-            }
-            else
-            {
-                var hrs = Toybox.ActivityMonitor.getHeartRateHistory(1, true).next();
-                if (hrs != null && hrs.heartRate != Toybox.ActivityMonitor.INVALID_HR_SAMPLE)
-                {
-                    heartrate = hrs.heartRate;
-                }
-            }
-
-            return heartrate;
+            var amount = (heartrate - self._heartbeatMin).toFloat() / (self._heartbeatZones[2] - self._heartbeatMin).toFloat();
+            self._indicatorDrawing.drawWithColor(dc, amount, color);
         }
     }
 }
