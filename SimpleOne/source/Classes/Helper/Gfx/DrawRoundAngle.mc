@@ -7,6 +7,8 @@ module Helper
     {
         class DrawRoundAngle
         {
+            enum Justification { JUST_TOPLEFT, JUST_TOPRIGHT, JUST_BOTTOMLEFT, JUST_BOTTOMRIGHT }
+
             var AnchorX = 0 as Number; //X of anchor
             var AnchorY = 0 as Number; //Y of anchor
             var Width = 100 as Number;
@@ -19,7 +21,7 @@ module Helper
 
             var Thickness = 1 as Number; //Line-Thickness
             var ThicknessBold = 2 as Number; //Bold line-thickness
-            var Direction = Gfx.ARC_COUNTER_CLOCKWISE as Gfx.ArcDirection; //Draw-Direction
+            var Direction = JUST_BOTTOMLEFT as Justification; //Draw-Direction
 
             private var _lineWidth as Float;
             private var _lineHeight as Float;
@@ -27,6 +29,8 @@ module Helper
             private var _horLineValue as Float;
             private var _vertLineValue as Float;
             private var _arcValue as Float;
+
+            
 
             function initialize(anchorx as Number, anchory as Number, width as Number, height as Number, angleradius as Number)
             {
@@ -62,186 +66,243 @@ module Helper
                     amount = 0.0;
                 }
 
-                var color = 0xFFFFFF;
-                for (var i = 0; i < self.BarColors.size(); i++)
+                if (amount > 0)
                 {
-                    if (self.BarColors[i].MaxAmount >= amount)
+                    var color = 0xFFFFFF;
+                    for (var i = 0; i < self.BarColors.size(); i++)
                     {
-                        color = self.BarColors[i].Color;
-                        break;
+                        if (self.BarColors[i].MaxAmount >= amount)
+                        {
+                            color = self.BarColors[i].Color;
+                            break;
+                        }
                     }
+                    self.drawWithColor(dc, amount, color);
                 }
-                self.drawWithColor(dc, amount, color);
+                else 
+                {
+                    self.drawWithColor(dc, 0, 0);
+                }
             }
 
             function drawWithColor(dc as Gfx.Dc, amount as Float, color as Number)
             {
-                if (self.Direction == Gfx.ARC_COUNTER_CLOCKWISE)
+                if (self.Direction == JUST_BOTTOMRIGHT)
                 {
-                    self.drawCounterClockwise(dc, amount, color);
+                    var _TopX = self.AnchorX - (self.DotRadius / 2);
+                    var _TopY = self.AnchorY + (self.DotRadius / 2);
+
+                    self.drawSimple(dc, _TopX, _TopY);
+                    if (amount > 0)
+                    {
+                        self.drawCounterClockwise(dc, amount, color, _TopX, _TopY);
+                    }
+                }
+                else if (self.Direction == JUST_BOTTOMLEFT)
+                {
+                    var _TopX = self.AnchorX + (self.DotRadius / 2);
+                    var _TopY = self.AnchorY + (self.DotRadius / 2);
+                    self.drawSimple(dc, _TopX, _TopY);
+                    if (amount > 0)
+                    {
+                        self.drawClockwise(dc, amount, color, _TopX, _TopY);
+                    }
+                }
+                else if (self.Direction == JUST_TOPLEFT)
+                {
+                    var _TopX = self.AnchorX + (self.DotRadius / 2);
+                    var _TopY = self.AnchorY + (self.DotRadius / 2);
+                    self.drawSimple(dc, _TopX, _TopY);
+                }
+                else if (self.Direction == JUST_TOPRIGHT)
+                {
+                    var _TopX = self.AnchorX - (self.DotRadius / 2);
+                    var _TopY = self.AnchorY + (self.DotRadius / 2);
+                    self.drawSimple(dc, _TopX, _TopY);
+                }
+            }
+
+            function drawSimple(dc as Gfx.Dc, _TopX as Number, _TopY as Number)
+            {
+                dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
+                dc.setPenWidth(self.Thickness);
+
+                if (self.Direction == JUST_BOTTOMRIGHT)
+                {
+                    //From top to right
+                    var startx = _TopX;
+                    var starty = _TopY;
+
+                    dc.drawLine(startx, starty, startx, starty + self._lineHeight);
+
+                    dc.drawArc(startx - self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_CLOCKWISE, 0, 270);
+
+                    startx -= self.AngleRadius;
+                    starty += self.AngleRadius + self._lineHeight;
+                    dc.drawLine(startx, starty, startx - self._lineWidth, starty);
+                }
+                else if (self.Direction == JUST_BOTTOMLEFT)
+                {
+                    //from top to left
+                    var startx = _TopX;
+                    var starty = _TopY;
+
+                    dc.drawLine(startx, starty, startx, starty + self._lineHeight);
+
+                    dc.drawArc(startx + self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 180, 270);
+
+                    startx += self.AngleRadius;
+                    starty += self.AngleRadius + self._lineHeight;
+                    dc.drawLine(startx, starty, startx + self._lineWidth, starty);
+                }
+                else if (self.Direction == JUST_TOPLEFT)
+                {
+                    //from bottom to right
+                    var startx = _TopX;
+                    var starty = _TopY + self._lineHeight + self.AngleRadius;
+
+                    dc.drawLine(startx, starty, startx, starty - self._lineHeight);
+
+                    startx += self.AngleRadius;
+                    starty -= self._lineHeight;
+
+                    dc.drawArc(startx, starty, self.AngleRadius, Gfx.ARC_CLOCKWISE, 180, 90);
+
+                    starty -= self.AngleRadius;
+                    dc.drawLine(startx, starty, startx + self._lineWidth, starty);
+                }
+                else if (self.Direction == JUST_TOPRIGHT)
+                {
+                    //from bottom to left
+                    dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
+                    dc.setPenWidth(self.Thickness);
+
+                    var startx = _TopX;
+                    var starty = _TopY + self._lineHeight + self.AngleRadius;
+
+                    dc.drawLine(startx, starty, startx, starty - self._lineHeight);
+
+                    startx -= self.AngleRadius;
+                    starty -= self._lineHeight;
+
+                    dc.drawArc(startx, starty, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 0, 90);
+
+                    starty -= self.AngleRadius;
+                    dc.drawLine(startx, starty, startx - self._lineWidth, starty);
+                }
+            }
+
+            private function drawClockwise(dc as Gfx.Dc, amount as Float, color as Number, _TopX as Number, _TopY as Number)
+            {
+                //Foreground - from right to top
+                dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                dc.setPenWidth(self.ThicknessBold);
+
+                var starty = _TopY + self._lineHeight + self.AngleRadius;
+                var startx = _TopX + self._lineWidth + self.AngleRadius;
+                var width = self._lineWidth;
+                if (amount < self._horLineValue)
+                {
+                    //only a part of the line
+                    width *= (amount / self._horLineValue);
+                }
+                dc.drawLine(startx, starty, startx - width, starty);
+
+                if (amount > self._horLineValue)
+                {
+                    //Draw arc
+                    startx -= self._lineWidth;
+                    var rest = (amount - self._horLineValue);
+                    var deg = 1 / (self._arcValue / rest) * 90;
+                    if (deg > 90)
+                    {
+                        deg = 90;
+                    }
+                    dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_CLOCKWISE, 270, 270 - deg);
+
+                    if (amount > self._horLineValue + self._arcValue)
+                    {
+                        //draw vertical line
+                        starty = _TopY + self._lineHeight;
+                        startx = _TopX;
+
+                        var height = self._lineHeight;
+                        if (amount < 1.0)
+                        {
+                            rest = amount - self._arcValue - self._horLineValue;
+                            height *= (rest / self._vertLineValue);
+                        }
+                        dc.drawLine(startx, starty, startx, starty - height);
+                        self.drawDot(dc, startx, starty - height);
+                    }
+                    else
+                    {
+                        //dot on arc
+                        var y = Math.sin(Math.toRadians(270 - deg)) * self.AngleRadius;
+                        var x = Math.cos(Math.toRadians(270 - deg)) * self.AngleRadius;
+                        self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
+                    }
                 }
                 else
                 {
-                    self.drawClockwise(dc, amount, color);
+                    self.drawDot(dc, startx - width, starty);
                 }
             }
 
-            private function drawCounterClockwise(dc as Gfx.Dc, amount as Float, color as Number)
+            private function drawCounterClockwise(dc as Gfx.Dc, amount as Float, color as Number, _TopX as Number, _TopY as Number)
             {
-                //Background - from top to right
-                dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
-                dc.setPenWidth(self.Thickness);
-                
-                var _TopX = self.AnchorX + (self.DotRadius / 2);
-                var _TopY = self.AnchorY + (self.DotRadius / 2);
+                //Foreground - from Right to top
+                dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                dc.setPenWidth(self.ThicknessBold);
 
-                var startx = _TopX;
-                var starty = _TopY;
-
-                dc.drawLine(startx, starty, startx, starty + self._lineHeight);
-
-                dc.drawArc(startx + self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 180, 270);
-
-                startx += self.AngleRadius;
-                starty += self.AngleRadius + self._lineHeight;
-                dc.drawLine(startx, starty, startx + self._lineWidth, starty);
-
-                //fix, don't know why this is nessesary on device?!
-                //starty -= (self.Thickness / 2);
-
-                //Foreground - from right to top
-                if (amount > 0.0)
+                var starty = _TopY + self._lineHeight + self.AngleRadius;
+                var startx = _TopX - self._lineWidth - self.AngleRadius;
+                var width = self._lineWidth;
+                if (amount < self._horLineValue)
                 {
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.setPenWidth(self.ThicknessBold);
+                    //only a part of the line
+                    width *= (amount / self._horLineValue);
+                }
+                dc.drawLine(startx, starty, startx + width, starty);
 
-                    starty = _TopY + self._lineHeight + self.AngleRadius;
-                    startx = _TopX + self._lineWidth + self.AngleRadius;
-                    var width = self._lineWidth;
-                    if (amount < self._horLineValue)
+                if (amount > self._horLineValue)
+                {
+                    //Draw arc
+                    startx += self._lineWidth;
+                    var rest = (amount - self._horLineValue);
+                    var deg = 1 / (self._arcValue / rest) * 90;
+                    if (deg > 90)
                     {
-                        //only a part of the line
-                        width *= (amount / self._horLineValue);
+                        deg = 90;
                     }
-                    dc.drawLine(startx, starty, startx - width, starty);
+                    dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 270, 270 + deg);
 
-                    if (amount > self._horLineValue)
+                    if (amount > self._horLineValue + self._arcValue)
                     {
-                        //Draw arc
-                        startx -= self._lineWidth;
-                        var rest = (amount - self._horLineValue);
-                        var deg = 1 / (self._arcValue / rest) * 90;
-                        if (deg > 90)
-                        {
-                            deg = 90;
-                        }
-                        dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_CLOCKWISE, 270, 270 - deg);
+                        //draw vertical line
+                        starty = _TopY + self._lineHeight;
+                        startx = _TopX;
 
-                        if (amount > self._horLineValue + self._arcValue)
+                        var height = self._lineHeight;
+                        if (amount < 1.0)
                         {
-                            //draw vertical line
-                            starty = _TopY + self._lineHeight;
-                            startx = _TopX;
-
-                            var height = self._lineHeight;
-                            if (amount < 1.0)
-                            {
-                                rest = amount - self._arcValue - self._horLineValue;
-                                height *= (rest / self._vertLineValue);
-                            }
-                            dc.drawLine(startx, starty, startx, starty - height);
-                            self.drawDot(dc, startx, starty - height);
+                            rest = amount - self._arcValue - self._horLineValue;
+                            height *= (rest / self._vertLineValue);
                         }
-                        else
-                        {
-                            //dot on arc
-                            var y = Math.sin(Math.toRadians(270 - deg)) * self.AngleRadius;
-                            var x = Math.cos(Math.toRadians(270 - deg)) * self.AngleRadius;
-                            self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
-                        }
+                        dc.drawLine(startx, starty, startx, starty - height);
+                        self.drawDot(dc, startx, starty - height);
                     }
                     else
                     {
-                        self.drawDot(dc, startx - width, starty);
+                        //dot on arc
+                        var y = Math.sin(Math.toRadians(270 + deg)) * self.AngleRadius;
+                        var x = Math.cos(Math.toRadians(270 + deg)) * self.AngleRadius;
+                        self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
                     }
                 }
-            }
-
-            private function drawClockwise(dc as Gfx.Dc, amount as Float, color as Number)
-            {
-                //Background - from top to left
-                dc.setColor(self.BackgroundColor, Gfx.COLOR_TRANSPARENT);
-                dc.setPenWidth(self.Thickness);
-                
-                var _TopX = self.AnchorX - (self.DotRadius / 2);
-                var _TopY = self.AnchorY + (self.DotRadius / 2);
-
-                var startx = _TopX;
-                var starty = _TopY;
-
-                dc.drawLine(startx, starty, startx, starty + self._lineHeight);
-
-                dc.drawArc(startx - self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_CLOCKWISE, 0, 270);
-
-                startx -= self.AngleRadius;
-                starty += self.AngleRadius + self._lineHeight;
-                dc.drawLine(startx, starty, startx - self._lineWidth, starty);
-
-                //Foreground - from left to top
-                if (amount > 0.0)
+                else
                 {
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.setPenWidth(self.ThicknessBold);
-
-                    starty = _TopY + self._lineHeight + self.AngleRadius;
-                    startx = _TopX - self._lineWidth - self.AngleRadius;
-                    var width = self._lineWidth;
-                    if (amount < self._horLineValue)
-                    {
-                        //only a part of the line
-                        width *= (amount / self._horLineValue);
-                    }
-                    dc.drawLine(startx, starty, startx + width, starty);
-
-                    if (amount > self._horLineValue)
-                    {
-                        //Draw arc
-                        startx += self._lineWidth;
-                        var rest = (amount - self._horLineValue);
-                        var deg = 1 / (self._arcValue / rest) * 90;
-                        if (deg > 90)
-                        {
-                            deg = 90;
-                        }
-                        dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 270, 270 + deg);
-
-                        if (amount > self._horLineValue + self._arcValue)
-                        {
-                            //draw vertical line
-                            starty = _TopY + self._lineHeight;
-                            startx = _TopX;
-
-                            var height = self._lineHeight;
-                            if (amount < 1.0)
-                            {
-                                rest = amount - self._arcValue - self._horLineValue;
-                                height *= (rest / self._vertLineValue);
-                            }
-                            dc.drawLine(startx, starty, startx, starty - height);
-                            self.drawDot(dc, startx, starty - height);
-                        }
-                        else
-                        {
-                            //dot on arc
-                            var y = Math.sin(Math.toRadians(270 + deg)) * self.AngleRadius;
-                            var x = Math.cos(Math.toRadians(270 + deg)) * self.AngleRadius;
-                            self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
-                        }
-                    }
-                    else
-                    {
-                        self.drawDot(dc, startx + width, starty);
-                    }
+                    self.drawDot(dc, startx + width, starty);
                 }
             }
 

@@ -74,7 +74,7 @@ module Widgets
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
-            self._indicatorDrawing.Direction = Gfx.ARC_CLOCKWISE;
+            self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
 
             $.getView().OnWakeup.add(self.WakeUp);
         }

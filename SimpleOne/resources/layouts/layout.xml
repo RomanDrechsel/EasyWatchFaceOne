@@ -11,19 +11,34 @@
         <param name="locY">(dc.getHeight() * .45) - 55</param>
     </drawable>
 
+    <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopLeft">
+        <param name="locX">5</param>
+        <param name="locY">5</param>
+        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="Height">dc.getHeight() * .35</param>
+    </drawable>
+
     <drawable class="DrawableContainers.TopLeftContainer" id="TopLeft">
-        <param name="locX">2</param>
-        <param name="locY">2</param>
+        <param name="locX">15</param>
+        <param name="locY">15</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
-        <param name="locX">dc.getWidth() - 10</param>
-        <param name="locY">12</param>
+        <param name="locX">dc.getWidth() - 25</param>
+        <param name="locY">15</param>
+        <param name="Just">"right"</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopRight">
+        <param name="locX">dc.getWidth() - 5</param>
+        <param name="locY">5</param>
+        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="Height">dc.getHeight() * .35</param>
         <param name="Just">"right"</param>
     </drawable>
 
     <drawable class="DrawableContainers.BottomLeftContainer" id="BottomLeft">
-        <param name="locX">10</param>
+        <param name="locX">5</param>
         <param name="locY">dc.getHeight() - 10</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
@@ -31,7 +46,7 @@
     </drawable>
 
     <drawable class="DrawableContainers.BottomRightContainer" id="BottomRight">
-        <param name="locX">dc.getWidth() - 10</param>
+        <param name="locX">dc.getWidth() - 5</param>
         <param name="locY">dc.getHeight() - 10</param>
         <param name="Width">(dc.getWidth() / 2) * 0.9</param>
         <param name="Height">dc.getHeight() * .35</param>
