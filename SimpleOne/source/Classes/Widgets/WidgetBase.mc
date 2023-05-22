@@ -12,7 +12,7 @@ module Widgets
         var Justification = WIDGET_JUSTIFICATION_LEFT as Widget_Justification;
         var VJustification = WIDGET_JUSTIFICATION_TOP as Widget_Justification;
 
-        protected var _theme = null as Themes.ThemeSettingsBase;
+        var _theme = null as Themes.ThemeSettingsBase;
         protected var _initialized = false as Boolean;
 
         function initialize(container_params as Dictionary)

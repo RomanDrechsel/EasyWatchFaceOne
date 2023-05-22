@@ -1,3 +1,2 @@
-- Distance-Widgit: Dot auf Indicator
-- Test auf Gerät
-- Heartbeat Widgit
+- Breite der Deco und Bottom-Widgets passt nicht zusammen
+- Text von Heartbeat Widget etwas runtermachen

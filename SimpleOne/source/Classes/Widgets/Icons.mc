@@ -35,13 +35,13 @@ module Widgets
             if (msgCount > 0)
             {
                 dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self.locX, self.locY, self._Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
-                dc.drawText(self.locX + 35, self.locY + 6, self._MsgFont, msgCount.toString(), Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX, self.locY + 3, self._Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
+                dc.drawText(self.locX + 35, self.locY + 9, self._MsgFont, msgCount.toString(), Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {
                 dc.setColor(self._theme.IconsOff, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self.locX, self.locY, self._Icons, Helper.Gfx.ICONS_NOMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
+                dc.drawText(self.locX, self.locY + 3, self._Icons, Helper.Gfx.ICONS_NOMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
             } 
 
             //Phone connection
