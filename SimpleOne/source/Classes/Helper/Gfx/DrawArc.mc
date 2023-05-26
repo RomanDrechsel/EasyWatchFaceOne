@@ -43,7 +43,6 @@ module Helper
                 var end = self.StartDeg - length;
 
                 dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                dc.setAntiAlias(true);
                 dc.setPenWidth(self.Thickness);
                 if (self.Parts <= 1)
                 {

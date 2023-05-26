@@ -23,6 +23,7 @@ class SOBackground extends WatchUi.Drawable
 
     function draw(dc as Dc) as Void 
     {
+        dc.setAntiAlias(true);
         dc.setColor(Graphics.COLOR_TRANSPARENT, self._color);
         dc.clear();
 

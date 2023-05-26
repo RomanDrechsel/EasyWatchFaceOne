@@ -50,16 +50,21 @@ module Widgets
                 }
 
                 var color = self._Widget._theme.IconsOff;
+                var iconcolor = self._Widget._theme.IconsOff;
+                var indicatorcolor = color;
                 if (heartrate > 0)
                 {
-                    color = self._heartbeatColors[0];
-                    if (self._Widget._heartbeatZones.size() > 0)
+                    color = self._Widget._theme.MainTextColor;
+                    iconcolor = color;
+                    indicatorcolor = self._heartbeatColors[0];
+                    if (self._Widget._heartbeatZones.size() > 1)
                     {
-                        for (var i = 0; i < self._Widget._heartbeatZones.size(); i++)
+                        for (var i = 1; i < self._Widget._heartbeatZones.size(); i++)
                         {
                             if (heartrate >= self._Widget._heartbeatZones[i])
                             {
                                 color = self._heartbeatColors[i];
+                                indicatorcolor = color;
                             }
                         }
                     }
@@ -67,7 +72,7 @@ module Widgets
 
                 if (heartrate > 0)
                 {
-                    dc.setColor(self._iconColor, Gfx.COLOR_TRANSPARENT);
+                    dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, self._Widget._Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
 
@@ -99,7 +104,7 @@ module Widgets
                 {
                     amount = 0.001;
                 }
-                self._Widget._indicatorDrawing.drawWithColor(dc, amount, color);
+                self._Widget._indicatorDrawing.drawWithColor(dc, amount, indicatorcolor);
             }
         }
     }

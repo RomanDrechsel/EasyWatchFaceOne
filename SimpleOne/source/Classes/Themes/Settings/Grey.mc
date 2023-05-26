@@ -2,6 +2,8 @@ module Themes
 {
     class Grey extends ThemeSettingsBase
     {
+        var MainTextColor = 0x9a9a9a;
+
         //Background
         var BackgroundColor = 0x000000;
         var BackgroundImage = Rez.Drawables.BackgroundImageBnB;
@@ -24,8 +26,5 @@ module Themes
         //Icons Widget
         var IconsOff = 0x797979;
         var IconsOn = 0x3dd33a;
-
-        //Distance Widget
-        var DistanceColor = 0x9a9a9a;
     }
 }

@@ -4,6 +4,9 @@ module Themes
 {
     class ThemeSettingsBase
     {
+        //Global
+        var MainTextColor = 0x3dd33a;
+
         //Background
         var BackgroundColor = 0 as Number;
         var BackgroundImage = -1 as Number;
@@ -27,8 +30,7 @@ module Themes
         var IconsOff = 0x797979;
         var IconsOn = 0x3dd33a;
 
-        //Distance Widget
-        var DistanceColor = 0x3dd33a;
-        var DistanceIndicatorBackground = 0x535353;
+        //Deco Widget
+        var IndicatorBackground = 0x535353;
     }
 }

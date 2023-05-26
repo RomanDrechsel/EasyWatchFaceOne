@@ -205,6 +205,7 @@ module Helper
                 {
                     //only a part of the line
                     width *= (amount / self._horLineValue);
+                    starty -= 2;
                 }
                 dc.drawLine(startx, starty, startx - width, starty);
 

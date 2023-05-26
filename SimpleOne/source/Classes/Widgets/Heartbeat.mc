@@ -18,7 +18,7 @@ module Widgets
         var _Font2 as FontResource;
        
         private var _indicatorLineWidth = 4;
-        private var _indicatorLineWidthBold = 6;
+        private var _indicatorLineWidthBold = 5;
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
         var _indicatorDrawing = null as Draw.DrawRoundAngle;
@@ -56,7 +56,7 @@ module Widgets
             }
 
             self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX + self._WidgetWidth, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
+            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
@@ -77,14 +77,16 @@ module Widgets
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             self._heartbeatMin = zones[0] * 0.6;
-            
-            //TODO: Indicator auswählen
-            self.InitHeartbeat();
-        }
 
-        private function InitHeartbeat()
-        {
-            self._display = new Indi.Heartbeat(self);
+            var stress = Indi.Stress.getStressLevel();
+            if (stress >= 60)
+            {
+                self._display = new  Indi.Stress(self);
+            }
+            else
+            {
+                self._display = new Indi.Heartbeat(self);
+            }
         }
     }
 }

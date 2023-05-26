@@ -21,7 +21,7 @@ module Widgets
         private var _iconXpos = self.locX as Number;
 
         private var _indicatorLineWidth = 4;
-        private var _indicatorLineWidthBold = 6;
+        private var _indicatorLineWidthBold = 5;
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 12;
         private var _indicatorVPadding = 12;
@@ -59,7 +59,7 @@ module Widgets
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
             self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = self._theme.DistanceIndicatorBackground;
+            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
@@ -89,7 +89,7 @@ module Widgets
         {
             var info = ActivityMonitor.getInfo();
 
-            dc.setColor(self._theme.DistanceColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
 
             self._drawYpos = self._startdrawYpos;
 

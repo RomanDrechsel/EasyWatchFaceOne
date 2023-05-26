@@ -29,7 +29,7 @@ module DrawableContainers
             }
 
             self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = getTheme().DistanceIndicatorBackground;
+            self._indicatorDrawing.BackgroundColor = getTheme().IndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             if (params[:Just] != null && params[:Just].equals("right"))
