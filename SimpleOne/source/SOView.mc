@@ -6,7 +6,7 @@ import Toybox.WatchUi;
 
 class SOView extends WatchUi.WatchFace 
 {
-    var OnShow = [] as Array<Method>;
+    var OnWakeUp = [] as Array<Method>;
 
     function initialize() 
     {
@@ -24,13 +24,7 @@ class SOView extends WatchUi.WatchFace
     // loading resources into memory.
     function onShow() as Void 
     {
-        if (self.OnShow.size() > 0)
-        {
-            for (var i = 0; i < self.OnShow.size(); i++)
-            {
-                self.OnShow[i].invoke();
-            }
-        }
+        
     }
 
     // Update the view
@@ -50,7 +44,13 @@ class SOView extends WatchUi.WatchFace
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void 
     {
-        
+        if (self.OnWakeUp.size() > 0)
+        {
+            for (var i = 0; i < self.OnWakeUp.size(); i++)
+            {
+                self.OnWakeUp[i].invoke();
+            }
+        }
     }
 
     // Terminate any active timers and prepare for slow updates.
@@ -58,4 +58,8 @@ class SOView extends WatchUi.WatchFace
     {
     }
 
+    function AddWakeUp(method as Method)
+    {
+        self.OnWakeUp.add(method);
+    }
 }

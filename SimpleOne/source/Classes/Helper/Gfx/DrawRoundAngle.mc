@@ -204,8 +204,8 @@ module Helper
                 if (amount <= self._horLineValue)
                 {
                     //only a part of the line
-                    width *= (amount / self._horLineValue);
-                    starty -= self.Thickness;
+                    width *= (amount / self._horLineValue); 
+                    starty -= self.Thickness / 2;//Fix?!
                 }
                 dc.drawLine(startx, starty, startx - width, starty);
 

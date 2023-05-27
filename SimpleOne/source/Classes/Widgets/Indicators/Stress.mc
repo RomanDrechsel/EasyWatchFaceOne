@@ -34,7 +34,7 @@ module Widgets
                 var color = self._Widget._theme.IconsOff;
                 var iconcolor = self._Widget._theme.IconsOff;
                 var indicatorcolor = color;
-                if (stress > 0)
+                if (stress > 0.0)
                 {
                     color = self._Widget._theme.MainTextColor;
                     iconcolor = color;
@@ -68,10 +68,10 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                self._Widget._indicatorDrawing.drawWithColor(dc, stress / 100, indicatorcolor);
+                self._Widget._indicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);
             }
 
-            static function getStressLevel() as Number
+            static function getStressLevel() as Float
             {
                 if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getStressHistory)) 
                 {
@@ -79,11 +79,11 @@ module Widgets
                     var sample = hist.next();
                     if (sample != null)
                     {
-                        return sample.data.toNumber();
+                        return sample.data;
                     }
                 }
 
-                return -1;
+                return -1.0;
             }
         }
     }

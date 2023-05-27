@@ -5,6 +5,8 @@ import Toybox.Graphics;
 
 class SOApp extends Application.AppBase 
 {
+    var WatchfaceView = null as SOView;
+
     function initialize() {
         AppBase.initialize();
     }
@@ -20,7 +22,8 @@ class SOApp extends Application.AppBase
 
     // Return the initial view of your application here
     function getInitialView() as Array<Views or InputDelegates>? {
-        return [ new SOView() ] as Array<Views or InputDelegates>;
+        self.WatchfaceView = new SOView();
+        return [ self.WatchfaceView ] as Array<Views or InputDelegates>;
     }
 
     // New app settings have been received so trigger a UI update
@@ -36,7 +39,7 @@ function getApp() as SOApp
 
 function getView() as SOView
 {
-    return getApp().getInitialView()[0] as SOView;
+    return getApp().WatchfaceView;
 }
 
 function getTheme() as Themes.ThemeSettingsBase

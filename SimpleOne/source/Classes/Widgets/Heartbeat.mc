@@ -61,21 +61,20 @@ module Widgets
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
-
-            $.getView().OnShow.add(self.OnShow);
+            $.getView().AddWakeUp(self.method(:OnWakeUp));
         }
 
         function draw(dc as Gfx.Dc)
         {
             if (self._display == null)
             {
-                self.OnShow();
+                self.OnWakeUp();
             }
             self._display.draw(dc);
         }
 
-        function OnShow()
-        {   
+        function OnWakeUp()
+        {
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             self._heartbeatMin = zones[0] * 0.6;
@@ -83,18 +82,33 @@ module Widgets
             var heartrate = Indi.Heartbeat.getHeartrate();
             var stress = Indi.Stress.getStressLevel();
 
-            if (heartrate > 0 && stress >= 60)
+            var found = false;
+
+            if (heartrate > 0)
             {
-                if (self._display == null || self._display instanceof Indi.Stress == false)
+                if (heartrate >= self._heartbeatZones[2])
                 {
-                    self._display = new  Indi.Stress(self);
+                    if (self._display == null || self._display instanceof Indi.Heartbeat == false)
+                    {
+                        self._display = new  Indi.Heartbeat(self);
+                    }
+                    found = true;
+                }
+                else if (stress >= 60.0)
+                {
+                    if (self._display == null || self._display instanceof Indi.Stress == false)
+                    {
+                        self._display = new  Indi.Stress(self);
+                    }
+                    found = true;
                 }
             }
-            else
+
+            if (found == false || self._display == null)
             {
                 if (self._display == null || self._display instanceof Indi.Heartbeat == false)
                 {
-                    self._display = new Indi.Heartbeat(self);
+                    self._display = new  Indi.Heartbeat(self);
                 }
             }
         }
