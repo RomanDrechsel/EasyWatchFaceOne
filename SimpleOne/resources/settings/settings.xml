@@ -11,6 +11,10 @@
         <setting propertyKey="@Properties.WidgetBatteryShowDays" title="@Strings.SettingsWidgetBatteryShowDays">
             <settingConfig type="boolean"/>
         </setting>
+
+        <setting propertyKey="@Properties.StressWarningLevel" title="@Strings.SettingsStressWarningLevel">
+            <settingConfig type="numeric"/>
+        </setting>
     </group>
 
 </settings>

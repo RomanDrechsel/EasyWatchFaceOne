@@ -3,6 +3,7 @@
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
+    <string id="SettingsStressWarningLevel">Warnung bei Stress-Level</string>
 
     <string id="ThemeBlackAndBlue">Schwarz und Blau</string>
     <string id="ThemeGrey">Grau</string>

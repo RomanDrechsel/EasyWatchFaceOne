@@ -5,6 +5,7 @@
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>
+    <string id="SettingsStressWarningLevel">Stress Warning Level</string>
     
     <string id="ThemeBlackAndBlue">Black and Blue</string>
     <string id="ThemeGrey">Grey</string>

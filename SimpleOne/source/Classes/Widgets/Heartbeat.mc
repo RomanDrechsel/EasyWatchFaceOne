@@ -82,8 +82,9 @@ module Widgets
             var heartrate = Indi.Heartbeat.getHeartrate();
             var stress = Indi.Stress.getStressLevel();
 
-            var found = false;
+            var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
 
+            var found = false;
             if (heartrate > 0)
             {
                 if (heartrate >= self._heartbeatZones[2])
@@ -94,7 +95,7 @@ module Widgets
                     }
                     found = true;
                 }
-                else if (stress >= 60.0)
+                else if (stress >= stresswarninglevel)
                 {
                     if (self._display == null || self._display instanceof Indi.Stress == false)
                     {

@@ -1,2 +1,0 @@
-- Breite der Deco und Bottom-Widgets passt nicht zusammen
-- Text von Heartbeat Widget etwas runtermachen
