@@ -40,14 +40,7 @@ module Widgets
             function draw(dc as Gfx.Dc)
             {
                 IndicatorBase.draw(dc);
-
-                var info = Toybox.Activity.getActivityInfo();
-
-                var heartrate = 0;
-                if (info.currentHeartRate != null)
-                {
-                    heartrate = info.currentHeartRate;
-                }
+                var heartrate = self.getHeartrate();
 
                 var color = self._Widget._theme.IconsOff;
                 var iconcolor = self._Widget._theme.IconsOff;
@@ -105,6 +98,17 @@ module Widgets
                     amount = 0.001;
                 }
                 self._Widget._indicatorDrawing.drawWithColor(dc, amount, indicatorcolor);
+            }
+
+            public static function getHeartrate() as Number
+            {
+                var info = Toybox.Activity.getActivityInfo();
+                if (info.currentHeartRate != null)
+                {
+                    return info.currentHeartRate;
+                }
+
+                return -1;
             }
         }
     }

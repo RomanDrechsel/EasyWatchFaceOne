@@ -62,30 +62,40 @@ module Widgets
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
 
-            $.getView().OnWakeup.add(self.WakeUp);
-
-            self.WakeUp();
+            $.getView().OnShow.add(self.OnShow);
         }
 
         function draw(dc as Gfx.Dc)
         {
+            if (self._display == null)
+            {
+                self.OnShow();
+            }
             self._display.draw(dc);
         }
 
-        function WakeUp()
+        function OnShow()
         {   
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             self._heartbeatMin = zones[0] * 0.6;
 
+            var heartrate = Indi.Heartbeat.getHeartrate();
             var stress = Indi.Stress.getStressLevel();
-            if (stress >= 60)
+
+            if (heartrate > 0 && stress >= 60)
             {
-                self._display = new  Indi.Stress(self);
+                if (self._display == null || self._display instanceof Indi.Stress == false)
+                {
+                    self._display = new  Indi.Stress(self);
+                }
             }
             else
             {
-                self._display = new Indi.Heartbeat(self);
+                if (self._display == null || self._display instanceof Indi.Heartbeat == false)
+                {
+                    self._display = new Indi.Heartbeat(self);
+                }
             }
         }
     }

@@ -201,11 +201,11 @@ module Helper
                 var starty = _TopY + self._lineHeight + self.AngleRadius;
                 var startx = _TopX + self._lineWidth + self.AngleRadius;
                 var width = self._lineWidth;
-                if (amount < self._horLineValue)
+                if (amount <= self._horLineValue)
                 {
                     //only a part of the line
                     width *= (amount / self._horLineValue);
-                    starty -= 2;
+                    starty -= self.Thickness;
                 }
                 dc.drawLine(startx, starty, startx - width, starty);
 
