@@ -57,8 +57,10 @@ module Widgets
                             if (heartrate >= self._Widget._heartbeatZones[i])
                             {
                                 color = self._heartbeatColors[i];
-                                indicatorcolor = color;
+                                
                             }
+                            indicatorcolor = color;
+                            iconcolor = color;
                         }
                     }
                 }

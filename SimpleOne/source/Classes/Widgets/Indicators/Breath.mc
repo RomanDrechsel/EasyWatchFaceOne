@@ -39,20 +39,21 @@ module Widgets
                 if (breath > 0.0)
                 {
                     color = self._Widget._theme.MainTextColor;
-                    indicatorcolor = self._stressColors[0];
+                    iconcolor = color;
+                    indicatorcolor = self._BreathColors[0];
                     if (breath >= 20)
                     {
                         if (breath > self.MaxRespirationRate)
                         {
-                            color = self._stressColors[3];
+                            color = self._BreathColors[3];
                         }
                         else if (breath > self.MaxRespirationRate - 10)
                         {
-                            color = self._stressColors[2];
+                            color = self._BreathColors[2];
                         }
                         else
                         {
-                            color = self._stressColors[1];
+                            color = self._BreathColors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -75,8 +76,6 @@ module Widgets
 
             static function getBreath() as Number
             {
-                return 30;
-                
                 var info = Toybox.ActivityMonitor.getInfo();
                 if (info.respirationRate != null)
                 {

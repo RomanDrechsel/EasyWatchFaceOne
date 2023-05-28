@@ -111,10 +111,14 @@ module Widgets
                 }
             }
 
+            debug(indicator);
+
             if (indicator == INDICATOR_RANDOM)
             {
                 indicator = self.getRandomWidget();
             }
+
+            debug(indicator);
 
             if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
             {
@@ -137,12 +141,14 @@ module Widgets
             var breath = Application.Properties.getValue("BreathRandomAmount") as Number;
 
             var max = heartrate + stress + breath;
+            debug("MAX " + max.toString());
             if (max <= 0)
             {
                 return INDICATOR_HEARTRATE;
             }
 
-            var rdm = Helper.Math.RandomInRange(0, max - 1);
+            var rdm = Helper.MathHelper.RandomInRange(0, max);
+            debug("RDM " + rdm.toString());
 
             if (heartrate > 0 && rdm < heartrate)
             {
