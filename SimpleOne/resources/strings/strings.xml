@@ -6,6 +6,13 @@
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>
     <string id="SettingsStressWarningLevel">Stress Warning Level</string>
+
+    <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>
+
+    <string id="SettingsRandomTitle">Random Distribution Values</string>
+    <string id="SettingsRandomHeartrate">Heartrate Widget</string>
+    <string id="SettingsRandomStress">Stress Widget</string>
+    <string id="SettingsRandomBreaths">Respiration-Rate Widget</string>
     
     <string id="ThemeBlackAndBlue">Black and Blue</string>
     <string id="ThemeGrey">Grey</string>

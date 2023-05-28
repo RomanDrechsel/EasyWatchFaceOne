@@ -10,6 +10,8 @@ module Widgets
 {
     class Heartbeat extends WidgetBase
     {
+        private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
+
         var _WidgetHeight = 200;
         var _WidgetWidth = 150;
 
@@ -22,7 +24,6 @@ module Widgets
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
         var _indicatorDrawing = null as Draw.DrawRoundAngle;
-
         private var _display = null as Indi.IndicatorBase;
 
         var _heartbeatZones = [];
@@ -79,38 +80,81 @@ module Widgets
             self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             self._heartbeatMin = zones[0] * 0.6;
 
+            var indicator = INDICATOR_HEARTRATE;
             var heartrate = Indi.Heartbeat.getHeartrate();
-            
-            var stress = Indi.Stress.getStressLevel();
-            var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
 
-            var found = false;
             if (heartrate > 0)
             {
+                indicator = INDICATOR_RANDOM;
+
                 if (heartrate >= self._heartbeatZones[2])
                 {
-                    if (self._display == null || self._display instanceof Indi.Heartbeat == false)
-                    {
-                        self._display = new  Indi.Heartbeat(self);
-                    }
-                    found = true;
+                    indicator = INDICATOR_HEARTRATE;
                 }
-                else if (stress >= stresswarninglevel)
+                else 
                 {
-                    if (self._display == null || self._display instanceof Indi.Stress == false)
+                    var stress = Indi.Stress.getStressLevel();
+                    var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
+                    if (stress >= stresswarninglevel)
                     {
-                        self._display = new  Indi.Stress(self);
+                        indicator = INDICATOR_STRESS;
                     }
-                    found = true;
+                    else 
+                    {
+                        var breath = Indi.Breath.getBreath();
+                        var breathwarninglevel = Application.Properties.getValue("WarningRespirationRate") as Number;
+                        if (breath >= breathwarninglevel)
+                        {
+                            indicator = INDICATOR_BREATH;
+                        }
+                    }
                 }
             }
 
-            if (found == false || self._display == null)
+            if (indicator == INDICATOR_RANDOM)
             {
-                if (self._display == null || self._display instanceof Indi.Heartbeat == false)
-                {
-                    self._display = new  Indi.Heartbeat(self);
-                }
+                indicator = self.getRandomWidget();
+            }
+
+            if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
+            {
+                self._display = new Indi.Stress(self);
+            }
+            else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
+            {
+                self._display = new Indi.Breath(self);
+            }
+            else if (self._display == null || self._display instanceof Indi.Heartbeat == false)
+            {
+                self._display = new  Indi.Heartbeat(self);
+            }
+        }
+
+        private function getRandomWidget() as Indicator
+        {
+            var heartrate = Application.Properties.getValue("HeartbeatRandomAmount") as Number;
+            var stress = Application.Properties.getValue("StressRandomAmount") as Number;
+            var breath = Application.Properties.getValue("BreathRandomAmount") as Number;
+
+            var max = heartrate + stress + breath;
+            if (max <= 0)
+            {
+                return INDICATOR_HEARTRATE;
+            }
+
+            var rdm = Helper.Math.RandomInRange(0, max);
+
+            if (rdm < heartrate)
+            {
+                return INDICATOR_HEARTRATE;
+            }
+            else if (rdm < heartrate + stress)
+            {
+                return INDICATOR_STRESS;
+            }
+            else
+            {
+                return INDICATOR_BREATH;
             }
         }
     }

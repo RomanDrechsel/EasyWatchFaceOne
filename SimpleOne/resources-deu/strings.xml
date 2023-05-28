@@ -5,6 +5,13 @@
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
     <string id="SettingsStressWarningLevel">Warnung bei Stress-Level</string>
 
+    <string id="SettingsRespirationRateWarningLevel">Warnung ab Atemzüge pro Minute</string>
+
+    <string id="SettingsRandomTitle">Zufallsverteilung der Widgets</string>
+    <string id="SettingsRandomHeartrate">Herzfrequenz Widget</string>
+    <string id="SettingsRandomStress">Stress Widget</string>
+    <string id="SettingsRandomBreaths">Atemfrequenz Widget</string>
+
     <string id="ThemeBlackAndBlue">Schwarz und Blau</string>
     <string id="ThemeGrey">Grau</string>
 

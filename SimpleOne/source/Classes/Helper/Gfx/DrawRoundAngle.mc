@@ -47,7 +47,7 @@ module Helper
             {
                 self._lineWidth = self.Width - self.AngleRadius - (self.ThicknessBold / 2);
                 self._lineHeight = self.Height - self.AngleRadius - (self.ThicknessBold / 2);
-                self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Math.PI * 2.0) / 4.0);                
+                self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Toybox.Math.PI * 2.0) / 4.0);                
                 self._horLineValue = self._lineWidth / self._totalBarLength;
                 self._vertLineValue = self._lineHeight / self._totalBarLength;
 
