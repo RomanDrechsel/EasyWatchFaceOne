@@ -4,6 +4,6 @@
 
     <property type="boolean" id="WidgetBatteryShowDays">true</property>
 
-    <property type="float" id="StressWarningLevel">60</property>
+    <property type="float" id="StressWarningLevel">80</property>
 
 </properties>

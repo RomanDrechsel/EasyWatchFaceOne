@@ -80,8 +80,8 @@ module Widgets
             self._heartbeatMin = zones[0] * 0.6;
 
             var heartrate = Indi.Heartbeat.getHeartrate();
+            
             var stress = Indi.Stress.getStressLevel();
-
             var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
 
             var found = false;
