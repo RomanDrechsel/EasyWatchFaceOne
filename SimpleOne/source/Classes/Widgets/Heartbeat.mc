@@ -142,13 +142,13 @@ module Widgets
                 return INDICATOR_HEARTRATE;
             }
 
-            var rdm = Helper.Math.RandomInRange(0, max);
+            var rdm = Helper.Math.RandomInRange(0, max - 1);
 
-            if (rdm < heartrate)
+            if (heartrate > 0 && rdm < heartrate)
             {
                 return INDICATOR_HEARTRATE;
             }
-            else if (rdm < heartrate + stress)
+            else if (stress > 0 && rdm < heartrate + stress)
             {
                 return INDICATOR_STRESS;
             }
