@@ -27,7 +27,7 @@ module DrawableContainers
                 case WIDGET_BOTTOMLEFT:
                     return new Distance(container_params);
                 case WIDGET_BOTTOMRIGHT:
-                    return new Heartbeat(container_params);
+                    return new RandomIndicator(container_params);
             }
 
             return new WidgetBase();

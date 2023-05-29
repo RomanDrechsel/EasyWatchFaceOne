@@ -8,7 +8,7 @@ using Widgets.Indicators as Indi;
 
 module Widgets 
 {
-    class Heartbeat extends WidgetBase
+    class RandomIndicator extends WidgetBase
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
@@ -82,26 +82,25 @@ module Widgets
 
             var indicator = INDICATOR_HEARTRATE;
             var heartrate = Indi.Heartbeat.getHeartrate();
+            var stress = Indi.Stress.getStressLevel();
+            var breath = Indi.Breath.getBreath();
 
             if (heartrate > 0)
             {
                 indicator = INDICATOR_RANDOM;
-
                 if (heartrate >= self._heartbeatZones[2])
                 {
                     indicator = INDICATOR_HEARTRATE;
                 }
                 else 
-                {
-                    var stress = Indi.Stress.getStressLevel();
+                {                    
                     var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
                     if (stress >= stresswarninglevel)
                     {
                         indicator = INDICATOR_STRESS;
                     }
                     else 
-                    {
-                        var breath = Indi.Breath.getBreath();
+                    {                        
                         var breathwarninglevel = Application.Properties.getValue("WarningRespirationRate") as Number;
                         if (breath >= breathwarninglevel)
                         {
@@ -111,14 +110,10 @@ module Widgets
                 }
             }
 
-            debug(indicator);
-
             if (indicator == INDICATOR_RANDOM)
             {
-                indicator = self.getRandomWidget();
+                indicator = self.getRandomWidget(stress, breath);
             }
-
-            debug(indicator);
 
             if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
             {
@@ -134,21 +129,28 @@ module Widgets
             }
         }
 
-        private function getRandomWidget() as Indicator
+        private function getRandomWidget(s as Float, b as Number) as Indicator
         {
             var heartrate = Application.Properties.getValue("HeartbeatRandomAmount") as Number;
             var stress = Application.Properties.getValue("StressRandomAmount") as Number;
             var breath = Application.Properties.getValue("BreathRandomAmount") as Number;
 
+            if (s <= 0.0)
+            {
+                stress = 0;
+            }
+            if (b <= 0)
+            {
+                breath = 0;
+            }
+
             var max = heartrate + stress + breath;
-            debug("MAX " + max.toString());
             if (max <= 0)
             {
                 return INDICATOR_HEARTRATE;
             }
 
             var rdm = Helper.MathHelper.RandomInRange(0, max);
-            debug("RDM " + rdm.toString());
 
             if (heartrate > 0 && rdm < heartrate)
             {

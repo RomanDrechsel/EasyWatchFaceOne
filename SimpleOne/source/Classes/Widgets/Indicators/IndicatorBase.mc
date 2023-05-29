@@ -13,14 +13,14 @@ module Widgets
 
             protected var _iconColor = 0xff1111;
             
-            protected var _Widget = null as Widgets.Heartbeat;
+            protected var _Widget = null as Widgets.RandomIndicator;
 
             protected var _iconPosX as Number;
             protected var _iconPosY as Number;
             protected var _textPosX as Number;
             protected var _textPosY as Number;
 
-            function initialize(widget as Widgets.Heartbeat)
+            function initialize(widget as Widgets.RandomIndicator)
             {
                 self._Widget = widget;
             }

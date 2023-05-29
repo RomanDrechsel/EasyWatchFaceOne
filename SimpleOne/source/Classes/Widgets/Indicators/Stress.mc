@@ -16,7 +16,7 @@ module Widgets
                 0xfa0000
             ];
 
-            function initialize(widget as Widgets.Heartbeat)
+            function initialize(widget as Widgets.RandomIndicator)
             {
                 IndicatorBase.initialize(widget);
             }

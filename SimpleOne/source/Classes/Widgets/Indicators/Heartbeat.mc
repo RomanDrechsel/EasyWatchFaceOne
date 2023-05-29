@@ -20,7 +20,7 @@ module Widgets
             private var _texts = [] as Array<Helper.ExtTextPart>;
             private var _heartbeatMin = 0;
 
-            function initialize(widget as Widgets.Heartbeat)
+            function initialize(widget as Widgets.RandomIndicator)
             {
                 IndicatorBase.initialize(widget);
             }
@@ -57,10 +57,9 @@ module Widgets
                             if (heartrate >= self._Widget._heartbeatZones[i])
                             {
                                 color = self._heartbeatColors[i];
-                                
-                            }
-                            indicatorcolor = color;
-                            iconcolor = color;
+                                indicatorcolor = color;
+                                iconcolor = color;
+                            }                            
                         }
                     }
                 }
@@ -104,6 +103,7 @@ module Widgets
 
             public static function getHeartrate() as Number
             {
+                return 100;
                 var info = Toybox.Activity.getActivityInfo();
                 if (info.currentHeartRate != null)
                 {
