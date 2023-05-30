@@ -10,6 +10,8 @@ module Widgets
         {
             static var MaxRespirationRate = 40.0;
 
+            private var _lastRespirationRate = -1.0 as Float;
+
             private var _BreathColors = [
                 0x00ad15,
                 0xf7fa00,
@@ -32,6 +34,15 @@ module Widgets
                 IndicatorBase.draw(dc);
             
                 var breath = self.getBreath();
+                if (breath < 0.0 && self._lastRespirationRate > 0.0)
+                {
+                    breath = self._lastRespirationRate;
+                }
+                
+                if (breath > 0.0)
+                {
+                    self._lastRespirationRate = breath;
+                }
 
                 var color = self._Widget._theme.IconsOff;
                 var iconcolor = self._Widget._theme.IconsOff;

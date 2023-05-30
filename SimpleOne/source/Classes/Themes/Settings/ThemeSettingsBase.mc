@@ -12,7 +12,8 @@ module Themes
         var BackgroundImage = -1 as Number;
 
         //Clock Widget
-        var ClockMainColor = 0xFFFFFF as Number;
+        var ClockHourColor = 0xFFFFFF as Number;
+        var ClockMinutesColor = 0xFFFFFF as Number;
         var ClockSecondsColor = 0xFFFFFF as Number;
 
         //Date Widget

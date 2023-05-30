@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Monkey C: Open Store",
+            "type": "process",
+            "command": "explorer.exe",
+            "args": [
+                "https://apps.garmin.com/de-DE/"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
