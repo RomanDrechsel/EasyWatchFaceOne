@@ -13,7 +13,6 @@ module Widgets
         var VJustification = WIDGET_JUSTIFICATION_TOP as Widget_Justification;
 
         var _theme = null as Themes.ThemeSettingsBase;
-        protected var _initialized = false as Boolean;
 
         function initialize(container_params as Dictionary)
         {
@@ -58,8 +57,6 @@ module Widgets
                 }
             }
         }
-
-        function Init();
 
         function draw(dc as Gfx.Dc);
 

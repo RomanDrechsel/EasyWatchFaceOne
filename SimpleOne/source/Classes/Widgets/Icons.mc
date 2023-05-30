@@ -8,8 +8,8 @@ module Widgets
     {
         private var _Icons = null as FontResource;
         private var _MsgFont = null as FontResource;
-        private var _BTWidth = 25 as Number;
-        private var _MsgWidth = 40 as Number;
+        private var _BTWidth = -1 as Number;
+        private var _MsgWidth = -1 as Number;
 
         private var _Padding = 12 as Number;
 
@@ -23,9 +23,16 @@ module Widgets
 
         function draw(dc as Gfx.Dc) as Void 
         {
-            if (self._initialized == false)
+            if (self._BTWidth < 0 || self._MsgWidth < 0)
             {
-                self.Init(dc);
+                self._BTWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_BLUETOOTH, self._Icons);
+                self._MsgWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_NEWMESSAGES, self._Icons);
+
+                if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+                {
+                    var width = self._BTWidth + self._MsgWidth + self._Padding;
+                    self.locX = self.locX - width;
+                }
             }
 
             var settings = System.getDeviceSettings();
@@ -54,20 +61,6 @@ module Widgets
                 dc.setColor(self._theme.IconsOff, Gfx.COLOR_TRANSPARENT);
             }            
             dc.drawText(self.locX + self._MsgWidth + self._Padding, self.locY, self._Icons, Helper.Gfx.ICONS_BLUETOOTH, Gfx.TEXT_JUSTIFY_LEFT);
-        }
-
-        private function Init(dc as Gfx.Dc)
-        {
-            self._BTWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_BLUETOOTH, self._Icons);
-            self._MsgWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_NEWMESSAGES, self._Icons);
-
-            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-            {
-                var width = self._BTWidth + self._MsgWidth + self._Padding;
-                self.locX = self.locX - width;
-            }
-
-            self._initialized = true;
         }
     }
 }

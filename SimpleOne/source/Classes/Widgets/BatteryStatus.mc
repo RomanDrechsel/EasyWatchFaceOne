@@ -24,6 +24,8 @@ module Widgets
 
         private var _BatteryDays = "d" as String;
 
+        private var _initialized = false as Boolean;
+
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);

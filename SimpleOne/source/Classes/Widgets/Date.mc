@@ -23,7 +23,6 @@ module Widgets
             self._Texts[0] = new ExtTextPart("", self._theme.DateWeekdayColor, self._Font);
             self._Texts[1] = new ExtTextPart("", self._theme.DateDayColor, self._Font);
             self._Texts[2] = new ExtTextPart("", self._theme.DateYearColor, self._Font);
-            self._initialized = true;
         }
 
         function draw(dc as Gfx.Dc)
