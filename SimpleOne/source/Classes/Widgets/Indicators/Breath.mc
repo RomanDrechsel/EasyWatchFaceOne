@@ -9,8 +9,10 @@ module Widgets
         class Breath extends IndicatorBase
         {
             static var MaxRespirationRate = 40.0;
-
             private var _lastRespirationRate = 0.0 as Float;
+
+            private var _textContainer = null as Helper.ExtText;
+            private var _texts = [] as Array<Helper.ExtTextPart>;
 
             function initialize(widget as Widgets.RandomIndicator)
             {
@@ -64,15 +66,29 @@ module Widgets
                     }
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget._Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, breath.toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    //dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, breath.toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    if (self._texts.size() < 2)
+                    {
+                        self._texts = [
+                            new Helper.ExtTextPart(breath.toString(), color, self._Widget.Font),
+                            new Helper.ExtTextPart(" brpm", color, self._Widget.Font2)
+                        ];
+                        self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
+                    }
+                    else
+                    {
+                        self._texts[0].Text = breath.toString();
+                    }
+                    
+                    self._textContainer.draw(self._texts, dc);
                 }
                 else
                 {
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget._Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._textPosX, self._textPosY, self._Widget.Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
                 self._Widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);

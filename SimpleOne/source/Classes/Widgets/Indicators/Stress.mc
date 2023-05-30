@@ -52,15 +52,15 @@ module Widgets
                     }
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget._Icons, Draw.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._textPosX, self._textPosY, self._Widget.Font, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
                 else
                 {
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget._Icons, Draw.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._textPosX, self._textPosY, self._Widget.Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
                 self._Widget.IndicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);

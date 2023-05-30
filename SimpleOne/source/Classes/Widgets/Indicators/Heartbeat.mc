@@ -10,7 +10,7 @@ module Widgets
         {
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
-            private var _heartbeatMin = 40;
+            private var _heartbeatMinDisplay = 40;
 
             static var HeartbeatZones = [] as Array<Number>;
             static var HeartbeatMin = 0;
@@ -67,8 +67,10 @@ module Widgets
                         ];
                         self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                     }
-
-                    self._texts[0].Text = heartrate.toString();
+                    else
+                    {
+                        self._texts[0].Text = heartrate.toString();
+                    }
                     self._textContainer.draw(self._texts, dc);
                 }
                 else
@@ -79,9 +81,9 @@ module Widgets
                 }
 
                 var amount = 0.0;
-                if (heartrate >= self._heartbeatMin)
+                if (heartrate >= self._heartbeatMinDisplay)
                 {
-                    amount = (heartrate - self._Widget._heartbeatMin).toFloat() / (self.HeartbeatZones[3] - self._Widget._heartbeatMin).toFloat();
+                    amount = (heartrate - self.HeartbeatMin).toFloat() / (self.HeartbeatZones[3] - self.HeartbeatMin).toFloat();
                 }
                 else if (heartrate > 0)
                 {
