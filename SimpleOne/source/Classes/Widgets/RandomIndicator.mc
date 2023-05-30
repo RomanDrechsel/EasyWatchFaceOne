@@ -12,56 +12,62 @@ module Widgets
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
-        var _WidgetHeight = 200;
-        var _WidgetWidth = 150;
+        var WidgetHeight = 200;
+        var WidgetWidth = 150;
 
-        var _Icons as FontResource;
-        var _Font as FontResource;
-        var _Font2 as FontResource;
+        var Icons as FontResource;
+        var Font as FontResource;
+        var Font2 as FontResource;
        
         private var _indicatorLineWidth = 4;
         private var _indicatorLineWidthBold = 5;
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
-        var _indicatorDrawing = null as Draw.DrawRoundAngle;
         private var _display = null as Indi.IndicatorBase;
 
-        var _heartbeatZones = [];
-        var _heartbeatMin = 0;
+        var IndicatorDrawing = null as Draw.DrawRoundAngle;
+        var IndicatorColors  = [] as Array<Number>;
 
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
 
-            self._Icons = WatchUi.loadResource(Rez.Fonts.Icons) as FontResource;
-            self._Font = WatchUi.loadResource(Rez.Fonts.Normal) as FontResource;
-            self._Font2 = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
+            self.Icons = WatchUi.loadResource(Rez.Fonts.Icons) as FontResource;
+            self.Font = WatchUi.loadResource(Rez.Fonts.Normal) as FontResource;
+            self.Font2 = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
 
             if (params[:Width] != null)
             {
-                self._WidgetWidth = params[:Width];
+                self.WidgetWidth = params[:Width];
             }
 
             if (params[:Height] != null)
             {
-                self._WidgetHeight = params[:Height];
+                self.WidgetHeight = params[:Height];
             }
 
             if (self.VJustification == WIDGET_JUSTIFICATION_BOTTOM)
             {
-                self.locY = self.locY - self._WidgetHeight;
+                self.locY = self.locY - self.WidgetHeight;
             }
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self.locX = self.locX - self._WidgetWidth;   
+                self.locX = self.locX - self.WidgetWidth;   
             }
 
-            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX + self._WidgetWidth, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
-            self._indicatorDrawing.Thickness = self._indicatorLineWidth;
-            self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
-            self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
-            self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
+            self.IndicatorColors = [
+                self._theme.IndicatorLevel1,
+                self._theme.IndicatorLevel3,
+                self._theme.IndicatorLevel4,
+                self._theme.IndicatorLevel5,
+            ];
+
+            self.IndicatorDrawing = new Draw.DrawRoundAngle(self.locX + self.WidgetWidth, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
+            self.IndicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
+            self.IndicatorDrawing.Thickness = self._indicatorLineWidth;
+            self.IndicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
+            self.IndicatorDrawing.DotRadius = self._indicatorDotRadius;
+            self.IndicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
             $.getView().AddWakeUp(self.method(:OnWakeUp));
         }
 
@@ -77,8 +83,8 @@ module Widgets
         function OnWakeUp()
         {
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
-            self._heartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
-            self._heartbeatMin = zones[0] * 0.6;
+            Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
+            Indi.Heartbeat.HeartbeatMin = zones[0] * 0.6;
 
             var indicator = INDICATOR_HEARTRATE;
             var heartrate = Indi.Heartbeat.getHeartrate();
@@ -88,7 +94,7 @@ module Widgets
             if (heartrate > 0)
             {
                 indicator = INDICATOR_RANDOM;
-                if (heartrate >= self._heartbeatZones[2])
+                if (heartrate >= Indi.Heartbeat.HeartbeatZones[2])
                 {
                     indicator = INDICATOR_HEARTRATE;
                 }

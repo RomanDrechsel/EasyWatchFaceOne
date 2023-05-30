@@ -64,11 +64,11 @@ module Widgets
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.BarColors = [
-                new Draw.RoundAngleColor(0.2, 0xfa0000),
-                new Draw.RoundAngleColor(0.4, 0xfa7a00),
-                new Draw.RoundAngleColor(0.6, 0xf7fa00),
-                new Draw.RoundAngleColor(0.8, 0xc4ff31),
-                new Draw.RoundAngleColor(1.0, 0x00ad15)
+                new Draw.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
+                new Draw.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
+                new Draw.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
+                new Draw.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
+                new Draw.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
             ];
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)

@@ -31,7 +31,13 @@ module Themes
         var IconsOff = 0x797979;
         var IconsOn = 0x3dd33a;
 
-        //Deco Widget
+        //Indicatoren
         var IndicatorBackground = 0x535353;
+        var IndicatorLevel1 = 0x00ad15; //Green
+        var IndicatorLevel2 = 0xc4ff31; //Green-Yellow
+        var IndicatorLevel3 = 0xf7fa00; //Yellow
+        var IndicatorLevel4 = 0xfa7a00; //Orange
+        var IndicatorLevel5 = 0xfa0000; //Red
+
     }
 }

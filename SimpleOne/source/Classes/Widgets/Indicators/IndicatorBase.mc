@@ -10,8 +10,6 @@ module Widgets
         class IndicatorBase 
         {
             protected var _initialized = false;
-
-            protected var _iconColor = 0xff1111;
             
             protected var _Widget = null as Widgets.RandomIndicator;
 
@@ -35,10 +33,10 @@ module Widgets
 
             protected function Init(dc as Dc)
             {
-                var iconHeight = dc.getFontHeight(self._Widget._Icons);
-                var fontHeight = dc.getFontHeight(self._Widget._Font);
-                var centerX = self._Widget.locX + (self._Widget._WidgetWidth / 2.4);
-                var centerY = self._Widget.locY + (self._Widget._WidgetHeight / 2.2);
+                var iconHeight = dc.getFontHeight(self._Widget.Icons);
+                var fontHeight = dc.getFontHeight(self._Widget.Font);
+                var centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
+                var centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
 
                 self._iconPosX = centerX;
                 self._iconPosY = centerY - (iconHeight / 2) - 5;

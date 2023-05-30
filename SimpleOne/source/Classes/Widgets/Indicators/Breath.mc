@@ -10,14 +10,7 @@ module Widgets
         {
             static var MaxRespirationRate = 40.0;
 
-            private var _lastRespirationRate = -1.0 as Float;
-
-            private var _BreathColors = [
-                0x00ad15,
-                0xf7fa00,
-                0xfa7a00,
-                0xfa0000
-            ];
+            private var _lastRespirationRate = 0.0 as Float;
 
             function initialize(widget as Widgets.RandomIndicator)
             {
@@ -32,7 +25,7 @@ module Widgets
             function draw(dc as Gfx.Dc)
             {
                 IndicatorBase.draw(dc);
-            
+
                 var breath = self.getBreath();
                 if (breath < 0.0 && self._lastRespirationRate > 0.0)
                 {
@@ -51,20 +44,20 @@ module Widgets
                 {
                     color = self._Widget._theme.MainTextColor;
                     iconcolor = color;
-                    indicatorcolor = self._BreathColors[0];
+                    indicatorcolor = self._Widget.IndicatorColors[0];
                     if (breath >= 20)
                     {
                         if (breath > self.MaxRespirationRate)
                         {
-                            color = self._BreathColors[3];
+                            color = self._Widget.IndicatorColors[3];
                         }
                         else if (breath > self.MaxRespirationRate - 10)
                         {
-                            color = self._BreathColors[2];
+                            color = self._Widget.IndicatorColors[2];
                         }
                         else
                         {
-                            color = self._BreathColors[1];
+                            color = self._Widget.IndicatorColors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -82,7 +75,7 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                self._Widget._indicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
+                self._Widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
             }
 
             static function getBreath() as Number
