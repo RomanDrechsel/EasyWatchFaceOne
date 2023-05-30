@@ -25,10 +25,8 @@ module Widgets
         {
             if (self._hours_pos == null || self._min_pos == null)
             {
-                var space_between = 12; //Space between hour and min
-                var offset = dc.getTextWidthInPixels("PM", self._FontSmall);
-                self._hours_pos = self.locX - (space_between / 2) - offset;
-                self._min_pos = self.locX + (space_between / 2) - offset;
+                self._hours_pos = self.locX - 6 - 30;
+                self._min_pos = self.locX + 6 - 30;
             }
 
             var clockTime = System.getClockTime();

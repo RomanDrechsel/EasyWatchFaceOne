@@ -16,6 +16,7 @@ class SOView extends WatchUi.WatchFace
     // Load your resources here
     function onLayout(dc as Dc) as Void 
     {
+        Helper.Gfx.Fonts.Load();
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
