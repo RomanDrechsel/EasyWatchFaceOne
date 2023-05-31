@@ -1,6 +1,6 @@
 import Toybox.Lang;
 using Toybox.Graphics as Gfx;
-using Helper.Gfx as Draw;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
@@ -56,14 +56,14 @@ module Widgets
                 if (heartrate > 0)
                 {
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    //dc.setColor(color, Gfx.COLOR_TRANSPARENT);
 
                     if (self._texts.size() < 2)
                     {
                         self._texts = [
-                            new Helper.ExtTextPart(heartrate.toString(), color, self._Widget.Font),
-                            new Helper.ExtTextPart(" bpm", color, self._Widget.Font2)
+                            new Helper.ExtTextPart(heartrate.toString(), color, HGfx.Fonts.Normal),
+                            new Helper.ExtTextPart(" bpm", color, HGfx.Fonts.Small)
                         ];
                         self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                     }
@@ -76,8 +76,8 @@ module Widgets
                 else
                 {
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget.Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
                 var amount = 0.0;

@@ -1,6 +1,7 @@
 using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.WatchUi;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
@@ -37,12 +38,12 @@ module Widgets
 
             if (self._hasBatteryInDays == true)
             {
-                self._Font = WatchUi.loadResource(Rez.Fonts.Tiny) as FontResource;
+                self._Font = HGfx.Fonts.Tiny;
                 self._BatteryDays = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
             }
             else
             {
-                self._Font = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
+                self._Font = HGfx.Fonts.Small;
             }
         }
 

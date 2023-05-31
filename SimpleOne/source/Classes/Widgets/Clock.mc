@@ -2,31 +2,26 @@ using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
     class Clock extends WidgetBase
     {
-        private var _Font = null as FontResource;
-        private var _FontSmall = null as FontResource;
-
         private var _hours_pos = null as Number;
         private var _min_pos = null as Number;
 
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-            
-            self._Font = WatchUi.loadResource(Rez.Fonts.ClockFont) as FontResource;
-            self._FontSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall) as FontResource;
         }
 
         function draw(dc as Gfx.Dc) as Void 
         {
             if (self._hours_pos == null || self._min_pos == null)
             {
-                self._hours_pos = self.locX - 6 - 30;
-                self._min_pos = self.locX + 6 - 30;
+                self._hours_pos = self.locX - 20;
+                self._min_pos = self.locX;
             }
 
             var clockTime = System.getClockTime();
@@ -49,22 +44,21 @@ module Widgets
                 }
                 hour %= 12;
             }
-
             
             dc.setColor(self._theme.ClockHourColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._hours_pos, self.locY, self._Font, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
+            dc.drawText(self._hours_pos, self.locY, HGfx.Fonts.Clock, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
             dc.setColor(self._theme.ClockMinutesColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._min_pos, self.locY, self._Font, m, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._min_pos, self.locY, HGfx.Fonts.Clock, m, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
 
-            var minwidth = dc.getTextWidthInPixels(m, self._Font);
-            var secpos = self._min_pos + dc.getTextWidthInPixels(m, self._Font) + 2;
+            var minwidth = dc.getTextWidthInPixels(m, HGfx.Fonts.Clock);
+            var secpos = self._min_pos + dc.getTextWidthInPixels(m, HGfx.Fonts.Clock) + 2;
 
             dc.setColor(self._theme.ClockSecondsColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(secpos, self.locY - 18, self._FontSmall, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(secpos, self.locY - 16, HGfx.Fonts.ClockSmall, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
 
             if (ampm.length() > 0)
             {
-                dc.drawText(secpos, self.locY + 18,self._FontSmall, ampm, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
+                dc.drawText(secpos, self.locY + 16,HGfx.Fonts.ClockSmall, ampm, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
             }
         }
     }

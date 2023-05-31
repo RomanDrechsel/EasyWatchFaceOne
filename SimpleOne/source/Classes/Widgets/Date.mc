@@ -5,24 +5,23 @@ import Toybox.System;
 import Toybox.WatchUi;
 import Helper;
 using Toybox.Time.Gregorian as D;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
     class Date extends WidgetBase
     { 
         private var _textContainer as ExtText;
-        private var _Font = null as FontResource;
         private var _Texts = new[3] as Array<ExtTextPart>;
 
         function initialize(params as Dictionary)
         {
             WidgetBase.initialize(params);
-            self._Font = WatchUi.loadResource(Rez.Fonts.DateFont) as FontResource;
 
             self._textContainer = new ExtText(self.locX, self.locY, ExtText.HJUST_CENTER, ExtText.VJUST_CENTER);
-            self._Texts[0] = new ExtTextPart("", self._theme.DateWeekdayColor, self._Font);
-            self._Texts[1] = new ExtTextPart("", self._theme.DateDayColor, self._Font);
-            self._Texts[2] = new ExtTextPart("", self._theme.DateYearColor, self._Font);
+            self._Texts[0] = new ExtTextPart("", self._theme.DateWeekdayColor, HGfx.Fonts.Date);
+            self._Texts[1] = new ExtTextPart("", self._theme.DateDayColor, HGfx.Fonts.Date);
+            self._Texts[2] = new ExtTextPart("", self._theme.DateYearColor, HGfx.Fonts.Date);
         }
 
         function draw(dc as Gfx.Dc)

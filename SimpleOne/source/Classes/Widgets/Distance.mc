@@ -3,15 +3,12 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 using Toybox.ActivityMonitor;
 using Toybox.Math;
-using Helper.Gfx as Draw;
+using Helper.Gfx as HGfx;
 
 module Widgets
 {
     class Distance extends WidgetBase
     {
-        private var _Icons = null as FontResource;
-        private var _Font = null as FontResource;
-
         private var _WidgetHeight = 200 as Number;
         private var _WidgetWidth = 150 as Number;
         private var _inMiles = false as Boolean;
@@ -25,7 +22,7 @@ module Widgets
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 12;
         private var _indicatorVPadding = 12;
-        private var _indicatorDrawing = null as Draw.DrawRoundAngle;
+        private var _indicatorDrawing = null as HGfx.DrawRoundAngle;
 
         private const CENTIMETER_TO_FEET = 0.0328084 as Float;
         private const FEET_TO_MILES = 5280.0 as Float;
@@ -34,8 +31,6 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            self._Icons = WatchUi.loadResource(Rez.Fonts.Icons) as FontResource;
-            self._Font = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
             if (params[:Width] != null)
             {
                 self._WidgetWidth = params[:Width];
@@ -58,17 +53,17 @@ module Widgets
             var textheight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
-            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
+            self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
             self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.BarColors = [
-                new Draw.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
-                new Draw.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
-                new Draw.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
-                new Draw.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
-                new Draw.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
+                new HGfx.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
+                new HGfx.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
+                new HGfx.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
+                new HGfx.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
+                new HGfx.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
             ];
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
@@ -101,8 +96,8 @@ module Widgets
 
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
-            dc.drawText(self._iconXpos, self._drawYpos, self._Icons, Helper.Gfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, self._Font, info.calories.toString(), Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
         }
@@ -118,16 +113,16 @@ module Widgets
             {
                 str = self.FormatMeters(info.distance);
             }
-            dc.drawText(self._iconXpos, self._drawYpos, self._Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, self._Font, str, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, str, Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
         }
 
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
-            dc.drawText(self._iconXpos, self._drawYpos, self._Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, self._Font, info.steps, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
         }

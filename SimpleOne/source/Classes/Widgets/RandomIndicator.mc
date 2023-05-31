@@ -14,10 +14,6 @@ module Widgets
 
         var WidgetHeight = 200;
         var WidgetWidth = 150;
-
-        var Icons as FontResource;
-        var Font as FontResource;
-        var Font2 as FontResource;
        
         private var _indicatorLineWidth = 4;
         private var _indicatorLineWidthBold = 5;
@@ -31,10 +27,6 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-
-            self.Icons = WatchUi.loadResource(Rez.Fonts.Icons) as FontResource;
-            self.Font = WatchUi.loadResource(Rez.Fonts.Normal) as FontResource;
-            self.Font2 = WatchUi.loadResource(Rez.Fonts.Small) as FontResource;
 
             if (params[:Width] != null)
             {

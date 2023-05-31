@@ -1,6 +1,6 @@
 import Toybox.Lang;
 using Toybox.Graphics as Gfx;
-using Helper.Gfx as Draw;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
@@ -67,14 +67,14 @@ module Widgets
                     }
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    //dc.drawText(self._textPosX, self._textPosY, self._Widget._Font, breath.toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    //dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                    //dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Small, breath.toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     if (self._texts.size() < 2)
                     {
                         self._texts = [
-                            new Helper.ExtTextPart(breath.toString(), color, self._Widget.Font),
-                            new Helper.ExtTextPart(" brpm", color, self._Widget.Font2)
+                            new Helper.ExtTextPart(breath.toString(), color, HGfx.Fonts.Normal),
+                            new Helper.ExtTextPart(" brpm", color, HGfx.Fonts.Small)
                         ];
                         self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                     }
@@ -88,8 +88,8 @@ module Widgets
                 else
                 {
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, self._Widget.Icons, Draw.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.drawText(self._textPosX, self._textPosY, self._Widget.Font, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
                 self._Widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);

@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Lang;
-using Helper.Gfx as Draw;
+using Helper.Gfx as HGfx;
 
 module Widgets 
 {
@@ -33,8 +33,8 @@ module Widgets
 
             protected function Init(dc as Dc)
             {
-                var iconHeight = dc.getFontHeight(self._Widget.Icons);
-                var fontHeight = dc.getFontHeight(self._Widget.Font);
+                var iconHeight = dc.getFontHeight(HGfx.Fonts.Icons);
+                var fontHeight = dc.getFontHeight(HGfx.Fonts.Small);
                 var centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
                 var centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
 
