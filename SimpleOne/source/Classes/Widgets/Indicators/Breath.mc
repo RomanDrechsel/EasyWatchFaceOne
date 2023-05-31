@@ -22,6 +22,7 @@ module Widgets
             protected function Init(dc as Gfx.Dc)
             {
                 IndicatorBase.Init(dc);
+                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
             }
 
             function draw(dc as Gfx.Dc)

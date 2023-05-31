@@ -129,7 +129,7 @@ module Widgets
             {
                 self._display = new Indi.Breath(self);
             }
-            else if (self._display == null || self._display instanceof Indi.Heartbeat == false)
+            else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
             {
                 self._display = new  Indi.Heartbeat(self);
             }
