@@ -29,8 +29,8 @@ module Widgets
             var now = Time.now();
             var time = D.info(now, Time.FORMAT_SHORT);
 
-            self._Texts[0].Text = Helper.Date.ShortWeekyday(time.day_of_week).toLower() + " "; //toLower() because date-font only have lowercase letters to save space
-            self._Texts[1].Text = time.day.toString() + "." + Helper.Date.ShortMonth(time.month).toLower() + " ";
+            self._Texts[0].Text = Helper.Date.ShortWeekyday(time.day_of_week).toUpper() + " "; //toUpper() because date-font only have uppercase letters to save space
+            self._Texts[1].Text = time.day.toString() + "." + Helper.Date.ShortMonth(time.month).toUpper() + " ";
             self._Texts[2].Text = time.year.toString();
 
             self._textContainer.draw(self._Texts, dc);

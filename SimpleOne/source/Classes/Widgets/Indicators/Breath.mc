@@ -9,7 +9,10 @@ module Widgets
         class Breath extends IndicatorBase
         {
             static var MaxRespirationRate = 40.0;
-            private var _lastRespirationRate = 0.0 as Float;
+            private static var _lastRespirationRate = null as Float;
+            private static var _lastSample = null as Toybox.Time.Moment;
+
+            private static const SAMPLE_VALID = 20; //old samples are valid for 20 sec
 
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
@@ -30,15 +33,6 @@ module Widgets
                 IndicatorBase.draw(dc);
 
                 var breath = self.getBreath();
-                if (breath < 0.0 && self._lastRespirationRate > 0.0)
-                {
-                    breath = self._lastRespirationRate;
-                }
-                
-                if (breath > 0.0)
-                {
-                    self._lastRespirationRate = breath;
-                }
 
                 var color = self._Widget._theme.IconsOff;
                 var iconcolor = self._Widget._theme.IconsOff;
@@ -100,7 +94,14 @@ module Widgets
                 var info = Toybox.ActivityMonitor.getInfo();
                 if (info.respirationRate != null)
                 {
+                    self._lastRespirationRate = info.respirationRate;
+                    self._lastSample = Toybox.Time.now();
                     return info.respirationRate;
+                }
+                else if (self._lastSample != null && self._lastRespirationRate != null && Toybox.Time.now().subtract(self._lastSample).value() <= self.SAMPLE_VALID)
+                {
+                    //last RespirationRate is valid for 20 sec
+                    return self._lastRespirationRate;
                 }
 
                 return -1;

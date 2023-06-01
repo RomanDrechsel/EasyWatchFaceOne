@@ -37,9 +37,19 @@ module Widgets
             var msgCount = settings.notificationCount;
             if (msgCount > 0)
             {
+                var msgstr;
+                if (msgCount <= 9)
+                {
+                    msgstr =  msgCount.toString();
+                }
+                else
+                {
+                    msgstr = "9+";
+                }
+
                 dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self.locX, self.locY + 3, HGfx.Fonts.Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
-                dc.drawText(self.locX + 35, self.locY + 9, HGfx.Fonts.Small, msgCount.toString(), Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX + 35, self.locY + 9, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {

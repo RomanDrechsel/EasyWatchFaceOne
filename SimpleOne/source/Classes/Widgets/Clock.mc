@@ -20,8 +20,16 @@ module Widgets
         {
             if (self._hours_pos == null || self._min_pos == null)
             {
-                self._hours_pos = self.locX - 20;
-                self._min_pos = self.locX;
+                var space_min = 10;
+                var space_sec = 2;
+                var bigwidth = dc.getTextWidthInPixels("55", HGfx.Fonts.Clock);
+                var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.ClockSmall);
+                var width = (bigwidth * 2) + space_min + space_sec + smallwidth;
+
+                var center = ((dc.getWidth() - width) / 2) + bigwidth + (space_min / 2);
+
+                self._hours_pos = center - (space_min / 2);
+                self._min_pos = center + (space_min / 2);
             }
 
             var clockTime = System.getClockTime();

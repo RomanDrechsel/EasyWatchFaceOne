@@ -1,10 +1,9 @@
 <fonts>
-    <font id="ClockFont" filename="ClockFont.fnt" filter="0123456789" antialias="true" />
-    <font id="ClockFontSmall" filename="ClockFontSmall.fnt" filter="0123456789MAP" antialias="true" />
-    <font id="DateFont" filename="DateFont.fnt" antialias="true" filter=" abcdefghijklmnopqrstuvwxyz.1234567890" />
+    <font id="ClockFont" filename="ClockFont.fnt" antialias="true" />
+    <font id="ClockFontSmall" filename="ClockFontSmall.fnt" antialias="true" />
+    <font id="DateFont" filename="DateFont.fnt" antialias="true" />
     <font id="Normal" filename="FontNormal.fnt" antialias="true" />
     <font id="Small" filename="FontSmall.fnt" antialias="true" />
     <font id="Tiny" filename="FontTiny.fnt" antialias="true" />
-
     <font id="Icons" filename="Icons.fnt" antialias="true" />
 </fonts>

@@ -12,7 +12,8 @@ module Widgets
         {
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
-            private static var _lastSample = null as Time.Moment;
+
+            private static const SAMPLE_VALID = 1200; //old samples are valid for 20 min
 
             function initialize(widget as Widgets.RandomIndicator)
             {
@@ -59,30 +60,8 @@ module Widgets
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    //dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    //dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Small, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-
-                    var sampletime = "";
-                    if (self._lastSample != null)
-                    {
-                        var info = D.info(self._lastSample, Time.FORMAT_SHORT);
-                        sampletime = info.hour.format("%02d") + ":" + info.min.format("%02d");
-                    }
-
-                    if (self._texts.size() < 2)
-                    {
-                        self._texts = [
-                            new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
-                            new Helper.ExtTextPart(sampletime, color, HGfx.Fonts.Small)
-                        ];
-                        self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
-                    }
-                    else
-                    {
-                        self._texts[0].Text = stress.toNumber().toString();
-                        self._texts[1].Text = sampletime;
-                    }
-                    self._textContainer.draw(self._texts, dc);
+                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Small, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
                 else
                 {
@@ -100,9 +79,8 @@ module Widgets
                 {
                     var hist = Toybox.SensorHistory.getStressHistory({ "period" => 1, "order" => Toybox.SensorHistory.ORDER_NEWEST_FIRST});
                     var sample = hist.next();
-                    if (sample != null)
+                    if (sample != null && Toybox.Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
                     {
-                        self._lastSample = sample.when;
                         return sample.data;
                     }
                 }
