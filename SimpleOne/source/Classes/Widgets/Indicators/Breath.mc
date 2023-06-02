@@ -12,7 +12,7 @@ module Widgets
             private static var _lastRespirationRate = null as Float;
             private static var _lastSample = null as Toybox.Time.Moment;
 
-            private static const SAMPLE_VALID = 60; //old samples are valid for 60 sec
+            private static const SAMPLE_VALID = 120; //old samples are valid for 2 min
 
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
