@@ -62,8 +62,6 @@ module Widgets
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    //dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    //dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Small, breath.toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     if (self._texts.size() < 2)
                     {
                         self._texts = [

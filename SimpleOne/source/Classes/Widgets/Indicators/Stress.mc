@@ -40,7 +40,7 @@ module Widgets
                     color = self._Widget._theme.MainTextColor;
                     iconcolor = color;
                     indicatorcolor = self._Widget.IndicatorColors[0];
-                    if (stress >= 50)
+                    if (stress >= 60)
                     {
                         if (stress >= 90)
                         {
