@@ -129,10 +129,10 @@ module Widgets
 
         private function getRandomWidget(s as Float, b as Number) as Indicator
         {
-            var heartrate = Application.Properties.getValue("HeartbeatRandomAmount") as Number;
-            var stress = Application.Properties.getValue("StressRandomAmount") as Number;
-            var breath = Application.Properties.getValue("BreathRandomAmount") as Number;
-
+            var heartrate = 1;
+            var stress = 1;
+            var breath = 1;
+            
             if (s <= 0.0)
             {
                 stress = 0;

@@ -21,18 +21,4 @@
         </setting>
     </group>
 
-    <group id="groupWidgetsRandom" title="@Strings.SettingsRandomTitle">
-        <setting propertyKey="@Properties.HeartbeatRandomAmount" title="@Strings.SettingsRandomHeartrate">
-            <settingConfig type="numeric"/>
-        </setting>
-
-        <setting propertyKey="@Properties.StressRandomAmount" title="@Strings.SettingsRandomStress">
-            <settingConfig type="numeric"/>
-        </setting>
-
-        <setting propertyKey="@Properties.BreathRandomAmount" title="@Strings.SettingsRandomBreaths">
-            <settingConfig type="numeric"/>
-        </setting>
-    </group>
-
 </settings>

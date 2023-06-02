@@ -8,8 +8,4 @@
 
     <property type="number" id="WarningRespirationRate">20</property>
 
-    <property type="number" id="HeartbeatRandomAmount">1</property>
-    <property type="number" id="StressRandomAmount">1</property>
-    <property type="number" id="BreathRandomAmount">1</property>
-
 </properties>
