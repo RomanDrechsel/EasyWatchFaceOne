@@ -25,7 +25,7 @@
 
     <drawable class="DrawableContainers.TopCenterContainer" id="TopCenter">
         <param name="locX">dc.getWidth() / 2</param>
-        <param name="locY">5</param>
+        <param name="locY">10</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
