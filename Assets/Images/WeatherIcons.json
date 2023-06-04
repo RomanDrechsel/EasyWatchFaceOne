@@ -1,0 +1,28 @@
+{
+    "OutputLocation": "C:/Programmierung/Github/SimpleOneWatchface/SimpleOne/resources/drawables",
+    "OutputWidth": 48,
+    "OutputHeight": 48,
+    "EmptyOutputLocation": false,
+    "AllwaysEnabledLayers": [
+        "/Prefabs/Sun*",
+        "/Prefabs/Night*",
+        "/Prefabs/Snowflake*",
+        "/Prefabs/Cloud*"
+    ],
+    "AllwaysDisabledLayers": [
+        "/Prefabs"
+    ],
+
+    "Files" : [
+        {
+            "Filename": "Sunny.png",
+            "Layers": ["/Sunny*"],
+            "DisableLayers": ["/Sunny/NightClone"]
+        },
+        {
+            "Filename": "Sunny_Night.png",
+            "Layers": ["/Sunny*"],
+            "DisableLayers": ["/Sunny/SunClone"]
+        }
+    ]
+}

@@ -1,4 +1,19 @@
-<drawables>
+6q  <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
     <bitmap id="BackgroundImageBnB" filename="Background.png" scaleY="100%" scaleRelativeTo="screen" packingFormat="default" />
+
+    <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" packingFormat="default" />
+    <bitmap id="WeatherExtreme" filename="Weather/Extrem.png" packingFormat="default" />
+    <bitmap id="WeatherFog" filename="Weather/Fog.png" packingFormat="default" />
+    <bitmap id="WeatherHeavyRain" filename="Weather/HeavyRain.png" packingFormat="default" />
+    <bitmap id="WeatherHeavySnow" filename="Weather/HeavySnow.png" packingFormat="default" />
+    <bitmap id="WeatherRain" filename="Weather/Rain.png" packingFormat="default" />
+    <bitmap id="WeatherRainSnow" filename="Weather/RainSnow.png" packingFormat="default" />
+    <bitmap id="WeatherSnow" filename="Weather/Snow.png" packingFormat="default" />
+    <bitmap id="WeatherSunny_Night" filename="Weather/Sunny_Night.png" packingFormat="default" />
+    <bitmap id="WeatherSunny" filename="Weather/Sunny.png" packingFormat="default" />
+    <bitmap id="WeatherThinClouds_Night" filename="Weather/ThinClouds_Night.png" packingFormat="default" />
+    <bitmap id="WeatherThinClouds" filename="Weather/ThinClouds.png" packingFormat="default" />
+    <bitmap id="WeatherThunder" filename="Weather/Thunder.png" packingFormat="default" />
+    <bitmap id="WeatherWindy" filename="Weather/Windy.png" packingFormat="default" />
 </drawables>

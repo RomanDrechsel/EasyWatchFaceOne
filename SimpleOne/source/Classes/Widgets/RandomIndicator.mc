@@ -21,8 +21,6 @@ module Widgets
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
 
-        private var _isAwake = false;
-
         var IndicatorDrawing = null as Draw.DrawRoundAngle;
         var IndicatorColors  = [] as Array<Number>;
 
@@ -73,24 +71,17 @@ module Widgets
                 self.OnWakeUp();
             }
 
-            //update breath-cache in background
-            if (self._isAwake == false)
-            {
-                Indi.Breath.getBreath();
-            }
-
             self._display.draw(dc);
         }
 
         function OnSleep()
         {
-            self._isAwake = false;
+            $.getView().OnUpdate.add(self.method(:OnUpdate));
         }
 
         function OnWakeUp()
         {
-            self._isAwake = true;
-
+            $.getView().OnUpdate.remove(self.method(:OnUpdate));
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             Indi.Heartbeat.HeartbeatMin = zones[0] * 0.6;
@@ -142,6 +133,12 @@ module Widgets
             {
                 self._display = new  Indi.Heartbeat(self);
             }
+        }
+
+        function OnUpdate()
+        {
+            //Update breath cache every 60sec in background
+            Indi.Breath.getBreath();
         }
 
         private function getRandomWidget(s as Float, b as Number) as Indicator

@@ -8,6 +8,7 @@ class SOView extends WatchUi.WatchFace
 {
     var OnWakeUp = [] as Array<Method>;
     var OnSleep = [] as Array<Method>;
+    var OnUpdate = [] as Array<Method>;
 
     function initialize() 
     {
@@ -34,6 +35,14 @@ class SOView extends WatchUi.WatchFace
     {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
+
+        if (self.OnUpdate.size() > 0)
+        {
+            for (var i = 0; i < self.OnUpdate.size(); i++)
+            {
+                self.OnUpdate[i].invoke();
+            }
+        }
     }
 
     // Called when this View is removed from the screen. Save the

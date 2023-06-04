@@ -12,7 +12,7 @@ module Widgets
             private static var _lastRespirationRate = null as Float;
             private static var _lastSample = null as Toybox.Time.Moment;
 
-            private static const SAMPLE_VALID = 120; //old samples are valid for 2 min
+            private static const SAMPLE_VALID = 300; //old samples are valid for 5 min
 
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
@@ -94,11 +94,11 @@ module Widgets
                 {
                     self._lastRespirationRate = info.respirationRate;
                     self._lastSample = Toybox.Time.now();
-                    return info.respirationRate;
+                    return self._lastRespirationRate;
                 }
                 else if (self._lastSample != null && self._lastRespirationRate != null && Toybox.Time.now().subtract(self._lastSample).value() <= self.SAMPLE_VALID)
                 {
-                    //last RespirationRate is valid for 20 sec
+                    //last RespirationRate is valid 
                     return self._lastRespirationRate;
                 }
 
