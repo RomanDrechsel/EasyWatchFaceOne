@@ -71,6 +71,7 @@ module Widgets
             }
             self._arc.draw(dc, battery, color);
 
+            dc.setColor(color, Gfx.COLOR_TRANSPARENT);
             if (self._hasBatteryInDays == true)
             {
                 dc.drawText(self.locX, self.locY - self._FontHeight + 2, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER);
