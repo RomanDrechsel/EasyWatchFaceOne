@@ -135,6 +135,7 @@ module Widgets
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
                         case Toybox.Weather.CONDITION_PARTLY_CLEAR:
                         case Toybox.Weather.CONDITION_THIN_CLOUDS:
+                        case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
                             if (self.isNight())
                             {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds_Night) as BitmapResource;
