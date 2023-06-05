@@ -2,8 +2,9 @@
 
     <setting propertyKey="@Properties.Theme" title="@Strings.SettingsTheme">
         <settingConfig type="list">
-            <listEntry value="0">@Strings.ThemeBlackAndBlue</listEntry>
-            <listEntry value="1">@Strings.ThemeGrey</listEntry>
+            <listEntry value="0">@Strings.ThemeDarkBlue</listEntry>
+            <listEntry value="1">@Strings.ThemeDarkGrey</listEntry>
+            <listEntry value="2">@Strings.ThemeDarkRed</listEntry>
         </settingConfig>
     </setting>
 

@@ -16,10 +16,13 @@ module Themes
                 {
                     default:
                     case 0:
-                        self._theme = new BlackAndBlue();
+                        self._theme = new DarkBlue();
                         break;
                     case 1:
-                        self._theme = new Grey();
+                        self._theme = new DarkGrey();
+                        break;
+                    case 2:
+                        self._theme = new DarkRed();
                         break;
                 }
             }

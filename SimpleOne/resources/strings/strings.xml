@@ -14,8 +14,9 @@
     <string id="SettingsRandomStress">Stress Widget</string>
     <string id="SettingsRandomBreaths">Respiration-Rate Widget</string>
     
-    <string id="ThemeBlackAndBlue">Black and Blue</string>
-    <string id="ThemeGrey">Grey</string>
+    <string id="ThemeDarkBlue">Blue</string>
+    <string id="ThemeDarkGrey">Grey</string>
+    <string id="ThemeDarkRed">Red</string>
 
     <string id="ShortMonday">Mon</string>
     <string id="ShortTuesday">Tue</string>

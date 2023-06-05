@@ -1,6 +1,6 @@
 module Themes
 {
-    class BlackAndBlue extends ThemeSettingsBase
+    class DarkBlue extends ThemeSettingsBase
     {
         var MainTextColor = 0x73b9e0;
 
