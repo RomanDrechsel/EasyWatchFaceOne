@@ -30,7 +30,7 @@
 
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
         <param name="locX">dc.getWidth() - 25</param>
-        <param name="locY">15</param>
+        <param name="locY">20</param>
         <param name="Just">"right"</param>
     </drawable>
 
