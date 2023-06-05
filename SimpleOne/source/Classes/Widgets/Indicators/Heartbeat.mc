@@ -70,6 +70,8 @@ module Widgets
                     else
                     {
                         self._texts[0].Text = heartrate.toString();
+                        self._texts[0].Color = color;
+                        self._texts[1].Color = color;
                     }
                     self._textContainer.draw(self._texts, dc);
                 }
