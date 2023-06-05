@@ -6,8 +6,9 @@ module Helper
     {
         class Fonts
         {
-            static var Clock = null as FontResource;
-            static var ClockSmall = null as FontResource;
+            static var Hour = null as FontResource;
+            static var Minute = null as FontResource;
+            static var Seconds = null as FontResource;
             static var Date = null as FontResource;
             static var Normal = null as FontResource;
             static var Small = null as FontResource;
@@ -16,8 +17,9 @@ module Helper
 
             static function Load()
             {
-                self.Clock = WatchUi.loadResource(Rez.Fonts.ClockFont);
-                self.ClockSmall = WatchUi.loadResource(Rez.Fonts.ClockFontSmall);
+                self.Hour = WatchUi.loadResource(Rez.Fonts.HourFont);
+                self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteFont);
+                self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondsFont);
                 self.Date = WatchUi.loadResource(Rez.Fonts.DateFont);
                 self.Normal = WatchUi.loadResource(Rez.Fonts.Normal);
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);

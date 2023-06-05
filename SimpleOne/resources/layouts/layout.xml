@@ -8,7 +8,7 @@
     
     <drawable class="DrawableContainers.UpperCenterContainer" id="UpperCenter">
         <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">(dc.getHeight() * .5) - 60</param>
+        <param name="locY">(dc.getHeight() * .5) - 64</param>
     </drawable>
 
     <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopLeft">

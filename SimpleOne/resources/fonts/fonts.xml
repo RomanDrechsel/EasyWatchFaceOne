@@ -1,6 +1,7 @@
 <fonts>
-    <font id="ClockFont" filename="ClockFont.fnt" antialias="true" />
-    <font id="ClockFontSmall" filename="ClockFontSmall.fnt" antialias="true" />
+    <font id="HourFont" filename="HourFont.fnt" antialias="true" />
+    <font id="MinuteFont" filename="MinuteFont.fnt" antialias="true" />
+    <font id="SecondsFont" filename="SecondsFont.fnt" antialias="true" />
     <font id="DateFont" filename="DateFont.fnt" antialias="true" />
     <font id="Normal" filename="FontNormal.fnt" antialias="true" />
     <font id="Small" filename="FontSmall.fnt" antialias="true" />
