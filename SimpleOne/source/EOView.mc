@@ -4,7 +4,7 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
-class SOView extends WatchUi.WatchFace 
+class EOView extends WatchUi.WatchFace 
 {
     var OnWakeUp = [] as Array<Method>;
     var OnSleep = [] as Array<Method>;

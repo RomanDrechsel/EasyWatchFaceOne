@@ -3,7 +3,7 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-class SOBackground extends WatchUi.Drawable 
+class ESOBackground extends WatchUi.Drawable 
 {
     private var _color = 0 as Number;
     private var _image = null as BitmapResource;

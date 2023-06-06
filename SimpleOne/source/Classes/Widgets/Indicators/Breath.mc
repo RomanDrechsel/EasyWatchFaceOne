@@ -92,7 +92,7 @@ module Widgets
             static function getBreath() as Number
             {
                 var info = Toybox.ActivityMonitor.getInfo();
-                if (info.respirationRate != null)
+                if (info.respirationRate != null && info.respirationRate > 0)
                 {
                     self._lastRespirationRate = info.respirationRate;
                     self._lastSample = Toybox.Time.now();
