@@ -76,12 +76,12 @@ module Widgets
 
         function OnSleep()
         {
-            $.getView().OnUpdate.add(self.method(:OnUpdate));
+            $.getView().OnUpdate.add(self.method(:OnBackgroundUpdate));
         }
 
         function OnWakeUp()
         {
-            $.getView().OnUpdate.remove(self.method(:OnUpdate));
+            $.getView().OnUpdate.remove(self.method(:OnBackgroundUpdate));
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             Indi.Heartbeat.HeartbeatMin = zones[0] * 0.6;
@@ -135,7 +135,7 @@ module Widgets
             }
         }
 
-        function OnUpdate()
+        function OnBackgroundUpdate()
         {
             //Update breath cache every 60sec in background
             Indi.Breath.getBreath();
@@ -176,6 +176,20 @@ module Widgets
             {
                 return INDICATOR_BREATH;
             }
+        }
+
+        function onSettingsChanged()
+        {
+            WidgetBase.onSettingsChanged();
+
+            self.IndicatorColors = [
+                self._theme.IndicatorLevel1,
+                self._theme.IndicatorLevel3,
+                self._theme.IndicatorLevel4,
+                self._theme.IndicatorLevel5,
+            ];
+
+            self.IndicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
         }
     }
 }

@@ -168,5 +168,19 @@ module Widgets
                 return Math.round(dist).toNumber().toString() + " m";
             }
         }
+
+        function onSettingsChanged()
+        {
+            WidgetBase.onSettingsChanged();
+
+            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
+            self._indicatorDrawing.BarColors = [
+                new HGfx.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
+                new HGfx.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
+                new HGfx.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
+                new HGfx.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
+                new HGfx.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
+            ];
+        }
     }
 }

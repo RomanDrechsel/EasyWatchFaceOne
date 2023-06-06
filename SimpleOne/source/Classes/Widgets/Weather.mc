@@ -249,7 +249,7 @@ module Widgets
                 var iconwidth = self._currentWeatherIcon.getWidth();
                 var iconheight = self._currentWeatherIcon.getHeight();
                 var textheight = dc.getFontHeight(self._font);
-                var horOffset = 10;
+                var horOffset = 5;
 
                 self._iconPosX = self.locX - iconwidth - horOffset;
                 self._iconPosY = self.locY;
@@ -258,13 +258,13 @@ module Widgets
                 self._tempPosY = self._iconPosY + iconheight;
 
                 self._maxPosX = self.locX + (iconwidth / 2) + horOffset;
-                self._maxPosY = self.locY + iconheight  - textheight;
+                self._maxPosY = self.locY + 15;
 
                 self._minPosX = self._maxPosX;
-                self._minPosY = self._maxPosY + textheight;
+                self._minPosY = self._maxPosY + textheight + 6;
 
-                self._horLineX = self.locX + horOffset;
-                self._horLineY = self.locY + iconheight;
+                self._horLineX = self.locX + horOffset + 5;
+                self._horLineY = self.locY + 18 + textheight;
 
                 self._vertLineHeight = (iconheight + textheight) - 8;
                 self._horLineWidth = 35;

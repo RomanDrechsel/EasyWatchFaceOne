@@ -29,5 +29,10 @@ module Themes
 
             return self._theme;
         }
+
+        static function ResetTheme()
+        {
+            self._theme = null;
+        }
     }
 }

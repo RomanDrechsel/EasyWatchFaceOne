@@ -7,6 +7,8 @@ class EOApp extends Application.AppBase
 {
     var WatchfaceView = null as EOView;
 
+    var OnSettings = [] as Array<Method>;
+
     function initialize() {
         AppBase.initialize();
     }
@@ -28,6 +30,15 @@ class EOApp extends Application.AppBase
 
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
+        Themes.ThemesLoader.ResetTheme();
+        if (self.OnSettings.size() > 0)
+        {
+            for (var i = 0; i < self.OnSettings.size(); i++)
+            {
+                self.OnSettings[i].invoke();
+            }
+        }
+
         WatchUi.requestUpdate();
     }
 }
