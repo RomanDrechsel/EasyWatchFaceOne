@@ -11,14 +11,14 @@ module Widgets
         {
             protected var _initialized = false;
             
-            protected var _Widget = null as Widgets.RandomIndicator;
+            protected var _Widget = null as Widgets.HealthIndicator;
 
             protected var _iconPosX as Number;
             protected var _iconPosY as Number;
             protected var _textPosX as Number;
             protected var _textPosY as Number;
 
-            function initialize(widget as Widgets.RandomIndicator)
+            function initialize(widget as Widgets.HealthIndicator)
             {
                 self._Widget = widget;
             }

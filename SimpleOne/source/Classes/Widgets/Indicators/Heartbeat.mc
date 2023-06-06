@@ -15,7 +15,7 @@ module Widgets
             static var HeartbeatZones = [] as Array<Number>;
             static var HeartbeatMin = 0;
 
-            function initialize(widget as Widgets.RandomIndicator)
+            function initialize(widget as Widgets.HealthIndicator)
             {
                 IndicatorBase.initialize(widget);
             }

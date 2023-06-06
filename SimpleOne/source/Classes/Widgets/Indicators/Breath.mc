@@ -17,7 +17,7 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            function initialize(widget as Widgets.RandomIndicator)
+            function initialize(widget as Widgets.HealthIndicator)
             {
                 IndicatorBase.initialize(widget);
             }

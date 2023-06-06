@@ -8,7 +8,7 @@ using Widgets.Indicators as Indi;
 
 module Widgets 
 {
-    class RandomIndicator extends WidgetBase
+    class HealthIndicator extends WidgetBase
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 

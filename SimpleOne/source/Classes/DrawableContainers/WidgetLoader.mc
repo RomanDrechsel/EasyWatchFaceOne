@@ -29,7 +29,7 @@ module DrawableContainers
                 case WIDGET_BOTTOMLEFT:
                     return new Distance(container_params);
                 case WIDGET_BOTTOMRIGHT:
-                    return new RandomIndicator(container_params);
+                    return new HealthIndicator(container_params);
             }
 
             return new WidgetBase();

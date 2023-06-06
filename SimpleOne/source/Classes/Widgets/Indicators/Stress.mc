@@ -15,7 +15,7 @@ module Widgets
 
             private static const SAMPLE_VALID = 1200; //old samples are valid for 20 min
 
-            function initialize(widget as Widgets.RandomIndicator)
+            function initialize(widget as Widgets.HealthIndicator)
             {
                 IndicatorBase.initialize(widget);                
             }
