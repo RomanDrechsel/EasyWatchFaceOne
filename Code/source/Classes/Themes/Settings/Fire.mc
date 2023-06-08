@@ -1,11 +1,11 @@
 module Themes
 {
-    class DarkRed extends ThemeSettingsBase
+    class Fire extends ThemeSettingsBase
     {
         var MainTextColor = 0xec0000;
 
         //Background
-        var BackgroundImage = Rez.Drawables.BackgroundImageBnB;
+        var BackgroundImage = Rez.Drawables.BackgroundImageFire;
 
         //Clock Widget
         var ClockHourColor = 0xac0404;

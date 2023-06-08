@@ -19,12 +19,17 @@ module Themes
                         self._theme = new DarkBlue();
                         break;
                     case 1:
-                        self._theme = new DarkGrey();
+                        self._theme = new Fire();
                         break;
                     case 2:
-                        self._theme = new DarkRed();
+                        self._theme = new Summer();
                         break;
                 }
+            }
+
+            if (self._theme == null)
+            {
+                self._theme = new ThemeSettingsBase();
             }
 
             return self._theme;

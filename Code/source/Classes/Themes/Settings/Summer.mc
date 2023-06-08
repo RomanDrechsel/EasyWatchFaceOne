@@ -1,11 +1,11 @@
 module Themes
 {
-    class DarkGrey extends ThemeSettingsBase
+    class Summer extends ThemeSettingsBase
     {
         var MainTextColor = 0x9a9a9a;
 
         //Background
-        var BackgroundImage = Rez.Drawables.BackgroundImageBnB;
+        var BackgroundImage = Rez.Drawables.BackgroundImageSummer;
 
         //Clock Widget
         var ClockHourColor = 0x7b7a84;

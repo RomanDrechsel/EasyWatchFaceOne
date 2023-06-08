@@ -5,7 +5,7 @@ module Themes
         var MainTextColor = 0x73b9e0;
 
         //Background
-        var BackgroundImage = Rez.Drawables.BackgroundImageBnB;
+        var BackgroundImage = Rez.Drawables.BackgroundImageDark;
 
         //Clock Widget        
         var ClockHourColor = 0x73b9e0;

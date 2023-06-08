@@ -13,12 +13,8 @@ class ESOBackground extends WatchUi.Drawable
     {
         Drawable.initialize(params);
 
-        self._color = getTheme().BackgroundColor;
-        var bgimage = getTheme().BackgroundImage;
-        if (bgimage > 0)
-        {
-            self._image = Application.loadResource(bgimage) as BitmapResource;
-        }
+        self.onSettingsChanged();
+        $.getApp().OnSettings.add(self.method(:onSettingsChanged));
     }
 
     function draw(dc as Dc) as Void 
@@ -44,6 +40,18 @@ class ESOBackground extends WatchUi.Drawable
                 var offset_y = (dc.getHeight() - self._image.getHeight()) / 2;
                 dc.drawBitmap(offset_x, offset_y, self._image);
             }   
+        }
+    }
+
+    function onSettingsChanged()
+    {
+        var theme = getTheme();
+        
+        self._color = theme.BackgroundColor;
+        var bgimage = theme.BackgroundImage;
+        if (bgimage > 0)
+        {
+            self._image = Application.loadResource(bgimage) as BitmapResource;
         }
     }
 }
