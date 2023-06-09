@@ -62,6 +62,15 @@ module Widgets
                 dc.setPenWidth(2);
                 dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
                 dc.drawText(self._minPosX, self._minPosY, self._font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+
+                if (self._sunrise != null)
+                {
+                    dc.drawText(self._minPosX + 20, self._minPosY, HGfx.Fonts.Tiny, self._sunrise.value().toString(), Gfx.TEXT_JUSTIFY_LEFT);
+                }
+                if (self._sunset != null)
+                {
+                    dc.drawText(self._minPosX + 20, self._minPosY + 30, HGfx.Fonts.Tiny, self._sunset.value().toString(), Gfx.TEXT_JUSTIFY_LEFT);
+                }
             }
         }
 
@@ -135,7 +144,6 @@ module Widgets
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
                         case Toybox.Weather.CONDITION_PARTLY_CLEAR:
                         case Toybox.Weather.CONDITION_THIN_CLOUDS:
-                        case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
                             if (self.isNight())
                             {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds_Night) as BitmapResource;
@@ -233,7 +241,7 @@ module Widgets
             if (self._sunrise != null && self._sunset != null)
             {
                 var now = Toybox.Time.now();
-                if (self._sunrise.compare(now) > 0 || self._sunset.compare(now) < -7200)
+                if (self._sunrise.compare(now) > 0 || self._sunset.compare(now) < 0)
                 {
                     return true;
                 }
