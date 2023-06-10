@@ -27,7 +27,6 @@ class EOView extends WatchUi.WatchFace
     // loading resources into memory.
     function onShow() as Void 
     {
-        
     }
 
     // Update the view

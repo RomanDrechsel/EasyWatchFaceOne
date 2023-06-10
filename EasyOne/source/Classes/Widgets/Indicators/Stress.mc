@@ -38,7 +38,7 @@ module Widgets
                 if (stress > 0.0)
                 {
                     color = self._Widget._theme.MainTextColor;
-                    iconcolor = color;
+                    iconcolor = self._Widget._theme.HealthStressIconColor;
                     indicatorcolor = self._Widget.IndicatorColors[0];
                     if (stress >= 60)
                     {

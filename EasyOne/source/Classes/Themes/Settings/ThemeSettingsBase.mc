@@ -39,5 +39,15 @@ module Themes
         var IndicatorLevel4 = 0xfa7a00; //Orange
         var IndicatorLevel5 = 0xfa0000; //Red
 
+        //Distance Widget
+        var DistanceStepsIconColor = 0x3dd33a;
+        var DistanceIconColor = 0x3dd33a;
+        var DistanceCaloriesColor = 0x3dd33a;
+
+        //Health Widget
+        var HealthHeartIconColor = 0x3dd33a;
+        var HealthStressIconColor = 0x3dd33a;
+        var HealthBreathIconColor = 0x3dd33a;
+
     }
 }

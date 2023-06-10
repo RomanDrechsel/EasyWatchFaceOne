@@ -2,22 +2,29 @@ module Themes
 {
     class Fire extends ThemeSettingsBase
     {
-        var MainTextColor = 0xec0000;
+        var MainTextColor = 0xFFFFFF;
 
         //Background
         var BackgroundImage = Rez.Drawables.BackgroundImageFire;
 
         //Clock Widget
-        var ClockHourColor = 0xac0404;
-        var ClockMinutesColor = 0xcf2d2d;
-        var ClockSecondsColor = 0xffffff;
+        var ClockHourColor = 0xa4c2f0;
+        var ClockMinutesColor = 0x5b93eb;
+        var ClockSecondsColor = 0xFFFFFF;
 
         //Date Widget
-        var DateWeekdayColor = 0xffffff;
-        var DateDayColor = 0xac0404;
-        var DateYearColor = 0xcf2d2d;
+        var DateWeekdayColor = 0xFFFFFF;
+        var DateDayColor = 0x5b93eb;
+        var DateYearColor = 0xa4c2f0;
 
-        //Icons Widget
-        var IconsOn = 0xec0000;
+        //Distance Widget
+        var DistanceStepsIconColor = 0xf7fa00;
+        var DistanceIconColor = 0x0fcbc9;
+        var DistanceCaloriesColor = 0xfa0000;
+
+        //Health Widget
+        var HealthHeartIconColor = 0xfa0000;
+        var HealthStressIconColor = 0xf7fa00;
+        var HealthBreathIconColor = 0x0fcbc9;
     }
 }

@@ -12,8 +12,9 @@ module Widgets
         private var _currentWeatherIcon = null as BitmapResource;
         private var _maxTemp = null as String;
         private var _minTemp = null as String;
-        private var _sunrise = null as Number;
-        private var _sunset = null as Number;
+        private var _sunrise = null;
+        private var _sunset = null;
+        private var _condition = -1;
 
         private var _font = null as FontResource;
 
@@ -63,14 +64,8 @@ module Widgets
                 dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
                 dc.drawText(self._minPosX, self._minPosY, self._font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
 
-                if (self._sunrise != null)
-                {
-                    dc.drawText(self._minPosX + 20, self._minPosY, HGfx.Fonts.Tiny, self._sunrise.value().toString(), Gfx.TEXT_JUSTIFY_LEFT);
-                }
-                if (self._sunset != null)
-                {
-                    dc.drawText(self._minPosX + 20, self._minPosY + 30, HGfx.Fonts.Tiny, self._sunset.value().toString(), Gfx.TEXT_JUSTIFY_LEFT);
-                }
+                //Debug
+                dc.drawText(self._tempPosX - 20, self._tempPosY, HGfx.Fonts.Tiny, self._condition.toString(), Gfx.TEXT_JUSTIFY_RIGHT);
             }
         }
 
@@ -89,8 +84,17 @@ module Widgets
                 var ctemp = current.temperature;
 
                 var location = current.observationLocationPosition;
+                if (location == null)
+                {
+                    var info = Toybox.Position.getInfo();
+                    if (info != null)
+                    {
+                        location = info.position;
+                    }
+                }
                 if (location != null)
                 {
+                    var now = Toybox.Time.now();
                     self._sunrise = Weather.getSunrise(location, now);
                     self._sunset = Weather.getSunset(location, now);
                 }
@@ -127,6 +131,7 @@ module Widgets
                 var condition = current.condition;
                 if (condition != null)
                 {
+                    self._condition = condition;
                     switch (condition)
                     {
                         case Toybox.Weather.CONDITION_CLEAR:
@@ -134,11 +139,11 @@ module Widgets
                         case Toybox.Weather.CONDITION_FAIR:
                             if (self.isNight())
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear_Night) as BitmapResource;
                             }
                             else
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear_Night) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear) as BitmapResource;
                             }
                             break;
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
@@ -154,15 +159,34 @@ module Widgets
                             }
                             break;
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
+                            if (self.isNight())
+                            {
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy_Night) as BitmapResource;
+                            }
+                            else
+                            {
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy) as BitmapResource;
+                            }
+                            break;
                         case Toybox.Weather.CONDITION_CLOUDY:
+                        case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherCloudy) as BitmapResource;
                             break;
-                        case Toybox.Weather.CONDITION_RAIN:
-                        case Toybox.Weather.CONDITION_SCATTERED_SHOWERS:
                         case Toybox.Weather.CONDITION_LIGHT_RAIN:
                         case Toybox.Weather.CONDITION_LIGHT_SHOWERS:
                         case Toybox.Weather.CONDITION_SHOWERS:
                         case Toybox.Weather.CONDITION_CHANCE_OF_SHOWERS:
+                            if (self.isNight())
+                            {
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain_Night) as BitmapResource;
+                            }
+                            else
+                            {
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain) as BitmapResource;
+                            }
+                            break;
+                        case Toybox.Weather.CONDITION_RAIN:
+                        case Toybox.Weather.CONDITION_SCATTERED_SHOWERS:
                         case Toybox.Weather.CONDITION_DRIZZLE:
                         case Toybox.Weather.CONDITION_CHANCE_OF_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN:
@@ -233,6 +257,8 @@ module Widgets
                 self._maxTemp = null;
                 self._minTemp = null;
                 self._currentWeatherIcon = null;
+                self._sunrise = null;
+                self._sunset = null;
             }
         }
 
@@ -241,6 +267,8 @@ module Widgets
             if (self._sunrise != null && self._sunset != null)
             {
                 var now = Toybox.Time.now();
+                var sr_comp = self._sunrise.compare(now);
+                var ss_comp = self._sunset.compare(now);
                 if (self._sunrise.compare(now) > 0 || self._sunset.compare(now) < 0)
                 {
                     return true;

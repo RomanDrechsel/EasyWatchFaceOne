@@ -84,8 +84,6 @@ module Widgets
         {
             var info = ActivityMonitor.getInfo();
 
-            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-
             self._drawYpos = self._startdrawYpos;
 
             self.drawCalories(dc, info);
@@ -96,7 +94,9 @@ module Widgets
 
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
+            dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
@@ -113,7 +113,9 @@ module Widgets
             {
                 str = self.FormatMeters(info.distance);
             }
+            dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, str, Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
@@ -121,7 +123,9 @@ module Widgets
 
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
+            dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, Gfx.TEXT_JUSTIFY_LEFT);
 
             self._drawYpos += self._lineHeight;
