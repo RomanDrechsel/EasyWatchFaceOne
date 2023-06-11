@@ -44,6 +44,17 @@ module Themes
         var DistanceIconColor = 0x3dd33a;
         var DistanceCaloriesColor = 0x3dd33a;
 
+        //DistanceWidget Indicator Colors
+        var IndicatorSteps = [
+            0x00ad15, /* 100% */
+            0x75c846,
+            0x2abcab,
+            0x2a9fbc,
+            0x2a7dbc,
+            0x2a45bc,
+            0x171f9c /* 0% */
+        ];
+
         //Health Widget
         var HealthHeartIconColor = 0x3dd33a;
         var HealthStressIconColor = 0x3dd33a;

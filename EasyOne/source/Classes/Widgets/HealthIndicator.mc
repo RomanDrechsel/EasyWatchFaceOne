@@ -3,7 +3,7 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 using Toybox.UserProfile;
-using Helper.Gfx as Draw;
+using Helper.Gfx as HGfx;
 using Widgets.Indicators as Indi;
 
 module Widgets 
@@ -21,7 +21,7 @@ module Widgets
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
 
-        var IndicatorDrawing = null as Draw.DrawRoundAngle;
+        var IndicatorDrawing = null as HGfx.DrawRoundAngle;
         var IndicatorColors  = [] as Array<Number>;
 
         function initialize(params as Dictionary) 
@@ -38,13 +38,12 @@ module Widgets
                 self.WidgetHeight = params[:Height];
             }
 
-            if (self.VJustification == WIDGET_JUSTIFICATION_BOTTOM)
-            {
-                self.locY = self.locY - self.WidgetHeight;
-            }
+            var indicatorPosX = self.locX;
+            self.locY = self.locY - self.WidgetHeight;
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self.locX = self.locX - self.WidgetWidth;   
+                indicatorPosX = self.locX;
+                self.locX = self.locX - self.WidgetWidth;
             }
 
             self.IndicatorColors = [
@@ -54,12 +53,23 @@ module Widgets
                 self._theme.IndicatorLevel5,
             ];
 
-            self.IndicatorDrawing = new Draw.DrawRoundAngle(self.locX + self.WidgetWidth, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
+            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
             self.IndicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
             self.IndicatorDrawing.Thickness = self._indicatorLineWidth;
             self.IndicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self.IndicatorDrawing.DotRadius = self._indicatorDotRadius;
-            self.IndicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_BOTTOMRIGHT;
+            self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+                
+            }
+            else
+            {
+                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+            }
+
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             $.getView().OnSleep.add(self.method(:OnSleep));
         }

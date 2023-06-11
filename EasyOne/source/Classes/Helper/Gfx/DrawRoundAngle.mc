@@ -16,7 +16,7 @@ module Helper
             var AngleRadius = 10 as Number;
 
             var BackgroundColor = 0 as Number;
-            var BarColors = [] as Array<RoundAngleColor>;
+            var BarColors = [] as Array<Number>;
             var DotRadius = 3 as Number;
 
             var Thickness = 1 as Number; //Line-Thickness
@@ -29,8 +29,6 @@ module Helper
             private var _horLineValue as Float;
             private var _vertLineValue as Float;
             private var _arcValue as Float;
-
-            
 
             function initialize(anchorx as Number, anchory as Number, width as Number, height as Number, angleradius as Number)
             {
@@ -68,14 +66,20 @@ module Helper
 
                 if (amount > 0)
                 {
+                    var factor = 1.0 / self.BarColors.size().toFloat();
                     var color = 0xFFFFFF;
+                    var a = 1.0;
                     for (var i = 0; i < self.BarColors.size(); i++)
                     {
-                        if (self.BarColors[i].MaxAmount >= amount)
+                        if (a >= amount)
                         {
-                            color = self.BarColors[i].Color;
+                            color = self.BarColors[i];
+                        }
+                        else
+                        {
                             break;
                         }
+                        a -= factor;
                     }
                     self.drawWithColor(dc, amount, color);
                 }
@@ -319,18 +323,6 @@ module Helper
 
                 dc.fillCircle(x, y, self.DotRadius);
             }
-        }
-
-        class RoundAngleColor
-        {
-            var MaxAmount as Float;
-            var Color as Number;
-
-            function initialize(amount as Float, color as Number)
-            {
-                self.MaxAmount = amount;
-                self.Color = color;
-            }            
         }
     }
 }

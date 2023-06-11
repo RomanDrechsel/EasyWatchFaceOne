@@ -9,13 +9,16 @@ module Widgets
 {
     class Distance extends WidgetBase
     {
-        private var _WidgetHeight = 200 as Number;
-        private var _WidgetWidth = 150 as Number;
+        private var _WidgetHeight = 200;
+        private var _WidgetWidth = 150;
         private var _inMiles = false as Boolean;
         private var _drawYpos as Number;
         private var _startdrawYpos as Number;
-        private var _lineHeight = 33 as Number;
-        private var _iconXpos = self.locX as Number;
+        private var _lineHeight = 33;
+        private var _iconWidth = 25;
+        private var _iconPosX = self.locX;
+        private var _textPosX = self.locX;
+        private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
 
         private var _indicatorLineWidth = 4;
         private var _indicatorLineWidthBold = 5;
@@ -45,10 +48,6 @@ module Widgets
             {
                 self.locY = self.locY - self._WidgetHeight;
             }
-            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-            {
-                self.locX = self.locX - self._WidgetWidth;   
-            }
 
             var textheight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
@@ -58,17 +57,21 @@ module Widgets
             self._indicatorDrawing.Thickness = self._indicatorLineWidth;
             self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
             self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
-            self._indicatorDrawing.BarColors = [
-                new HGfx.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
-                new HGfx.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
-                new HGfx.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
-                new HGfx.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
-                new HGfx.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
-            ];
+            self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self._indicatorDrawing.Direction = Gfx.ARC_CLOCKWISE;
+                self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+                self._iconPosX = self.locX - self._indicatorLineWidthBold - self._indicatorPadding - 25;
+                self._textPosX = self._iconPosX - 10;
+                self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
+            }
+            else
+            {
+                self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+                self._iconPosX = self.locX + self._indicatorLineWidthBold + self._indicatorPadding;
+                self._textPosX = self._iconPosX + 35;
+                self._textJust = Gfx.TEXT_JUSTIFY_LEFT;
             }
 
             //Show distane in miles
@@ -76,8 +79,10 @@ module Widgets
             {
                 self._inMiles = true;
             }
-
-            self._iconXpos = self.locX + self._indicatorLineWidthBold + self._indicatorPadding;
+            else
+            {
+                self._inMiles = false;
+            }
         }
 
         function draw(dc as Gfx.Dc) as Void 
@@ -95,9 +100,9 @@ module Widgets
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
             dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
 
             self._drawYpos += self._lineHeight;
         }
@@ -114,9 +119,9 @@ module Widgets
                 str = self.FormatMeters(info.distance);
             }
             dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
             dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, str, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
 
             self._drawYpos += self._lineHeight;
         }
@@ -124,9 +129,9 @@ module Widgets
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
             dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
 
             self._drawYpos += self._lineHeight;
         }
@@ -176,15 +181,8 @@ module Widgets
         function onSettingsChanged()
         {
             WidgetBase.onSettingsChanged();
-
             self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
-            self._indicatorDrawing.BarColors = [
-                new HGfx.RoundAngleColor(0.2, self._theme.IndicatorLevel5),
-                new HGfx.RoundAngleColor(0.4, self._theme.IndicatorLevel4),
-                new HGfx.RoundAngleColor(0.6, self._theme.IndicatorLevel3),
-                new HGfx.RoundAngleColor(0.8, self._theme.IndicatorLevel2),
-                new HGfx.RoundAngleColor(1.0, self._theme.IndicatorLevel1)
-            ];
+            self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
         }
     }
 }

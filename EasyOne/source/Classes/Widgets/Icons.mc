@@ -29,6 +29,17 @@ module Widgets
                     var width = self._BTWidth + self._MsgWidth + self._Padding;
                     self.locX = self.locX - width;
                 }
+                else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
+                {
+                    self.locX += 10;
+                }
+                else if (self.Justification == WIDGET_JUSTIFICATION_CENTER)
+                {
+                    var width = self._BTWidth + self._MsgWidth + self._Padding;
+                    self.locX = self.locX - (width / 2);
+                }
+
+                self.locY += 10;
             }
 
             var settings = System.getDeviceSettings();

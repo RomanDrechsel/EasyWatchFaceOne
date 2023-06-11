@@ -3,7 +3,7 @@ import Toybox.Lang;
 
 module Widgets 
 {   
-    enum Widget_Justification { WIDGET_JUSTIFICATION_LEFT = 0, WIDGET_JUSTIFICATION_RIGHT, WIDGET_JUSTIFICATION_TOP, WIDGET_JUSTIFICATION_BOTTOM }
+    enum Widget_Justification { WIDGET_JUSTIFICATION_LEFT = 0, WIDGET_JUSTIFICATION_RIGHT, WIDGET_JUSTIFICATION_CENTER, WIDGET_JUSTIFICATION_TOP, WIDGET_JUSTIFICATION_BOTTOM }
 
     class WidgetBase
     {
@@ -39,6 +39,9 @@ module Widgets
                         break;
                     case "right":
                         self.Justification = WIDGET_JUSTIFICATION_RIGHT;
+                        break;
+                    case "center":
+                        self.Justification = WIDGET_JUSTIFICATION_CENTER;
                         break;
                 }
             }

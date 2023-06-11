@@ -38,6 +38,11 @@ module Widgets
                 var centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
                 var centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
 
+                if (self._Widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
+                {
+                    centerX += 20;
+                }
+
                 self._iconPosX = centerX;
                 self._iconPosY = centerY - (iconHeight / 2) - 5;
                 self._textPosX = centerX;

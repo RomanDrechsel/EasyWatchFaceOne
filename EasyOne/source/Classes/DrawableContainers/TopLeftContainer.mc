@@ -12,7 +12,7 @@ module DrawableContainers
 
         protected function getWidget(params) as WidgetBase
         {
-            return WidgetLoader.GetWidget(WIDGET_TOPLEFT, params);
+            return WidgetFactory.GetWidget(WIDGET_TOPLEFT, params);
         }
     }
 }

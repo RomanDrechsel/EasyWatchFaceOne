@@ -19,18 +19,20 @@
     </drawable>
 
     <drawable class="DrawableContainers.TopLeftContainer" id="TopLeft">
-        <param name="locX">15</param>
-        <param name="locY">15</param>
+        <param name="locX">10</param>
+        <param name="locY">10</param>
+        <param name="Just">"left"</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopCenterContainer" id="TopCenter">
         <param name="locX">dc.getWidth() / 2</param>
         <param name="locY">10</param>
+        <param name="Just">"center"</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
         <param name="locX">dc.getWidth() - 25</param>
-        <param name="locY">20</param>
+        <param name="locY">10</param>
         <param name="Just">"right"</param>
     </drawable>
 

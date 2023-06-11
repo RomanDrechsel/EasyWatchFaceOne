@@ -18,6 +18,9 @@ module Widgets
         private var _font = null as FontResource;
 
         private var _calcPos = false;
+
+        private const _iconWidth = 50;
+        private const _iconHeight = 50;
         private var _iconPosX = 0;
         private var _iconPosY = 0;
         private var _tempPosX = 0;
@@ -36,6 +39,16 @@ module Widgets
             WidgetBase.initialize(params);
 
             self._font = HGfx.Fonts.Small;
+
+            //adjust position to center of widget
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                self.locX = self.locX - self._iconWidth + 10;
+            }
+            else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
+            {
+                self.locX = self.locX + self._iconWidth + 10;
+            }
 
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             self.OnWakeUp();
@@ -254,6 +267,7 @@ module Widgets
                 self._currentWeatherIcon = null;
                 self._sunrise = null;
                 self._sunset = null;
+                self._calcPos = false;
             }
         }
 
@@ -277,18 +291,16 @@ module Widgets
         {
             if (self._currentWeatherIcon != null)
             {
-                var iconwidth = self._currentWeatherIcon.getWidth();
-                var iconheight = self._currentWeatherIcon.getHeight();
                 var textheight = dc.getFontHeight(self._font);
                 var horOffset = 5;
 
-                self._iconPosX = self.locX - iconwidth - horOffset;
+                self._iconPosX = self.locX - self._iconWidth - horOffset;
                 self._iconPosY = self.locY;
 
-                self._tempPosX = self._iconPosX + (iconwidth / 2) + (dc.getTextWidthInPixels("°", self._font) / 2);
-                self._tempPosY = self._iconPosY + iconheight;
+                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", self._font) / 2);
+                self._tempPosY = self._iconPosY + self._iconHeight;
 
-                self._maxPosX = self.locX + (iconwidth / 2) + horOffset;
+                self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
                 self._maxPosY = self.locY + 15;
 
                 self._minPosX = self._maxPosX;
@@ -297,7 +309,7 @@ module Widgets
                 self._horLineX = self.locX + horOffset + 5;
                 self._horLineY = self.locY + 18 + textheight;
 
-                self._vertLineHeight = (iconheight + textheight) - 8;
+                self._vertLineHeight = (self._iconHeight + textheight) - 8;
                 self._horLineWidth = 35;
                 var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", self._font);
                 var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", self._font);
