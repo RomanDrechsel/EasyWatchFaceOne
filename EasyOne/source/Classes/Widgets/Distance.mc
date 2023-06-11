@@ -95,7 +95,7 @@ module Widgets
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
             dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), Gfx.TEXT_JUSTIFY_LEFT);
 
@@ -124,7 +124,7 @@ module Widgets
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
             dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconXpos, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconXpos, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconXpos + 35, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, Gfx.TEXT_JUSTIFY_LEFT);
 

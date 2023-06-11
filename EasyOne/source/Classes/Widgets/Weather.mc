@@ -14,7 +14,6 @@ module Widgets
         private var _minTemp = null as String;
         private var _sunrise = null;
         private var _sunset = null;
-        private var _condition = -1;
 
         private var _font = null as FontResource;
 
@@ -63,9 +62,6 @@ module Widgets
                 dc.setPenWidth(2);
                 dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
                 dc.drawText(self._minPosX, self._minPosY, self._font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
-
-                //Debug
-                dc.drawText(self._tempPosX - 20, self._tempPosY, HGfx.Fonts.Tiny, self._condition.toString(), Gfx.TEXT_JUSTIFY_RIGHT);
             }
         }
 
@@ -131,7 +127,6 @@ module Widgets
                 var condition = current.condition;
                 if (condition != null)
                 {
-                    self._condition = condition;
                     switch (condition)
                     {
                         case Toybox.Weather.CONDITION_CLEAR:
