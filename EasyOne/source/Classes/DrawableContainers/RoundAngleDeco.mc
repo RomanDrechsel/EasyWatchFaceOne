@@ -7,44 +7,56 @@ module DrawableContainers
 {
     class RoundAngleDeco extends Drawable 
     {
-        private var _WidgetHeight = 200;
-        private var _WidgetWidth = 150;
-
-        private var _indicatorLineWidth = 4;
-        private var _indicatorDotRadius = 5;
+        private var _params = null as Dictionary;
         private var _indicatorDrawing = null as Draw.DrawRoundAngle;
 
         function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
 
-            if (params[:Width] != null)
-            {
-                self._WidgetWidth = params[:Width];
-            }
-
-            if (params[:Height] != null)
-            {
-                self._WidgetHeight = params[:Height];
-            }
-
-            self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = getTheme().IndicatorBackground;
-            self._indicatorDrawing.Thickness = self._indicatorLineWidth;
-            self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
-            if (params[:Just] != null && params[:Just].equals("right"))
-            {
-                self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_TOPRIGHT;
-            }
-            else
-            {
-                self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_TOPLEFT;
-            }
+            self._params = params;
+            self.onSettingsChanged();
+            $.getApp().OnSettings.add(self.method(:onSettingsChanged));
         }
 
         function draw(dc as Dc) as Void 
         {
-            self._indicatorDrawing.draw(dc, 0);
+            if (self._indicatorDrawing != null)
+            {
+                self._indicatorDrawing.draw(dc, 0);
+            }
+        }
+
+        function onSettingsChanged()
+        {
+            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            if (show != null && show > 0)
+            {
+                var widgetwidth = 150;
+                if (self._params[:Width] != null)
+                {
+                    widgetwidth = self._params[:Width];
+                }
+
+                var widgetheight = 200;
+                if (self._params[:Height] != null)
+                {
+                    widgetheight = self._params[:Height];
+                }
+                self._indicatorDrawing = new Draw.DrawRoundAngle(self.locX, self.locY, widgetwidth, widgetheight, widgetheight / 4);
+                if (self._params[:Just] != null && self._params[:Just].equals("right"))
+                {
+                    self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_TOPRIGHT;
+                }
+                else
+                {
+                    self._indicatorDrawing.Direction = Draw.DrawRoundAngle.JUST_TOPLEFT;
+                }
+            }
+            else
+            {
+                self._indicatorDrawing = null;
+            }
         }
     }
 }

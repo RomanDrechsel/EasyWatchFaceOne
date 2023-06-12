@@ -8,9 +8,64 @@
         </settingConfig>
     </setting>
 
+    <group id="groupLayout" title="@Strings.SettingsLayout">
+        <setting propertyKey="@Properties.WidgetTopLeft" title="@Strings.SettingsLayoutTL">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
+                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
+                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
+                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WidgetTopCenter" title="@Strings.SettingsLayoutTC">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
+                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
+                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
+                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WidgetTopRight" title="@Strings.SettingsLayoutTR">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
+                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
+                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
+                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WidgetBottomLeft" title="@Strings.SettingsLayoutBL">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
+                <listEntry value="1">@Strings.SettingsLayoutWidgetDistance</listEntry>
+                <listEntry value="2">@Strings.SettingsLayoutWidgetHealth</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WidgetBottomRight" title="@Strings.SettingsLayoutBR">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
+                <listEntry value="1">@Strings.SettingsLayoutWidgetDistance</listEntry>
+                <listEntry value="2">@Strings.SettingsLayoutWidgetHealth</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.ShowDecolines" title="@Strings.SettingsLayoutDecolines">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
     <group id="groupWidgets" title="@Strings.SettingsgroupWidgetsTitle">
         <setting propertyKey="@Properties.WidgetBatteryShowDays" title="@Strings.SettingsWidgetBatteryShowDays">
-            <settingConfig type="boolean"/>
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
         </setting>
 
         <setting propertyKey="@Properties.StressWarningLevel" title="@Strings.SettingsStressWarningLevel">

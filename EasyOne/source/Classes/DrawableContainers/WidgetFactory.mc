@@ -1,5 +1,6 @@
 import Widgets;
 import Toybox.Lang;
+import Toybox.Application;
 
 module DrawableContainers
 {
@@ -21,18 +22,50 @@ module DrawableContainers
                 case WIDGET_UPPERCENTER:
                     return new Date(container_params);
                 case WIDGET_TOPLEFT:
-                    return new BatteryStatus(container_params);
+                    return self.GetTopWidget(Properties.getValue("WidgetTopLeft") as Number, container_params);    
                 case WIDGET_TOPCENTER:
-                    return new Weather(container_params);
+                    return self.GetTopWidget(Properties.getValue("WidgetTopCenter") as Number, container_params);
                 case WIDGET_TOPRIGHT:
-                    return new Icons(container_params);
+                    return self.GetTopWidget(Properties.getValue("WidgetTopRight") as Number, container_params);
                 case WIDGET_BOTTOMLEFT:
-                    return new HealthIndicator(container_params);
+                    return self.GetBottomWidget(Properties.getValue("WidgetBottomLeft") as Number, container_params);
                 case WIDGET_BOTTOMRIGHT:
+                    return self.GetBottomWidget(Properties.getValue("WidgetBottomRight") as Number, container_params);
+            }
+
+            return null;
+        }
+
+        private static function GetTopWidget(setting as Number, container_params as Dictionary) as WidgetBase
+        {
+            switch (setting)
+            {
+                case 1:
+                    return new BatteryStatus(container_params);
+                case 2:
+                    return new Weather(container_params);
+                case 3:
+                    return new Icons(container_params);
+            }
+            return null;
+        }
+
+        private static function GetBottomWidget(setting as Number, container_params as Dictionary) as WidgetBase
+        {
+            switch (setting)
+            {
+                case 1:
+                    return new Distance(container_params);
+                case 2:
                     return new HealthIndicator(container_params);
             }
 
-            return new WidgetBase();
+            var deco = Properties.getValue("ShowDecolines") as Number;
+            if (deco != null && deco == 1)
+            {
+                return new DecoRoundAngle(container_params);
+            }
+            return null;
         }
     }
 }

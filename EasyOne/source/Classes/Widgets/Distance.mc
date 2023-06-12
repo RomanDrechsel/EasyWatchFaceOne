@@ -53,11 +53,13 @@ module Widgets
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
             self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
-            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
-            self._indicatorDrawing.Thickness = self._indicatorLineWidth;
-            self._indicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
-            self._indicatorDrawing.DotRadius = self._indicatorDotRadius;
             self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
+
+            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            if (show != null && show <= 0)
+            {
+                self._indicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
+            }
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
@@ -176,13 +178,6 @@ module Widgets
             {
                 return Math.round(dist).toNumber().toString() + " m";
             }
-        }
-
-        function onSettingsChanged()
-        {
-            WidgetBase.onSettingsChanged();
-            self._indicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
-            self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
         }
     }
 }

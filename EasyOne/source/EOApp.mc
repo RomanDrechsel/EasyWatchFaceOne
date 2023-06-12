@@ -31,6 +31,7 @@ class EOApp extends Application.AppBase
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
         Themes.ThemesLoader.ResetTheme();
+        
         if (self.OnSettings.size() > 0)
         {
             for (var i = 0; i < self.OnSettings.size(); i++)

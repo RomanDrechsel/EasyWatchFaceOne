@@ -59,15 +59,8 @@ module Widgets
                         break;
                 }
             }
-
-            $.getApp().OnSettings.add(self.method(:onSettingsChanged));
         }
 
         function draw(dc as Gfx.Dc);
-
-        function onSettingsChanged()
-        {
-            self._theme = $.getTheme();
-        }
     }
 }

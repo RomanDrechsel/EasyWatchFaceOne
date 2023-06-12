@@ -2,17 +2,30 @@
 
     <string id="AppName">Easy One WatchFace</string>
 
+    <string id="Yes">Yes</string>
+    <string id="No">No</string>
+
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>
+    
     <string id="SettingsStressWarningLevel">Stress Warning Level</string>
-
     <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>
 
-    <string id="SettingsRandomTitle">Random Distribution Values</string>
-    <string id="SettingsRandomHeartrate">Heartrate Widget</string>
-    <string id="SettingsRandomStress">Stress Widget</string>
-    <string id="SettingsRandomBreaths">Respiration-Rate Widget</string>
+    <string id="SettingsLayout">Widget arrangement</string>
+    <string id="SettingsLayoutTL">Top left corner</string>
+    <string id="SettingsLayoutTC">Top center</string>
+    <string id="SettingsLayoutTR">Top right corner</string>
+    <string id="SettingsLayoutBL">Bottom left corner</string>
+    <string id="SettingsLayoutBR">Bottom right corner</string>
+
+    <string id="SettingsLayoutWidgetEmpty">Empty</string>
+    <string id="SettingsLayoutWidgetBattery">Battery Status</string>
+    <string id="SettingsLayoutWidgetWeather">Weather</string>
+    <string id="SettingsLayoutWidgetIcons">Icons</string>
+    <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
+    <string id="SettingsLayoutWidgetHealth">Health monitor</string>
+    <string id="SettingsLayoutDecolines">Show decoration-lines in the corners</string>
     
     <string id="ThemeDarkBlue">Blue</string>
     <string id="ThemeFire">Fire &amp; Ice</string>

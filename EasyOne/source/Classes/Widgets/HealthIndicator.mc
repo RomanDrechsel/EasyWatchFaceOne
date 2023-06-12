@@ -54,11 +54,6 @@ module Widgets
             ];
 
             self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
-            self.IndicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
-            self.IndicatorDrawing.Thickness = self._indicatorLineWidth;
-            self.IndicatorDrawing.ThicknessBold = self._indicatorLineWidthBold;
-            self.IndicatorDrawing.DotRadius = self._indicatorDotRadius;
-            self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
@@ -68,6 +63,12 @@ module Widgets
             else
             {
                 self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+            }
+
+            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            if (show != null && show <= 0)
+            {
+                self.IndicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
             }
 
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
@@ -186,20 +187,6 @@ module Widgets
             {
                 return INDICATOR_BREATH;
             }
-        }
-
-        function onSettingsChanged()
-        {
-            WidgetBase.onSettingsChanged();
-
-            self.IndicatorColors = [
-                self._theme.IndicatorLevel1,
-                self._theme.IndicatorLevel3,
-                self._theme.IndicatorLevel4,
-                self._theme.IndicatorLevel5,
-            ];
-
-            self.IndicatorDrawing.BackgroundColor = self._theme.IndicatorBackground;
         }
     }
 }

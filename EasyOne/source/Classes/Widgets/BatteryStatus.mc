@@ -31,7 +31,8 @@ module Widgets
         {
             WidgetBase.initialize(params);
             self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
-            if (Application.Properties.getValue("WidgetBatteryShowDays") == false)
+            var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
+            if (showdays != null && showdays <= 0)
             {
                 self._hasBatteryInDays = false;
             }
@@ -79,7 +80,7 @@ module Widgets
             }
             else
             {
-                dc.drawText(WidgetBase.locX, WidgetBase.locY - 3, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                dc.drawText(self.locX, self.locY - 3, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
             }            
         }
 

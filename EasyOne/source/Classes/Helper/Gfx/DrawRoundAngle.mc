@@ -17,13 +17,13 @@ module Helper
 
             var BackgroundColor = 0 as Number;
             var BarColors = [] as Array<Number>;
-            var DotRadius = 3 as Number;
+            var DotRadius = 5 as Number;
 
-            var Thickness = 1 as Number; //Line-Thickness
-            var ThicknessBold = 2 as Number; //Bold line-thickness
+            var Thickness = 4 as Number; //Line-Thickness
+            var ThicknessBold = 6 as Number; //Bold line-thickness
             var Direction = JUST_BOTTOMLEFT as Justification; //Draw-Direction
 
-            private var _lineWidth as Float;
+            private var _lineWidth = 4.0 as Float;
             private var _lineHeight as Float;
             private var _totalBarLength as Float;
             private var _horLineValue as Float;
@@ -37,6 +37,8 @@ module Helper
                 self.Width = width;
                 self.Height = height;
                 self.AngleRadius = angleradius;
+
+                self.BackgroundColor = getTheme().IndicatorBackground;
 
                 self.Reset();
             }
@@ -209,10 +211,6 @@ module Helper
                 {
                     //only a part of the line
                     width *= (amount / self._horLineValue); 
-                    if (amount <= 0.4)
-                    {
-                        starty -= self.DotRadius - (self.Thickness / 2); //Fix?!
-                    }
                 }
                 dc.drawLine(startx, starty, startx - width, starty);
 

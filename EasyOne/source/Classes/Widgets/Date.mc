@@ -35,13 +35,5 @@ module Widgets
 
             self._textContainer.draw(self._Texts, dc);
         }
-
-        function onSettingsChanged()
-        {
-            WidgetBase.onSettingsChanged();
-            self._Texts[0].Color = self._theme.DateWeekdayColor;
-            self._Texts[1].Color = self._theme.DateDayColor;
-            self._Texts[2].Color = self._theme.DateYearColor;
-        }
     }
 }
