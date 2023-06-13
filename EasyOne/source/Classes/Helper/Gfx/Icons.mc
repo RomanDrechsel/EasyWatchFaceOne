@@ -14,6 +14,7 @@ module Helper
             ICONS_SLEEP = "7",
             ICONS_STRESS = "8",
             ICONS_BREATH = "9",
+            ICONS_CHECKMARK = ":"
         }
     }
 }

@@ -103,8 +103,11 @@ module Widgets
         {
             dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
+            if (info != null)
+            {
+                dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
+                dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
+            }
 
             self._drawYpos += self._lineHeight;
         }
@@ -122,8 +125,11 @@ module Widgets
             }
             dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconPosX, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
+            if (info != null)
+            {
+                dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
+                dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
+            }
 
             self._drawYpos += self._lineHeight;
         }
@@ -132,15 +138,54 @@ module Widgets
         {
             dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
-            dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+            if (info != null)
+            {
+                var amount = info.steps.toFloat() / info.stepGoal.toFloat();
+
+                dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
+                if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
+                {   
+                    var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);                 
+                    dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                    if (amount >= 1.0)
+                    {                    
+                        dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                    }
+                    else
+                    {
+                        var percent = "(" + (amount * 100).toNumber().toString() + "%)";
+                        dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                    }
+                }
+                else
+                {
+                    if (amount >= 1.0)
+                    {                               
+                        dc.drawText(self._textPosX , self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                        var textwidth = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small) + 5; 
+                        dc.drawText(self._textPosX - textwidth, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                    }
+                    else
+                    {
+                        var percent = "(" + (amount * 100).toNumber().toString() + "%)";
+                        dc.drawText(self._textPosX, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                        var percent_width = dc.getTextWidthInPixels(percent, HGfx.Fonts.Tiny) + 5;
+                        dc.drawText(self._textPosX - percent_width, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                    }                    
+                }
+            }
 
             self._drawYpos += self._lineHeight;
         }
 
         private function drawStepsIndicator(dc as Gfx.Dc, info as ActivityMonitor.Info)
         {
-            self._indicatorDrawing.draw(dc, info.steps.toFloat() / info.stepGoal.toFloat());
+            var amount = 0.0;
+            if (info != null)
+            {
+                amount = info.steps.toFloat() / info.stepGoal.toFloat();
+            }
+            self._indicatorDrawing.draw(dc, amount);
         }
 
         private function FormatMiles(centimeters as Number) as String

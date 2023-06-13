@@ -12,6 +12,8 @@ module Widgets
             private var _texts = [] as Array<Helper.ExtTextPart>;
             private var _heartbeatMinDisplay = 40;
 
+            private var _attentionIcon = null as Gfx.BitmapResource;
+
             static var HeartbeatZones = [] as Array<Number>;
             static var HeartbeatMin = 0;
 
@@ -57,8 +59,6 @@ module Widgets
                 {
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    //dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-
                     if (self._texts.size() < 2)
                     {
                         self._texts = [
@@ -74,6 +74,11 @@ module Widgets
                         self._texts[1].Color = color;
                     }
                     self._textContainer.draw(self._texts, dc);
+
+                    if (heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
+                    {
+                        dc.drawBitmap(self._iconPosX + 10, self._iconPosY - 25, self._Widget.GetAttentionIcon());
+                    }
                 }
                 else
                 {

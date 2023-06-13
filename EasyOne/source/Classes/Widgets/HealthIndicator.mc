@@ -20,7 +20,8 @@ module Widgets
         private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
-
+        
+        var _attentionIcon = null as BitmapResource;
         var IndicatorDrawing = null as HGfx.DrawRoundAngle;
         var IndicatorColors  = [] as Array<Number>;
 
@@ -187,6 +188,16 @@ module Widgets
             {
                 return INDICATOR_BREATH;
             }
+        }
+
+        function GetAttentionIcon() as BitmapResource
+        {
+            if (self._attentionIcon == null)
+            {
+                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
+            }
+
+            return self._attentionIcon;
         }
     }
 }

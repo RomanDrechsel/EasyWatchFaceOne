@@ -1,6 +1,8 @@
 <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
 
+    <bitmap id="Attention" filename="Attention.png"  packingFormat="default" />
+
     <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
     <bitmap id="BackgroundImageFire" filename="Backgrounds/Fire.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
     <bitmap id="BackgroundImageSummer" filename="Backgrounds/Summer.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
