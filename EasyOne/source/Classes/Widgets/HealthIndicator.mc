@@ -15,15 +15,15 @@ module Widgets
         var WidgetHeight = 200;
         var WidgetWidth = 150;
        
-        private var _indicatorLineWidth = 4;
-        private var _indicatorLineWidthBold = 5;
-        private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
         
         var _attentionIcon = null as BitmapResource;
         var IndicatorDrawing = null as HGfx.DrawRoundAngle;
         var IndicatorColors  = [] as Array<Number>;
+
+        var StressWarningLevel = 90.0;
+        var BreathWarningLevel = 30;
 
         function initialize(params as Dictionary) 
         {
@@ -74,6 +74,9 @@ module Widgets
 
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             $.getView().OnSleep.add(self.method(:OnSleep));
+
+            self.StressWarningLevel = Application.Properties.getValue("StressWarningLevel") as Float;
+            self.BreathWarningLevel = Application.Properties.getValue("WarningRespirationRate") as Number;
         }
 
         function draw(dc as Gfx.Dc)
@@ -112,17 +115,15 @@ module Widgets
                 }
                 else 
                 {                    
-                    var stresswarninglevel = Application.Properties.getValue("StressWarningLevel") as Float;
-                    if (stress >= stresswarninglevel)
+                    if (breath >= self.BreathWarningLevel)
                     {
-                        indicator = INDICATOR_STRESS;
+                        indicator = INDICATOR_BREATH;
                     }
                     else 
-                    {                        
-                        var breathwarninglevel = Application.Properties.getValue("WarningRespirationRate") as Number;
-                        if (breath >= breathwarninglevel)
+                    {
+                        if (stress >= self.StressWarningLevel)
                         {
-                            indicator = INDICATOR_BREATH;
+                            indicator = INDICATOR_STRESS;
                         }
                     }
                 }
@@ -190,7 +191,17 @@ module Widgets
             }
         }
 
-        function GetAttentionIcon() as BitmapResource
+        function DrawAttentionIcon(dc as Gfx.Dc, ix as Number, iy as Number)
+        {
+            dc.drawBitmap(ix + 10, iy - 25, self.GetAttentionIcon());
+        }
+
+        function HideAttentionIcon()
+        {
+            self._attentionIcon = null;
+        }
+
+        private function GetAttentionIcon() as BitmapResource
         {
             if (self._attentionIcon == null)
             {

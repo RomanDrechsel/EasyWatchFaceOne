@@ -78,6 +78,15 @@ module Widgets
                     }
                     
                     self._textContainer.draw(self._texts, dc);
+
+                    if (breath >= self._Widget.BreathWarningLevel)
+                    {
+                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                    }
+                    else
+                    {
+                        self._Widget.HideAttentionIcon();
+                    }
                 }
                 else
                 {

@@ -62,6 +62,15 @@ module Widgets
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+
+                    if (stress >= self._Widget.StressWarningLevel)
+                    {
+                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                    }
+                    else
+                    {
+                        self._Widget.HideAttentionIcon();
+                    }
                 }
                 else
                 {

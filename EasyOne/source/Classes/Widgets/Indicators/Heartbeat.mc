@@ -77,7 +77,11 @@ module Widgets
 
                     if (heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
                     {
-                        dc.drawBitmap(self._iconPosX + 10, self._iconPosY - 25, self._Widget.GetAttentionIcon());
+                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                    }
+                    else
+                    {
+                        self._Widget.HideAttentionIcon();
                     }
                 }
                 else
