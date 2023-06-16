@@ -82,7 +82,7 @@ module Widgets
                         if (self._lastSample != null)
                         {
                             var ts = Time.now().subtract(self._lastSample).value();
-                            var datestr = " (~" + (ts/60) + "m)";
+                            datestr = " (~" + (ts/60) + "m)";
                         }
 
                         if (self._texts.size() < 2)
