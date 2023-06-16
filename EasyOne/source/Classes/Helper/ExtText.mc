@@ -57,7 +57,7 @@ module Helper
             {
                 posy -= self._height;
             }
-            
+
             for(var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
@@ -65,7 +65,7 @@ module Helper
                 var yoffset = 0;
                 if (text.Vjust != VJUST_TOP)
                 {
-                    var h = dc.getFontHeight(text.Font);
+                    var h = dc.getFontHeight(text.Font) * 0.9;
                     if (text.Vjust == VJUST_CENTER)
                     {
                         yoffset = (self._height - h) / 2;
@@ -73,6 +73,7 @@ module Helper
                     if (text.Vjust == VJUST_BOTTOM)
                     {
                         yoffset = self._height - h;
+                        yoffset *= 0.9;
                     }
                 }
 
@@ -90,9 +91,10 @@ module Helper
             {
                 var d = dc.getTextDimensions(texts[i].Text.toString(), texts[i].Font);
                 self._width += d[0];
-                if (d[1] > self._height)
+                var height = d[1] * 0.9;
+                if (height > self._height)
                 {
-                    self._height = d[1];
+                    self._height = height;
                 }
             }
         }

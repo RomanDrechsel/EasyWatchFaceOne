@@ -14,10 +14,21 @@ module Widgets
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
             private static const SAMPLE_VALID = 1200; //old samples are valid for 20 min
+            private static var _lastSample = null as Toybox.Time.Moment;
+            private var _showSampleTime = true;
 
             function initialize(widget as Widgets.HealthIndicator)
             {
-                IndicatorBase.initialize(widget);                
+                IndicatorBase.initialize(widget);
+                var setting = Application.Properties.getValue("ShowStressAge") as Number;
+                if (setting != null && setting <= 0)
+                {
+                    self._showSampleTime = false;
+                }
+                else
+                {
+                    self._showSampleTime = true;
+                }
             }
 
             protected function Init(dc as Gfx.Dc)
@@ -60,8 +71,37 @@ module Widgets
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    if (self._showSampleTime == false)
+                    {
+                        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+                        dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    }
+                    else
+                    {
+                        var datestr = "";
+                        if (self._lastSample != null)
+                        {
+                            var ts = Time.now().subtract(self._lastSample).value();
+                            var datestr = " (~" + (ts/60) + "m)";
+                        }
+
+                        if (self._texts.size() < 2)
+                        {
+                            self._texts = [
+                                new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
+                                new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Tiny)
+                            ];
+                            self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
+                        }
+                        else
+                        {
+                            self._texts[0].Text = stress.toNumber().toString();
+                            self._texts[0].Color = color;
+                            self._texts[1].Text = datestr;
+                            self._texts[1].Color = color;                            
+                        }
+                        self._textContainer.draw(self._texts, dc);
+                    }
 
                     if (stress >= self._Widget.StressWarningLevel)
                     {
@@ -84,11 +124,14 @@ module Widgets
 
             static function getStressLevel() as Float
             {
-                if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getStressHistory)) 
+                /*self._lastSample = Time.now().subtract(new Time.Duration(100));
+                return 95;*/
+                if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
-                    var hist = Toybox.SensorHistory.getStressHistory({ "period" => 1, "order" => Toybox.SensorHistory.ORDER_NEWEST_FIRST});
+                    var hist = SensorHistory.getStressHistory({ "period" => 1, "order" => SensorHistory.ORDER_NEWEST_FIRST});
                     var sample = hist.next();
-                    if (sample != null && Toybox.Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
+                    self._lastSample = sample.when;
+                    if (sample != null && Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
                     {
                         return sample.data;
                     }

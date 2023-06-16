@@ -68,8 +68,22 @@
             </settingConfig>
         </setting>
 
+        <setting propertyKey="@Properties.ShowStepsPercent" title="@Strings.SettingsShowStepsPercent">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
         <setting propertyKey="@Properties.StressWarningLevel" title="@Strings.SettingsStressWarningLevel">
             <settingConfig type="numeric"/>
+        </setting>
+
+        <setting propertyKey="@Properties.ShowStressAge" title="@Strings.SettingsShowStressAge">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
         </setting>
 
         <setting propertyKey="@Properties.WarningRespirationRate" title="@Strings.SettingsRespirationRateWarningLevel">

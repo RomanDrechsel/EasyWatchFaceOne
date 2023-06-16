@@ -27,6 +27,8 @@ module Widgets
         private var _indicatorVPadding = 12;
         private var _indicatorDrawing = null as HGfx.DrawRoundAngle;
 
+        private var _showStepsPercentage = true;
+
         private const CENTIMETER_TO_FEET = 0.0328084 as Float;
         private const FEET_TO_MILES = 5280.0 as Float;
 
@@ -84,6 +86,16 @@ module Widgets
             else
             {
                 self._inMiles = false;
+            }
+
+            var setting = Application.Properties.getValue("ShowStepsPercent") as Number;
+            if (setting != null && setting <= 0)
+            {
+                self._showStepsPercentage = false;
+            }
+            else
+            {
+                self._showStepsPercentage = true;
             }
         }
 
@@ -147,14 +159,17 @@ module Widgets
                 {   
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);                 
                     dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
-                    if (amount >= 1.0)
-                    {                    
-                        dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
-                    }
-                    else
+                    if (self._showStepsPercentage == true)
                     {
-                        var percent = "(" + (amount * 100).toNumber().toString() + "%)";
-                        dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                        if (amount >= 1.0)
+                        {                    
+                            dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                        }
+                        else
+                        {
+                            var percent = "(" + (amount * 100).toNumber().toString() + "%)";
+                            dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                        }
                     }
                 }
                 else
@@ -162,14 +177,21 @@ module Widgets
                     if (amount >= 1.0)
                     {                               
                         dc.drawText(self._textPosX , self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
-                        var textwidth = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small) + 5; 
-                        dc.drawText(self._textPosX - textwidth, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                        if (self._showStepsPercentage == true)
+                        {
+                            var textwidth = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small) + 5; 
+                            dc.drawText(self._textPosX - textwidth, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                        }
                     }
                     else
                     {
-                        var percent = "(" + (amount * 100).toNumber().toString() + "%)";
-                        dc.drawText(self._textPosX, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
-                        var percent_width = dc.getTextWidthInPixels(percent, HGfx.Fonts.Tiny) + 5;
+                        var percent_width = 0;
+                        if (self._showStepsPercentage == true)
+                        {
+                            var percent = "(" + (amount * 100).toNumber().toString() + "%)";
+                            dc.drawText(self._textPosX, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                            percent_width = dc.getTextWidthInPixels(percent, HGfx.Fonts.Tiny) + 5;
+                        }
                         dc.drawText(self._textPosX - percent_width, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                     }                    
                 }

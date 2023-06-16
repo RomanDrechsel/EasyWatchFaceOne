@@ -3,10 +3,10 @@
     <property type="number" id="Theme">0</property>
 
     <property type="number" id="WidgetBatteryShowDays">1</property>
-
     <property type="number" id="StressWarningLevel">80</property>
-
     <property type="number" id="WarningRespirationRate">20</property>
+    <property type="number" id="ShowStepsPercent">1</property>
+    <property type="number" id="ShowStressAge">1</property>
 
     <property type="number" id="WidgetTopLeft">1</property>
     <property type="number" id="WidgetTopCenter">2</property>

@@ -44,7 +44,7 @@ module Widgets
                 }
 
                 self._iconPosX = centerX;
-                self._iconPosY = centerY - (iconHeight / 2) - 5;
+                self._iconPosY = centerY - (iconHeight / 2) - 10;
                 self._textPosX = centerX;
                 self._textPosY = centerY + (fontHeight / 2) + 5;
 
