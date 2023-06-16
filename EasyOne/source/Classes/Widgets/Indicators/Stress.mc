@@ -14,8 +14,10 @@ module Widgets
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
             private static const SAMPLE_VALID = 1200; //old samples are valid for 20 min
-            private static var _lastSample = null as Toybox.Time.Moment;
-            private var _showSampleTime = true;
+            private static var _lastSampleDate = null as Toybox.Time.Moment;
+            private static var _showSampleTime = true;
+            private static var _prevValue = null;
+            private static var _sampleDelta = 0.0;
 
             function initialize(widget as Widgets.HealthIndicator)
             {
@@ -79,10 +81,13 @@ module Widgets
                     else
                     {
                         var datestr = "";
-                        if (self._lastSample != null)
+                        if (self._lastSampleDate != null)
                         {
-                            var ts = Time.now().subtract(self._lastSample).value();
-                            datestr = " (~" + (ts/60) + "m)";
+                            var ts = Time.now().subtract(self._lastSampleDate).value();
+                            if (ts > 120)
+                            {
+                                datestr = " (~" + (ts/60) + "m)";
+                            }
                         }
 
                         if (self._texts.size() < 2)
@@ -100,7 +105,21 @@ module Widgets
                             self._texts[1].Text = datestr;
                             self._texts[1].Color = color;                            
                         }
-                        self._textContainer.draw(self._texts, dc);
+                        var width = self._textContainer.draw(self._texts, dc);
+                        if (self._sampleDelta != 0.0)
+                        {
+                            var icon = "";
+                            if (self._sampleDelta < 0.0)
+                            {
+                                icon = HGfx.ICONS_ARROWDOWN;
+                            }
+                            else
+                            {
+                                icon = HGfx.ICONS_ARROWUP;
+                            }
+
+                            dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + 10, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+                        }
                     }
 
                     if (stress >= self._Widget.StressWarningLevel)
@@ -124,15 +143,24 @@ module Widgets
 
             static function getStressLevel() as Float
             {
-                /*self._lastSample = Time.now().subtract(new Time.Duration(100));
-                return 95;*/
                 if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
                     var hist = SensorHistory.getStressHistory({ "period" => 1, "order" => SensorHistory.ORDER_NEWEST_FIRST});
                     var sample = hist.next();
-                    self._lastSample = sample.when;
+                    self._lastSampleDate = sample.when;
+
                     if (sample != null && Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
                     {
+                        if (self._prevValue != null)
+                        {
+                            self._sampleDelta = sample.data - self._prevValue;
+                        }
+                        else
+                        {
+                            self._sampleDelta = 0.0;
+                        }
+                        
+                        self._prevValue = sample.data;
                         return sample.data;
                     }
                 }

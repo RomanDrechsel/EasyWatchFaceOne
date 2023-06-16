@@ -25,7 +25,7 @@ module Helper
             self.Vjust = vjust;
         }
 
-        function draw(texts as Array<ExtTextPart>, dc as Gfx.Dc)
+        function draw(texts as Array<ExtTextPart>, dc as Gfx.Dc) as Number
         {
             if (texts.size() == 0)
             {
@@ -81,6 +81,8 @@ module Helper
                 dc.drawText(posx, posy + yoffset, text.Font, text.Text, Gfx.TEXT_JUSTIFY_LEFT);
                 posx += dc.getTextWidthInPixels(text.Text.toString(), text.Font);
             }
+
+            return self._width;
         }
 
         private function calcDimensions(texts as Array<ExtTextPart>, dc as Gfx.Dc)

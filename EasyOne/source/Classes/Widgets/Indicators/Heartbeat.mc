@@ -105,7 +105,6 @@ module Widgets
 
             public static function getHeartrate() as Number
             {
-                //return 60;
                 var info = Toybox.Activity.getActivityInfo();
                 if (info.currentHeartRate != null)
                 {
