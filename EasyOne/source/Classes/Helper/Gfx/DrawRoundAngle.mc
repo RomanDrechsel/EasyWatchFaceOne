@@ -281,7 +281,11 @@ module Helper
                     {
                         deg = 90;
                     }
-                    dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 270, 270 + deg);
+
+                    if (deg > 1.0)
+                    {
+                        dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 270, 270 + deg);
+                    }                    
 
                     if (amount > self._horLineValue + self._arcValue)
                     {

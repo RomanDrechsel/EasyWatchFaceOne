@@ -23,8 +23,8 @@ module Widgets
         {
             if (self._hours_pos == null)
             {
-                var space_min = 18;
-                var space_sec = 8;
+                var space_min = 10;
+                var space_sec = 6;
                 var bigwidth = dc.getTextWidthInPixels("99", HGfx.Fonts.Hour);
                 var bigwidth2 = dc.getTextWidthInPixels("99", HGfx.Fonts.Minute);
                 var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.Seconds);
@@ -36,9 +36,9 @@ module Widgets
                 self._sec_posX = self._min_pos + bigwidth2 + space_sec;
 
                 self._sec_posY = (self.locY - (dc.getFontHeight(HGfx.Fonts.Minute) / 2));
-                self._sec_posY += 12;
+                self._sec_posY -= 3;
                 self._amp_posY = self.locY + (dc.getFontHeight(HGfx.Fonts.Minute) / 2) - dc.getFontHeight(HGfx.Fonts.Seconds);
-                self._amp_posY -= 12;
+                self._amp_posY += 3;
             }
 
             var clockTime = System.getClockTime();

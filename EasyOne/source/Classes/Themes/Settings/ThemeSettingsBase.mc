@@ -40,9 +40,9 @@ module Themes
         var IndicatorLevel5 = 0xfa0000; //Red
 
         //Distance Widget
-        var DistanceStepsIconColor = 0x3dd33a;
-        var DistanceIconColor = 0x3dd33a;
-        var DistanceCaloriesColor = 0x3dd33a;
+        var DistanceStepsIconColor = 0xf7fa00;
+        var DistanceIconColor = 0x0fcbc9;
+        var DistanceCaloriesColor = 0xfa0000;
 
         //DistanceWidget Indicator Colors
         var IndicatorSteps = [
@@ -56,9 +56,9 @@ module Themes
         ];
 
         //Health Widget
-        var HealthHeartIconColor = 0x3dd33a;
-        var HealthStressIconColor = 0x3dd33a;
-        var HealthBreathIconColor = 0x3dd33a;
+        var HealthHeartIconColor = 0xfa0000;
+        var HealthStressIconColor = 0xf7fa00;
+        var HealthBreathIconColor = 0x0fcbc9;
 
     }
 }
