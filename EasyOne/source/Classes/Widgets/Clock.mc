@@ -36,9 +36,9 @@ module Widgets
                 self._sec_posX = self._min_pos + bigwidth2 + space_sec;
 
                 self._sec_posY = (self.locY - (dc.getFontHeight(HGfx.Fonts.Minute) / 2));
-                self._sec_posY -= 3;
+                self._sec_posY -= 1;
                 self._amp_posY = self.locY + (dc.getFontHeight(HGfx.Fonts.Minute) / 2) - dc.getFontHeight(HGfx.Fonts.Seconds);
-                self._amp_posY += 3;
+                self._amp_posY += 1;
             }
 
             var clockTime = System.getClockTime();
