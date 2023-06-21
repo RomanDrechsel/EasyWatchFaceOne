@@ -211,10 +211,6 @@ module Helper
                 {
                     //only a part of the line
                     width *= (amount / self._horLineValue);
-                    if (amount < (1.0 / 7.0))
-                    {
-                        starty += self.Thickness / 2;//Fix?!
-                    }
                 }
 
                 dc.drawLine(startx, starty, startx - width, starty);

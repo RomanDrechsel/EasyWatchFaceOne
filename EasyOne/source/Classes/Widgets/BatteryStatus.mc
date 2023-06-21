@@ -62,14 +62,16 @@ module Widgets
             var stats = System.getSystemStats();
             var battery = stats.battery;
             var color = self._theme.BatteryIndicatorFullColor;
-            if (battery < 50.0 && battery > 30.0)
-            {
-                color = self._theme.BatteryIndicatorHalfColor;
-            }
-            else if (battery <= 30.0)
+
+            if (stats.battery < 20.0 || stats.batteryInDays < 1.0)
             {
                 color = self._theme.BatteryIndicatorLowColor;
             }
+            else if (stats.battery < 40.0 || stats.batteryInDays < 2.0)
+            {
+                color = self._theme.BatteryIndicatorHalfColor;
+            }
+
             self._arc.draw(dc, battery, color);
 
             dc.setColor(color, Gfx.COLOR_TRANSPARENT);
