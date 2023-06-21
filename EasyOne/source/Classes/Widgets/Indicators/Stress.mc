@@ -13,7 +13,7 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            private static const SAMPLE_VALID = 1200; //old samples are valid for 20 min
+            private static const SAMPLE_VALID = 600; //old samples are valid for 20 min
             private static var _lastSampleDate = null as Toybox.Time.Moment;
             private static var _showSampleTime = true;
             private static var _prevValue = null;
@@ -147,21 +147,25 @@ module Widgets
                 {
                     var hist = SensorHistory.getStressHistory({ "period" => 1, "order" => SensorHistory.ORDER_NEWEST_FIRST});
                     var sample = hist.next();
-                    self._lastSampleDate = sample.when;
-
                     if (sample != null && Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
                     {
-                        if (self._prevValue != null)
+                        if (self._prevValue != null && self._lastSampleDate != null)
                         {
-                            self._sampleDelta = sample.data - self._prevValue;
-                        }
-                        else
-                        {
-                            self._sampleDelta = 0.0;
+                            if (self._lastSampleDate.lessThan(sample.when) == true)
+                            {
+                                self._sampleDelta = sample.data - self._prevValue;
+                                self._lastSampleDate = sample.when;
+                                self._prevValue = sample.data;
+                            }
                         }
                         
-                        self._prevValue = sample.data;
                         return sample.data;
+                    }
+                    else
+                    {
+                        self._sampleDelta = 0.0;
+                        self._lastSampleDate = null;
+                        self._prevValue = null;
                     }
                 }
 

@@ -278,7 +278,7 @@ module Widgets
                 var now = Toybox.Time.now();
                 var sr_comp = self._sunrise.compare(now);
                 var ss_comp = self._sunset.compare(now);
-                if (self._sunrise.compare(now) > 0 || self._sunset.compare(now) < 0)
+                if (self._sunrise.greaterThan(now) || self._sunset.lessThan(now))
                 {
                     return true;
                 }
