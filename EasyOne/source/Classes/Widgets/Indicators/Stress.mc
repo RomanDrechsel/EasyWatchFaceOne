@@ -14,10 +14,9 @@ module Widgets
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
             private static const SAMPLE_VALID = 600; //old samples are valid for 20 min
-            private static var _lastSampleDate = null as Toybox.Time.Moment;
-            private static var _showSampleTime = true;
-            private static var _prevValue = null;
             private static var _sampleDelta = 0.0;
+            private static var _showSampleTime = true;
+            private static var _lastSampleDate = null as Toybox.Time.Moment;
 
             function initialize(widget as Widgets.HealthIndicator)
             {
@@ -145,27 +144,27 @@ module Widgets
             {
                 if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
-                    var hist = SensorHistory.getStressHistory({ "period" => 1, "order" => SensorHistory.ORDER_NEWEST_FIRST});
-                    var sample = hist.next();
-                    if (sample != null && Time.now().subtract(sample.when).value() <= self.SAMPLE_VALID)
+                    var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
+                    var newest_sample = hist.next();
+                    var prev_sample = hist.next();
+                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= self.SAMPLE_VALID)
                     {
-                        if (self._prevValue != null && self._lastSampleDate != null)
+                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= self.SAMPLE_VALID)
                         {
-                            if (self._lastSampleDate.lessThan(sample.when) == true)
-                            {
-                                self._sampleDelta = sample.data - self._prevValue;
-                                self._lastSampleDate = sample.when;
-                                self._prevValue = sample.data;
-                            }
+                            self._sampleDelta = newest_sample.data - prev_sample.data;
+                        }
+                        else
+                        {
+                            self._sampleDelta = 0.0;
+                            self._lastSampleDate = null;
                         }
                         
-                        return sample.data;
+                        return newest_sample.data;
                     }
                     else
                     {
                         self._sampleDelta = 0.0;
                         self._lastSampleDate = null;
-                        self._prevValue = null;
                     }
                 }
 
