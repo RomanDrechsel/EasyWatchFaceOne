@@ -9,21 +9,21 @@ module Helper
         {
             enum Justification { JUST_TOPLEFT, JUST_TOPRIGHT, JUST_BOTTOMLEFT, JUST_BOTTOMRIGHT }
 
-            var AnchorX = 0 as Number; //X of anchor
-            var AnchorY = 0 as Number; //Y of anchor
-            var Width = 100 as Number;
-            var Height = 100 as Number;
-            var AngleRadius = 10 as Number;
+            var AnchorX = 0;
+            var AnchorY = 0;
+            var Width = 100;
+            var Height = 100;
+            var AngleRadius = 10;
 
-            var BackgroundColor = 0 as Number;
+            var BackgroundColor = 0;
             var BarColors = [] as Array<Number>;
-            var DotRadius = 5 as Number;
+            var DotRadius = 5 ;
 
-            var Thickness = 4 as Number; //Line-Thickness
-            var ThicknessBold = 6 as Number; //Bold line-thickness
-            var Direction = JUST_BOTTOMLEFT as Justification; //Draw-Direction
+            var Thickness = 4; 
+            var ThicknessBold = 6;
+            var Direction = JUST_BOTTOMLEFT; 
 
-            private var _lineWidth = 4.0 as Float;
+            private var _lineWidth = 4.0;
             private var _lineHeight as Float;
             private var _totalBarLength as Float;
             private var _horLineValue as Float;

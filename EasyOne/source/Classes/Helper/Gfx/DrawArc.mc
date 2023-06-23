@@ -7,15 +7,15 @@ module Helper
     {
         class DrawArc
         {
-            var locX = 0 as Number; //Center X
-            var locY = 0 as Number; //Center Y
-            var Radius = 10 as Number; //Radius 
-            var Thickness = 1 as Number; //Line-Thickness
-            var Direction = Gfx.ARC_CLOCKWISE as Gfx.ArcDirection; //Draw-Direction
-            var StartDeg = 90 as Number; // Startpoint in Degree (0° = 3 oclock, 90° = 0 oclock, 180° = 9 oclock, 270° = 6 oclock)
-            var LengthDeg = 120 as Number; // Length in Degree
-            var Parts = 1 as Number; // in how many parts is the Arc seperated
-            var PartSeparatorWidth = 3 as Number; // width of the parts-separator
+            var locX = 0;
+            var locY = 0;
+            var Radius = 10;
+            var Thickness = 1;
+            var Direction = Gfx.ARC_CLOCKWISE;
+            var StartDeg = 90;
+            var LengthDeg = 120;
+            var Parts = 1;
+            var PartSeparatorWidth = 3;
 
             function initialize(posx as Number, posy as Number, radius as Number, thickness as Number, startdeg as Number, length as Number, direction as Gfx.ArcDirection)
             {

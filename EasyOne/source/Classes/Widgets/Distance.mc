@@ -20,17 +20,14 @@ module Widgets
         private var _textPosX = self.locX;
         private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
 
-        private var _indicatorLineWidth = 4;
-        private var _indicatorLineWidthBold = 5;
-        private var _indicatorDotRadius = 5;
         private var _indicatorPadding = 12;
         private var _indicatorVPadding = 12;
         private var _indicatorDrawing = null as HGfx.DrawRoundAngle;
 
         private var _showStepsPercentage = true;
 
-        private const CENTIMETER_TO_FEET = 0.0328084 as Float;
-        private const FEET_TO_MILES = 5280.0 as Float;
+        private const CENTIMETER_TO_FEET = 0.0328084;
+        private const FEET_TO_MILES = 5280.0;
 
         function initialize(params as Dictionary) 
         {
@@ -51,11 +48,11 @@ module Widgets
                 self.locY = self.locY - self._WidgetHeight;
             }
 
-            var textheight = (self._lineHeight * 3) + self._indicatorLineWidthBold + self._indicatorVPadding;
-            self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
-
             self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
             self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
+
+            var textheight = (self._lineHeight * 3) + self._indicatorDrawing.ThicknessBold + self._indicatorVPadding;
+            self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
             var show = Application.Properties.getValue("ShowDecolines") as Number;
             if (show != null && show <= 0)
@@ -66,14 +63,14 @@ module Widgets
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
                 self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
-                self._iconPosX = self.locX - self._indicatorLineWidthBold - self._indicatorPadding - 25;
+                self._iconPosX = self.locX - self._indicatorDrawing.ThicknessBold - self._indicatorPadding - 25;
                 self._textPosX = self._iconPosX - 10;
                 self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
             }
             else
             {
                 self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
-                self._iconPosX = self.locX + self._indicatorLineWidthBold + self._indicatorPadding;
+                self._iconPosX = self.locX + self._indicatorDrawing.ThicknessBold + self._indicatorPadding;
                 self._textPosX = self._iconPosX + 35;
                 self._textJust = Gfx.TEXT_JUSTIFY_LEFT;
             }

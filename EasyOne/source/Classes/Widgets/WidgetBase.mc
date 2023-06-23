@@ -7,8 +7,8 @@ module Widgets
 
     class WidgetBase
     {
-        var locX = 0 as Float;
-        var locY = 0 as Float;
+        var locX = 0.0;
+        var locY = 0.0;
         var Justification = WIDGET_JUSTIFICATION_LEFT as Widget_Justification;
         var VJustification = WIDGET_JUSTIFICATION_TOP as Widget_Justification;
 

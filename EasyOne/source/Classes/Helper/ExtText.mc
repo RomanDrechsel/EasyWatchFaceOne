@@ -14,8 +14,8 @@ module Helper
         var Hjust = HJUST_CENTER as H_JUSTIFICATION;
         var Vjust = VJUST_CENTER as V_JUSTIFICATION;
 
-        private var _width = 0 as Number;
-        private var _height = 0 as Number;
+        private var _width = 0;
+        private var _height = 0;
 
         function initialize(posx as Number, posy as Number, hjust as H_JUSTIFICATION, vjust as V_JUSTIFICATION)
         {

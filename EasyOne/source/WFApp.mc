@@ -3,9 +3,9 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
 
-class EOApp extends Application.AppBase 
+class WFApp extends Application.AppBase 
 {
-    var WatchfaceView = null as EOView;
+    var WatchfaceView = null as WFView;
 
     var OnSettings = [] as Array<Method>;
 
@@ -24,7 +24,7 @@ class EOApp extends Application.AppBase
 
     // Return the initial view of your application here
     function getInitialView() as Array<Views or InputDelegates>? {
-        self.WatchfaceView = new EOView();
+        self.WatchfaceView = new WFView();
         return [ self.WatchfaceView ] as Array<Views or InputDelegates>;
     }
 
@@ -44,12 +44,12 @@ class EOApp extends Application.AppBase
     }
 }
 
-function getApp() as EOApp 
+function getApp() as WFApp 
 {
-    return Application.getApp() as EOApp;
+    return Application.getApp() as WFApp;
 }
 
-function getView() as EOView
+function getView() as WFView
 {
     return getApp().WatchfaceView;
 }

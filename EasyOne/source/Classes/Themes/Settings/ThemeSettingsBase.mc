@@ -52,7 +52,7 @@ module Themes
             0x2a9fbc,
             0x2a7dbc,
             0x2a45bc,
-            0x171f9c /* 0% */
+            0x3f47cb /* 0% */
         ];
 
         //Health Widget

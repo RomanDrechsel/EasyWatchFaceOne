@@ -7,10 +7,10 @@ module Widgets
 {
     class Icons extends WidgetBase
     {
-        private var _BTWidth = -1 as Number;
-        private var _MsgWidth = -1 as Number;
+        private var _BTWidth = -1;
+        private var _MsgWidth = -1;
 
-        private var _Padding = 12 as Number;
+        private var _Padding = 12;
 
         function initialize(params as Dictionary) 
         {

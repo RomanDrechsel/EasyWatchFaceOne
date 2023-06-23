@@ -1,5 +1,5 @@
 <layout id="WatchFace">
-    <drawable class="ESOBackground" id="Background" />
+    <drawable class="WFBackground" id="Background" />
 
     <drawable class="DrawableContainers.CenterContainer" id="Center">
         <param name="locX">dc.getWidth() * .5</param>

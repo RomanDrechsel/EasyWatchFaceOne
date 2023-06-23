@@ -7,25 +7,25 @@ module Widgets
 {
     class BatteryStatus extends WidgetBase
     {        
-        private var _arcStart = 220 as Number;
-        private var _arcLength = 230 as Float;
+        private var _arcStart = 220;
+        private var _arcLength = 230.0;
 
-        private var _arcRadius = 35 as Number;
-        private var _arcWidth = 9 as Number;
-        private var _arcSection = 10 as Number;
+        private var _arcRadius = 35;
+        private var _arcWidth = 9;
+        private var _arcSection = 10;
 
-        private var _arcParts = 6 as Number;
-        private var _arcPartSeparatorWidth = 5 as Number;
+        private var _arcParts = 6;
+        private var _arcPartSeparatorWidth = 5;
 
         private var _arc = null as Helper.Gfx.DrawArc;
 
         private var _Font = null as FontResource;
-        private var _FontHeight = 1 as Number;
+        private var _FontHeight = 1;
         private var _hasBatteryInDays = false;
 
-        private var _BatteryDays = "d" as String;
+        private var _BatteryDays = "d";
 
-        private var _initialized = false as Boolean;
+        private var _initialized = false;
 
         function initialize(params as Dictionary) 
         {
