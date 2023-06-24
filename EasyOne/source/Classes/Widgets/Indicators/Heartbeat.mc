@@ -38,7 +38,7 @@ module Widgets
                 var indicatorcolor = color;
                 if (heartrate > 0)
                 {
-                    color = self._Widget._theme.MainTextColor;
+                    color = self._Widget._theme.MainTextColor2;
                     iconcolor = self._Widget._theme.HealthHeartIconColor;
                     indicatorcolor = self._Widget.IndicatorColors[0];
                     if (self.HeartbeatZones.size() > 1)

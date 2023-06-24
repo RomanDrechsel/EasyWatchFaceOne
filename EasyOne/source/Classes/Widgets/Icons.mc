@@ -36,7 +36,7 @@ module Widgets
                 else if (self.Justification == WIDGET_JUSTIFICATION_CENTER)
                 {
                     var width = self._BTWidth + self._MsgWidth + self._Padding;
-                    self.locX = self.locX - (width / 2);
+                    self.locX = self.locX - (width / 2) + 10;
                 }
 
                 self.locY += 10;

@@ -3,6 +3,7 @@ module Themes
     class DarkBlue extends ThemeSettingsBase
     {
         var MainTextColor = 0x73b9e0;
+        var MainTextColor2 = 0x73b9e0;
 
         //Background
         var BackgroundImage = Rez.Drawables.BackgroundImageDark;

@@ -30,9 +30,9 @@
     <string id="SettingsLayoutWidgetHealth">Health monitor</string>
     <string id="SettingsLayoutDecolines">Show decoration-lines in the corners</string>
     
-    <string id="ThemeDarkBlue">Blue</string>
+    <string id="ThemeDarkBlue">Dark Blue</string>
     <string id="ThemeFire">Fire &amp; Ice</string>
-    <string id="ThemeSummer">Summer</string>
+    <string id="ThemeSunset">Sunset</string>
 
     <string id="ShortMonday">Mon</string>
     <string id="ShortTuesday">Tue</string>

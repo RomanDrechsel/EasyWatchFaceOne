@@ -22,7 +22,7 @@ module Themes
                         self._theme = new Fire();
                         break;
                     case 2:
-                        self._theme = new Summer();
+                        self._theme = new Sunset();
                         break;
                 }
             }

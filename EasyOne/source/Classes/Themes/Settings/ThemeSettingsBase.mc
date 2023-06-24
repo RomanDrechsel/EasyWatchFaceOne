@@ -6,20 +6,21 @@ module Themes
     {
         //Global
         var MainTextColor = 0x3dd33a;
+        var MainTextColor2 = 0x3dd33a;
 
         //Background
-        var BackgroundColor = 0 as Number;
-        var BackgroundImage = -1 as Number;
+        var BackgroundColor = 0;
+        var BackgroundImage = -1;
 
         //Clock Widget
-        var ClockHourColor = 0xFFFFFF as Number;
-        var ClockMinutesColor = 0xFFFFFF as Number;
-        var ClockSecondsColor = 0xFFFFFF as Number;
+        var ClockHourColor = 0xFFFFFF;
+        var ClockMinutesColor = 0xFFFFFF;
+        var ClockSecondsColor = 0xFFFFFF;
 
         //Date Widget
-        var DateWeekdayColor = 0xFFFFFF as Number;
-        var DateDayColor = 0xFFFFFF as Number;
-        var DateYearColor = 0xFFFFFF as Number;
+        var DateWeekdayColor = 0xFFFFFF;
+        var DateDayColor = 0xFFFFFF;
+        var DateYearColor = 0xFFFFFF;
 
         //Battery Widget
         var BatteryIndicatorBackgroundColor = 0x535353;
