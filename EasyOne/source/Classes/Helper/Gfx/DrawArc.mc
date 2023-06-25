@@ -35,7 +35,7 @@ module Helper
                     percent = percent.toFloat();
                 }
                 
-                var length = self.LengthDeg * (percent / 100) as Float;
+                var length = self.LengthDeg * (percent / 100.0) as Float;
                 if (self.Direction == Gfx.ARC_COUNTER_CLOCKWISE)
                 {
                     length *= -1;
@@ -80,6 +80,11 @@ module Helper
                             {
                                 partend = end;
                             }
+                        }
+
+                        if (deg.toNumber() == partend.toNumber())
+                        {
+                            continue;
                         }
                         
                         dc.drawArc(self.locX, self.locY, self.Radius, self.Direction, deg, partend);
