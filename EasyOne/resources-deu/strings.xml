@@ -5,6 +5,7 @@
 
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
+    <string id="SettingsWidgetClockLeadingZero">Zeige führende Null bei der Uhrzeit</string>
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
     
     <string id="SettingsStressWarningLevel">Warnung bei Stress-Level</string>

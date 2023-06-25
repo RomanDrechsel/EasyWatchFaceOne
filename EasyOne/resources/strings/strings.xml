@@ -7,10 +7,11 @@
 
     <string id="SettingsTheme">Theme</string>
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
-    <string id="SettingsWidgetBatteryShowDays">Show remaining battery charge in days, if available.</string>
+    <string id="SettingsWidgetClockLeadingZero">Display leading zero at time</string>
+    <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
 
-    <string id="SettingsShowStressAge">Show age of stress data</string>
-    <string id="SettingsShowStepsPercent">Show percentage of steps goal</string>
+    <string id="SettingsShowStressAge">Display age of stress data</string>
+    <string id="SettingsShowStepsPercent">Display percentage of steps goal</string>
     
     <string id="SettingsStressWarningLevel">Stress Warning Level</string>
     <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>

@@ -14,9 +14,21 @@ module Widgets
         private var _sec_posY = null as Number;
         private var _amp_posY = null as Number;
 
+        private var _showLeadingZero = true;
+
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
+
+            var setting = Application.Properties.getValue("ClockLeadingZero") as Number;
+            if (setting != null && setting <= 0)
+            {
+                self._showLeadingZero = false;
+            }
+            else
+            {
+                self._showLeadingZero = true;
+            }
         }
 
         function draw(dc as Gfx.Dc) as Void 
@@ -50,16 +62,32 @@ module Widgets
             var ampm = "";
             if (System.getDeviceSettings().is24Hour == false)
             {
-                if (hour < 12)
+                if (hour == 0)
                 {
+                    h = 12;
                     ampm = "AM";
-                    h = hour;//no leading 0
+                }
+                else if (hour < 12)
+                {
+                    h = hour;
+                    ampm = "AM";
+                }
+                else if (hour == 12)
+                {
+                    h = 12;
+                    ampm = "PM";
                 }
                 else
                 {
+                    h = hour - 12;
+                    hour -= 12;
                     ampm = "PM";
                 }
-                hour %= 12;
+
+                if (self._showLeadingZero == true && hour > 0 && hour < 10)
+                {
+                    h = "0" + h;
+                }
             }           
             dc.setColor(self._theme.ClockHourColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._hours_pos, self.locY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);

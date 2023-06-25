@@ -61,6 +61,12 @@
     </group>
 
     <group id="groupWidgets" title="@Strings.SettingsgroupWidgetsTitle">
+        <setting propertyKey="@Properties.ClockLeadingZero" title="@Strings.SettingsWidgetClockLeadingZero">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
         <setting propertyKey="@Properties.WidgetBatteryShowDays" title="@Strings.SettingsWidgetBatteryShowDays">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>

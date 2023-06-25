@@ -2,6 +2,8 @@
 
     <property type="number" id="Theme">0</property>
 
+    <property type="number" id="ClockLeadingZero">1</property>
+    <property type="number" id="WidgetBatteryShowDays">1</property>
     <property type="number" id="WidgetBatteryShowDays">1</property>
     <property type="number" id="StressWarningLevel">85</property>
     <property type="number" id="WarningRespirationRate">25</property>
