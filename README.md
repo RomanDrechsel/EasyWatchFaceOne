@@ -1,4 +1,4 @@
-![Screenshot](/Assets/Images/Screenshots/Title.jpg)
+<img src="/Assets/Images/Screenshots/Title.jpg" width="300" />
 
 Da ich kein passendes Watchface gefunden habe, hab ich mir kurzerhand selbst eins erstellt.
 
