@@ -4,18 +4,14 @@ Da ich kein passendes Watchface gefunden habe, hab ich mir kurzerhand selbst ein
 
 ### Assets
 **Background-Images stammen von:**
-> *GarryKillian on Freepik*\
-> https://www.freepik.com/free-vector/abstract-vector-red-mesh-background-chaotically-connected-points-polygons-flying-space-flying-debris-futuristic-technology-style-card-lines-points-circles-planes-futuristic-design_1283661.htm
+> <a href="https://www.freepik.com/free-vector/abstract-vector-red-mesh-background-chaotically-connected-points-polygons-flying-space-flying-debris-futuristic-technology-style-card-lines-points-circles-planes-futuristic-design_1283661.htm" target="_blank" rel="noopener">GarryKillian on Freepik</a>\
+> <a href="https://www.freepik.com/free-vector/blurred-summer-background_900446.htm" target="_blank" rel="noopener">drawnhy97 on Freepik</a>
 
-> *drawnhy97 on Freepik*\
-> https://www.freepik.com/free-vector/blurred-summer-background_900446.htm
-
-Sowie selbst erstellt.
+Sie wurden leicht verändert und teilweise selbst erstellt.
 
 **Fonts stammen von:**
-> [Komikazoom](https://www.dafont.com/komikazoom.font)
-
-> [Roboto](https://www.dafont.com/roboto.font)
+> <a href="https://www.dafont.com/komikazoom.font" target="_blank">Komikazoom</a>\
+> <a href="https://www.dafont.com/roboto.font" target="_blank">Roboto</a>
 
 Sowie ebenfalls selbst erstellt.
 
