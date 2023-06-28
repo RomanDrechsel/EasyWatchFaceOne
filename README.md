@@ -1,6 +1,7 @@
-<img src="/Assets/Images/Screenshots/Title.jpg" width="300" />
+<a href="https://apps.garmin.com/en-US/apps/ecf7eede-95f5-4f02-8ec5-0caa6cd3e60c" target="_blank"><img src="/Assets/Images/Screenshots/Title.jpg" width="300" /></a>
 
 Da ich kein passendes Watchface gefunden habe, hab ich mir kurzerhand selbst eins erstellt.
+<a href="https://apps.garmin.com/en-US/apps/ecf7eede-95f5-4f02-8ec5-0caa6cd3e60c" target="_blank">Garmin Connect IQ Store</a>
 
 ### Assets
 **Background-Images stammen von:**
