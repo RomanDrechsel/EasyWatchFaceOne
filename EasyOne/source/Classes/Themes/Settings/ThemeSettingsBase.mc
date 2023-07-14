@@ -60,6 +60,5 @@ module Themes
         var HealthHeartIconColor = 0xfa0000;
         var HealthStressIconColor = 0xf7fa00;
         var HealthBreathIconColor = 0x0fcbc9;
-
     }
 }

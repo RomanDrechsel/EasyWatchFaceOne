@@ -19,13 +19,16 @@ Sowie ebenfalls selbst erstellt.
 Alle Icons sind selbst erstellt.
 
 ### Beschreibung
-Das Watchface enthällt 3 verschiedene Themes und die Positionen und einige Einstellungen der Widgets können angepasst werden.\
+Das Watchface enthällt 5 verschiedene Themes und die Positionen und einige Einstellungen der Widgets können angepasst werden.\
+Ausserdem kann zusätzlich die Hintergrundfarbe angepasst werden.\
 Es wurde für Garmin Venu® Sq 2 und Garmin Venu® Sq 2 Music entwickelt
 
 ### Screenshots
 ![DarkBlue](/Assets/Images/Screenshots/1.jpg)
 ![Fire](/Assets/Images/Screenshots/2.jpg)
 ![Sunset](/Assets/Images/Screenshots/3.jpg)
+![Black &amp; White](/Assets/Images/Screenshots/bw.jpg)
+![Blue Screen of Death](/Assets/Images/Screenshots/bsod.jpg)
 \
 
 Wenn euch das WatchFace gefällt, könnt ihr mich unterstützen

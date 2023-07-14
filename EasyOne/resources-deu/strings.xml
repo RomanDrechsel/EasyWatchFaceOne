@@ -4,6 +4,24 @@
     <string id="No">Nein</string> 
 
     <string id="SettingsTheme">Theme</string>
+
+    <string id="SettingThemeBackground">Hintergrund</string>
+    <string id="SettingThemeBackgroundResource">Ressource</string>
+    <string id="SettingThemeBackgroundColor">Farbe</string>
+    <string id="SettingThemeBackgroundTheme">Theme Hintergrund</string>
+    <string id="SettingThemeBackgroundSystem">System-Hintergrundfarbe</string>
+    <string id="SettingThemeBackgroundFixedColorSelect">feste Farbe verwenden</string>
+    <string id="SettingThemeBackgroundFixedColor">Welche feste Farbe verwenden</string>
+    <string id="SettingThemeBackgroundPredefinedSelect">vordefinierte Farbe</string>
+    <string id="SettingThemeBackgroundPredefined">Vordefinierte Farbe</string>
+    <string id="SettingThemeBackgroundColorBlack">Schwarz</string>
+    <string id="SettingThemeBackgroundColorDarkGrey">Dukelgrau</string>
+    <string id="SettingThemeBackgroundColorVeryDark">Sehr Dunkel</string>
+    <string id="SettingThemeBackgroundColorDarkRed">Dunkelrot</string>
+    <string id="SettingThemeBackgroundColorDarkBlue">Dunkelblau</string>
+    <string id="SettingThemeBackgroundColorBlue">Blau</string>
+    <string id="SettingThemeBackgroundColorCustom">benutzerdefinierte Farbe (HEX Format)</string>
+
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
     <string id="SettingsWidgetClockLeadingZero">Zeige führende Null bei der Uhrzeit</string>
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
@@ -32,6 +50,8 @@
     <string id="ThemeDarkBlue">Dunkelblau</string>
     <string id="ThemeFire">Feuer &amp; Eis</string>
     <string id="ThemeSunset">Sonnenuntergang</string>
+    <string id="ThemeBSoD">Blue Screen of Death</string>
+    <string id="ThemeBaW">Schwarz-Weiß</string>
 
     <string id="ShortMonday">Mo</string>
     <string id="ShortTuesday">Di</string>

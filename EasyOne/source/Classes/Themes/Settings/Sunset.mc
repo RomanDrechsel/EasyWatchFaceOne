@@ -2,21 +2,21 @@ module Themes
 {
     class Sunset extends ThemeSettingsBase
     {
-        var MainTextColor = 0xBF5E49;
-        var MainTextColor2 = 0xE1B27C;
+        var MainTextColor = 0xd77d00;
+        var MainTextColor2 = 0xeb9633;
 
         //Background
         var BackgroundImage = Rez.Drawables.BackgroundImageSunset;
 
         //Clock Widget
-        var ClockHourColor = 0x0BCCE6;
-        var ClockMinutesColor = 0x33BFDE;
+        var ClockHourColor = 0x56def0;
+        var ClockMinutesColor = 0x3ebcd7;
         var ClockSecondsColor = 0x0DE4FF;
 
         //Date Widget
-        var DateWeekdayColor = 0x0DE4FF;
-        var DateDayColor = 0x33BFDE;
-        var DateYearColor = 0x0BCCE6;
+        var DateWeekdayColor = 0x09b0c7;
+        var DateDayColor = 0x13c1d9;
+        var DateYearColor = 0x09b0c7;
 
         //Battery Widget
         var BatteryIndicatorFullColor = 0x12960f;

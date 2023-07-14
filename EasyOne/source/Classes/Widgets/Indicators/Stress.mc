@@ -123,7 +123,7 @@ module Widgets
 
                     if (stress >= self._Widget.StressWarningLevel)
                     {
-                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                        self._Widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY);
                     }
                     else
                     {

@@ -5,8 +5,45 @@
             <listEntry value="0">@Strings.ThemeDarkBlue</listEntry>
             <listEntry value="1">@Strings.ThemeFire</listEntry>
             <listEntry value="2">@Strings.ThemeSunset</listEntry>
+            <listEntry value="3">@Strings.ThemeBaW</listEntry>
+            <listEntry value="666">@Strings.ThemeBSoD</listEntry>
         </settingConfig>
     </setting>
+
+    <group id="groupBackground" title="@Strings.SettingThemeBackground">
+        <setting propertyKey="@Properties.Background" title="@Strings.SettingThemeBackgroundResource">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingThemeBackgroundTheme</listEntry>
+                <listEntry value="1">@Strings.SettingThemeBackgroundSystem</listEntry>
+                <listEntry value="2">@Strings.SettingThemeBackgroundFixedColorSelect</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BackgroundColorType" title="@Strings.SettingThemeBackgroundFixedColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingThemeBackgroundPredefinedSelect</listEntry>
+                <listEntry value="1">@Strings.SettingThemeBackgroundColorCustom</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BackgroundColorPredefined" title="@Strings.SettingThemeBackgroundPredefined">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SettingThemeBackgroundColorBlack</listEntry>
+                <listEntry value="1">DarkSlateGrey</listEntry>
+                <listEntry value="2">@Strings.SettingThemeBackgroundColorDarkGrey</listEntry>
+                <listEntry value="3">@Strings.SettingThemeBackgroundColorVeryDark</listEntry>
+                <listEntry value="4">@Strings.SettingThemeBackgroundColorDarkRed</listEntry>
+                <listEntry value="5">@Strings.SettingThemeBackgroundColorDarkBlue</listEntry>
+                <listEntry value="6">@Strings.SettingThemeBackgroundColorBlue</listEntry>
+                <listEntry value="666">@Strings.ThemeBSoD</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BackgroundColorCustom" title="@Strings.SettingThemeBackgroundColorCustom">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+    </group>
+
 
     <group id="groupLayout" title="@Strings.SettingsLayout">
         <setting propertyKey="@Properties.WidgetTopLeft" title="@Strings.SettingsLayoutTL">

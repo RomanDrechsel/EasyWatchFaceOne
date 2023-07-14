@@ -24,6 +24,12 @@ module Themes
                     case 2:
                         self._theme = new Sunset();
                         break;
+                    case 3:
+                        self._theme = new BlackAndWhite();
+                        break;
+                    case 666:
+                        self._theme = new BSoD();
+                        break;
                 }
             }
 

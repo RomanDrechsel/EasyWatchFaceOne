@@ -1,6 +1,10 @@
 <properties>
 
     <property type="number" id="Theme">0</property>
+    <property type="number" id="Background">0</property>
+    <property type="number" id="BackgroundColorType">0</property>
+    <property type="number" id="BackgroundColorPredefined">0</property>
+    <property type="string" id="BackgroundColorCustom">#000000</property>
 
     <property type="number" id="ClockLeadingZero">1</property>
     <property type="number" id="WidgetBatteryShowDays">1</property>

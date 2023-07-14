@@ -100,6 +100,12 @@ module Widgets
         {
             var info = ActivityMonitor.getInfo();
 
+            //for screenshots :)
+            /*info.calories = 2586;
+            info.distance = 1187000;
+            info.steps = 5687;
+            info.stepGoal = 6500;*/
+
             self._drawYpos = self._startdrawYpos;
 
             self.drawCalories(dc, info);
@@ -109,7 +115,7 @@ module Widgets
         }
 
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {
+        {            
             dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
@@ -122,7 +128,7 @@ module Widgets
         }
 
         private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {
+        {            
             var str = "";
             if (self._inMiles == true)
             {
@@ -144,7 +150,7 @@ module Widgets
         }
 
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {
+        {            
             dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
