@@ -63,7 +63,7 @@ module Widgets
                     self.CalcPos(dc);
                 }
 
-                dc.setColor(self._theme.MainTextColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
                 dc.drawBitmap(self._iconPosX, self._iconPosY, self._currentWeatherIcon);
                 dc.drawText(self._tempPosX, self._tempPosY, self._font, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);

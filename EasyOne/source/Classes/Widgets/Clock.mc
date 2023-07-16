@@ -89,16 +89,17 @@ module Widgets
                     h = "0" + h;
                 }
             }           
-            dc.setColor(self._theme.ClockHourColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(Themes.Colors.TimeHour, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._hours_pos, self.locY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
-            dc.setColor(self._theme.ClockMinutesColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(Themes.Colors.TimeMinute, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._min_pos, self.locY, HGfx.Fonts.Minute, m, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
 
-            dc.setColor(self._theme.ClockSecondsColor, Gfx.COLOR_TRANSPARENT);
+            dc.setColor(Themes.Colors.TimeSecond, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._sec_posX, self._sec_posY, HGfx.Fonts.Seconds, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_LEFT);
 
             if (ampm.length() > 0)
             {
+                dc.setColor(Themes.Colors.TimeAMPM, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self._sec_posX, self._amp_posY, HGfx.Fonts.Seconds, ampm, Gfx.TEXT_JUSTIFY_LEFT);
             }
         }

@@ -39,8 +39,15 @@ module Widgets
                 var indicatorcolor = color;
                 if (breath > 0.0)
                 {
-                    color = self._Widget._theme.MainTextColor2;
-                    iconcolor = self._Widget._theme.HealthBreathIconColor;
+                    color = Themes.Colors.Text2;
+                    if (Themes.Colors.IconsInTextColor == true)
+                    {
+                        iconcolor = color;
+                    }
+                    else
+                    {
+                        iconcolor = self._Widget._theme.HealthBreathIconColor;
+                    }
                     indicatorcolor = self._Widget.IndicatorColors[0];
                     if (breath >= 20)
                     {

@@ -101,7 +101,6 @@ class WFBackground extends WatchUi.Drawable
                 //custom color
                 var customcolor = Application.Properties.getValue("BackgroundColorCustom") as String;
                 self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
-                debug(self._color);
 
                 if (self._color == null)
                 {

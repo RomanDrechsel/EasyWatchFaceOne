@@ -49,8 +49,15 @@ module Widgets
                 var indicatorcolor = color;
                 if (stress > 0.0)
                 {
-                    color = self._Widget._theme.MainTextColor2;
-                    iconcolor = self._Widget._theme.HealthStressIconColor;
+                    color = Themes.Colors.Text2;
+                    if (Themes.Colors.IconsInTextColor == true)
+                    {
+                        iconcolor = color;
+                    }
+                    else
+                    {
+                        iconcolor = self._Widget._theme.HealthStressIconColor;
+                    }
                     indicatorcolor = self._Widget.IndicatorColors[0];
                     if (stress >= 60)
                     {

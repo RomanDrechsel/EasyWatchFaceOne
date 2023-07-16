@@ -115,12 +115,20 @@ module Widgets
         }
 
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {            
-            dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
+        {
+            if (Themes.Colors.IconsInTextColor == true)
+            {
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+            }
+            else
+            {
+                dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
+            }
+           
             dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
-                dc.setColor(self._theme.MainTextColor2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
             }
 
@@ -138,11 +146,20 @@ module Widgets
             {
                 str = self.FormatMeters(info.distance);
             }
-            dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
+
+            if (Themes.Colors.IconsInTextColor == true)
+            {
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+            }
+            else
+            {
+                dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
+            }
+
             dc.drawText(self._iconPosX, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
-                dc.setColor(self._theme.MainTextColor2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
             }
 
@@ -150,14 +167,22 @@ module Widgets
         }
 
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {            
-            dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
+        {
+            if (Themes.Colors.IconsInTextColor == true)
+            {
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+            }
+            else
+            {
+                dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
+            }
+           
             dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 var amount = info.steps.toFloat() / info.stepGoal.toFloat();
 
-                dc.setColor(self._theme.MainTextColor2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
                 {   
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);                 

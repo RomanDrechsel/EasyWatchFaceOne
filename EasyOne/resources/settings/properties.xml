@@ -6,6 +6,17 @@
     <property type="number" id="BackgroundColorPredefined">0</property>
     <property type="string" id="BackgroundColorCustom">#000000</property>
 
+    <property type="number" id="CustomColors">0</property>
+    <property type="string" id="TextColor">#FFFFFF</property>
+    <property type="string" id="DateColorWeekday">#FFFFFF</property>
+    <property type="string" id="DateColorDay">#FFFFFF</property>
+    <property type="string" id="DateColorYear">#FFFFFF</property>
+    <property type="string" id="TimeColorHours">#FFFFFF</property>
+    <property type="string" id="TimeColorMinutes">#FFFFFF</property>
+    <property type="string" id="TimeColorSeconds">#FFFFFF</property>
+    <property type="string" id="TimeColorAMPM">#FFFFFF</property>
+    <property type="number" id="IconsInTextColor">0</property>
+
     <property type="number" id="ClockLeadingZero">1</property>
     <property type="number" id="WidgetBatteryShowDays">1</property>
     <property type="number" id="WidgetBatteryShowDays">1</property>

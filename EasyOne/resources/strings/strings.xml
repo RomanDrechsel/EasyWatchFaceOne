@@ -7,7 +7,7 @@
 
     <string id="SettingsTheme">Theme</string>
 
-    <string id="SettingThemeBackground">Background</string>
+    <string id="SettingThemeBackground">Customize background</string>
     <string id="SettingThemeBackgroundResource">Resource</string>
     <string id="SettingThemeBackgroundColor">Background Color</string>
     <string id="SettingThemeBackgroundTheme">theme background</string>
@@ -23,6 +23,20 @@
     <string id="SettingThemeBackgroundColorDarkBlue">DarkBlue</string>
     <string id="SettingThemeBackgroundColorBlue">Blue</string>
     <string id="SettingThemeBackgroundColorCustom">Custom color (HEX format)</string>
+
+    <string id="SettingsColors">Customize colors</string>
+    <string id="SettingsColorsCustomize">Use custom colors? (HEX format)</string>
+    <string id="SettingsColorsText">Text color</string>
+
+    <string id="SettingsColorsDateColorWeekday">Date color: day of week</string>
+    <string id="SettingsColorsDateColorDay">Date color: day of the month / month</string>
+    <string id="SettingsColorsDateColorYear">Date color: year</string>
+
+    <string id="SettingsColorsTimeHours">Time color: hour</string>
+    <string id="SettingsColorsTimeMinute">Time color: minute</string>
+    <string id="SettingsColorsTimeSecond">Time color: second</string>
+    <string id="SettingsColorsTimeAMPM">Time color: am / pm</string>
+    <string id="SettingsColorsIcons">Icons in text color</string>
 
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetClockLeadingZero">Display leading zero at time</string>

@@ -44,6 +44,53 @@
         </setting>
     </group>
 
+    <group id="groupColors" title="@Strings.SettingsColors">
+        <setting propertyKey="@Properties.CustomColors" title="@Strings.SettingsColorsCustomize">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.No</listEntry>
+                <listEntry value="1">@Strings.Yes</listEntry>                
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.TextColor" title="@Strings.SettingsColorsText">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.DateColorWeekday" title="@Strings.SettingsColorsDateColorWeekday">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.DateColorDay" title="@Strings.SettingsColorsDateColorDay">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.DateColorYear" title="@Strings.SettingsColorsDateColorYear">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.TimeColorHours" title="@Strings.SettingsColorsTimeHours">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.TimeColorMinutes" title="@Strings.SettingsColorsTimeMinute">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.TimeColorSeconds" title="@Strings.SettingsColorsTimeSecond">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.TimeColorAMPM" title="@Strings.SettingsColorsTimeAMPM">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.IconsInTextColor" title="@Strings.SettingsColorsIcons">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.No</listEntry>
+                <listEntry value="1">@Strings.Yes</listEntry>                
+            </settingConfig>
+        </setting>
+    </group>
 
     <group id="groupLayout" title="@Strings.SettingsLayout">
         <setting propertyKey="@Properties.WidgetTopLeft" title="@Strings.SettingsLayoutTL">

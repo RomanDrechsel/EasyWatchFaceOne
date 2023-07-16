@@ -21,7 +21,7 @@ Alle Icons sind selbst erstellt.
 
 ### Beschreibung
 Das Watchface enthällt 5 verschiedene Themes und die Positionen und einige Einstellungen der Widgets können angepasst werden.\
-Ausserdem kann zusätzlich die Hintergrundfarbe angepasst werden.\
+Ausserdem können zusätzlich die Hintergrund- und Textfarben angepasst werden.\
 Es wurde für Garmin Venu® Sq 2 und Garmin Venu® Sq 2 Music entwickelt
 
 ### Screenshots

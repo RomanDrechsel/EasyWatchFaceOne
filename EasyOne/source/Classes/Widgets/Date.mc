@@ -19,9 +19,9 @@ module Widgets
             WidgetBase.initialize(params);
 
             self._textContainer = new ExtText(self.locX, self.locY, ExtText.HJUST_CENTER, ExtText.VJUST_CENTER);
-            self._Texts[0] = new ExtTextPart("", self._theme.DateWeekdayColor, HGfx.Fonts.Date);
-            self._Texts[1] = new ExtTextPart("", self._theme.DateDayColor, HGfx.Fonts.Date);
-            self._Texts[2] = new ExtTextPart("", self._theme.DateYearColor, HGfx.Fonts.Date);
+            self._Texts[0] = new ExtTextPart("", Themes.Colors.DateWeekday, HGfx.Fonts.Date);
+            self._Texts[1] = new ExtTextPart("", Themes.Colors.DateDay, HGfx.Fonts.Date);
+            self._Texts[2] = new ExtTextPart("", Themes.Colors.DateYear, HGfx.Fonts.Date);
         }
 
         function draw(dc as Gfx.Dc)

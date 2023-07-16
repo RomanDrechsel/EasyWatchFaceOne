@@ -14,8 +14,9 @@ class WFApp extends Application.AppBase
     }
 
     // onStart() is called on application start up
-    function onStart(state as Dictionary?) as Void {
-
+    function onStart(state as Dictionary?) as Void 
+    {
+        Themes.Colors.ResetColors();
     }
 
     // onStop() is called when your application is exiting
@@ -31,6 +32,7 @@ class WFApp extends Application.AppBase
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
         Themes.ThemesLoader.ResetTheme();
+        Themes.Colors.ResetColors();
         
         if (self.OnSettings.size() > 0)
         {
