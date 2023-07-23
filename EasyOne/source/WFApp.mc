@@ -2,15 +2,23 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
+import Toybox.System;
 
 class WFApp extends Application.AppBase 
 {
     var WatchfaceView = null as WFView;
-
     var OnSettings = [] as Array<Method>;
 
-    function initialize() {
+    var ScreenWidth = 240;
+    var ScreenHeight = 240;
+
+    function initialize() 
+    {
         AppBase.initialize();
+
+        var settings = System.getDeviceSettings() as DeviceSettings;
+        self.ScreenWidth = settings.screenWidth;
+        self.ScreenHeight = settings.screenHeight;
     }
 
     // onStart() is called on application start up
@@ -61,7 +69,17 @@ function getTheme() as Themes.ThemeSettingsBase
     return Themes.ThemesLoader.getTheme();
 }
 
-function debug(text) 
+function IsSmallDisplay() as Boolean
 {
-    Toybox.System.println(text);
+    return getApp().ScreenWidth <= 240;
+}
+
+function getScreenWidth() as Number
+{
+    return getApp().ScreenWidth;
+}
+
+function getScreenHeight() as Number
+{
+    return getApp().ScreenHeight;
 }
