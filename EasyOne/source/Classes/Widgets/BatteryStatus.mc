@@ -12,6 +12,7 @@ module Widgets
 
         private var _arcRadius = 35;
         private var _arcWidth = 9;
+        private var _arcSection = 10;
 
         private var _arcParts = 6;
         private var _arcPartSeparatorWidth = 5;
@@ -29,13 +30,6 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-            if (IsSmallDisplay())
-            {
-                self._arcRadius *= .7;
-                self._arcWidth = 6;
-                self._arcPartSeparatorWidth = 3;
-            }
-
             self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
             var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
             if (showdays != null && showdays <= 0)
@@ -52,8 +46,6 @@ module Widgets
             {
                 self._Font = HGfx.Fonts.Small;
             }
-
-            
         }
 
         function draw(dc as Gfx.Dc) as Void 
@@ -71,11 +63,11 @@ module Widgets
             var battery = stats.battery;
             var color = self._theme.BatteryIndicatorFullColor;
 
-            if (stats.battery < 20.0 || (self._hasBatteryInDays && stats.batteryInDays < 1.0))
+            if (stats.battery < 20.0 || stats.batteryInDays < 1.0)
             {
                 color = self._theme.BatteryIndicatorLowColor;
             }
-            else if (stats.battery < 40.0 || (self._hasBatteryInDays && stats.batteryInDays < 2.0))
+            else if (stats.battery < 40.0 || stats.batteryInDays < 2.0)
             {
                 color = self._theme.BatteryIndicatorHalfColor;
             }
