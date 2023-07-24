@@ -21,17 +21,19 @@ module Helper
                 self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteFont);
                 self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondsFont);
                 self.Date = WatchUi.loadResource(Rez.Fonts.DateFont);
+
+                self.Small = WatchUi.loadResource(Rez.Fonts.Small);
                 if (IsSmallDisplay())
                 {
                     self.Normal = Graphics.FONT_XTINY;
+                    self.Tiny = null;
                 }
                 else
                 {
                     self.Normal = Graphics.FONT_TINY;
-                }
-                
-                self.Small = WatchUi.loadResource(Rez.Fonts.Small);
-                self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
+                    self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
+                }                
+                //self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
         }

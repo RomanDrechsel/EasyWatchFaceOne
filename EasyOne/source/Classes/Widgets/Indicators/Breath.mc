@@ -107,6 +107,7 @@ module Widgets
 
             static function getBreath() as Number
             {
+                return 55;
                 var info = Toybox.ActivityMonitor.getInfo();
                 if (info != null && info.respirationRate != null && info.respirationRate > 0)
                 {

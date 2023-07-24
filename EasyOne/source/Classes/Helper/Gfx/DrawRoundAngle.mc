@@ -17,7 +17,7 @@ module Helper
 
             var BackgroundColor = 0;
             var BarColors = [] as Array<Number>;
-            var DotRadius = 5 ;
+            var DotRadius = 5;
 
             var Thickness = 4; 
             var ThicknessBold = 6;
@@ -36,6 +36,7 @@ module Helper
                 {
                     self.Thickness = 2;
                     self.ThicknessBold = 4;
+                    self.DotRadius = 4;
                     angleradius *= .66666 as Number;
                 }
 

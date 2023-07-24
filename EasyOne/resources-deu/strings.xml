@@ -8,7 +8,7 @@
     <string id="SettingThemeBackground">Hintergrund anpassen</string>
     <string id="SettingThemeBackgroundResource">Ressource</string>
     <string id="SettingThemeBackgroundColor">Farbe</string>
-    <string id="SettingThemeBackgroundTheme">Theme Hintergrund</string>
+   
     <string id="SettingThemeBackgroundSystem">System-Hintergrundfarbe</string>
     <string id="SettingThemeBackgroundFixedColorSelect">feste Farbe verwenden</string>
     <string id="SettingThemeBackgroundFixedColor">Welche feste Farbe verwenden</string>
@@ -38,26 +38,10 @@
 
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
     <string id="SettingsWidgetClockLeadingZero">Zeige führende Null bei der Uhrzeit</string>
-    <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
+    <string id="SettingsShowStepsPercent">Prozentsatz des Schrittziels anzeigen</string>
     
     <string id="SettingsStressWarningLevel">Warnung bei Stress-Level</string>
     <string id="SettingsRespirationRateWarningLevel">Warnung ab Atemzüge pro Minute</string>
-    <string id="SettingsShowStressAge">Alter des Stress-Levels anzeigen</string>
-    <string id="SettingsShowStepsPercent">Prozentsatz des Schrittziels anzeigen</string>
-
-    <string id="SettingsLayout">Widget Anordnung</string>
-    <string id="SettingsLayoutTL">Obere linke Ecke</string>
-    <string id="SettingsLayoutTC">Oberer mittlerer Rand</string>
-    <string id="SettingsLayoutTR">Obere rechte Ecke</string>
-    <string id="SettingsLayoutBL">Untere linke Ecke</string>
-    <string id="SettingsLayoutBR">Untere rechte Ecke</string>
-
-    <string id="SettingsLayoutWidgetEmpty">Leer</string>
-    <string id="SettingsLayoutWidgetBattery">Batterie Status</string>
-    <string id="SettingsLayoutWidgetWeather">Wetter</string>
-    <string id="SettingsLayoutWidgetIcons">Symbole</string>
-    <string id="SettingsLayoutWidgetDistance">Tägliche Bewegung</string>
-    <string id="SettingsLayoutWidgetHealth">Vitalparameter</string>
 
     <string id="SettingsLayoutDecolines">Deko-Linien in den Ecken anzeigen</string>
 
@@ -87,7 +71,5 @@
     <string id="ShortOctober">Okt</string>
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dez</string>
-
-    <string id="ShortBatteryDays">T</string>
 
 </strings>

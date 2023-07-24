@@ -36,9 +36,16 @@ module Widgets
                 self._arcPartSeparatorWidth = 3;
             }
 
-            self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
-            var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
-            if (showdays != null && showdays <= 0)
+            if (!IsSmallDisplay())
+            {
+                self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
+                var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
+                if (showdays != null && showdays <= 0)
+                {
+                    self._hasBatteryInDays = false;
+                }
+            }
+            else
             {
                 self._hasBatteryInDays = false;
             }
@@ -51,9 +58,7 @@ module Widgets
             else
             {
                 self._Font = HGfx.Fonts.Small;
-            }
-
-            
+            } 
         }
 
         function draw(dc as Gfx.Dc) as Void 

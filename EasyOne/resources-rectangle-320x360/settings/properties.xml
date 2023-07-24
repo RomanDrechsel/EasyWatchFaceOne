@@ -1,0 +1,36 @@
+<properties>
+
+    <property type="number" id="Theme">0</property>
+    <property type="number" id="Background">0</property>
+    <property type="number" id="BackgroundColorType">0</property>
+    <property type="number" id="BackgroundColorPredefined">0</property>
+    <property type="string" id="BackgroundColorCustom">#000000</property>
+
+    <property type="number" id="CustomColors">0</property>
+    <property type="string" id="TextColor">#FFFFFF</property>
+    <property type="string" id="DateColorWeekday">#FFFFFF</property>
+    <property type="string" id="DateColorDay">#FFFFFF</property>
+    <property type="string" id="DateColorYear">#FFFFFF</property>
+    <property type="string" id="TimeColorHours">#FFFFFF</property>
+    <property type="string" id="TimeColorMinutes">#FFFFFF</property>
+    <property type="string" id="TimeColorSeconds">#FFFFFF</property>
+    <property type="string" id="TimeColorAMPM">#FFFFFF</property>
+    <property type="number" id="IconsInTextColor">0</property>
+
+    <property type="number" id="ClockLeadingZero">1</property>
+    <property type="number" id="WidgetBatteryShowDays">1</property>
+    <property type="number" id="WidgetBatteryShowDays">1</property>
+    <property type="number" id="StressWarningLevel">85</property>
+    <property type="number" id="WarningRespirationRate">25</property>
+    <property type="number" id="ShowStepsPercent">1</property>
+    <property type="number" id="ShowStressAge">1</property>
+
+    <property type="number" id="WidgetTopLeft">1</property>
+    <property type="number" id="WidgetTopCenter">2</property>
+    <property type="number" id="WidgetTopRight">3</property>
+    <property type="number" id="WidgetBottomLeft">1</property>
+    <property type="number" id="WidgetBottomRight">2</property>
+
+    <property type="number" id="ShowDecolines">1</property>
+
+</properties>

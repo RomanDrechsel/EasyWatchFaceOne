@@ -15,6 +15,11 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
+
+            if (IsSmallDisplay())
+            {
+                self._Padding = 8;
+            }
         }
 
         function draw(dc as Gfx.Dc) as Void 
@@ -58,9 +63,19 @@ module Widgets
                     msgstr = "9+";
                 }
 
+                var xOffset;
+                if (IsSmallDisplay())
+                {
+                    xOffset = 23;
+                }
+                else
+                {
+                    xOffset = 35;
+                }
+
                 dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self.locX, self.locY + 3, HGfx.Fonts.Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
-                dc.drawText(self.locX + 35, self.locY + 9, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX + xOffset, self.locY + 9, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {

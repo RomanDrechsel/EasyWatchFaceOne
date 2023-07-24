@@ -35,18 +35,42 @@ module Widgets
             {
                 var iconHeight = dc.getFontHeight(HGfx.Fonts.Icons);
                 var fontHeight = dc.getFontHeight(HGfx.Fonts.Small);
-                var centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
-                var centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
+
+                var centerX;
+                var centerY;
+                if (IsSmallDisplay())
+                {
+                    centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.0);
+                    centerY = self._Widget.locY + (self._Widget.WidgetHeight / 1.5);
+                }
+                else
+                {
+                    centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
+                    centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
+                }
 
                 if (self._Widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
                 {
-                    centerX += 20;
+                    if (IsSmallDisplay())
+                    {
+                        centerX += 5;
+                    }
+                    else
+                    {
+                        centerX += 20;
+                    }
                 }
 
                 self._iconPosX = centerX;
-                self._iconPosY = centerY - (iconHeight / 2) - 10;
                 self._textPosX = centerX;
-                self._textPosY = centerY + (fontHeight / 2) + 5;
+                self._iconPosY = centerY - (iconHeight / 2);
+                self._textPosY = centerY + (fontHeight / 2) - 5; 
+
+                if (!IsSmallDisplay())
+                {
+                    self._iconPosY -= 10;
+                    self._textPosY += 10;
+                }
 
                 self._initialized = true;
             }

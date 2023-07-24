@@ -4,6 +4,5 @@
     <font id="SecondsFont" filename="SecondsFont.fnt" antialias="true" />
     <font id="DateFont" filename="DateFont.fnt" antialias="true" />
     <font id="Small" filename="FontSmall.fnt" antialias="false" />
-    <font id="Tiny" filename="FontTiny.fnt" antialias="false" />
     <font id="Icons" filename="Icons.fnt" antialias="true" />
 </fonts>

@@ -1,0 +1,21 @@
+<strings>
+    <string id="SettingThemeBackgroundTheme">theme background</string>
+    <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
+    <string id="SettingsShowStressAge">Display age of stress data</string>
+    
+    <string id="SettingsLayout">Widget arrangement</string>
+    <string id="SettingsLayoutTL">Top left corner</string>
+    <string id="SettingsLayoutTC">Top center</string>
+    <string id="SettingsLayoutTR">Top right corner</string>
+    <string id="SettingsLayoutBL">Bottom left corner</string>
+    <string id="SettingsLayoutBR">Bottom right corner</string>
+
+    <string id="SettingsLayoutWidgetEmpty">Empty</string>
+    <string id="SettingsLayoutWidgetBattery">Battery Status</string>
+    <string id="SettingsLayoutWidgetWeather">Weather</string>
+    <string id="SettingsLayoutWidgetIcons">Icons</string>
+    <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
+    <string id="SettingsLayoutWidgetHealth">Health monitor</string>
+
+    <string id="ShortBatteryDays">d</string>
+</strings>

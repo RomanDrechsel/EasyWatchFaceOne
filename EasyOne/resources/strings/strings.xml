@@ -10,7 +10,7 @@
     <string id="SettingThemeBackground">Customize background</string>
     <string id="SettingThemeBackgroundResource">Resource</string>
     <string id="SettingThemeBackgroundColor">Background Color</string>
-    <string id="SettingThemeBackgroundTheme">theme background</string>
+    
     <string id="SettingThemeBackgroundSystem">system background color</string>
     <string id="SettingThemeBackgroundFixedColorSelect">use fixed color</string>
     <string id="SettingThemeBackgroundFixedColor">What fixed color to use</string>
@@ -40,27 +40,12 @@
 
     <string id="SettingsgroupWidgetsTitle">Widget settings</string>
     <string id="SettingsWidgetClockLeadingZero">Display leading zero at time</string>
-    <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
 
-    <string id="SettingsShowStressAge">Display age of stress data</string>
     <string id="SettingsShowStepsPercent">Display percentage of steps goal</string>
     
     <string id="SettingsStressWarningLevel">Stress Warning Level</string>
     <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>
 
-    <string id="SettingsLayout">Widget arrangement</string>
-    <string id="SettingsLayoutTL">Top left corner</string>
-    <string id="SettingsLayoutTC">Top center</string>
-    <string id="SettingsLayoutTR">Top right corner</string>
-    <string id="SettingsLayoutBL">Bottom left corner</string>
-    <string id="SettingsLayoutBR">Bottom right corner</string>
-
-    <string id="SettingsLayoutWidgetEmpty">Empty</string>
-    <string id="SettingsLayoutWidgetBattery">Battery Status</string>
-    <string id="SettingsLayoutWidgetWeather">Weather</string>
-    <string id="SettingsLayoutWidgetIcons">Icons</string>
-    <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
-    <string id="SettingsLayoutWidgetHealth">Health monitor</string>
     <string id="SettingsLayoutDecolines">Show decoration-lines in the corners</string>
     
     <string id="ThemeDarkBlue">Dark Blue</string>
@@ -89,7 +74,5 @@
     <string id="ShortOctober">Oct</string>
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dec</string>
-
-    <string id="ShortBatteryDays">d</string>
 
 </strings>

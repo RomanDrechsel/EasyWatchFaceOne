@@ -96,20 +96,38 @@ module Widgets
                             }
                         }
 
-                        if (self._texts.size() < 2)
+                        if (!IsSmallDisplay())
                         {
-                            self._texts = [
-                                new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
-                                new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Tiny)
-                            ];
-                            self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
+                            if (self._texts.size() < 2)
+                            {
+                                self._texts = [
+                                    new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
+                                    new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Tiny)
+                                ];
+                                self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
+                            }
+                            else
+                            {
+                                self._texts[0].Text = stress.toNumber().toString();
+                                self._texts[0].Color = color;
+                                self._texts[1].Text = datestr;
+                                self._texts[1].Color = color;
+                            }
                         }
                         else
                         {
-                            self._texts[0].Text = stress.toNumber().toString();
-                            self._texts[0].Color = color;
-                            self._texts[1].Text = datestr;
-                            self._texts[1].Color = color;                            
+                            //No datestr on small devices
+                            if (self._texts.size() < 1)
+                            {
+                                self._texts = [
+                                    new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
+                                ];
+                            }
+                            else
+                            {
+                                self._texts[0].Text = stress.toNumber().toString();
+                                self._texts[0].Color = color;                       
+                            }
                         }
                         var width = self._textContainer.draw(self._texts, dc);
                         if (self._sampleDelta != 0.0)
@@ -124,7 +142,17 @@ module Widgets
                                 icon = HGfx.ICONS_ARROWUP;
                             }
 
-                            dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + 10, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+                            var yOffset;
+                            if (IsSmallDisplay())
+                            {
+                                yOffset = 14;
+                            }
+                            else
+                            {
+                                yOffset = 10;
+                            }
+
+                            dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + yOffset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
                         }
                     }
 
