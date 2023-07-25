@@ -12,33 +12,33 @@
     </drawable>
 
     <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopLeft">
-        <param name="locX">3</param>
-        <param name="locY">3</param>
+        <param name="locX">2</param>
+        <param name="locY">2</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopLeftContainer" id="TopLeft">
-        <param name="locX">5</param>
-        <param name="locY">5</param>
+        <param name="locX">7</param>
+        <param name="locY">7</param>
         <param name="Just">"left"</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopCenterContainer" id="TopCenter">
         <param name="locX">dc.getWidth() / 2</param>
-        <param name="locY">5</param>
+        <param name="locY">7</param>
         <param name="Just">"center"</param>
     </drawable>
 
     <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
-        <param name="locX">dc.getWidth() - 15</param>
-        <param name="locY">5</param>
+        <param name="locX">dc.getWidth() - 17</param>
+        <param name="locY">7</param>
         <param name="Just">"right"</param>
     </drawable>
 
     <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopRight">
-        <param name="locX">dc.getWidth() - 3</param>
-        <param name="locY">3</param>
+        <param name="locX">dc.getWidth() - 2</param>
+        <param name="locY">2</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
         <param name="Just">"right"</param>
@@ -46,7 +46,7 @@
 
     <drawable class="DrawableContainers.BottomLeftContainer" id="BottomLeft">
         <param name="locX">3</param>
-        <param name="locY">dc.getHeight() - 3</param>
+        <param name="locY">dc.getHeight() - 4</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
         <param name="VJust">"bottom"</param>
@@ -54,7 +54,7 @@
 
     <drawable class="DrawableContainers.BottomRightContainer" id="BottomRight">
         <param name="locX">dc.getWidth() - 3</param>
-        <param name="locY">dc.getHeight() - 3</param>
+        <param name="locY">dc.getHeight() - 4</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
         <param name="VJust">"bottom"</param>

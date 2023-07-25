@@ -51,6 +51,13 @@ class WFBackground extends WatchUi.Drawable
         self._image = null;
 
         var bgResource = Application.Properties.getValue("Background") as Number;
+
+        if (IsSmallDisplay() && bgResource == 0)
+        {
+            //No background image doe to 
+            bgResource = 1;
+        }
+
         if (bgResource == 0)
         {
             //theme background

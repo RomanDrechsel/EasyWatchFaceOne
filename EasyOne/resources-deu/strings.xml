@@ -46,7 +46,6 @@
     <string id="SettingsLayoutDecolines">Deko-Linien in den Ecken anzeigen</string>
 
     <string id="ThemeDarkBlue">Dunkelblau</string>
-    <string id="ThemeFire">Feuer &amp; Eis</string>
     <string id="ThemeSunset">Sonnenuntergang</string>
     <string id="ThemeBSoD">Blue Screen of Death</string>
     <string id="ThemeBaW">Schwarz-Weiß</string>
@@ -71,5 +70,7 @@
     <string id="ShortOctober">Okt</string>
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dez</string>
+
+    <string id="ShortBatteryDays">T</string>
 
 </strings>

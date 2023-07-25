@@ -1,6 +1,6 @@
-using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.WatchUi;
+using Toybox.Graphics as Gfx;
 using Toybox.ActivityMonitor;
 using Toybox.Math;
 using Helper.Gfx as HGfx;
@@ -15,7 +15,6 @@ module Widgets
         private var _drawYpos as Number;
         private var _startdrawYpos as Number;
         private var _lineHeight = 33;
-        private var _iconWidth = 25;
         private var _iconPosX = self.locX;
         private var _textPosX = self.locX;
         private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
@@ -48,6 +47,13 @@ module Widgets
                 self.locY = self.locY - self._WidgetHeight;
             }
 
+            if (IsSmallDisplay())
+            {
+                self._indicatorPadding = 8;
+                self._indicatorVPadding = 8;
+                self._lineHeight = 22;
+            }
+
             self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
             self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
 
@@ -71,7 +77,14 @@ module Widgets
             {
                 self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
                 self._iconPosX = self.locX + self._indicatorDrawing.ThicknessBold + self._indicatorPadding;
-                self._textPosX = self._iconPosX + 35;
+                if (!IsSmallDisplay())
+                {
+                    self._textPosX = self._iconPosX + 35;
+                }
+                else
+                {
+                    self._textPosX = self._iconPosX + 22;
+                }
                 self._textJust = Gfx.TEXT_JUSTIFY_LEFT;
             }
 
@@ -181,22 +194,38 @@ module Widgets
             if (info != null)
             {
                 var amount = info.steps.toFloat() / info.stepGoal.toFloat();
-
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
                 {   
+                    var yOffset;
+                    if (IsSmallDisplay())
+                    {
+                        yOffset = 3;
+                    }
+                    else
+                    {
+                        yOffset = 6;
+                    }
+
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);                 
                     dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                     if (self._showStepsPercentage == true)
                     {
                         if (amount >= 1.0)
-                        {                    
-                            dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                        {
+                            if (IsSmallDisplay())
+                            {
+                                dc.drawText(self._textPosX + width + 3, self._drawYpos + 4, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                            }
+                            else
+                            {
+                                dc.drawText(self._textPosX + width + 5, self._drawYpos + yOffset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                            }
                         }
                         else
                         {
                             var percent = "(" + (amount * 100).toNumber().toString() + "%)";
-                            dc.drawText(self._textPosX + width + 5, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                            dc.drawText(self._textPosX + width + 5, self._drawYpos + yOffset, HGfx.Fonts.Tiny, percent, self._textJust);
                         }
                     }
                 }
@@ -216,7 +245,7 @@ module Widgets
                         var percent_width = 0;
                         if (self._showStepsPercentage == true)
                         {
-                            var percent = "(" + (amount * 100).toNumber().toString() + "%)";
+                            var percent = "(" + (amount * 100).toNumber().toString() + "%)";                            
                             dc.drawText(self._textPosX, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
                             percent_width = dc.getTextWidthInPixels(percent, HGfx.Fonts.Tiny) + 5;
                         }

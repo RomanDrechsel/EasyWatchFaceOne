@@ -36,7 +36,7 @@ module Helper
                 {
                     self.Thickness = 2;
                     self.ThicknessBold = 4;
-                    self.DotRadius = 4;
+                    self.DotRadius = 3;
                     angleradius *= .66666 as Number;
                 }
 

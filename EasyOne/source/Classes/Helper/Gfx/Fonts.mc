@@ -26,7 +26,7 @@ module Helper
                 if (IsSmallDisplay())
                 {
                     self.Normal = Graphics.FONT_XTINY;
-                    self.Tiny = null;
+                    self.Tiny = self.Small;
                 }
                 else
                 {

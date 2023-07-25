@@ -1,4 +1,6 @@
 <strings>
+    <string id="ThemeFire">Fire &amp; Ice</string>
+    
     <string id="SettingThemeBackgroundTheme">theme background</string>
     <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
     <string id="SettingsShowStressAge">Display age of stress data</string>
@@ -17,5 +19,5 @@
     <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
     <string id="SettingsLayoutWidgetHealth">Health monitor</string>
 
-    <string id="ShortBatteryDays">d</string>
+
 </strings>

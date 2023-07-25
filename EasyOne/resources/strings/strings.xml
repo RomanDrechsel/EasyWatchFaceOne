@@ -49,7 +49,6 @@
     <string id="SettingsLayoutDecolines">Show decoration-lines in the corners</string>
     
     <string id="ThemeDarkBlue">Dark Blue</string>
-    <string id="ThemeFire">Fire &amp; Ice</string>
     <string id="ThemeSunset">Sunset</string>
     <string id="ThemeBSoD">Blue screen of death</string>
     <string id="ThemeBaW">Black &amp; White</string>
@@ -74,5 +73,7 @@
     <string id="ShortOctober">Oct</string>
     <string id="ShortNovember">Nov</string>
     <string id="ShortDecember">Dec</string>
+
+    <string id="ShortBatteryDays">d</string>
 
 </strings>

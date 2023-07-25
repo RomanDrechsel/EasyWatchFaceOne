@@ -1,4 +1,6 @@
 <strings>
+    <string id="ThemeFire">Feuer &amp; Eis</string>
+
     <string id="SettingThemeBackgroundTheme">Theme Hintergrund</string>
 
     <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
@@ -17,6 +19,4 @@
     <string id="SettingsLayoutWidgetIcons">Symbole</string>
     <string id="SettingsLayoutWidgetDistance">Tägliche Bewegung</string>
     <string id="SettingsLayoutWidgetHealth">Vitalparameter</string>
-
-    <string id="ShortBatteryDays">T</string>
 </strings>

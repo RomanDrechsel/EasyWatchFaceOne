@@ -34,9 +34,9 @@ module Widgets
                 self._arcRadius *= .7;
                 self._arcWidth = 6;
                 self._arcPartSeparatorWidth = 3;
+                self._hasBatteryInDays = false;
             }
-
-            if (!IsSmallDisplay())
+            else
             {
                 self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
                 var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
@@ -44,10 +44,6 @@ module Widgets
                 {
                     self._hasBatteryInDays = false;
                 }
-            }
-            else
-            {
-                self._hasBatteryInDays = false;
             }
 
             if (self._hasBatteryInDays == true)
