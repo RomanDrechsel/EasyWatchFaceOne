@@ -1,22 +1,22 @@
 <strings>
-    <string id="ThemeFire">Feuer &amp; Eis</string>
+    <string id="ThFire">Feuer &amp; Eis</string>
 
-    <string id="SettingThemeBackgroundTheme">Theme Hintergrund</string>
+    <string id="STBTh">Th Hintergrund</string>
 
-    <string id="SettingsWidgetBatteryShowDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
-    <string id="SettingsShowStressAge">Alter des Stress-Levels anzeigen</string>
+    <string id="SBatDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
+    <string id="SStressAge">Alter des Stress-Levels anzeigen</string>
 
-    <string id="SettingsLayout">Widget Anordnung</string>
-    <string id="SettingsLayoutTL">Obere linke Ecke</string>
-    <string id="SettingsLayoutTC">Oberer mittlerer Rand</string>
-    <string id="SettingsLayoutTR">Obere rechte Ecke</string>
-    <string id="SettingsLayoutBL">Untere linke Ecke</string>
-    <string id="SettingsLayoutBR">Untere rechte Ecke</string>
+    <string id="SLo">Widget Anordnung</string>
+    <string id="SLoTL">Obere linke Ecke</string>
+    <string id="SLoTC">Oberer mittlerer Rand</string>
+    <string id="SLoTR">Obere rechte Ecke</string>
+    <string id="SLoBL">Untere linke Ecke</string>
+    <string id="SLoBR">Untere rechte Ecke</string>
 
-    <string id="SettingsLayoutWidgetEmpty">Leer</string>
-    <string id="SettingsLayoutWidgetBattery">Batterie Status</string>
-    <string id="SettingsLayoutWidgetWeather">Wetter</string>
-    <string id="SettingsLayoutWidgetIcons">Symbole</string>
-    <string id="SettingsLayoutWidgetDistance">Tägliche Bewegung</string>
-    <string id="SettingsLayoutWidgetHealth">Vitalparameter</string>
+    <string id="SLoWE">Leer</string>
+    <string id="SLoWB">Batterie Status</string>
+    <string id="SLoWW">Wetter</string>
+    <string id="SLoWI">Symbole</string>
+    <string id="SLoWD">Tägliche Bewegung</string>
+    <string id="SLoWH">Vitalparameter</string>
 </strings>

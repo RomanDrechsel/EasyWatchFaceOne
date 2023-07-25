@@ -32,7 +32,7 @@ module Helper
 
             function initialize(anchorx as Number, anchory as Number, width as Number, height as Number, angleradius as Number)
             {
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     self.Thickness = 2;
                     self.ThicknessBold = 4;

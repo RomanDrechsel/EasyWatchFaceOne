@@ -20,7 +20,7 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            var setting = Application.Properties.getValue("ClockLeadingZero") as Number;
+            var setting = Application.Properties.getValue("ClZero") as Number;
             if (setting != null && setting <= 0)
             {
                 self._showLeadingZero = false;
@@ -35,9 +35,9 @@ module Widgets
         {
             if (self._hours_pos == null)
             {
-                var screenwidth = getScreenWidth();
-                var space_min = screenwidth / 32;
-                var space_sec = screenwidth / 53;
+                var settings = System.getDeviceSettings() as DeviceSettings;
+                var space_min = settings.screenWidth / 32;
+                var space_sec = settings.screenWidth / 53;
                 var bigwidth = dc.getTextWidthInPixels("99", HGfx.Fonts.Hour);
                 var bigwidth2 = dc.getTextWidthInPixels("99", HGfx.Fonts.Minute);
                 var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.Seconds);

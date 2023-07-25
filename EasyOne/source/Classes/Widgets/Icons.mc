@@ -16,7 +16,7 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            if (IsSmallDisplay())
+            if (IsSmallDisplay)
             {
                 self._Padding = 8;
             }
@@ -64,7 +64,7 @@ module Widgets
                 }
 
                 var xOffset;
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     xOffset = 23;
                 }

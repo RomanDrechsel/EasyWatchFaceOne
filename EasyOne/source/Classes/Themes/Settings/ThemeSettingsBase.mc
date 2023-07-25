@@ -52,7 +52,7 @@ module Themes
             0x2abcab,
             0x2a9fbc,
             0x2a7dbc,
-            0x2a45bc,
+            0x395dff,
             0x3f47cb /* 0% */
         ];
 

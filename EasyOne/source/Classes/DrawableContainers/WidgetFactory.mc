@@ -22,15 +22,15 @@ module DrawableContainers
                 case WIDGET_UPPERCENTER:
                     return new Date(container_params);
                 case WIDGET_TOPLEFT:
-                    return self.GetTopWidget(Properties.getValue("WidgetTopLeft") as Number, container_params);    
+                    return self.GetTopWidget(Properties.getValue("WTL") as Number, container_params);    
                 case WIDGET_TOPCENTER:
-                    return self.GetTopWidget(Properties.getValue("WidgetTopCenter") as Number, container_params);
+                    return self.GetTopWidget(Properties.getValue("WTC") as Number, container_params);
                 case WIDGET_TOPRIGHT:
-                    return self.GetTopWidget(Properties.getValue("WidgetTopRight") as Number, container_params);
+                    return self.GetTopWidget(Properties.getValue("WTR") as Number, container_params);
                 case WIDGET_BOTTOMLEFT:
-                    return self.GetBottomWidget(Properties.getValue("WidgetBottomLeft") as Number, container_params);
+                    return self.GetBottomWidget(Properties.getValue("WBL") as Number, container_params);
                 case WIDGET_BOTTOMRIGHT:
-                    return self.GetBottomWidget(Properties.getValue("WidgetBottomRight") as Number, container_params);
+                    return self.GetBottomWidget(Properties.getValue("WBR") as Number, container_params);
             }
 
             return null;
@@ -60,7 +60,7 @@ module DrawableContainers
                     return new HealthIndicator(container_params);
             }
 
-            var deco = Properties.getValue("ShowDecolines") as Number;
+            var deco = Properties.getValue("Deco") as Number;
             if (deco != null && deco == 1)
             {
                 return new DecoRoundAngle(container_params);

@@ -50,9 +50,9 @@ class WFBackground extends WatchUi.Drawable
         self._color = theme.BackgroundColor;
         self._image = null;
 
-        var bgResource = Application.Properties.getValue("Background") as Number;
+        var bgResource = Application.Properties.getValue("BG") as Number;
 
-        if (IsSmallDisplay() && bgResource == 0)
+        if (IsSmallDisplay && bgResource == 0)
         {
             //No background image doe to 
             bgResource = 1;
@@ -76,11 +76,11 @@ class WFBackground extends WatchUi.Drawable
         else
         {
             //fixed color
-            var colorType = Application.Properties.getValue("BackgroundColorType") as Number;
+            var colorType = Application.Properties.getValue("BGCT") as Number;
             if (colorType == 0)
             {
                 //predefined color
-                var predefined_color = Application.Properties.getValue("BackgroundColorPredefined") as Number;
+                var predefined_color = Application.Properties.getValue("BGCPre") as Number;
                 var colors = [
                     0, //Black
                     0x2F4F4F, //DarkSlateGrey
@@ -106,7 +106,7 @@ class WFBackground extends WatchUi.Drawable
             else
             {
                 //custom color
-                var customcolor = Application.Properties.getValue("BackgroundColorCustom") as String;
+                var customcolor = Application.Properties.getValue("BGCCu") as String;
                 self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
 
                 if (self._color == null)

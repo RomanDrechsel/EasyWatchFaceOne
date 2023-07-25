@@ -38,7 +38,7 @@ module Widgets
 
                 var centerX;
                 var centerY;
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.0);
                     centerY = self._Widget.locY + (self._Widget.WidgetHeight / 1.5);
@@ -51,7 +51,7 @@ module Widgets
 
                 if (self._Widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
                 {
-                    if (IsSmallDisplay())
+                    if (IsSmallDisplay)
                     {
                         centerX += 5;
                     }
@@ -66,7 +66,7 @@ module Widgets
                 self._iconPosY = centerY - (iconHeight / 2);
                 self._textPosY = centerY + (fontHeight / 2) - 5; 
 
-                if (!IsSmallDisplay())
+                if (!IsSmallDisplay)
                 {
                     self._iconPosY -= 10;
                     self._textPosY += 10;

@@ -66,7 +66,7 @@ module Widgets
                 self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
             }
 
-            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
                 self.IndicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
@@ -75,8 +75,8 @@ module Widgets
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             $.getView().OnSleep.add(self.method(:OnSleep));
 
-            self.StressWarningLevel = Application.Properties.getValue("StressWarningLevel") as Float;
-            self.BreathWarningLevel = Application.Properties.getValue("WarningRespirationRate") as Number;
+            self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
+            self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
         }
 
         function draw(dc as Gfx.Dc)

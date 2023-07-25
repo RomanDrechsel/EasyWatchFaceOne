@@ -9,16 +9,12 @@ class WFApp extends Application.AppBase
     var WatchfaceView = null as WFView;
     var OnSettings = [] as Array<Method>;
 
-    var ScreenWidth = 240;
-    var ScreenHeight = 240;
-
     function initialize() 
     {
         AppBase.initialize();
 
         var settings = System.getDeviceSettings() as DeviceSettings;
-        self.ScreenWidth = settings.screenWidth;
-        self.ScreenHeight = settings.screenHeight;
+        IsSmallDisplay = settings.screenWidth < 320;
     }
 
     // onStart() is called on application start up
@@ -69,17 +65,4 @@ function getTheme() as Themes.ThemeSettingsBase
     return Themes.ThemesLoader.getTheme();
 }
 
-function IsSmallDisplay() as Boolean
-{
-    return getApp().ScreenWidth <= 240;
-}
-
-function getScreenWidth() as Number
-{
-    return getApp().ScreenWidth;
-}
-
-function getScreenHeight() as Number
-{
-    return getApp().ScreenHeight;
-}
+var IsSmallDisplay = true;

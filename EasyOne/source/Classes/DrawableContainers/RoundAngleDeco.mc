@@ -29,7 +29,7 @@ module DrawableContainers
 
         function onSettingsChanged()
         {
-            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show > 0)
             {
                 var widgetwidth = 150;

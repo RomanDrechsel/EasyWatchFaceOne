@@ -1,0 +1,33 @@
+<properties>
+
+    <property type="number" id="Th">0</property>
+    <property type="number" id="BG">1</property>
+    <property type="number" id="BGCT">0</property>
+    <property type="number" id="BGCPre">0</property>
+    <property type="string" id="BGCCu">#000000</property>
+
+    <property type="number" id="CC">0</property>
+    <property type="string" id="CT">#FFFFFF</property>
+    <property type="string" id="CWeek">#FFFFFF</property>
+    <property type="string" id="CDay">#FFFFFF</property>
+    <property type="string" id="CYear">#FFFFFF</property>
+    <property type="string" id="CHour">#FFFFFF</property>
+    <property type="string" id="CMin">#FFFFFF</property>
+    <property type="string" id="CSec">#FFFFFF</property>
+    <property type="string" id="CMAP">#FFFFFF</property>
+    <property type="number" id="IconC">0</property>
+
+    <property type="number" id="ClZero">1</property>
+    <property type="number" id="BatDays">1</property>
+    <property type="number" id="StressW">85</property>
+    <property type="number" id="RespW">25</property>
+    <property type="number" id="StepPer">1</property>
+
+    <property type="number" id="WTL">1</property>
+    <property type="number" id="WTC">2</property>
+    <property type="number" id="WTR">3</property>
+    <property type="number" id="WBL">1</property>
+    <property type="number" id="WBR">2</property>
+
+    <property type="number" id="Deco">1</property>
+</properties>

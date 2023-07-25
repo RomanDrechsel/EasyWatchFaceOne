@@ -3,32 +3,32 @@
     <string id="Yes">Ja</string>
     <string id="No">Nein</string> 
 
-    <string id="SettingsTheme">Theme</string>
+    <string id="SettingsTh">Theme</string>
 
-    <string id="SettingThemeBackground">Hintergrund anpassen</string>
-    <string id="SettingThemeBackgroundResource">Ressource</string>
-    <string id="SettingThemeBackgroundColor">Farbe</string>
+    <string id="STB">Hintergrund anpassen</string>
+    <string id="STBResource">Ressource</string>
+    <string id="STBColor">Farbe</string>
    
-    <string id="SettingThemeBackgroundSystem">System-Hintergrundfarbe</string>
-    <string id="SettingThemeBackgroundFixedColorSelect">feste Farbe verwenden</string>
-    <string id="SettingThemeBackgroundFixedColor">Welche feste Farbe verwenden</string>
-    <string id="SettingThemeBackgroundPredefinedSelect">vordefinierte Farbe</string>
-    <string id="SettingThemeBackgroundPredefined">Vordefinierte Farbe</string>
-    <string id="SettingThemeBackgroundColorBlack">Schwarz</string>
-    <string id="SettingThemeBackgroundColorDarkGrey">Dukelgrau</string>
-    <string id="SettingThemeBackgroundColorVeryDark">Sehr Dunkel</string>
-    <string id="SettingThemeBackgroundColorDarkRed">Dunkelrot</string>
-    <string id="SettingThemeBackgroundColorDarkBlue">Dunkelblau</string>
-    <string id="SettingThemeBackgroundColorBlue">Blau</string>
-    <string id="SettingThemeBackgroundColorCustom">benutzerdefinierte Farbe (HEX Format)</string>
+    <string id="STBSystem">System-Hintergrundfarbe</string>
+    <string id="STBFixedColorSelect">feste Farbe verwenden</string>
+    <string id="STBFixedColor">Welche feste Farbe verwenden</string>
+    <string id="STBPredefinedSelect">vordefinierte Farbe</string>
+    <string id="STBPredefined">Vordefinierte Farbe</string>
+    <string id="STBColorBlack">Schwarz</string>
+    <string id="STBColorDarkGrey">Dukelgrau</string>
+    <string id="STBColorVeryDark">Sehr Dunkel</string>
+    <string id="STBColorDarkRed">Dunkelrot</string>
+    <string id="STBColorDarkBlue">Dunkelblau</string>
+    <string id="STBColorBlue">Blau</string>
+    <string id="STBColorCustom">benutzerdefinierte Farbe (HEX Format)</string>
 
     <string id="SettingsColors">Farben anpassen</string>
     <string id="SettingsColorsCustomize">Eigene Farben verwenden? (HEX Format)</string>
     <string id="SettingsColorsText">Texfarbe</string>
 
-    <string id="SettingsColorsDateColorWeekday">Datumsfarbe: Wochentag</string>
-    <string id="SettingsColorsDateColorDay">Datumsfarbe: Tag des Monats / Monat</string>
-    <string id="SettingsColorsDateColorYear">Datumsfarbe: Jahr</string>
+    <string id="SettingsColorsCWeek">Datumsfarbe: Wochentag</string>
+    <string id="SettingsColorsCDay">Datumsfarbe: Tag des Monats / Monat</string>
+    <string id="SettingsColorsCYear">Datumsfarbe: Jahr</string>
 
     <string id="SettingsColorsTimeHours">Uhrzeitfarbe: Stunde</string>
     <string id="SettingsColorsTimeMinute">Uhrzeitfarbe: Minute</string>
@@ -37,18 +37,17 @@
     <string id="SettingsColorsIcons">Icons in Textfarbe</string>
 
     <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
-    <string id="SettingsWidgetClockLeadingZero">Zeige führende Null bei der Uhrzeit</string>
-    <string id="SettingsShowStepsPercent">Prozentsatz des Schrittziels anzeigen</string>
+    <string id="SettingsWidgetClZero">Zeige führende Null bei der Uhrzeit</string>
+    <string id="SettingsStepPer">Prozentsatz des Schrittziels anzeigen</string>
     
-    <string id="SettingsStressWarningLevel">Warnung bei Stress-Level</string>
+    <string id="SettingsStressW">Warnung bei Stress-Level</string>
     <string id="SettingsRespirationRateWarningLevel">Warnung ab Atemzüge pro Minute</string>
 
-    <string id="SettingsLayoutDecolines">Deko-Linien in den Ecken anzeigen</string>
+    <string id="SLoDecolines">Deko-Linien in den Ecken anzeigen</string>
 
-    <string id="ThemeDarkBlue">Dunkelblau</string>
-    <string id="ThemeSunset">Sonnenuntergang</string>
-    <string id="ThemeBSoD">Blue Screen of Death</string>
-    <string id="ThemeBaW">Schwarz-Weiß</string>
+    <string id="ThDarkBlue">Dunkelblau</string>
+    <string id="ThSunset">Sonnenuntergang</string>
+    <string id="ThBaW">Schwarz-Weiß</string>
 
     <string id="ShortMonday">Mo</string>
     <string id="ShortTuesday">Di</string>

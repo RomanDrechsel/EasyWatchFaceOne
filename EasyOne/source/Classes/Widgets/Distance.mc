@@ -47,7 +47,7 @@ module Widgets
                 self.locY = self.locY - self._WidgetHeight;
             }
 
-            if (IsSmallDisplay())
+            if (IsSmallDisplay)
             {
                 self._indicatorPadding = 8;
                 self._indicatorVPadding = 8;
@@ -60,7 +60,7 @@ module Widgets
             var textheight = (self._lineHeight * 3) + self._indicatorDrawing.ThicknessBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
-            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
                 self._indicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
@@ -77,7 +77,7 @@ module Widgets
             {
                 self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
                 self._iconPosX = self.locX + self._indicatorDrawing.ThicknessBold + self._indicatorPadding;
-                if (!IsSmallDisplay())
+                if (!IsSmallDisplay)
                 {
                     self._textPosX = self._iconPosX + 35;
                 }
@@ -98,7 +98,7 @@ module Widgets
                 self._inMiles = false;
             }
 
-            var setting = Application.Properties.getValue("ShowStepsPercent") as Number;
+            var setting = Application.Properties.getValue("StepPer") as Number;
             if (setting != null && setting <= 0)
             {
                 self._showStepsPercentage = false;
@@ -198,7 +198,7 @@ module Widgets
                 if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
                 {   
                     var yOffset;
-                    if (IsSmallDisplay())
+                    if (IsSmallDisplay)
                     {
                         yOffset = 3;
                     }
@@ -213,7 +213,7 @@ module Widgets
                     {
                         if (amount >= 1.0)
                         {
-                            if (IsSmallDisplay())
+                            if (IsSmallDisplay)
                             {
                                 dc.drawText(self._textPosX + width + 3, self._drawYpos + 4, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
                             }

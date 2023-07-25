@@ -1,90 +1,90 @@
 <settings>
 
-    <setting propertyKey="@Properties.Theme" title="@Strings.SettingsTheme">
+    <setting propertyKey="@Properties.Th" title="@Strings.SettingsTh">
         <settingConfig type="list">
-            <listEntry value="0">@Strings.ThemeDarkBlue</listEntry>
-            <listEntry value="1">@Strings.ThemeFire</listEntry>
-            <listEntry value="2">@Strings.ThemeSunset</listEntry>
-            <listEntry value="3">@Strings.ThemeBaW</listEntry>
-            <listEntry value="666">@Strings.ThemeBSoD</listEntry>
+            <listEntry value="0">@Strings.ThDarkBlue</listEntry>
+            <listEntry value="1">@Strings.ThFire</listEntry>
+            <listEntry value="2">@Strings.ThSunset</listEntry>
+            <listEntry value="3">@Strings.ThBaW</listEntry>
+            <listEntry value="666">@Strings.ThBSoD</listEntry>
         </settingConfig>
     </setting>
 
-    <group id="groupBackground" title="@Strings.SettingThemeBackground">
-        <setting propertyKey="@Properties.Background" title="@Strings.SettingThemeBackgroundResource">
+    <group id="groupBackground" title="@Strings.STB">
+        <setting propertyKey="@Properties.Background" title="@Strings.STBResource">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingThemeBackgroundTheme</listEntry>
-                <listEntry value="1">@Strings.SettingThemeBackgroundSystem</listEntry>
-                <listEntry value="2">@Strings.SettingThemeBackgroundFixedColorSelect</listEntry>
+                <listEntry value="0">@Strings.STBTh</listEntry>
+                <listEntry value="1">@Strings.STBSystem</listEntry>
+                <listEntry value="2">@Strings.STBFixedColorSelect</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.BackgroundColorType" title="@Strings.SettingThemeBackgroundFixedColor">
+        <setting propertyKey="@Properties.BackgroundColorType" title="@Strings.STBFixedColor">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingThemeBackgroundPredefinedSelect</listEntry>
-                <listEntry value="1">@Strings.SettingThemeBackgroundColorCustom</listEntry>
+                <listEntry value="0">@Strings.STBPredefinedSelect</listEntry>
+                <listEntry value="1">@Strings.STBColorCustom</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.BackgroundColorPredefined" title="@Strings.SettingThemeBackgroundPredefined">
+        <setting propertyKey="@Properties.BackgroundColorPredefined" title="@Strings.STBPredefined">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingThemeBackgroundColorBlack</listEntry>
+                <listEntry value="0">@Strings.STBColorBlack</listEntry>
                 <listEntry value="1">DarkSlateGrey</listEntry>
-                <listEntry value="2">@Strings.SettingThemeBackgroundColorDarkGrey</listEntry>
-                <listEntry value="3">@Strings.SettingThemeBackgroundColorVeryDark</listEntry>
-                <listEntry value="4">@Strings.SettingThemeBackgroundColorDarkRed</listEntry>
-                <listEntry value="5">@Strings.SettingThemeBackgroundColorDarkBlue</listEntry>
-                <listEntry value="6">@Strings.SettingThemeBackgroundColorBlue</listEntry>
-                <listEntry value="666">@Strings.ThemeBSoD</listEntry>
+                <listEntry value="2">@Strings.STBColorDarkGrey</listEntry>
+                <listEntry value="3">@Strings.STBColorVeryDark</listEntry>
+                <listEntry value="4">@Strings.STBColorDarkRed</listEntry>
+                <listEntry value="5">@Strings.STBColorDarkBlue</listEntry>
+                <listEntry value="6">@Strings.STBColorBlue</listEntry>
+                <listEntry value="666">@Strings.ThBSoD</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.BackgroundColorCustom" title="@Strings.SettingThemeBackgroundColorCustom">
+        <setting propertyKey="@Properties.BackgroundColorCustom" title="@Strings.STBColorCustom">
             <settingConfig type="alphaNumeric" />
         </setting>
     </group>
 
     <group id="groupColors" title="@Strings.SettingsColors">
-        <setting propertyKey="@Properties.CustomColors" title="@Strings.SettingsColorsCustomize">
+        <setting propertyKey="@Properties.CC" title="@Strings.SettingsColorsCustomize">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.TextColor" title="@Strings.SettingsColorsText">
+        <setting propertyKey="@Properties.CT" title="@Strings.SettingsColorsText">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.DateColorWeekday" title="@Strings.SettingsColorsDateColorWeekday">
+        <setting propertyKey="@Properties.CWeek" title="@Strings.SettingsColorsCWeek">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.DateColorDay" title="@Strings.SettingsColorsDateColorDay">
+        <setting propertyKey="@Properties.CDay" title="@Strings.SettingsColorsCDay">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.DateColorYear" title="@Strings.SettingsColorsDateColorYear">
+        <setting propertyKey="@Properties.CYear" title="@Strings.SettingsColorsCYear">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.TimeColorHours" title="@Strings.SettingsColorsTimeHours">
+        <setting propertyKey="@Properties.CHour" title="@Strings.SettingsColorsTimeHours">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.TimeColorMinutes" title="@Strings.SettingsColorsTimeMinute">
+        <setting propertyKey="@Properties.CMin" title="@Strings.SettingsColorsTimeMinute">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.TimeColorSeconds" title="@Strings.SettingsColorsTimeSecond">
+        <setting propertyKey="@Properties.CSec" title="@Strings.SettingsColorsTimeSecond">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.TimeColorAMPM" title="@Strings.SettingsColorsTimeAMPM">
+        <setting propertyKey="@Properties.CMAP" title="@Strings.SettingsColorsTimeAMPM">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.IconsInTextColor" title="@Strings.SettingsColorsIcons">
+        <setting propertyKey="@Properties.IconC" title="@Strings.SettingsColorsIcons">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
@@ -92,51 +92,51 @@
         </setting>
     </group>
 
-    <group id="groupLayout" title="@Strings.SettingsLayout">
-        <setting propertyKey="@Properties.WidgetTopLeft" title="@Strings.SettingsLayoutTL">
+    <group id="groupLayout" title="@Strings.SLo">
+        <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
-                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
-                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
-                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.WidgetTopCenter" title="@Strings.SettingsLayoutTC">
+        <setting propertyKey="@Properties.WTC" title="@Strings.SLoTC">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
-                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
-                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
-                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.WidgetTopRight" title="@Strings.SettingsLayoutTR">
+        <setting propertyKey="@Properties.WTR" title="@Strings.SLoTR">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
-                <listEntry value="1">@Strings.SettingsLayoutWidgetBattery</listEntry>
-                <listEntry value="2">@Strings.SettingsLayoutWidgetWeather</listEntry>
-                <listEntry value="3">@Strings.SettingsLayoutWidgetIcons</listEntry>
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.WidgetBottomLeft" title="@Strings.SettingsLayoutBL">
+        <setting propertyKey="@Properties.WBL" title="@Strings.SLoBL">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
-                <listEntry value="1">@Strings.SettingsLayoutWidgetDistance</listEntry>
-                <listEntry value="2">@Strings.SettingsLayoutWidgetHealth</listEntry>
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWD</listEntry>
+                <listEntry value="2">@Strings.SLoWH</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.WidgetBottomRight" title="@Strings.SettingsLayoutBR">
+        <setting propertyKey="@Properties.WBR" title="@Strings.SLoBR">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.SettingsLayoutWidgetEmpty</listEntry>
-                <listEntry value="1">@Strings.SettingsLayoutWidgetDistance</listEntry>
-                <listEntry value="2">@Strings.SettingsLayoutWidgetHealth</listEntry>
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWD</listEntry>
+                <listEntry value="2">@Strings.SLoWH</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.ShowDecolines" title="@Strings.SettingsLayoutDecolines">
+        <setting propertyKey="@Properties.Deco" title="@Strings.SLoDecolines">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
@@ -145,38 +145,38 @@
     </group>
 
     <group id="groupWidgets" title="@Strings.SettingsgroupWidgetsTitle">
-        <setting propertyKey="@Properties.ClockLeadingZero" title="@Strings.SettingsWidgetClockLeadingZero">
+        <setting propertyKey="@Properties.ClZero" title="@Strings.SettingsWidgetClZero">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.WidgetBatteryShowDays" title="@Strings.SettingsWidgetBatteryShowDays">
-            <settingConfig type="list">
-                <listEntry value="1">@Strings.Yes</listEntry>
-                <listEntry value="0">@Strings.No</listEntry>
-            </settingConfig>
-        </setting>
-
-        <setting propertyKey="@Properties.ShowStepsPercent" title="@Strings.SettingsShowStepsPercent">
+        <setting propertyKey="@Properties.BatDays" title="@Strings.SBatDays">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.StressWarningLevel" title="@Strings.SettingsStressWarningLevel">
+        <setting propertyKey="@Properties.StepPer" title="@Strings.SettingsStepPer">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.StressW" title="@Strings.SettingsStressW">
             <settingConfig type="numeric"/>
         </setting>
 
-        <setting propertyKey="@Properties.ShowStressAge" title="@Strings.SettingsShowStressAge">
+        <setting propertyKey="@Properties.StressAge" title="@Strings.SStressAge">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.WarningRespirationRate" title="@Strings.SettingsRespirationRateWarningLevel">
+        <setting propertyKey="@Properties.RespW" title="@Strings.SettingsRespirationRateWarningLevel">
             <settingConfig type="numeric"/>
         </setting>
     </group>

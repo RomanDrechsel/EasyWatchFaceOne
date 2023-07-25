@@ -13,28 +13,22 @@ class WFView extends WatchUi.WatchFace
     function initialize() 
     {
         WatchFace.initialize();
+        $.getApp().OnSettings.add(self.method(:onSettingsChanged));
     }
 
-    // Load your resources here
     function onLayout(dc as Dc) as Void 
     {
         Helper.Gfx.Fonts.Load();
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
     function onShow() as Void 
     {
     }
 
-    // Update the view
     function onUpdate(dc as Dc) as Void 
     {
-        // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
-
         if (self.OnUpdate.size() > 0)
         {
             for (var i = 0; i < self.OnUpdate.size(); i++)
@@ -44,14 +38,10 @@ class WFView extends WatchUi.WatchFace
         }
     }
 
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
     function onHide() as Void 
     {
     }
 
-    // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void 
     {
         if (self.OnWakeUp.size() > 0)
@@ -63,7 +53,6 @@ class WFView extends WatchUi.WatchFace
         }
     }
 
-    // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() as Void 
     {
         if (self.OnSleep.size() > 0)
@@ -73,5 +62,12 @@ class WFView extends WatchUi.WatchFace
                 self.OnSleep[i].invoke();
             }
         }
+    }
+
+    function onSettingsChanged()
+    {
+        self.OnWakeUp = [] as Array<Method>;
+        self.OnSleep = [] as Array<Method>;
+        self.OnUpdate = [] as Array<Method>;
     }
 }

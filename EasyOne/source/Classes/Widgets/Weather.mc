@@ -40,7 +40,7 @@ module Widgets
 
             self._font = HGfx.Fonts.Small;
 
-            if (IsSmallDisplay())
+            if (IsSmallDisplay)
             {
                 self._iconWidth = 35;
                 self._iconHeight = 35;
@@ -307,7 +307,7 @@ module Widgets
                 self._tempPosY = self._iconPosY + self._iconHeight;
 
                 self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     self._maxPosY = self.locY + 10;
                 }
@@ -317,7 +317,7 @@ module Widgets
                 }
 
                 self._minPosX = self._maxPosX;
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     self._minPosY = self._maxPosY + textheight + 4;
                 }
@@ -327,7 +327,7 @@ module Widgets
                 }
 
                 self._horLineX = self.locX + horOffset + 5;
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     self._horLineY = self.locY + 12 + textheight;
                     self._vertLineHeight = (self._iconHeight + textheight) - 5;

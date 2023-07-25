@@ -13,23 +13,33 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            private static const SAMPLE_VALID = 600; //old samples are valid for 20 min
+            private static const SAMPLE_VALID = 600; //old samples are valid for 10 min
             private static var _sampleDelta = 0.0;
             private static var _showSampleTime = true;
             private static var _lastSampleDate = null as Toybox.Time.Moment;
+            private static var _stressLevel = -1.0;
 
             function initialize(widget as Widgets.HealthIndicator)
             {
                 IndicatorBase.initialize(widget);
-                var setting = Application.Properties.getValue("ShowStressAge") as Number;
-                if (setting != null && setting <= 0)
+                if (!IsSmallDisplay)
                 {
-                    self._showSampleTime = false;
+                    var setting = Application.Properties.getValue("StressAge") as Number;
+                    if (setting != null && setting <= 0)
+                    {
+                        self._showSampleTime = false;
+                    }
+                    else
+                    {
+                        self._showSampleTime = true;
+                    }
                 }
                 else
                 {
-                    self._showSampleTime = true;
+                    self._showSampleTime = false;
                 }
+
+                $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             }
 
             protected function Init(dc as Gfx.Dc)
@@ -96,7 +106,7 @@ module Widgets
                             }
                         }
 
-                        if (!IsSmallDisplay())
+                        if (!IsSmallDisplay)
                         {
                             if (self._texts.size() < 2)
                             {
@@ -143,7 +153,7 @@ module Widgets
                             }
 
                             var yOffset;
-                            if (IsSmallDisplay())
+                            if (IsSmallDisplay)
                             {
                                 yOffset = 14;
                             }
@@ -175,7 +185,7 @@ module Widgets
                 self._Widget.IndicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);
             }
 
-            static function getStressLevel() as Float
+            function OnWakeUp()
             {
                 if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
@@ -194,7 +204,7 @@ module Widgets
                             self._lastSampleDate = null;
                         }
                         
-                        return newest_sample.data;
+                        self._stressLevel = newest_sample.data;
                     }
                     else
                     {
@@ -203,7 +213,12 @@ module Widgets
                     }
                 }
 
-                return -1.0;
+                self._stressLevel = -1.0;
+            }
+
+            static function getStressLevel() as Float
+            {
+                return self._stressLevel;
             }
         }
     }

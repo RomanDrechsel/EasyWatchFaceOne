@@ -23,7 +23,7 @@ module Helper
                 self.Date = WatchUi.loadResource(Rez.Fonts.DateFont);
 
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
-                if (IsSmallDisplay())
+                if (IsSmallDisplay)
                 {
                     self.Normal = Graphics.FONT_XTINY;
                     self.Tiny = self.Small;
@@ -32,8 +32,7 @@ module Helper
                 {
                     self.Normal = Graphics.FONT_TINY;
                     self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
-                }                
-                //self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
+                }
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
         }

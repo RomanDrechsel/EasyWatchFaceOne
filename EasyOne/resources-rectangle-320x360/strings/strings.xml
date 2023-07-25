@@ -1,23 +1,23 @@
 <strings>
-    <string id="ThemeFire">Fire &amp; Ice</string>
+    <string id="ThFire">Fire &amp; Ice</string>
     
-    <string id="SettingThemeBackgroundTheme">theme background</string>
-    <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
-    <string id="SettingsShowStressAge">Display age of stress data</string>
+    <string id="STBTh">Th background</string>
+    <string id="SBatDays">Display remaining battery charge in days, if available.</string>
+    <string id="SStressAge">Display age of stress data</string>
     
-    <string id="SettingsLayout">Widget arrangement</string>
-    <string id="SettingsLayoutTL">Top left corner</string>
-    <string id="SettingsLayoutTC">Top center</string>
-    <string id="SettingsLayoutTR">Top right corner</string>
-    <string id="SettingsLayoutBL">Bottom left corner</string>
-    <string id="SettingsLayoutBR">Bottom right corner</string>
+    <string id="SLo">Widget arrangement</string>
+    <string id="SLoTL">Top left corner</string>
+    <string id="SLoTC">Top center</string>
+    <string id="SLoTR">Top right corner</string>
+    <string id="SLoBL">Bottom left corner</string>
+    <string id="SLoBR">Bottom right corner</string>
 
-    <string id="SettingsLayoutWidgetEmpty">Empty</string>
-    <string id="SettingsLayoutWidgetBattery">Battery Status</string>
-    <string id="SettingsLayoutWidgetWeather">Weather</string>
-    <string id="SettingsLayoutWidgetIcons">Icons</string>
-    <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
-    <string id="SettingsLayoutWidgetHealth">Health monitor</string>
+    <string id="SLoWE">Empty</string>
+    <string id="SLoWB">Battery Status</string>
+    <string id="SLoWW">Weather</string>
+    <string id="SLoWI">Icons</string>
+    <string id="SLoWD">Physical exercise</string>
+    <string id="SLoWH">Health monitor</string>
 
 
 </strings>

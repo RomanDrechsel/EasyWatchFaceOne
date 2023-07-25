@@ -29,7 +29,7 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-            if (IsSmallDisplay())
+            if (IsSmallDisplay)
             {
                 self._arcRadius *= .7;
                 self._arcWidth = 6;
@@ -39,7 +39,7 @@ module Widgets
             else
             {
                 self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
-                var showdays = Application.Properties.getValue("WidgetBatteryShowDays") as Number;
+                var showdays = Application.Properties.getValue("BatDays") as Number;
                 if (showdays != null && showdays <= 0)
                 {
                     self._hasBatteryInDays = false;
