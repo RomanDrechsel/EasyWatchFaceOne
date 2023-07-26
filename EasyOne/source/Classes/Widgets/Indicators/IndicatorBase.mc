@@ -1,6 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Lang;
+import Widgets;
 using Helper.Gfx as HGfx;
 
 module Widgets 
@@ -10,28 +11,20 @@ module Widgets
         class IndicatorBase 
         {
             protected var _initialized = false;
-            
-            protected var _Widget = null as Widgets.HealthIndicator;
-
             protected var _iconPosX as Number;
             protected var _iconPosY as Number;
             protected var _textPosX as Number;
             protected var _textPosY as Number;
 
-            function initialize(widget as Widgets.HealthIndicator)
-            {
-                self._Widget = widget;
-            }
-
-            function draw(dc as Dc)
+            function draw(dc as Dc, widget as HealthIndicator)
             {
                 if (self._initialized == false)
                 {
-                    self.Init(dc);
+                    self.Init(dc, widget);
                 }
             }
 
-            protected function Init(dc as Dc)
+            protected function Init(dc as Dc, widget as HealthIndicator)
             {
                 var iconHeight = dc.getFontHeight(HGfx.Fonts.Icons);
                 var fontHeight = dc.getFontHeight(HGfx.Fonts.Small);
@@ -40,16 +33,16 @@ module Widgets
                 var centerY;
                 if (IsSmallDisplay)
                 {
-                    centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.0);
-                    centerY = self._Widget.locY + (self._Widget.WidgetHeight / 1.5);
+                    centerX = widget.locX + (widget.WidgetWidth / 2.0);
+                    centerY = widget.locY + (widget.WidgetHeight / 1.5);
                 }
                 else
                 {
-                    centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
-                    centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
+                    centerX = widget.locX + (widget.WidgetWidth / 2.4);
+                    centerY = widget.locY + (widget.WidgetHeight / 2.2);
                 }
 
-                if (self._Widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
+                if (widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
                 {
                     if (IsSmallDisplay)
                     {

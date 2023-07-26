@@ -22,28 +22,28 @@
     <string id="STBColorBlue">Blau</string>
     <string id="STBColorCustom">benutzerdefinierte Farbe (HEX Format)</string>
 
-    <string id="SettingsColors">Farben anpassen</string>
-    <string id="SettingsColorsCustomize">Eigene Farben verwenden? (HEX Format)</string>
-    <string id="SettingsColorsText">Texfarbe</string>
+    <string id="SC">Farben anpassen</string>
+    <string id="SCCustomize">Eigene Farben verwenden? (HEX Format)</string>
+    <string id="SCText">Texfarbe</string>
 
-    <string id="SettingsColorsCWeek">Datumsfarbe: Wochentag</string>
-    <string id="SettingsColorsCDay">Datumsfarbe: Tag des Monats / Monat</string>
-    <string id="SettingsColorsCYear">Datumsfarbe: Jahr</string>
+    <string id="SCCWeek">Datumsfarbe: Wochentag</string>
+    <string id="SCCDay">Datumsfarbe: Tag des Monats / Monat</string>
+    <string id="SCCYear">Datumsfarbe: Jahr</string>
 
-    <string id="SettingsColorsTimeHours">Uhrzeitfarbe: Stunde</string>
-    <string id="SettingsColorsTimeMinute">Uhrzeitfarbe: Minute</string>
-    <string id="SettingsColorsTimeSecond">Uhrzeitfarbe: Sekunde</string>
-    <string id="SettingsColorsTimeAMPM">Uhrzeitfarbe: AM / PM</string>
-    <string id="SettingsColorsIcons">Icons in Textfarbe</string>
+    <string id="SCTimeHours">Uhrzeitfarbe: Stunde</string>
+    <string id="SCTimeMinute">Uhrzeitfarbe: Minute</string>
+    <string id="SCTimeSecond">Uhrzeitfarbe: Sekunde</string>
+    <string id="SCTimeAMPM">Uhrzeitfarbe: AM / PM</string>
+    <string id="SCIcons">Icons in Textfarbe</string>
 
-    <string id="SettingsgroupWidgetsTitle">Widget Einstellungen</string>
-    <string id="SettingsWidgetClZero">Zeige führende Null bei der Uhrzeit</string>
-    <string id="SettingsStepPer">Prozentsatz des Schrittziels anzeigen</string>
+    <string id="SgWT">Widget Einstellungen</string>
+    <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
+    <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>
     
-    <string id="SettingsStressW">Warnung bei Stress-Level</string>
-    <string id="SettingsRespirationRateWarningLevel">Warnung ab Atemzüge pro Minute</string>
+    <string id="SStressW">Warnung bei Stress-Level</string>
+    <string id="SRrW">Warnung ab Atemzüge pro Minute</string>
 
-    <string id="SLoDecolines">Deko-Linien in den Ecken anzeigen</string>
+    <string id="SDeco">Deko-Linien in den Ecken anzeigen</string>
 
     <string id="ThDarkBlue">Dunkelblau</string>
     <string id="ThSunset">Sonnenuntergang</string>

@@ -51,15 +51,14 @@ module Widgets
                 self._theme.IndicatorLevel1,
                 self._theme.IndicatorLevel3,
                 self._theme.IndicatorLevel4,
-                self._theme.IndicatorLevel5,
+                self._theme.IndicatorLevel5
             ];
 
             self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
-                
+                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;                
             }
             else
             {
@@ -86,7 +85,10 @@ module Widgets
                 self.OnWakeUp();
             }
 
-            self._display.draw(dc);
+            if (self._display != null)
+            {
+                self._display.draw(dc, self);
+            }
         }
 
         function OnSleep()
@@ -136,15 +138,15 @@ module Widgets
 
             if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
             {
-                self._display = new Indi.Stress(self);
+                self._display = new Indi.Stress();
             }
             else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
             {
-                self._display = new Indi.Breath(self);
+                self._display = new Indi.Breath();
             }
             else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
             {
-                self._display = new  Indi.Heartbeat(self);
+                self._display = new  Indi.Heartbeat();
             }
         }
 

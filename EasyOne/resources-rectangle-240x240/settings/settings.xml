@@ -41,47 +41,47 @@
         </setting>
     </group>
 
-    <group id="groupColors" title="@Strings.SettingsColors">
-        <setting propertyKey="@Properties.CC" title="@Strings.SettingsColorsCustomize">
+    <group id="groupColors" title="@Strings.SC">
+        <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.CT" title="@Strings.SettingsColorsText">
+        <setting propertyKey="@Properties.CT" title="@Strings.SCText">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CWeek" title="@Strings.SettingsColorsCWeek">
+        <setting propertyKey="@Properties.CWeek" title="@Strings.SCCWeek">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CDay" title="@Strings.SettingsColorsCDay">
+        <setting propertyKey="@Properties.CDay" title="@Strings.SCCDay">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CYear" title="@Strings.SettingsColorsCYear">
+        <setting propertyKey="@Properties.CYear" title="@Strings.SCCYear">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CHour" title="@Strings.SettingsColorsTimeHours">
+        <setting propertyKey="@Properties.CHour" title="@Strings.SCTimeHours">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CMin" title="@Strings.SettingsColorsTimeMinute">
+        <setting propertyKey="@Properties.CMin" title="@Strings.SCTimeMinute">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CSec" title="@Strings.SettingsColorsTimeSecond">
+        <setting propertyKey="@Properties.CSec" title="@Strings.SCTimeSecond">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.CMAP" title="@Strings.SettingsColorsTimeAMPM">
+        <setting propertyKey="@Properties.CMAP" title="@Strings.SCTimeAMPM">
             <settingConfig type="alphaNumeric" />
         </setting>
 
-        <setting propertyKey="@Properties.IconC" title="@Strings.SettingsColorsIcons">
+        <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
@@ -89,26 +89,26 @@
         </setting>
     </group>
 
-    <group id="groupWidgets" title="@Strings.SettingsgroupWidgetsTitle">
-        <setting propertyKey="@Properties.ClZero" title="@Strings.SettingsWidgetClZero">
+    <group id="groupWidgets" title="@Strings.SgWT">
+        <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.StepPer" title="@Strings.SettingsStepPer">
+        <setting propertyKey="@Properties.StepPer" title="@Strings.SSgoal">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.StressW" title="@Strings.SettingsStressW">
+        <setting propertyKey="@Properties.StressW" title="@Strings.SStressW">
             <settingConfig type="numeric"/>
         </setting>
 
-        <setting propertyKey="@Properties.RespW" title="@Strings.SettingsRespirationRateWarningLevel">
+        <setting propertyKey="@Properties.RespW" title="@Strings.SRrW">
             <settingConfig type="numeric"/>
         </setting>
     </group>

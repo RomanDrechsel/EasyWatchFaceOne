@@ -1,4 +1,4 @@
 <properties>
-    <property type="number" id="Background">0</property>
-    <property type="number" id="StressAge">1</property>
+    <property type="number" id="BG">0</property>
+    <property type="number" id="StressA">1</property>
 </properties>

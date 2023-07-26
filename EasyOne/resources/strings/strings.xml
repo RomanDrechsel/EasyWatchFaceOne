@@ -24,29 +24,29 @@
     <string id="STBColorBlue">Blue</string>
     <string id="STBColorCustom">Custom color (HEX format)</string>
 
-    <string id="SettingsColors">Customize colors</string>
-    <string id="SettingsColorsCustomize">Use custom colors? (HEX format)</string>
-    <string id="SettingsColorsText">Text color</string>
+    <string id="SC">Customize colors</string>
+    <string id="SCCustomize">Use custom colors? (HEX format)</string>
+    <string id="SCText">Text color</string>
 
-    <string id="SettingsColorsCWeek">Color: day of week</string>
-    <string id="SettingsColorsCDay">Color: month</string>
-    <string id="SettingsColorsCYear">Color: year</string>
+    <string id="SCCWeek">Color: day of week</string>
+    <string id="SCCDay">Color: month</string>
+    <string id="SCCYear">Color: year</string>
 
-    <string id="SettingsColorsTimeHours">Color: hour</string>
-    <string id="SettingsColorsTimeMinute">Color: minute</string>
-    <string id="SettingsColorsTimeSecond">Color: second</string>
-    <string id="SettingsColorsTimeAMPM">Color: am / pm</string>
-    <string id="SettingsColorsIcons">Icons in text color</string>
+    <string id="SCTimeHours">Color: hour</string>
+    <string id="SCTimeMinute">Color: minute</string>
+    <string id="SCTimeSecond">Color: second</string>
+    <string id="SCTimeAMPM">Color: am / pm</string>
+    <string id="SCIcons">Icons in text color</string>
 
-    <string id="SettingsgroupWidgetsTitle">Widget settings</string>
-    <string id="SettingsWidgetClZero">Display leading zero at time</string>
+    <string id="SgWT">Widget settings</string>
+    <string id="SWZero">Display leading zero at time</string>
 
-    <string id="SettingsStepPer">Display percentage of steps goal</string>
+    <string id="SSgoal">Display percentage of steps goal</string>
     
-    <string id="SettingsStressW">Stress Warning Level</string>
-    <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>
+    <string id="SStressW">Stress Warning Level</string>
+    <string id="SRrW">Respiration-Rate Warning Level</string>
 
-    <string id="SLoDecolines">Show decoration-lines in the corners</string>
+    <string id="SDeco">Show decoration-lines in the corners</string>
     
     <string id="ThDarkBlue">Dark Blue</string>
     <string id="ThSunset">Sunset</string>

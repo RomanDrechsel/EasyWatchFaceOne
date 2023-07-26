@@ -1,5 +1,6 @@
 import Toybox;
 import Toybox.Lang;
+import Widgets;
 using Toybox.Graphics as Gfx;
 using Helper.Gfx as HGfx;
 using Toybox.Time.Gregorian as D;
@@ -19,9 +20,8 @@ module Widgets
             private static var _lastSampleDate = null as Toybox.Time.Moment;
             private static var _stressLevel = -1.0;
 
-            function initialize(widget as Widgets.HealthIndicator)
+            function initialize()
             {
-                IndicatorBase.initialize(widget);
                 if (!IsSmallDisplay)
                 {
                     var setting = Application.Properties.getValue("StressAge") as Number;
@@ -42,20 +42,20 @@ module Widgets
                 $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             }
 
-            protected function Init(dc as Gfx.Dc)
+            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.Init(dc);
+                IndicatorBase.Init(dc, widget);
                 self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
             }
 
-            function draw(dc as Gfx.Dc)
+            function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc);
+                IndicatorBase.draw(dc, widget);
 
                 var stress = self.getStressLevel();
 
-                var color = self._Widget._theme.IconsOff;
-                var iconcolor = self._Widget._theme.IconsOff;
+                var color = widget._theme.IconsOff;
+                var iconcolor = widget._theme.IconsOff;
                 var indicatorcolor = color;
                 if (stress > 0.0)
                 {
@@ -66,22 +66,22 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = self._Widget._theme.HealthStressIconColor;
+                        iconcolor = widget._theme.HealthStressIconColor;
                     }
-                    indicatorcolor = self._Widget.IndicatorColors[0];
+                    indicatorcolor = widget.IndicatorColors[0];
                     if (stress >= 60)
                     {
                         if (stress >= 90)
                         {
-                            color = self._Widget.IndicatorColors[3];
+                            color = widget.IndicatorColors[3];
                         }
                         else if (stress >= 80)
                         {
-                            color = self._Widget.IndicatorColors[2];
+                            color = widget.IndicatorColors[2];
                         }
                         else
                         {
-                            color = self._Widget.IndicatorColors[1];
+                            color = widget.IndicatorColors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -166,13 +166,13 @@ module Widgets
                         }
                     }
 
-                    if (stress >= self._Widget.StressWarningLevel)
+                    if (stress >= widget.StressWarningLevel)
                     {
-                        self._Widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY);
+                        widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY);
                     }
                     else
                     {
-                        self._Widget.HideAttentionIcon();
+                        widget.HideAttentionIcon();
                     }
                 }
                 else
@@ -182,7 +182,7 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                self._Widget.IndicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);
+                widget.IndicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);
             }
 
             function OnWakeUp()
