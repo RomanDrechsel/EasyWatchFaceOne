@@ -3,14 +3,17 @@
     <setting propertyKey="@Properties.Th" title="@Strings.SettingsTh">
         <settingConfig type="list">
             <listEntry value="0">@Strings.ThDarkBlue</listEntry>
+            <listEntry value="1">@Strings.ThFire</listEntry>
             <listEntry value="2">@Strings.ThSunset</listEntry>
             <listEntry value="3">@Strings.ThBaW</listEntry>
+            <listEntry value="666">Blue screen of death</listEntry>
         </settingConfig>
     </setting>
 
     <group id="groupBG" title="@Strings.STB">
         <setting propertyKey="@Properties.BG" title="@Strings.STBResource">
             <settingConfig type="list">
+                <listEntry value="0">@Strings.STBTh</listEntry>
                 <listEntry value="1">@Strings.STBSystem</listEntry>
                 <listEntry value="2">@Strings.STBFixedColorSelect</listEntry>
             </settingConfig>

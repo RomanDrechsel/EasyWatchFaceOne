@@ -1,8 +1,4 @@
 <strings>
-    <string id="ThFire">Feuer &amp; Eis</string>
-
-    <string id="STBTh">Theme Hintergrund</string>
-
     <string id="SBatDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
     <string id="SStressAge">Alter des Stress-Levels anzeigen</string>
 

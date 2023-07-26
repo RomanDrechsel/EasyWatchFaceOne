@@ -1,7 +1,4 @@
 <strings>
-    <string id="ThFire">Fire &amp; Ice</string>
-    
-    <string id="STBTh">Theme background</string>
     <string id="SBatDays">Display remaining battery charge in days, if available.</string>
     <string id="SStressAge">Display age of stress data</string>
     

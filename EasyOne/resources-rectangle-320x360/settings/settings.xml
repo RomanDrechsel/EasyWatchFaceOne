@@ -6,7 +6,7 @@
             <listEntry value="1">@Strings.ThFire</listEntry>
             <listEntry value="2">@Strings.ThSunset</listEntry>
             <listEntry value="3">@Strings.ThBaW</listEntry>
-            <listEntry value="666">@Strings.ThBSoD</listEntry>
+            <listEntry value="666">Blue screen of death</listEntry>
         </settingConfig>
     </setting>
 
@@ -35,7 +35,7 @@
                 <listEntry value="4">@Strings.STBColorDarkRed</listEntry>
                 <listEntry value="5">@Strings.STBColorDarkBlue</listEntry>
                 <listEntry value="6">@Strings.STBColorBlue</listEntry>
-                <listEntry value="666">@Strings.ThBSoD</listEntry>
+                <listEntry value="666">Blue screen of death</listEntry>
             </settingConfig>
         </setting>
 

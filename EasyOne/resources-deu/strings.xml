@@ -6,6 +6,7 @@
     <string id="SettingsTh">Theme</string>
 
     <string id="STB">Hintergrund anpassen</string>
+    <string id="STBTh">Theme Hintergrund</string>
     <string id="STBResource">Ressource</string>
     <string id="STBColor">Farbe</string>
    
@@ -46,6 +47,7 @@
     <string id="SDeco">Deko-Linien in den Ecken anzeigen</string>
 
     <string id="ThDarkBlue">Dunkelblau</string>
+    <string id="ThFire">Feuer &amp; Eis</string>    
     <string id="ThSunset">Sonnenuntergang</string>
     <string id="ThBaW">Schwarz-Weiß</string>
 

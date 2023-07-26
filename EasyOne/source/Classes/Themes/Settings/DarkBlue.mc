@@ -6,7 +6,8 @@ module Themes
         var MainTextColor2 = 0x73b9e0;
 
         //Background
-        var BackgroundImage = Rez.Drawables.BackgroundImageDark;
+        var BackgroundColor = 0x282a32;
+        var BackgroundImage = null;
 
         //Clock Widget        
         var ClockHourColor = 0x73b9e0;
@@ -17,5 +18,17 @@ module Themes
         var DateWeekdayColor = 0xffffff;
         var DateDayColor = 0x0071a2;
         var DateYearColor = 0x73b9e0;
+
+        function initialize()
+        {
+            if (Rez.Drawables has :BackgroundImageDark)
+            {
+                self.BackgroundImage = Rez.Drawables.BackgroundImageDark;
+            }
+            else
+            {
+                self.BackgroundImage = null;
+            }
+        }
     }
 }

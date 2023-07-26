@@ -6,7 +6,8 @@ module Themes
         var MainTextColor2 = 0xeb9633;
 
         //Background
-        var BackgroundImage = Rez.Drawables.BackgroundImageSunset;
+        var BackgroundColor = 0xFAD6A5;
+        var BackgroundImage = null;
 
         //Clock Widget
         var ClockHourColor = 0x56def0;
@@ -34,5 +35,17 @@ module Themes
         var HealthHeartIconColor = 0xfa0000;
         var HealthStressIconColor = 0xe9731f;
         var HealthBreathIconColor = 0xfff500;
+
+        function initialize()
+        {
+            if (Rez.Drawables has :BackgroundImageSunset)
+            {
+                self.BackgroundImage = Rez.Drawables.BackgroundImageSunset;
+            }
+            else
+            {
+                self.BackgroundImage = null;
+            }
+        }
     }
 }

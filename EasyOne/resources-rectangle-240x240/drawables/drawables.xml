@@ -1,10 +1,6 @@
 <drawables>
     <bitmap id="Attention" filename="Attention.png"   />
 
-    <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" />
-    <bitmap id="BackgroundImageFire" filename="Backgrounds/Fire.jpg" />
-    <bitmap id="BackgroundImageSunset" filename="Backgrounds/Sunset.jpg" />
-
     <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" />
     <bitmap id="WeatherExtreme" filename="Weather/Extreme.png" />
     <bitmap id="WeatherFog" filename="Weather/Fog.png" />

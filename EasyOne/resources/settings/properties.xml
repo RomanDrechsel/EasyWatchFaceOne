@@ -1,7 +1,7 @@
 <properties>
 
     <property type="number" id="Th">0</property>
-    <property type="number" id="BG">1</property>
+    <property type="number" id="BG">0</property>
     <property type="number" id="BGCT">0</property>
     <property type="number" id="BGCPre">0</property>
     <property type="string" id="BGCCu">#000000</property>

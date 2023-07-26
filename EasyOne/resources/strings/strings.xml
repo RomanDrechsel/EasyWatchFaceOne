@@ -8,6 +8,7 @@
     <string id="SettingsTh">Theme</string>
 
     <string id="STB">Customize background</string>
+    <string id="STBTh">Theme background</string>
     <string id="STBResource">Resource</string>
     <string id="STBColor">Background Color</string>
     
@@ -49,9 +50,9 @@
     <string id="SDeco">Show decoration-lines in the corners</string>
     
     <string id="ThDarkBlue">Dark Blue</string>
+    <string id="ThFire">Fire &amp; Ice</string>
     <string id="ThSunset">Sunset</string>
-    <string id="ThBaW">Black &amp; White</string>    
-    <string id="ThBSoD">Blue screen of death</string>
+    <string id="ThBaW">Black &amp; White</string>
 
     <string id="ShortMonday">Mon</string>
     <string id="ShortTuesday">Tue</string>
