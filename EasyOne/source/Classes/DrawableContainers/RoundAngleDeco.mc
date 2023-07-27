@@ -13,7 +13,6 @@ module DrawableContainers
         function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
-
             self._params = params;
             self.onSettingsChanged();
             $.getApp().OnSettings.add(self.method(:onSettingsChanged));

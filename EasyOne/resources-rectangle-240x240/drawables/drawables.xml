@@ -1,5 +1,5 @@
 <drawables>
-    <bitmap id="Attention" filename="Attention.png"   />
+    <bitmap id="Attention" filename="Attention.png" />
 
     <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" />
     <bitmap id="WeatherExtreme" filename="Weather/Extreme.png" />

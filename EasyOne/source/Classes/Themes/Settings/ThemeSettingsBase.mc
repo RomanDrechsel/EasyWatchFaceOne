@@ -10,7 +10,7 @@ module Themes
 
         //Background
         var BackgroundColor = 0;
-        var BackgroundImage = -1;
+        var BackgroundImage = null;
 
         //Clock Widget
         var ClockHourColor = 0xFFFFFF;

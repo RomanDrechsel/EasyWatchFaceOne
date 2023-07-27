@@ -23,7 +23,7 @@ module Helper
             var ThicknessBold = 6;
             var Direction = JUST_BOTTOMLEFT; 
 
-            private var _lineWidth = 4.0;
+            private var _lineWidth = 4;
             private var _lineHeight as Float;
             private var _totalBarLength as Float;
             private var _horLineValue as Float;

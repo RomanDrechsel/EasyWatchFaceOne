@@ -12,8 +12,8 @@
     </drawable>
 
     <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopLeft">
-        <param name="locX">2</param>
-        <param name="locY">2</param>
+        <param name="locX">3</param>
+        <param name="locY">4</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
     </drawable>
@@ -37,8 +37,8 @@
     </drawable>
 
     <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopRight">
-        <param name="locX">dc.getWidth() - 2</param>
-        <param name="locY">2</param>
+        <param name="locX">dc.getWidth() - 3</param>
+        <param name="locY">4</param>
         <param name="Width">(dc.getWidth() / 2) * 0.8</param>
         <param name="Height">dc.getHeight() * .35</param>
         <param name="Just">"right"</param>

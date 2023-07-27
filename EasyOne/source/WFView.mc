@@ -22,10 +22,6 @@ class WFView extends WatchUi.WatchFace
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
-    function onShow() as Void 
-    {
-    }
-
     function onUpdate(dc as Dc) as Void 
     {
         View.onUpdate(dc);
@@ -36,10 +32,6 @@ class WFView extends WatchUi.WatchFace
                 self.OnUpdate[i].invoke();
             }
         }
-    }
-
-    function onHide() as Void 
-    {
     }
 
     function onExitSleep() as Void 
