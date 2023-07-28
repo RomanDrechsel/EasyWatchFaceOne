@@ -17,7 +17,7 @@ module Themes
             self.MainTextColor2 = 0xeb9633;
 
             //Background
-            self.BackgroundColor = 0xFAD6A5;
+            self.BackgroundColor = 0x181c41;
 
             //Clock Widget
             self.ClockHourColor = 0x56def0;
