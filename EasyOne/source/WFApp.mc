@@ -2,34 +2,30 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
+import Toybox.System;
 
 class WFApp extends Application.AppBase 
 {
     var WatchfaceView = null as WFView;
-
     var OnSettings = [] as Array<Method>;
 
-    function initialize() {
+    function initialize() 
+    {
         AppBase.initialize();
+        var settings = System.getDeviceSettings() as DeviceSettings;
+        IsSmallDisplay = settings.screenWidth < 320;
     }
 
-    // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void 
     {
         Themes.Colors.ResetColors();
     }
 
-    // onStop() is called when your application is exiting
-    function onStop(state as Dictionary?) as Void {
-    }
-
-    // Return the initial view of your application here
     function getInitialView() as Array<Views or InputDelegates>? {
         self.WatchfaceView = new WFView();
         return [ self.WatchfaceView ] as Array<Views or InputDelegates>;
     }
 
-    // New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
         Themes.ThemesLoader.ResetTheme();
         Themes.Colors.ResetColors();
@@ -61,7 +57,4 @@ function getTheme() as Themes.ThemeSettingsBase
     return Themes.ThemesLoader.getTheme();
 }
 
-function debug(text) 
-{
-    Toybox.System.println(text);
-}
+var IsSmallDisplay = true;

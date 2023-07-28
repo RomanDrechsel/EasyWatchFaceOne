@@ -7,7 +7,7 @@ module Helper
     {
         class DrawRoundAngle
         {
-            enum Justification { JUST_TOPLEFT, JUST_TOPRIGHT, JUST_BOTTOMLEFT, JUST_BOTTOMRIGHT }
+            enum Justification { JUST_TOPLEFT = 0, JUST_TOPRIGHT, JUST_BOTTOMLEFT, JUST_BOTTOMRIGHT }
 
             var AnchorX = 0;
             var AnchorY = 0;
@@ -17,21 +17,30 @@ module Helper
 
             var BackgroundColor = 0;
             var BarColors = [] as Array<Number>;
-            var DotRadius = 5 ;
+            var DotRadius = 5;
 
             var Thickness = 4; 
             var ThicknessBold = 6;
             var Direction = JUST_BOTTOMLEFT; 
 
-            private var _lineWidth = 4.0;
+            private var _lineWidth = 4;
             private var _lineHeight as Float;
             private var _totalBarLength as Float;
             private var _horLineValue as Float;
             private var _vertLineValue as Float;
             private var _arcValue as Float;
 
-            function initialize(anchorx as Number, anchory as Number, width as Number, height as Number, angleradius as Number)
+            function initialize(anchorx as Number, anchory as Number, width as Number, height as Number)
             {
+                var angleradius = height / 5;
+                if (IsSmallDisplay)
+                {
+                    self.Thickness = 2;
+                    self.ThicknessBold = 4;
+                    self.DotRadius = 3;
+                    angleradius = (angleradius * .6666).toNumber();
+                }
+
                 self.AnchorX = anchorx;
                 self.AnchorY = anchory;
                 self.Width = width;

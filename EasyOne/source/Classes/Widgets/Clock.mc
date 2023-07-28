@@ -1,7 +1,7 @@
-using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+using Toybox.Graphics as Gfx;
 using Helper.Gfx as HGfx;
 
 module Widgets 
@@ -20,7 +20,7 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            var setting = Application.Properties.getValue("ClockLeadingZero") as Number;
+            var setting = Application.Properties.getValue("ClZero") as Number;
             if (setting != null && setting <= 0)
             {
                 self._showLeadingZero = false;
@@ -35,8 +35,9 @@ module Widgets
         {
             if (self._hours_pos == null)
             {
-                var space_min = 10;
-                var space_sec = 6;
+                var settings = System.getDeviceSettings() as DeviceSettings;
+                var space_min = settings.screenWidth / 32;
+                var space_sec = settings.screenWidth / 53;
                 var bigwidth = dc.getTextWidthInPixels("99", HGfx.Fonts.Hour);
                 var bigwidth2 = dc.getTextWidthInPixels("99", HGfx.Fonts.Minute);
                 var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.Seconds);

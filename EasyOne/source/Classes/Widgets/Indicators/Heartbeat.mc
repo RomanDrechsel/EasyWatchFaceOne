@@ -1,4 +1,5 @@
 import Toybox.Lang;
+import Widgets;
 using Toybox.Graphics as Gfx;
 using Helper.Gfx as HGfx;
 
@@ -17,24 +18,20 @@ module Widgets
             static var HeartbeatZones = [] as Array<Number>;
             static var HeartbeatMin = 0;
 
-            function initialize(widget as Widgets.HealthIndicator)
+            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.initialize(widget);
-            }
-
-            protected function Init(dc as Gfx.Dc)
-            {
-                IndicatorBase.Init(dc);
+                IndicatorBase.Init(dc, widget);
                 self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
+                self._texts = [] as Array<Helper.ExtTextPart>;
             }
 
-            function draw(dc as Gfx.Dc)
+            function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc);
+                IndicatorBase.draw(dc, widget);
                 var heartrate = self.getHeartrate();
 
-                var color = self._Widget._theme.IconsOff;
-                var iconcolor = self._Widget._theme.IconsOff;
+                var color = widget._theme.IconsOff;
+                var iconcolor = widget._theme.IconsOff;
                 var indicatorcolor = color;
                 if (heartrate > 0)
                 {
@@ -45,25 +42,22 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = self._Widget._theme.HealthHeartIconColor;
+                        iconcolor = widget._theme.HealthHeartIconColor;
                     }
-                    indicatorcolor = self._Widget.IndicatorColors[0];
+                    indicatorcolor = widget.IndicatorColors[0];
                     if (self.HeartbeatZones.size() > 1)
                     {
                         for (var i = 1; i < self.HeartbeatZones.size(); i++)
                         {
                             if (heartrate >= self.HeartbeatZones[i])
                             {
-                                color = self._Widget.IndicatorColors[i];
+                                color = widget.IndicatorColors[i];
                                 indicatorcolor = color;
                                 iconcolor = color;
                             }                            
                         }
                     }
-                }
 
-                if (heartrate > 0)
-                {
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                     if (self._texts.size() < 2)
@@ -84,11 +78,11 @@ module Widgets
 
                     if (heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
                     {
-                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                        widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
                     }
                     else
                     {
-                        self._Widget.HideAttentionIcon();
+                        widget.HideAttentionIcon();
                     }
                 }
                 else
@@ -107,7 +101,7 @@ module Widgets
                 {
                     amount = 0.001;
                 }
-                self._Widget.IndicatorDrawing.drawWithColor(dc, amount, indicatorcolor);
+                widget.IndicatorDrawing.drawWithColor(dc, amount, indicatorcolor);
             }
 
             public static function getHeartrate() as Number

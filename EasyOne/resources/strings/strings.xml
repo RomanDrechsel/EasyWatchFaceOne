@@ -5,69 +5,54 @@
     <string id="Yes">Yes</string>
     <string id="No">No</string>
 
-    <string id="SettingsTheme">Theme</string>
+    <string id="SettingsTh">Theme</string>
 
-    <string id="SettingThemeBackground">Customize background</string>
-    <string id="SettingThemeBackgroundResource">Resource</string>
-    <string id="SettingThemeBackgroundColor">Background Color</string>
-    <string id="SettingThemeBackgroundTheme">theme background</string>
-    <string id="SettingThemeBackgroundSystem">system background color</string>
-    <string id="SettingThemeBackgroundFixedColorSelect">use fixed color</string>
-    <string id="SettingThemeBackgroundFixedColor">What fixed color to use</string>
-    <string id="SettingThemeBackgroundPredefinedSelect">predefined color</string>
-    <string id="SettingThemeBackgroundPredefined">Predefined colors</string>
-    <string id="SettingThemeBackgroundColorBlack">Black</string>
-    <string id="SettingThemeBackgroundColorDarkGrey">DarkGrey</string>
-    <string id="SettingThemeBackgroundColorVeryDark">VeryDark</string>
-    <string id="SettingThemeBackgroundColorDarkRed">DarkRed</string>
-    <string id="SettingThemeBackgroundColorDarkBlue">DarkBlue</string>
-    <string id="SettingThemeBackgroundColorBlue">Blue</string>
-    <string id="SettingThemeBackgroundColorCustom">Custom color (HEX format)</string>
-
-    <string id="SettingsColors">Customize colors</string>
-    <string id="SettingsColorsCustomize">Use custom colors? (HEX format)</string>
-    <string id="SettingsColorsText">Text color</string>
-
-    <string id="SettingsColorsDateColorWeekday">Date color: day of week</string>
-    <string id="SettingsColorsDateColorDay">Date color: day of the month / month</string>
-    <string id="SettingsColorsDateColorYear">Date color: year</string>
-
-    <string id="SettingsColorsTimeHours">Time color: hour</string>
-    <string id="SettingsColorsTimeMinute">Time color: minute</string>
-    <string id="SettingsColorsTimeSecond">Time color: second</string>
-    <string id="SettingsColorsTimeAMPM">Time color: am / pm</string>
-    <string id="SettingsColorsIcons">Icons in text color</string>
-
-    <string id="SettingsgroupWidgetsTitle">Widget settings</string>
-    <string id="SettingsWidgetClockLeadingZero">Display leading zero at time</string>
-    <string id="SettingsWidgetBatteryShowDays">Display remaining battery charge in days, if available.</string>
-
-    <string id="SettingsShowStressAge">Display age of stress data</string>
-    <string id="SettingsShowStepsPercent">Display percentage of steps goal</string>
+    <string id="STB">Customize background</string>
+    <string id="STBTh">Theme background</string>
+    <string id="STBResource">Resource</string>
+    <string id="STBColor">Background Color</string>
     
-    <string id="SettingsStressWarningLevel">Stress Warning Level</string>
-    <string id="SettingsRespirationRateWarningLevel">Respiration-Rate Warning Level</string>
+    <string id="STBSystem">system background color</string>
+    <string id="STBFixedColorSelect">use fixed color</string>
+    <string id="STBFixedColor">What fixed color to use</string>
+    <string id="STBPredefinedSelect">predefined color</string>
+    <string id="STBPredefined">Predefined colors</string>
+    <string id="STBColorBlack">Black</string>
+    <string id="STBColorDarkGrey">DarkGrey</string>
+    <string id="STBColorVeryDark">VeryDark</string>
+    <string id="STBColorDarkRed">DarkRed</string>
+    <string id="STBColorDarkBlue">DarkBlue</string>
+    <string id="STBColorBlue">Blue</string>
+    <string id="STBColorCustom">Custom color (HEX format)</string>
 
-    <string id="SettingsLayout">Widget arrangement</string>
-    <string id="SettingsLayoutTL">Top left corner</string>
-    <string id="SettingsLayoutTC">Top center</string>
-    <string id="SettingsLayoutTR">Top right corner</string>
-    <string id="SettingsLayoutBL">Bottom left corner</string>
-    <string id="SettingsLayoutBR">Bottom right corner</string>
+    <string id="SC">Customize colors</string>
+    <string id="SCCustomize">Use custom colors? (HEX format)</string>
+    <string id="SCText">Text color</string>
 
-    <string id="SettingsLayoutWidgetEmpty">Empty</string>
-    <string id="SettingsLayoutWidgetBattery">Battery Status</string>
-    <string id="SettingsLayoutWidgetWeather">Weather</string>
-    <string id="SettingsLayoutWidgetIcons">Icons</string>
-    <string id="SettingsLayoutWidgetDistance">Physical exercise</string>
-    <string id="SettingsLayoutWidgetHealth">Health monitor</string>
-    <string id="SettingsLayoutDecolines">Show decoration-lines in the corners</string>
+    <string id="SCCWeek">Color: day of week</string>
+    <string id="SCCDay">Color: month</string>
+    <string id="SCCYear">Color: year</string>
+
+    <string id="SCTimeHours">Color: hour</string>
+    <string id="SCTimeMinute">Color: minute</string>
+    <string id="SCTimeSecond">Color: second</string>
+    <string id="SCTimeAMPM">Color: am / pm</string>
+    <string id="SCIcons">Icons in text color</string>
+
+    <string id="SgWT">Widget settings</string>
+    <string id="SWZero">Display leading zero at time</string>
+
+    <string id="SSgoal">Display percentage of steps goal</string>
     
-    <string id="ThemeDarkBlue">Dark Blue</string>
-    <string id="ThemeFire">Fire &amp; Ice</string>
-    <string id="ThemeSunset">Sunset</string>
-    <string id="ThemeBSoD">Blue screen of death</string>
-    <string id="ThemeBaW">Black &amp; White</string>
+    <string id="SStressW">Stress Warning Level</string>
+    <string id="SRrW">Respiration-Rate Warning Level</string>
+
+    <string id="SDeco">Show decoration-lines in the corners</string>
+    
+    <string id="ThDarkBlue">Dark Blue</string>
+    <string id="ThFire">Fire &amp; Ice</string>
+    <string id="ThSunset">Sunset</string>
+    <string id="ThBaW">Black &amp; White</string>
 
     <string id="ShortMonday">Mon</string>
     <string id="ShortTuesday">Tue</string>

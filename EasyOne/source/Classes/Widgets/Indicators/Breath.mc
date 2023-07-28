@@ -1,4 +1,5 @@
 import Toybox.Lang;
+import Widgets;
 using Toybox.Graphics as Gfx;
 using Helper.Gfx as HGfx;
 
@@ -17,25 +18,20 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            function initialize(widget as Widgets.HealthIndicator)
+            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.initialize(widget);
-            }
-
-            protected function Init(dc as Gfx.Dc)
-            {
-                IndicatorBase.Init(dc);
+                IndicatorBase.Init(dc, widget);
                 self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
             }
 
-            function draw(dc as Gfx.Dc)
+            function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc);
+                IndicatorBase.draw(dc, widget);
 
                 var breath = self.getBreath();
 
-                var color = self._Widget._theme.IconsOff;
-                var iconcolor = self._Widget._theme.IconsOff;
+                var color = widget._theme.IconsOff;
+                var iconcolor = widget._theme.IconsOff;
                 var indicatorcolor = color;
                 if (breath > 0.0)
                 {
@@ -46,22 +42,22 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = self._Widget._theme.HealthBreathIconColor;
+                        iconcolor = widget._theme.HealthBreathIconColor;
                     }
-                    indicatorcolor = self._Widget.IndicatorColors[0];
+                    indicatorcolor = widget.IndicatorColors[0];
                     if (breath >= 20)
                     {
                         if (breath > self.MaxRespirationRate)
                         {
-                            color = self._Widget.IndicatorColors[3];
+                            color = widget.IndicatorColors[3];
                         }
                         else if (breath > self.MaxRespirationRate - 10)
                         {
-                            color = self._Widget.IndicatorColors[2];
+                            color = widget.IndicatorColors[2];
                         }
                         else
                         {
-                            color = self._Widget.IndicatorColors[1];
+                            color = widget.IndicatorColors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -86,13 +82,13 @@ module Widgets
                     
                     self._textContainer.draw(self._texts, dc);
 
-                    if (breath >= self._Widget.BreathWarningLevel)
+                    if (breath >= widget.BreathWarningLevel)
                     {
-                        self._Widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                        widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
                     }
                     else
                     {
-                        self._Widget.HideAttentionIcon();
+                        widget.HideAttentionIcon();
                     }
                 }
                 else
@@ -102,7 +98,7 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                self._Widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
+                widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
             }
 
             static function getBreath() as Number

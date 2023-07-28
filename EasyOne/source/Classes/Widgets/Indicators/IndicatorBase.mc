@@ -1,6 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Lang;
+import Widgets;
 using Helper.Gfx as HGfx;
 
 module Widgets 
@@ -10,43 +11,59 @@ module Widgets
         class IndicatorBase 
         {
             protected var _initialized = false;
-            
-            protected var _Widget = null as Widgets.HealthIndicator;
-
             protected var _iconPosX as Number;
             protected var _iconPosY as Number;
             protected var _textPosX as Number;
             protected var _textPosY as Number;
 
-            function initialize(widget as Widgets.HealthIndicator)
-            {
-                self._Widget = widget;
-            }
-
-            function draw(dc as Dc)
+            function draw(dc as Dc, widget as HealthIndicator)
             {
                 if (self._initialized == false)
                 {
-                    self.Init(dc);
+                    self.Init(dc, widget);
                 }
             }
 
-            protected function Init(dc as Dc)
+            protected function Init(dc as Dc, widget as HealthIndicator)
             {
                 var iconHeight = dc.getFontHeight(HGfx.Fonts.Icons);
                 var fontHeight = dc.getFontHeight(HGfx.Fonts.Small);
-                var centerX = self._Widget.locX + (self._Widget.WidgetWidth / 2.4);
-                var centerY = self._Widget.locY + (self._Widget.WidgetHeight / 2.2);
 
-                if (self._Widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
+                var centerX;
+                var centerY;
+                if (IsSmallDisplay)
                 {
-                    centerX += 20;
+                    centerX = widget.locX + (widget.WidgetWidth / 2.0);
+                    centerY = widget.locY + (widget.WidgetHeight / 1.5);
+                }
+                else
+                {
+                    centerX = widget.locX + (widget.WidgetWidth / 2.4);
+                    centerY = widget.locY + (widget.WidgetHeight / 2.2);
+                }
+
+                if (widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
+                {
+                    if (IsSmallDisplay)
+                    {
+                        centerX += 5;
+                    }
+                    else
+                    {
+                        centerX += 20;
+                    }
                 }
 
                 self._iconPosX = centerX;
-                self._iconPosY = centerY - (iconHeight / 2) - 10;
                 self._textPosX = centerX;
-                self._textPosY = centerY + (fontHeight / 2) + 5;
+                self._iconPosY = centerY - (iconHeight / 2);
+                self._textPosY = centerY + (fontHeight / 2) - 5; 
+
+                if (!IsSmallDisplay)
+                {
+                    self._iconPosY -= 10;
+                    self._textPosY += 10;
+                }
 
                 self._initialized = true;
             }

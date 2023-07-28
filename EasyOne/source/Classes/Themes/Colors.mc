@@ -20,19 +20,19 @@ module Themes
 
         static function ResetColors()
         {
-            var customcolors = Application.Properties.getValue("CustomColors") as Number;
+            var customcolors = Application.Properties.getValue("CC") as Number;
             if (customcolors == 1)
             {
-                self.Text = self.GetColorFromProperties("TextColor");
+                self.Text = self.GetColorFromProperties("CT");
                 self.Text2 = self.Text;
-                self.DateWeekday = self.GetColorFromProperties("DateColorWeekday");
-                self.DateDay = self.GetColorFromProperties("DateColorDay");
-                self.DateYear = self.GetColorFromProperties("DateColorYear");
-                self.TimeHour = self.GetColorFromProperties("TimeColorHours");
-                self.TimeMinute = self.GetColorFromProperties("TimeColorMinutes");
-                self.TimeSecond = self.GetColorFromProperties("TimeColorSeconds");
-                self.TimeAMPM = self.GetColorFromProperties("TimeColorAMPM");
-                var icons = Application.Properties.getValue("IconsInTextColor") as Number;
+                self.DateWeekday = self.GetColorFromProperties("CWeek");
+                self.DateDay = self.GetColorFromProperties("CDay");
+                self.DateYear = self.GetColorFromProperties("CYear");
+                self.TimeHour = self.GetColorFromProperties("CHour");
+                self.TimeMinute = self.GetColorFromProperties("CMin");
+                self.TimeSecond = self.GetColorFromProperties("CSec");
+                self.TimeAMPM = self.GetColorFromProperties("CMAP");
+                var icons = Application.Properties.getValue("IconC") as Number;
                 if (icons == 1)
                 {
                     self.IconsInTextColor = true;

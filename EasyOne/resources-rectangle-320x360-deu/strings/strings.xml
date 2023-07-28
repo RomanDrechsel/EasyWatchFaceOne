@@ -1,0 +1,18 @@
+<strings>
+    <string id="SBatDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
+    <string id="SStressAge">Alter des Stress-Levels anzeigen</string>
+
+    <string id="SLo">Widget Anordnung</string>
+    <string id="SLoTL">Obere linke Ecke</string>
+    <string id="SLoTC">Oberer mittlerer Rand</string>
+    <string id="SLoTR">Obere rechte Ecke</string>
+    <string id="SLoBL">Untere linke Ecke</string>
+    <string id="SLoBR">Untere rechte Ecke</string>
+
+    <string id="SLoWE">Leer</string>
+    <string id="SLoWB">Batterie Status</string>
+    <string id="SLoWW">Wetter</string>
+    <string id="SLoWI">Symbole</string>
+    <string id="SLoWD">Tägliche Bewegung</string>
+    <string id="SLoWH">Vitalparameter</string>
+</strings>

@@ -2,39 +2,42 @@ module Themes
 {
     class BSoD extends ThemeSettingsBase
     {
-        var MainTextColor = 0xFFFFFF;
-        var MainTextColor2 = 0xFFFFFF;
+        function initialize()
+        {
+            self.MainTextColor = 0xFFFFFF;
+            self.MainTextColor2 = 0xFFFFFF;
 
-        //Background
-        var BackgroundColor = 0x0827F5;
+            //Background
+            self.BackgroundColor = 0x0827F5;
 
-        //Clock Widget        
-        var ClockHourColor = 0xFFFFFF;
-        var ClockMinutesColor = 0xFFFFFF;
-        var ClockSecondsColor = 0xFFFFFF;
+            //Clock Widget        
+            self.ClockHourColor = 0xFFFFFF;
+            self.ClockMinutesColor = 0xFFFFFF;
+            self.ClockSecondsColor = 0xFFFFFF;
 
-        //Date Widget
-        var DateWeekdayColor = 0xFFFFFF;
-        var DateDayColor = 0xFFFFFF;
-        var DateYearColor = 0xFFFFFF;
+            //Date Widget
+            self.DateWeekdayColor = 0xFFFFFF;
+            self.DateDayColor = 0xFFFFFF;
+            self.DateYearColor = 0xFFFFFF;
 
-        //Battery Widget
-        var BatteryIndicatorBackgroundColor = 0xAAAAAA;
+            //Battery Widget
+            self.BatteryIndicatorBackgroundColor = 0xAAAAAA;
 
-        //Icons Widget
-        var IconsOff = 0xAAAAAA;
+            //Icons Widget
+            self.IconsOff = 0xAAAAAA;
 
-        //Indicatoren
-        var IndicatorBackground = 0xAAAAAA;
+            //Indicatoren
+            self.IndicatorBackground = 0xAAAAAA;
 
-        //Distance Widget
-        var DistanceStepsIconColor = 0xFFFFFF;
-        var DistanceIconColor = 0xFFFFFF;
-        var DistanceCaloriesColor = 0xFFFFFF;
+            //Distance Widget
+            self.DistanceStepsIconColor = 0xFFFFFF;
+            self.DistanceIconColor = 0xFFFFFF;
+            self.DistanceCaloriesColor = 0xFFFFFF;
 
-        //Health Widget
-        var HealthHeartIconColor = 0xFFFFFF;
-        var HealthStressIconColor = 0xFFFFFF;
-        var HealthBreathIconColor = 0xFFFFFF;
+            //Health Widget
+            self.HealthHeartIconColor = 0xFFFFFF;
+            self.HealthStressIconColor = 0xFFFFFF;
+            self.HealthBreathIconColor = 0xFFFFFF;
+        }
     }
 }

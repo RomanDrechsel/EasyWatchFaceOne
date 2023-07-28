@@ -1,0 +1,119 @@
+<settings>
+
+    <setting propertyKey="@Properties.Th" title="@Strings.SettingsTh">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.ThDarkBlue</listEntry>
+            <listEntry value="1">@Strings.ThFire</listEntry>
+            <listEntry value="2">@Strings.ThSunset</listEntry>
+            <listEntry value="3">@Strings.ThBaW</listEntry>
+            <listEntry value="666">Blue screen of death</listEntry>
+        </settingConfig>
+    </setting>
+
+    <group id="groupBG" title="@Strings.STB">
+        <setting propertyKey="@Properties.BG" title="@Strings.STBResource">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.STBTh</listEntry>
+                <listEntry value="1">@Strings.STBSystem</listEntry>
+                <listEntry value="2">@Strings.STBFixedColorSelect</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BGCT" title="@Strings.STBFixedColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.STBPredefinedSelect</listEntry>
+                <listEntry value="1">@Strings.STBColorCustom</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BGCPre" title="@Strings.STBPredefined">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.STBColorBlack</listEntry>
+                <listEntry value="1">DarkSlateGrey</listEntry>
+                <listEntry value="2">@Strings.STBColorDarkGrey</listEntry>
+                <listEntry value="3">@Strings.STBColorVeryDark</listEntry>
+                <listEntry value="4">@Strings.STBColorDarkRed</listEntry>
+                <listEntry value="5">@Strings.STBColorDarkBlue</listEntry>
+                <listEntry value="6">@Strings.STBColorBlue</listEntry>
+                <listEntry value="666">Blue screen of death</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.BGCCu" title="@Strings.STBColorCustom">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+    </group>
+
+    <group id="groupColors" title="@Strings.SC">
+        <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.No</listEntry>
+                <listEntry value="1">@Strings.Yes</listEntry>                
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.CT" title="@Strings.SCText">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CWeek" title="@Strings.SCCWeek">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CDay" title="@Strings.SCCDay">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CYear" title="@Strings.SCCYear">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CHour" title="@Strings.SCTimeHours">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CMin" title="@Strings.SCTimeMinute">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CSec" title="@Strings.SCTimeSecond">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.CMAP" title="@Strings.SCTimeAMPM">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+
+        <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.No</listEntry>
+                <listEntry value="1">@Strings.Yes</listEntry>                
+            </settingConfig>
+        </setting>
+    </group>
+
+    <group id="groupWidgets" title="@Strings.SgWT">
+        <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.StepPer" title="@Strings.SSgoal">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.StressW" title="@Strings.SStressW">
+            <settingConfig type="numeric"/>
+        </setting>
+
+        <setting propertyKey="@Properties.RespW" title="@Strings.SRrW">
+            <settingConfig type="numeric"/>
+        </setting>
+    </group>
+
+</settings>

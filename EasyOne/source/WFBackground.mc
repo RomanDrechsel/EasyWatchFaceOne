@@ -7,7 +7,6 @@ class WFBackground extends WatchUi.Drawable
 {
     private var _color = 0 as Number;
     private var _image = null as BitmapResource;
-    private var _hasScaledBackground = null as Boolean|Object;
 
     function initialize(params) 
     {
@@ -25,21 +24,7 @@ class WFBackground extends WatchUi.Drawable
 
         if (self._image != null)
         {
-            if (self._hasScaledBackground == null)
-            {
-                self._hasScaledBackground = dc has :drawScaledBitmap;
-            }
-            
-            if (self._hasScaledBackground)
-            {
-                dc.drawScaledBitmap(0, 0, dc.getWidth(), dc.getHeight(), self._image);
-            }
-            else
-            {
-                var offset_x = (dc.getWidth() - self._image.getWidth()) / 2;
-                var offset_y = (dc.getHeight() - self._image.getHeight()) / 2;
-                dc.drawBitmap(offset_x, offset_y, self._image);
-            }   
+            dc.drawBitmap(0, 0, self._image);
         }
     }
 
@@ -50,12 +35,13 @@ class WFBackground extends WatchUi.Drawable
         self._color = theme.BackgroundColor;
         self._image = null;
 
-        var bgResource = Application.Properties.getValue("Background") as Number;
+        var bgResource = Application.Properties.getValue("BG") as Number;
+
         if (bgResource == 0)
         {
             //theme background
             var bgimage = theme.BackgroundImage;
-            if (bgimage > 0)
+            if (bgimage != null)
             {
                 self._image = Application.loadResource(bgimage) as BitmapResource;
             }
@@ -69,11 +55,11 @@ class WFBackground extends WatchUi.Drawable
         else
         {
             //fixed color
-            var colorType = Application.Properties.getValue("BackgroundColorType") as Number;
+            var colorType = Application.Properties.getValue("BGCT") as Number;
             if (colorType == 0)
             {
                 //predefined color
-                var predefined_color = Application.Properties.getValue("BackgroundColorPredefined") as Number;
+                var predefined_color = Application.Properties.getValue("BGCPre") as Number;
                 var colors = [
                     0, //Black
                     0x2F4F4F, //DarkSlateGrey
@@ -99,7 +85,7 @@ class WFBackground extends WatchUi.Drawable
             else
             {
                 //custom color
-                var customcolor = Application.Properties.getValue("BackgroundColorCustom") as String;
+                var customcolor = Application.Properties.getValue("BGCCu") as String;
                 self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
 
                 if (self._color == null)

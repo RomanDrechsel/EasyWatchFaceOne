@@ -1,0 +1,22 @@
+<drawables>
+    <bitmap id="Attention" filename="Attention.png" />
+
+    <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" />
+    <bitmap id="WeatherExtreme" filename="Weather/Extreme.png" />
+    <bitmap id="WeatherFog" filename="Weather/Fog.png" />
+    <bitmap id="WeatherHeavyRain" filename="Weather/HeavyRain.png" />
+    <bitmap id="WeatherHeavySnow" filename="Weather/HeavySnow.png" />
+    <bitmap id="WeatherLightRain_Night" filename="Weather/LightRain_Night.png" />
+    <bitmap id="WeatherLightRain" filename="Weather/LightRain.png" />
+    <bitmap id="WeatherMostlyCloudy_Night" filename="Weather/MostlyCloudy_Night.png" />
+    <bitmap id="WeatherMostlyCloudy" filename="Weather/MostlyCloudy.png" />
+    <bitmap id="WeatherRain" filename="Weather/Rain.png" />
+    <bitmap id="WeatherRainSnow" filename="Weather/RainSnow.png" />
+    <bitmap id="WeatherSnow" filename="Weather/Snow.png" />
+    <bitmap id="WeatherClear_Night" filename="Weather/Clear_Night.png" />
+    <bitmap id="WeatherClear" filename="Weather/Clear.png" />
+    <bitmap id="WeatherThinClouds_Night" filename="Weather/ThinClouds_Night.png" />
+    <bitmap id="WeatherThinClouds" filename="Weather/ThinClouds.png" />
+    <bitmap id="WeatherThunder" filename="Weather/Thunder.png" />
+    <bitmap id="WeatherWindy" filename="Weather/Windy.png" />
+</drawables>

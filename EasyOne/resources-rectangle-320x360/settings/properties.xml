@@ -1,0 +1,4 @@
+<properties>
+    <property type="number" id="BG">0</property>
+    <property type="number" id="StressA">1</property>
+</properties>

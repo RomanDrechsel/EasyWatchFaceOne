@@ -1,0 +1,5 @@
+<drawables>
+    <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" />
+    <bitmap id="BackgroundImageFire" filename="Backgrounds/Fire.jpg" />
+    <bitmap id="BackgroundImageSunset" filename="Backgrounds/Sunset.jpg" />
+</drawables>

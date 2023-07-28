@@ -19,8 +19,8 @@ module Widgets
 
         private var _calcPos = false;
 
-        private const _iconWidth = 50;
-        private const _iconHeight = 50;
+        private var _iconWidth = 50;
+        private var _iconHeight = 50;
         private var _iconPosX = 0;
         private var _iconPosY = 0;
         private var _tempPosX = 0;
@@ -39,6 +39,12 @@ module Widgets
             WidgetBase.initialize(params);
 
             self._font = HGfx.Fonts.Small;
+
+            if (IsSmallDisplay)
+            {
+                self._iconWidth = 35;
+                self._iconHeight = 35;
+            }
 
             //adjust position to center of widget
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
@@ -301,16 +307,39 @@ module Widgets
                 self._tempPosY = self._iconPosY + self._iconHeight;
 
                 self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
-                self._maxPosY = self.locY + 15;
+                if (IsSmallDisplay)
+                {
+                    self._maxPosY = self.locY + 10;
+                }
+                else
+                {
+                    self._maxPosY = self.locY + 15;
+                }
 
                 self._minPosX = self._maxPosX;
-                self._minPosY = self._maxPosY + textheight + 6;
+                if (IsSmallDisplay)
+                {
+                    self._minPosY = self._maxPosY + textheight + 4;
+                }
+                else
+                {
+                    self._minPosY = self._maxPosY + textheight + 6;
+                }
 
                 self._horLineX = self.locX + horOffset + 5;
-                self._horLineY = self.locY + 18 + textheight;
+                if (IsSmallDisplay)
+                {
+                    self._horLineY = self.locY + 12 + textheight;
+                    self._vertLineHeight = (self._iconHeight + textheight) - 5;
+                    self._horLineWidth = 23;
+                }
+                else
+                {
+                    self._horLineY = self.locY + 18 + textheight;
+                    self._vertLineHeight = (self._iconHeight + textheight) - 8;
+                    self._horLineWidth = 35;
+                }
 
-                self._vertLineHeight = (self._iconHeight + textheight) - 8;
-                self._horLineWidth = 35;
                 var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", self._font);
                 var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", self._font);
 

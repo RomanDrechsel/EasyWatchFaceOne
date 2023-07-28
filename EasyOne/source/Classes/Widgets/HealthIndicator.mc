@@ -12,7 +12,7 @@ module Widgets
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
-        var WidgetHeight = 200;
+        var WidgetHeight = 150;
         var WidgetWidth = 150;
        
         private var _indicatorPadding = 10;
@@ -29,14 +29,16 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            if (params[:Width] != null)
+            var width = params.get("W");
+            if (width != null)
             {
-                self.WidgetWidth = params[:Width];
+                self.WidgetWidth = width;
             }
 
-            if (params[:Height] != null)
+            var height = params.get("H");
+            if (height != null)
             {
-                self.WidgetHeight = params[:Height];
+                self.WidgetHeight = height;
             }
 
             var indicatorPosX = self.locX;
@@ -51,22 +53,21 @@ module Widgets
                 self._theme.IndicatorLevel1,
                 self._theme.IndicatorLevel3,
                 self._theme.IndicatorLevel4,
-                self._theme.IndicatorLevel5,
+                self._theme.IndicatorLevel5
             ];
 
-            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
+            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight);
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
-                
+                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;                
             }
             else
             {
                 self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
             }
 
-            var show = Application.Properties.getValue("ShowDecolines") as Number;
+            var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
                 self.IndicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
@@ -75,8 +76,8 @@ module Widgets
             $.getView().OnWakeUp.add(self.method(:OnWakeUp));
             $.getView().OnSleep.add(self.method(:OnSleep));
 
-            self.StressWarningLevel = Application.Properties.getValue("StressWarningLevel") as Float;
-            self.BreathWarningLevel = Application.Properties.getValue("WarningRespirationRate") as Number;
+            self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
+            self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
         }
 
         function draw(dc as Gfx.Dc)
@@ -86,7 +87,10 @@ module Widgets
                 self.OnWakeUp();
             }
 
-            self._display.draw(dc);
+            if (self._display != null)
+            {
+                self._display.draw(dc, self);
+            }
         }
 
         function OnSleep()
@@ -136,15 +140,15 @@ module Widgets
 
             if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
             {
-                self._display = new Indi.Stress(self);
+                self._display = new Indi.Stress();
             }
             else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
             {
-                self._display = new Indi.Breath(self);
+                self._display = new Indi.Breath();
             }
             else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
             {
-                self._display = new  Indi.Heartbeat(self);
+                self._display = new  Indi.Heartbeat();
             }
         }
 

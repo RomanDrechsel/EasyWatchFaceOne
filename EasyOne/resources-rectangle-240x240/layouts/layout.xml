@@ -1,0 +1,56 @@
+<layout id="WatchFace">
+    <drawable class="WFBackground" id="Background" />
+
+    <drawable class="DrawableContainers.WidgetContainer" id="C">
+        <param name="locX">dc.getWidth() * .5</param>
+        <param name="locY">dc.getHeight() * .5</param>
+    </drawable>
+    
+    <drawable class="DrawableContainers.WidgetContainer" id="UC">
+        <param name="locX">dc.getWidth() * .5</param>
+        <param name="locY">(dc.getHeight() * .5) - 44</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="DTL">
+        <param name="locX">3</param>
+        <param name="locY">3</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="TL">
+        <param name="locX">7</param>
+        <param name="locY">7</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="TC">
+        <param name="locX">dc.getWidth() / 2</param>
+        <param name="locY">7</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="TR">
+        <param name="locX">dc.getWidth() - 17</param>
+        <param name="locY">7</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="DTR">
+        <param name="locX">dc.getWidth() - 3</param>
+        <param name="locY">3</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="BL">
+        <param name="locX">3</param>
+        <param name="locY">dc.getHeight() - 4</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
+    </drawable>
+
+    <drawable class="DrawableContainers.WidgetContainer" id="BR">
+        <param name="locX">dc.getWidth() - 3</param>
+        <param name="locY">dc.getHeight() - 4</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
+    </drawable>
+</layout>

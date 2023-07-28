@@ -11,7 +11,7 @@ module Themes
         {
             if (self._theme == null)
             {
-                var theme = Application.Properties.getValue("Theme") as Number;
+                var theme = Application.Properties.getValue("Th") as Number;
                 switch (theme)
                 {
                     default:
