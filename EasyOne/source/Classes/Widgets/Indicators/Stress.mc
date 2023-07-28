@@ -205,6 +205,7 @@ module Widgets
                         }
                         
                         self._stressLevel = newest_sample.data;
+                        self._lastSampleDate = newest_sample.when;
                     }
                     else
                     {

@@ -1,63 +1,56 @@
 <layout id="WatchFace">
     <drawable class="WFBackground" id="Background" />
 
-    <drawable class="DrawableContainers.CenterContainer" id="Center">
+    <drawable class="DrawableContainers.WidgetContainer" id="C">
         <param name="locX">dc.getWidth() * .5</param>
         <param name="locY">dc.getHeight() * .5</param>
     </drawable>
     
-    <drawable class="DrawableContainers.UpperCenterContainer" id="UpperCenter">
+    <drawable class="DrawableContainers.WidgetContainer" id="UC">
         <param name="locX">dc.getWidth() * .5</param>
         <param name="locY">(dc.getHeight() * .5) - 44</param>
     </drawable>
 
-    <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopLeft">
+    <drawable class="DrawableContainers.WidgetContainer" id="DTL">
         <param name="locX">3</param>
-        <param name="locY">4</param>
-        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="Height">dc.getHeight() * .35</param>
+        <param name="locY">3</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
     </drawable>
 
-    <drawable class="DrawableContainers.TopLeftContainer" id="TopLeft">
+    <drawable class="DrawableContainers.WidgetContainer" id="TL">
         <param name="locX">7</param>
         <param name="locY">7</param>
-        <param name="Just">"left"</param>
     </drawable>
 
-    <drawable class="DrawableContainers.TopCenterContainer" id="TopCenter">
+    <drawable class="DrawableContainers.WidgetContainer" id="TC">
         <param name="locX">dc.getWidth() / 2</param>
         <param name="locY">7</param>
-        <param name="Just">"center"</param>
     </drawable>
 
-    <drawable class="DrawableContainers.TopRightContainer" id="TopRight">
+    <drawable class="DrawableContainers.WidgetContainer" id="TR">
         <param name="locX">dc.getWidth() - 17</param>
         <param name="locY">7</param>
-        <param name="Just">"right"</param>
     </drawable>
 
-    <drawable class="DrawableContainers.RoundAngleDeco" id="DecoTopRight">
+    <drawable class="DrawableContainers.WidgetContainer" id="DTR">
         <param name="locX">dc.getWidth() - 3</param>
-        <param name="locY">4</param>
-        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="Height">dc.getHeight() * .35</param>
-        <param name="Just">"right"</param>
+        <param name="locY">3</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
     </drawable>
 
-    <drawable class="DrawableContainers.BottomLeftContainer" id="BottomLeft">
+    <drawable class="DrawableContainers.WidgetContainer" id="BL">
         <param name="locX">3</param>
         <param name="locY">dc.getHeight() - 4</param>
-        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="Height">dc.getHeight() * .35</param>
-        <param name="VJust">"bottom"</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
     </drawable>
 
-    <drawable class="DrawableContainers.BottomRightContainer" id="BottomRight">
+    <drawable class="DrawableContainers.WidgetContainer" id="BR">
         <param name="locX">dc.getWidth() - 3</param>
         <param name="locY">dc.getHeight() - 4</param>
-        <param name="Width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="Height">dc.getHeight() * .35</param>
-        <param name="VJust">"bottom"</param>
-        <param name="Just">"right"</param>
+        <param name="width">(dc.getWidth() / 2) * 0.8</param>
+        <param name="height">dc.getHeight() * .35</param>
     </drawable>
 </layout>

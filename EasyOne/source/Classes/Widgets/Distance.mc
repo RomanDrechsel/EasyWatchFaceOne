@@ -9,7 +9,7 @@ module Widgets
 {
     class Distance extends WidgetBase
     {
-        private var _WidgetHeight = 200;
+        private var _WidgetHeight = 150;
         private var _WidgetWidth = 150;
         private var _inMiles = false as Boolean;
         private var _drawYpos as Number;
@@ -25,27 +25,22 @@ module Widgets
 
         private var _showStepsPercentage = true;
 
-        private const CENTIMETER_TO_FEET = 0.0328084;
-        private const FEET_TO_MILES = 5280.0;
-
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
 
-            if (params[:Width] != null)
+            var width = params.get("W");
+            if (width != null)
             {
-                self._WidgetWidth = params[:Width];
+                self._WidgetWidth = width;
             }
 
-            if (params[:Height] != null)
+            var height = params.get("H");
+            if (height != null)
             {
-                self._WidgetHeight = params[:Height];
+                self._WidgetHeight = height;
             }
-
-            if (self.VJustification == WIDGET_JUSTIFICATION_BOTTOM)
-            {
-                self.locY = self.locY - self._WidgetHeight;
-            }
+            self.locY = self.locY - self._WidgetHeight;
 
             if (IsSmallDisplay)
             {
@@ -54,7 +49,7 @@ module Widgets
                 self._lineHeight = 22;
             }
 
-            self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, self._WidgetHeight / 4);
+            self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight);
             self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
 
             var textheight = (self._lineHeight * 3) + self._indicatorDrawing.ThicknessBold + self._indicatorVPadding;
@@ -269,10 +264,10 @@ module Widgets
 
         private function FormatMiles(centimeters as Number) as String
         {
-            var dist = centimeters * self.CENTIMETER_TO_FEET as Float; //feet
-            if (dist >= self.FEET_TO_MILES)
+            var dist = centimeters.toFloat() * 0.0328084; //feet
+            if (dist >= 5280.0)
             {
-                dist = dist / self.FEET_TO_MILES as Float;
+                dist = dist / 5280.0; //miles
                 if (dist >= 100)
                 {
                     return Math.round(dist).toNumber() + " mi"; //only show full miles
@@ -288,11 +283,11 @@ module Widgets
 
         private function FormatMeters(centimeters as Number) as String
         {
-            var dist = centimeters / 100; //meters
-            if (dist >= 1000)
+            var dist = centimeters.toFloat() / 100.0; //meters
+            if (dist >= 1000.0)
             {
-                dist = dist / 1000.0 as Float;
-                if (dist >= 100)
+                dist = dist / 1000.0;
+                if (dist >= 100.0)
                 {
                     return Math.round(dist).toNumber() + " km";
                 }

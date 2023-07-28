@@ -1,6 +1,6 @@
-using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.WatchUi;
+using Toybox.Graphics as Gfx;
 
 module Helper 
 {

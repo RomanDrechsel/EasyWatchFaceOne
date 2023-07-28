@@ -4,15 +4,10 @@ import Toybox.Application;
 
 module DrawableContainers
 {
-    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_TOPLEFT, WIDGET_TOPCENTER, WIDGET_TOPRIGHT, WIDGET_BOTTOMLEFT, WIDGET_BOTTOMRIGHT }
+    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_DECO, WIDGET_TOPLEFT, WIDGET_TOPCENTER, WIDGET_TOPRIGHT, WIDGET_BOTTOMLEFT, WIDGET_BOTTOMRIGHT }
 
     class WidgetFactory
     {
-        static function GetWidgetWithoutParams(pos as ContainerPosition) as WidgetBase
-        {
-            return self.GetWidget(pos, {});
-        }
-
         static function GetWidget(pos as ContainerPosition, container_params as Dictionary) as WidgetBase
         {
             switch (pos)
@@ -31,6 +26,9 @@ module DrawableContainers
                     return self.GetBottomWidget(Properties.getValue("WBL") as Number, container_params);
                 case WIDGET_BOTTOMRIGHT:
                     return self.GetBottomWidget(Properties.getValue("WBR") as Number, container_params);
+                case WIDGET_DECO:
+                    container_params.put("V", Widgets.WIDGET_JUSTIFICATION_TOP);
+                    return self.GetDecoWidget(container_params);
             }
 
             return null;
@@ -60,10 +58,16 @@ module DrawableContainers
                     return new HealthIndicator(container_params);
             }
 
+            container_params.put("V", Widgets.WIDGET_JUSTIFICATION_BOTTOM);
+            return self.GetDecoWidget(container_params);
+        }
+
+        private static function GetDecoWidget(container_params as Dictionary) as WidgetBase
+        {
             var deco = Properties.getValue("Deco") as Number;
             if (deco != null && deco == 1)
             {
-                return new DecoRoundAngle(container_params);
+                return new DecoWidget(container_params);
             }
             return null;
         }

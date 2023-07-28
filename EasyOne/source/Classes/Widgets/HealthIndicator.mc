@@ -12,7 +12,7 @@ module Widgets
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
-        var WidgetHeight = 200;
+        var WidgetHeight = 150;
         var WidgetWidth = 150;
        
         private var _indicatorPadding = 10;
@@ -29,14 +29,16 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            if (params[:Width] != null)
+            var width = params.get("W");
+            if (width != null)
             {
-                self.WidgetWidth = params[:Width];
+                self.WidgetWidth = width;
             }
 
-            if (params[:Height] != null)
+            var height = params.get("H");
+            if (height != null)
             {
-                self.WidgetHeight = params[:Height];
+                self.WidgetHeight = height;
             }
 
             var indicatorPosX = self.locX;
@@ -54,7 +56,7 @@ module Widgets
                 self._theme.IndicatorLevel5
             ];
 
-            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, self.WidgetHeight / 4);
+            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight);
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
