@@ -1,9 +1,9 @@
 <drawables>
     <bitmap id="Attention" filename="Attention.png"  packingFormat="default" />
 
-    <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
-    <bitmap id="BackgroundImageFire" filename="Backgrounds/Fire.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
-    <bitmap id="BackgroundImageSunset" filename="Backgrounds/Sunset.jpg" scaleY="100%" scaleRelativeTo="screen" packingFormat="jpg" />
+    <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" scaleY="100%" scaleRelativeTo="screen" />
+    <bitmap id="BackgroundImageFire" filename="Backgrounds/Fire.jpg" scaleY="100%" scaleRelativeTo="screen" />
+    <bitmap id="BackgroundImageSunset" filename="Backgrounds/Sunset.jpg" scaleY="100%" scaleRelativeTo="screen" />
 
     <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" packingFormat="default" />
     <bitmap id="WeatherExtreme" filename="Weather/Extreme.png" packingFormat="default" />

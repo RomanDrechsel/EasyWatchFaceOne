@@ -1,4 +1,5 @@
 import Toybox.WatchUi;
+import Toybox.Graphics;
 
 module Helper
 { 
