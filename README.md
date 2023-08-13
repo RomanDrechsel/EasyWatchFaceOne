@@ -40,4 +40,4 @@ Due to memory limitations, the background images are not available on the Venu®
 <br /><br />
 
 If you like the watchface, you can support me at\
-[Paypal](https://paypal.me/RomanDrechsel)
+[Paypal](https://paypal.me/RomanDrechsel) or [Buy me a coffee](https://www.buymeacoffee.com/romandrechsel)
