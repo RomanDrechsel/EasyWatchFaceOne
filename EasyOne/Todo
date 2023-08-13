@@ -1,2 +1,5 @@
+Todo: replace day of week strings with Time.FORMAT_MEDIUM
+
+
 Feature-Requests:
 - customize informations on info-widget

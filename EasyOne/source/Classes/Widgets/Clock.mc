@@ -89,7 +89,7 @@ module Widgets
                 {
                     h = "0" + h;
                 }
-            }           
+            }
             dc.setColor(Themes.Colors.TimeHour, Gfx.COLOR_TRANSPARENT);
             dc.drawText(self._hours_pos, self.locY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
             dc.setColor(Themes.Colors.TimeMinute, Gfx.COLOR_TRANSPARENT);
