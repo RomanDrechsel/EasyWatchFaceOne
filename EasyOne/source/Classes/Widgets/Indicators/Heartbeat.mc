@@ -30,8 +30,10 @@ module Widgets
                 IndicatorBase.draw(dc, widget);
                 var heartrate = self.getHeartrate();
 
-                var color = widget._theme.IconsOff;
-                var iconcolor = widget._theme.IconsOff;
+                var theme = $.getTheme();
+
+                var color = theme.IconsOff;
+                var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
                 if (heartrate > 0)
                 {
@@ -42,7 +44,7 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = widget._theme.HealthHeartIconColor;
+                        iconcolor = theme.HealthHeartIconColor;
                     }
                     indicatorcolor = widget.IndicatorColors[0];
                     if (self.HeartbeatZones.size() > 1)

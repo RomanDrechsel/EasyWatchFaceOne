@@ -23,7 +23,7 @@ module DrawableContainers
             }
         }
 
-        function Init()
+        function Init() as Void
         {
             self._Widget = null;
             var params = {

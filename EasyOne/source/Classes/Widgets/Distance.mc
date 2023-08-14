@@ -28,7 +28,6 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-
             var width = params.get("W");
             if (width != null)
             {
@@ -49,8 +48,10 @@ module Widgets
                 self._lineHeight = 22;
             }
 
+            var theme = $.getTheme();
+
             self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight);
-            self._indicatorDrawing.BarColors = self._theme.IndicatorSteps;
+            self._indicatorDrawing.BarColors = theme.IndicatorSteps;
 
             var textheight = (self._lineHeight * 3) + self._indicatorDrawing.ThicknessBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
@@ -130,7 +131,7 @@ module Widgets
             }
             else
             {
-                dc.setColor(self._theme.DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
             }
            
             dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
@@ -161,7 +162,7 @@ module Widgets
             }
             else
             {
-                dc.setColor(self._theme.DistanceIconColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceIconColor, Gfx.COLOR_TRANSPARENT);
             }
 
             dc.drawText(self._iconPosX, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
@@ -182,7 +183,7 @@ module Widgets
             }
             else
             {
-                dc.setColor(self._theme.DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
             }
            
             dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);

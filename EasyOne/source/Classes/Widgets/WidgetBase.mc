@@ -10,11 +10,9 @@ module Widgets
         var locX = 0.0;
         var locY = 0.0;
         var Justification = WIDGET_JUSTIFICATION_LEFT;
-        var _theme = null as Themes.ThemeSettingsBase;
 
         function initialize(container_params as Dictionary)
         {
-            self._theme = $.getTheme();
             var posx = container_params.get("X");
             if (posx != null)
             {

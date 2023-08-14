@@ -14,7 +14,6 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            private static const SAMPLE_VALID = 600; //old samples are valid for 10 min
             private static var _sampleDelta = 0.0;
             private static var _showSampleTime = true;
             private static var _lastSampleDate = null as Toybox.Time.Moment;
@@ -39,7 +38,7 @@ module Widgets
                     self._showSampleTime = false;
                 }
 
-                $.getView().OnWakeUp.add(self.method(:OnWakeUp));
+                $.getView().OnWakeUp.add(self);
             }
 
             protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
@@ -53,9 +52,10 @@ module Widgets
                 IndicatorBase.draw(dc, widget);
 
                 var stress = self.getStressLevel();
+                var theme = $.getTheme();
 
-                var color = widget._theme.IconsOff;
-                var iconcolor = widget._theme.IconsOff;
+                var color = theme.IconsOff;
+                var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
                 if (stress > 0.0)
                 {
@@ -66,7 +66,7 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = widget._theme.HealthStressIconColor;
+                        iconcolor = theme.HealthStressIconColor;
                     }
                     indicatorcolor = widget.IndicatorColors[0];
                     if (stress >= 60)
@@ -187,14 +187,15 @@ module Widgets
 
             function OnWakeUp()
             {
+                //SAMPLE_VALID = 600
                 if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
                     var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
                     var newest_sample = hist.next();
                     var prev_sample = hist.next();
-                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= self.SAMPLE_VALID)
+                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
                     {
-                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= self.SAMPLE_VALID)
+                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
                         {
                             self._sampleDelta = newest_sample.data - prev_sample.data;
                         }

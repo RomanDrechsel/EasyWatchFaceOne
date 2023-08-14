@@ -3,12 +3,12 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+using Widgets.Indicators as Indi;
 
 class WFView extends WatchUi.WatchFace 
 {
-    var OnWakeUp = [] as Array<Method>;
-    var OnSleep = [] as Array<Method>;
-    var OnUpdate = [] as Array<Method>;
+    private var _isBackground = false;
+    var OnWakeUp = [];
 
     function initialize() 
     {
@@ -19,44 +19,38 @@ class WFView extends WatchUi.WatchFace
     {
         Helper.Gfx.Fonts.Load();
         setLayout(Rez.Layouts.WatchFace(dc));
+        self._isBackground = false;
     }
 
     function onUpdate(dc as Dc) as Void 
     {
         View.onUpdate(dc);
-        if (self.OnUpdate.size() > 0)
+        if (self._isBackground == true)
         {
-            for (var i = 0; i < self.OnUpdate.size(); i++)
-            {
-                self.OnUpdate[i].invoke();
-            }
+            Indi.Breath.getBreath();
         }
     }
 
     function onExitSleep() as Void 
     {
+        self._isBackground = false;
         if (self.OnWakeUp.size() > 0)
         {
             for (var i = 0; i < self.OnWakeUp.size(); i++)
             {
-                self.OnWakeUp[i].invoke();
+                self.OnWakeUp[i].OnWakeUp();
             }
         }
     }
 
     function onEnterSleep() as Void 
     {
-        if (self.OnSleep.size() > 0)
-        {
-            for (var i = 0; i < self.OnSleep.size(); i++)
-            {
-                self.OnSleep[i].invoke();
-            }
-        }
+        self._isBackground = true;
     }
 
     function onSettingsChanged()
     {
+        self.OnWakeUp = [] as Array<Method>;
         var ids = ["BG", "C", "UC", "DTL", "TL", "TC", "TR", "DTR", "BL", "BR"];
         for (var i = 0; i < ids.size(); i++)
         {
@@ -66,9 +60,5 @@ class WFView extends WatchUi.WatchFace
                 drawable.Init();
             }
         }
-        
-        self.OnWakeUp = [] as Array<Method>;
-        self.OnSleep = [] as Array<Method>;
-        self.OnUpdate = [] as Array<Method>;
     }
 }

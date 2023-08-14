@@ -65,20 +65,21 @@ module Widgets
             }
 
             //Background
-            self._arc.draw(dc, 100, self._theme.BatteryIndicatorBackgroundColor);
+            var theme = $.getTheme();
+            self._arc.draw(dc, 100, theme.BatteryIndicatorBackgroundColor);
 
             //colored battery status
             var stats = System.getSystemStats();
             var battery = stats.battery;
-            var color = self._theme.BatteryIndicatorFullColor;
+            var color = theme.BatteryIndicatorFullColor;
 
             if (stats.battery < 20.0 || (self._hasBatteryInDays && stats.batteryInDays < 1.0))
             {
-                color = self._theme.BatteryIndicatorLowColor;
+                color = theme.BatteryIndicatorLowColor;
             }
             else if (stats.battery < 40.0 || (self._hasBatteryInDays && stats.batteryInDays < 2.0))
             {
-                color = self._theme.BatteryIndicatorHalfColor;
+                color = theme.BatteryIndicatorHalfColor;
             }
 
             self._arc.draw(dc, battery, color);
@@ -86,7 +87,7 @@ module Widgets
             dc.setColor(color, Gfx.COLOR_TRANSPARENT);
             if (self._hasBatteryInDays == true)
             {
-                dc.drawText(self.locX, self.locY - self._FontHeight + 2, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX, self.locY - dc.getFontHeight(self._Font) + 2, self._Font, battery.format("%2d") + "%", Gfx.TEXT_JUSTIFY_CENTER);
                 dc.drawText(self.locX, self.locY - 2, self._Font, stats.batteryInDays.format("%2d") + self._BatteryDays, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
@@ -112,8 +113,6 @@ module Widgets
             self._arc = new Helper.Gfx.DrawArc(self.locX, self.locY, self._arcRadius, self._arcWidth, self._arcStart, self._arcLength, Gfx.ARC_CLOCKWISE);
             self._arc.Parts = self._arcParts;
             self._arc.PartSeparatorWidth = self._arcPartSeparatorWidth;
-
-            self._FontHeight = dc.getFontHeight(self._Font);
             self._initialized = true;
         }
     }

@@ -1,4 +1,6 @@
-Todo: replace day of week strings with Time.FORMAT_MEDIUM
+TODO:
+- remove DrawArc Class
+- Make DrawRoundAngle Class static
 
 
 Feature-Requests:

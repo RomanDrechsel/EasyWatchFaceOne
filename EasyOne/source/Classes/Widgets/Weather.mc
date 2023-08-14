@@ -9,13 +9,9 @@ module Widgets
     class Weather extends WidgetBase
     {  
         private var _currentTemp = null as String;
-        private var _currentWeatherIcon = null as BitmapResource;
+        private var _currentWeatherIcon = null;
         private var _maxTemp = null as String;
         private var _minTemp = null as String;
-        private var _sunrise = null;
-        private var _sunset = null;
-
-        private var _font = null as FontResource;
 
         private var _calcPos = false;
 
@@ -38,8 +34,6 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            self._font = HGfx.Fonts.Small;
-
             if (IsSmallDisplay)
             {
                 self._iconWidth = 35;
@@ -56,7 +50,7 @@ module Widgets
                 self.locX = self.locX + self._iconWidth + 10;
             }
 
-            $.getView().OnWakeUp.add(self.method(:OnWakeUp));
+            $.getView().OnWakeUp.add(self);
             self.OnWakeUp();
         }
 
@@ -69,18 +63,20 @@ module Widgets
                     self.CalcPos(dc);
                 }
 
+                var font = HGfx.Fonts.Small;
+
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
                 dc.drawBitmap(self._iconPosX, self._iconPosY, self._currentWeatherIcon);
-                dc.drawText(self._tempPosX, self._tempPosY, self._font, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._tempPosX, self._tempPosY, font, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
 
                 dc.setPenWidth(1);
                 dc.drawLine(self.locX, self.locY + 10, self.locX, self.locY + self._vertLineHeight);
 
-                dc.drawText(self._maxPosX, self._maxPosY, self._font, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._maxPosX, self._maxPosY, font, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
                 dc.setPenWidth(2);
                 dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
-                dc.drawText(self._minPosX, self._minPosY, self._font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._minPosX, self._minPosY, font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
             }
         }
 
@@ -91,9 +87,7 @@ module Widgets
             if (current != null)
             {
                 self._calcPos = false;
-
                 var settings = Toybox.System.getDeviceSettings();
-
                 var maxtemp = current.highTemperature;
                 var mintemp = current.lowTemperature;
                 var ctemp = current.temperature;
@@ -107,16 +101,22 @@ module Widgets
                         location = info.position;
                     }
                 }
+                
+                var isNight = false;
+
                 if (location != null)
                 {
                     var now = Toybox.Time.now();
-                    self._sunrise = Weather.getSunrise(location, now);
-                    self._sunset = Weather.getSunset(location, now);
-                }
-                else
-                {
-                    self._sunrise = null;
-                    self._sunset = null;
+                    var sunrise = Weather.getSunrise(location, now);
+                    var sunset = Weather.getSunset(location, now);
+
+                    if (sunrise != null && sunset != null)
+                    {
+                        if (sunrise.greaterThan(now) || sunset.lessThan(now))
+                        {
+                            isNight = true;
+                        }
+                    }
                 }
 
                 if (settings.temperatureUnits == Toybox.System.UNIT_STATUTE)
@@ -143,6 +143,7 @@ module Widgets
                 self._maxTemp = maxtemp;
                 self._minTemp = mintemp;
 
+                self._currentWeatherIcon = null;
                 var condition = current.condition;
                 if (condition != null)
                 {
@@ -151,52 +152,52 @@ module Widgets
                         case Toybox.Weather.CONDITION_CLEAR:
                         case Toybox.Weather.CONDITION_MOSTLY_CLEAR:
                         case Toybox.Weather.CONDITION_FAIR:
-                            if (self.isNight())
+                            if (isNight)
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear_Night) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear_Night);
                             }
                             else
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear);
                             }
                             break;
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
                         case Toybox.Weather.CONDITION_PARTLY_CLEAR:
                         case Toybox.Weather.CONDITION_THIN_CLOUDS:
-                            if (self.isNight())
+                            if (isNight)
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds_Night) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds_Night);
                             }
                             else
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds);
                             }
                             break;
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
-                            if (self.isNight())
+                            if (isNight)
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy_Night) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy_Night);
                             }
                             else
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy);
                             }
                             break;
                         case Toybox.Weather.CONDITION_CLOUDY:
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherCloudy) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherCloudy);
                             break;
                         case Toybox.Weather.CONDITION_LIGHT_RAIN:
                         case Toybox.Weather.CONDITION_LIGHT_SHOWERS:
                         case Toybox.Weather.CONDITION_SHOWERS:
                         case Toybox.Weather.CONDITION_CHANCE_OF_SHOWERS:
-                            if (self.isNight())
+                            if (isNight)
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain_Night) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain_Night);
                             }
                             else
                             {
-                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain) as BitmapResource;
+                                self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain);
                             }
                             break;
                         case Toybox.Weather.CONDITION_RAIN:
@@ -204,23 +205,23 @@ module Widgets
                         case Toybox.Weather.CONDITION_DRIZZLE:
                         case Toybox.Weather.CONDITION_CHANCE_OF_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRain) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRain);
                             break;
                         case Toybox.Weather.CONDITION_SNOW:
                         case Toybox.Weather.CONDITION_HAIL:
                         case Toybox.Weather.CONDITION_LIGHT_SNOW:
                         case Toybox.Weather.CONDITION_CHANCE_OF_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_SNOW:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherSnow) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherSnow);
                             break;
                         case Toybox.Weather.CONDITION_WINDY:
                         case Toybox.Weather.CONDITION_SQUALL:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherWindy) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherWindy);
                             break;
                         case Toybox.Weather.CONDITION_THUNDERSTORMS:
                         case Toybox.Weather.CONDITION_SCATTERED_THUNDERSTORMS:
                         case Toybox.Weather.CONDITION_CHANCE_OF_THUNDERSTORMS:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThunder) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThunder);
                             break;
                         case Toybox.Weather.CONDITION_WINTRY_MIX:
                         case Toybox.Weather.CONDITION_LIGHT_RAIN_SNOW:
@@ -228,24 +229,24 @@ module Widgets
                         case Toybox.Weather.CONDITION_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_SLEET:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRainSnow) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRainSnow);
                             break;
                         case Toybox.Weather.CONDITION_FOG:
                         case Toybox.Weather.CONDITION_HAZY:
                         case Toybox.Weather.CONDITION_MIST:
                         case Toybox.Weather.CONDITION_DUST:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherFog) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherFog);
                             break;
                         case Toybox.Weather.CONDITION_HEAVY_RAIN:
                         case Toybox.Weather.CONDITION_HEAVY_SHOWERS:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavyRain) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavyRain);
                             break;
                         case Toybox.Weather.CONDITION_HEAVY_SNOW:
                         case Toybox.Weather.CONDITION_ICE:
                         case Toybox.Weather.CONDITION_HAZE:
                         case Toybox.Weather.CONDITION_FREEZING_RAIN:
                         case Toybox.Weather.CONDITION_ICE_SNOW:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavySnow) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavySnow);
                             break;
                         case Toybox.Weather.CONDITION_TORNADO:
                         case Toybox.Weather.CONDITION_SMOKE:
@@ -255,13 +256,10 @@ module Widgets
                         case Toybox.Weather.CONDITION_HURRICANE:
                         case Toybox.Weather.CONDITION_TROPICAL_STORM:
                         case Toybox.Weather.CONDITION_FLURRIES:
-                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherExtreme) as BitmapResource;
+                            self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherExtreme);
                             break;
                         case Toybox.Weather.CONDITION_UNKNOWN_PRECIPITATION:
                         case Toybox.Weather.CONDITION_UNKNOWN:
-                        default:
-                            self._currentWeatherIcon = null as BitmapResource;
-                            break;
                     }
                 }
             }
@@ -271,37 +269,22 @@ module Widgets
                 self._maxTemp = null;
                 self._minTemp = null;
                 self._currentWeatherIcon = null;
-                self._sunrise = null;
-                self._sunset = null;
                 self._calcPos = false;
             }
-        }
-
-        private function isNight() as Boolean
-        {
-            if (self._sunrise != null && self._sunset != null)
-            {
-                var now = Toybox.Time.now();
-                if (self._sunrise.greaterThan(now) || self._sunset.lessThan(now))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private function CalcPos(dc as Gfx.Dc)
         {
             if (self._currentWeatherIcon != null)
             {
-                var textheight = dc.getFontHeight(self._font);
+                var font = HGfx.Fonts.Small;
+                var textheight = dc.getFontHeight(font);
                 var horOffset = 5;
 
                 self._iconPosX = self.locX - self._iconWidth - horOffset;
                 self._iconPosY = self.locY;
 
-                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", self._font) / 2);
+                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", font) / 2);
                 self._tempPosY = self._iconPosY + self._iconHeight;
 
                 self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
@@ -338,8 +321,8 @@ module Widgets
                     self._horLineWidth = 35;
                 }
 
-                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", self._font);
-                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", self._font);
+                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", font);
+                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", font);
 
                 if (self._horLineWidth < txt1)
                 {

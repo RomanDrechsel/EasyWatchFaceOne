@@ -5,45 +5,44 @@ module Themes
 {
     class ThemesLoader
     {
-        private static var _theme = null as ThemeSettingsBase;
+        static var Theme = null as ThemeSettingsBase;
 
-        static function getTheme() as ThemeSettingsBase
+        static function loadTheme() as Void
         {
-            if (self._theme == null)
+            var theme = Application.Properties.getValue("Th") as Number;
+            switch (theme)
             {
-                var theme = Application.Properties.getValue("Th") as Number;
-                switch (theme)
-                {
-                    default:
-                    case 0:
-                        self._theme = new DarkBlue();
-                        break;
-                    case 1:
-                        self._theme = new Fire();
-                        break;
-                    case 2:
-                        self._theme = new Sunset();
-                        break;
-                    case 3:
-                        self._theme = new BlackAndWhite();
-                        break;
-                    case 666:
-                        self._theme = new BSoD();
-                        break;
-                }
+                default:
+                case 0:
+                    self.Theme = new DarkBlue();
+                    break;
+                case 1:
+                    self.Theme = new Fire();
+                    break;
+                case 2:
+                    self.Theme = new Sunset();
+                    break;
+                case 3:
+                    self.Theme = new BlackAndWhite();
+                    break;
+                case 666:
+                    self.Theme = new BSoD();
+                    break;
             }
 
-            if (self._theme == null)
+            if (self.Theme == null)
             {
-                self._theme = new ThemeSettingsBase();
+                self.Theme = new ThemeSettingsBase();
             }
-
-            return self._theme;
-        }
-
-        static function ResetTheme()
-        {
-            self._theme = null;
         }
     }
+}
+
+function getTheme() as Themes.ThemeSettingsBase
+{
+    if (Themes.ThemesLoader.Theme == null)
+    {
+        Themes.ThemesLoader.loadTheme();
+    }
+    return Themes.ThemesLoader.Theme;
 }

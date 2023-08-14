@@ -11,7 +11,6 @@ class WFBackground extends WatchUi.Drawable
     function initialize(params) 
     {
         Drawable.initialize(params);
-
         self.Init();
     }
 
@@ -29,8 +28,7 @@ class WFBackground extends WatchUi.Drawable
 
     function Init()
     {
-        var theme = getTheme();
-        
+        var theme = $.getTheme();        
         self._color = theme.BackgroundColor;
         self._image = null;
 

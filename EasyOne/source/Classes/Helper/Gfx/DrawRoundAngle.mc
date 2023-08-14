@@ -47,7 +47,7 @@ module Helper
                 self.Height = height;
                 self.AngleRadius = angleradius;
 
-                self.BackgroundColor = getTheme().IndicatorBackground;
+                self.BackgroundColor = $.getTheme().IndicatorBackground;
 
                 self.Reset();
             }

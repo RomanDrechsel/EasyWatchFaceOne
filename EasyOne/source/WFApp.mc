@@ -17,6 +17,7 @@ class WFApp extends Application.AppBase
 
     function onStart(state as Dictionary?) as Void 
     {
+        Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
     }
 
@@ -26,8 +27,9 @@ class WFApp extends Application.AppBase
     }
 
     function onSettingsChanged() as Void {
-        Themes.ThemesLoader.ResetTheme();
+        Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
+        
         self.WatchfaceView.onSettingsChanged();
 
         WatchUi.requestUpdate();
@@ -42,11 +44,6 @@ function getApp() as WFApp
 function getView() as WFView
 {
     return getApp().WatchfaceView;
-}
-
-function getTheme() as Themes.ThemeSettingsBase
-{
-    return Themes.ThemesLoader.getTheme();
 }
 
 var IsSmallDisplay = true;

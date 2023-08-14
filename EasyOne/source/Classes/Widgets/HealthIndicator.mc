@@ -49,11 +49,12 @@ module Widgets
                 self.locX = self.locX - self.WidgetWidth;
             }
 
+            var theme = $.getTheme();
             self.IndicatorColors = [
-                self._theme.IndicatorLevel1,
-                self._theme.IndicatorLevel3,
-                self._theme.IndicatorLevel4,
-                self._theme.IndicatorLevel5
+                theme.IndicatorLevel1,
+                theme.IndicatorLevel3,
+                theme.IndicatorLevel4,
+                theme.IndicatorLevel5
             ];
 
             self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight);
@@ -73,11 +74,10 @@ module Widgets
                 self.IndicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
             }
 
-            $.getView().OnWakeUp.add(self.method(:OnWakeUp));
-            $.getView().OnSleep.add(self.method(:OnSleep));
-
             self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
             self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
+
+            $.getView().OnWakeUp.add(self);
         }
 
         function draw(dc as Gfx.Dc)
@@ -93,14 +93,8 @@ module Widgets
             }
         }
 
-        function OnSleep()
-        {
-            $.getView().OnUpdate.add(self.method(:OnBackgroundUpdate));
-        }
-
         function OnWakeUp()
         {
-            $.getView().OnUpdate.remove(self.method(:OnBackgroundUpdate));
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
             Indi.Heartbeat.HeartbeatMin = zones[0] * 0.6;
@@ -150,12 +144,6 @@ module Widgets
             {
                 self._display = new  Indi.Heartbeat();
             }
-        }
-
-        function OnBackgroundUpdate()
-        {
-            //Update breath cache every 60sec in background
-            Indi.Breath.getBreath();
         }
 
         private function getRandomWidget(s as Float, b as Number) as Indicator

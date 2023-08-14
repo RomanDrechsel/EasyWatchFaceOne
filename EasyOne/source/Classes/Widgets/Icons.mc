@@ -49,6 +49,8 @@ module Widgets
 
             var settings = System.getDeviceSettings();
 
+            var theme = $.getTheme();
+
             //Messages
             var msgCount = settings.notificationCount;
             if (msgCount > 0)
@@ -73,24 +75,24 @@ module Widgets
                     xOffset = 35;
                 }
 
-                dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self.locX, self.locY + 3, HGfx.Fonts.Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
                 dc.drawText(self.locX + xOffset, self.locY + 9, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {
-                dc.setColor(self._theme.IconsOff, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(theme.IconsOff, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self.locX, self.locY + 3, HGfx.Fonts.Icons, Helper.Gfx.ICONS_NOMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
             } 
 
             //Phone connection
             if (settings.phoneConnected == true)
             {
-                dc.setColor(self._theme.IconsOn, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(theme.IconsOn, Gfx.COLOR_TRANSPARENT);
             }
             else
             {
-                dc.setColor(self._theme.IconsOff, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(theme.IconsOff, Gfx.COLOR_TRANSPARENT);
             }            
             dc.drawText(self.locX + self._MsgWidth + self._Padding, self.locY, HGfx.Fonts.Icons, Helper.Gfx.ICONS_BLUETOOTH, Gfx.TEXT_JUSTIFY_LEFT);
         }

@@ -13,8 +13,6 @@ module Widgets
             private static var _lastRespirationRate = null as Float;
             private static var _lastSample = null as Toybox.Time.Moment;
 
-            private static const SAMPLE_VALID = 300; //old samples are valid for 5 min
-
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
@@ -27,11 +25,11 @@ module Widgets
             function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
                 IndicatorBase.draw(dc, widget);
-
                 var breath = self.getBreath();
+                var theme = $.getTheme();
 
-                var color = widget._theme.IconsOff;
-                var iconcolor = widget._theme.IconsOff;
+                var color = theme.IconsOff;
+                var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
                 if (breath > 0.0)
                 {
@@ -42,7 +40,7 @@ module Widgets
                     }
                     else
                     {
-                        iconcolor = widget._theme.HealthBreathIconColor;
+                        iconcolor = theme.HealthBreathIconColor;
                     }
                     indicatorcolor = widget.IndicatorColors[0];
                     if (breath >= 20)
@@ -110,7 +108,7 @@ module Widgets
                     self._lastSample = Toybox.Time.now();
                     return self._lastRespirationRate;
                 }
-                else if (self._lastSample != null && self._lastRespirationRate != null && Toybox.Time.now().subtract(self._lastSample).value() <= self.SAMPLE_VALID)
+                else if (self._lastSample != null && self._lastRespirationRate != null && Toybox.Time.now().subtract(self._lastSample).value() <= 300)
                 {
                     //last RespirationRate is valid 
                     return self._lastRespirationRate;
