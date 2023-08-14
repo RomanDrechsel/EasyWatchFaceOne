@@ -54,27 +54,6 @@
     <string id="ThSunset">Sunset</string>
     <string id="ThBaW">Black &amp; White</string>
 
-    <string id="ShortMonday">Mon</string>
-    <string id="ShortTuesday">Tue</string>
-    <string id="ShortWednesday">Wed</string>
-    <string id="ShortThursday">Thu</string>
-    <string id="ShortFriday">Fri</string>
-    <string id="ShortSaturday">Sat</string>
-    <string id="ShortSunday">Sun</string>
-
-    <string id="ShortJanuar">Jan</string>
-    <string id="ShortFebruary">Feb</string>
-    <string id="ShortMarch">Mar</string>
-    <string id="ShortApril">Apr</string>
-    <string id="ShortMay">May</string>
-    <string id="ShortJune">Jun</string>
-    <string id="ShortJuly">Jul</string>
-    <string id="ShortAugust">Aug</string>
-    <string id="ShortSeptember">Sept</string>
-    <string id="ShortOctober">Oct</string>
-    <string id="ShortNovember">Nov</string>
-    <string id="ShortDecember">Dec</string>
-
     <string id="ShortBatteryDays">d</string>
 
 </strings>

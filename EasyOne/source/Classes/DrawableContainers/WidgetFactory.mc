@@ -1,32 +1,40 @@
-import Widgets;
+    import Widgets;
 import Toybox.Lang;
 import Toybox.Application;
 
 module DrawableContainers
 {
-    enum ContainerPosition { WIDGET_CENTER = 0, WIDGET_UPPERCENTER, WIDGET_DECO, WIDGET_TOPLEFT, WIDGET_TOPCENTER, WIDGET_TOPRIGHT, WIDGET_BOTTOMLEFT, WIDGET_BOTTOMRIGHT }
-
     class WidgetFactory
     {
-        static function GetWidget(pos as ContainerPosition, container_params as Dictionary) as WidgetBase
+        static function GetWidget(pos as String, container_params as Dictionary) as WidgetBase
         {
             switch (pos)
             {
-                case WIDGET_CENTER:
+                case "C":
                     return new Clock(container_params);
-                case WIDGET_UPPERCENTER:
+                case "UC":
                     return new Date(container_params);
-                case WIDGET_TOPLEFT:
+                case "TL":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
                     return self.GetTopWidget(Properties.getValue("WTL") as Number, container_params);    
-                case WIDGET_TOPCENTER:
+                case "TC":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_CENTER);
                     return self.GetTopWidget(Properties.getValue("WTC") as Number, container_params);
-                case WIDGET_TOPRIGHT:
+                case "TR":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
                     return self.GetTopWidget(Properties.getValue("WTR") as Number, container_params);
-                case WIDGET_BOTTOMLEFT:
+                case "BL":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
                     return self.GetBottomWidget(Properties.getValue("WBL") as Number, container_params);
-                case WIDGET_BOTTOMRIGHT:
+                case "BR":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
                     return self.GetBottomWidget(Properties.getValue("WBR") as Number, container_params);
-                case WIDGET_DECO:
+                case "DTL":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
+                    container_params.put("V", Widgets.WIDGET_JUSTIFICATION_TOP);
+                    return self.GetDecoWidget(container_params);
+                case "DTR":
+                    container_params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
                     container_params.put("V", Widgets.WIDGET_JUSTIFICATION_TOP);
                     return self.GetDecoWidget(container_params);
             }
@@ -58,7 +66,6 @@ module DrawableContainers
                     return new HealthIndicator(container_params);
             }
 
-            container_params.put("V", Widgets.WIDGET_JUSTIFICATION_BOTTOM);
             return self.GetDecoWidget(container_params);
         }
 

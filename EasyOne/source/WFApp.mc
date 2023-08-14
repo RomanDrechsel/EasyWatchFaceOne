@@ -7,7 +7,6 @@ import Toybox.System;
 class WFApp extends Application.AppBase 
 {
     var WatchfaceView = null as WFView;
-    var OnSettings = [] as Array<Method>;
 
     function initialize() 
     {
@@ -29,14 +28,7 @@ class WFApp extends Application.AppBase
     function onSettingsChanged() as Void {
         Themes.ThemesLoader.ResetTheme();
         Themes.Colors.ResetColors();
-        
-        if (self.OnSettings.size() > 0)
-        {
-            for (var i = 0; i < self.OnSettings.size(); i++)
-            {
-                self.OnSettings[i].invoke();
-            }
-        }
+        self.WatchfaceView.onSettingsChanged();
 
         WatchUi.requestUpdate();
     }

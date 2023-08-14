@@ -13,7 +13,6 @@ class WFView extends WatchUi.WatchFace
     function initialize() 
     {
         WatchFace.initialize();
-        $.getApp().OnSettings.add(self.method(:onSettingsChanged));
     }
 
     function onLayout(dc as Dc) as Void 
@@ -58,6 +57,16 @@ class WFView extends WatchUi.WatchFace
 
     function onSettingsChanged()
     {
+        var ids = ["BG", "C", "UC", "DTL", "TL", "TC", "TR", "DTR", "BL", "BR"];
+        for (var i = 0; i < ids.size(); i++)
+        {
+            var drawable = View.findDrawableById(ids[i]);
+            if (drawable != null)
+            {
+                drawable.Init();
+            }
+        }
+        
         self.OnWakeUp = [] as Array<Method>;
         self.OnSleep = [] as Array<Method>;
         self.OnUpdate = [] as Array<Method>;

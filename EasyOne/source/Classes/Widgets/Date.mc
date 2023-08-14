@@ -27,10 +27,10 @@ module Widgets
         function draw(dc as Gfx.Dc)
         {
             var now = Time.now();
-            var time = D.info(now, Time.FORMAT_SHORT);
+            var time = D.info(now, Time.FORMAT_MEDIUM);
 
-            self._Texts[0].Text = Helper.Date.ShortWeekyday(time.day_of_week).toUpper() + " "; //toUpper() because date-font only have uppercase letters to save space
-            self._Texts[1].Text = time.day.toString() + "." + Helper.Date.ShortMonth(time.month).toUpper() + " ";
+            self._Texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save space
+            self._Texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
             self._Texts[2].Text = time.year.toString();
 
             self._textContainer.draw(self._Texts, dc);

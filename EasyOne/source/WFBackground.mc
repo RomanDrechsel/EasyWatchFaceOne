@@ -12,8 +12,7 @@ class WFBackground extends WatchUi.Drawable
     {
         Drawable.initialize(params);
 
-        self.onSettingsChanged();
-        $.getApp().OnSettings.add(self.method(:onSettingsChanged));
+        self.Init();
     }
 
     function draw(dc as Dc) as Void 
@@ -28,7 +27,7 @@ class WFBackground extends WatchUi.Drawable
         }
     }
 
-    function onSettingsChanged()
+    function Init()
     {
         var theme = getTheme();
         

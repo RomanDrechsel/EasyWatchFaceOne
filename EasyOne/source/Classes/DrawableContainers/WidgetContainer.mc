@@ -12,8 +12,7 @@ module DrawableContainers
         function initialize(params as Dictionary)
         {
             Drawable.initialize(params);
-            self.onSettingsChanged();
-            $.getApp().OnSettings.add(self.method(:onSettingsChanged));
+            self.Init();
         }
 
         function draw(dc as Dc) as Void 
@@ -24,62 +23,25 @@ module DrawableContainers
             }
         }
 
-        function onSettingsChanged()
+        function Init()
         {
             self._Widget = null;
-
             var params = {
                 "X" => self.locX,
                 "Y" => self.locY,
                 "W" => self.width,
                 "H" => self.height
             };
-            var widget = null;
 
-            switch (self.identifier)
+            self._Widget = WidgetFactory.GetWidget(self.identifier, params);
+            if (self._Widget == null)
             {
-                case "C":
-                    widget = WIDGET_CENTER;
-                    break;
-                case "UC":
-                    widget = WIDGET_UPPERCENTER;
-                    break;
-                case "DTL":
-                    widget = WIDGET_DECO;
-                    params.put("V", Widgets.WIDGET_JUSTIFICATION_TOP);
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
-                    break;
-                case "TL":
-                    widget = WIDGET_TOPLEFT;
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
-                    break;
-                case "TC":
-                    widget = WIDGET_TOPCENTER;
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_CENTER);
-                    break;
-                case "TR":
-                    widget = WIDGET_TOPRIGHT;
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
-                    break;
-                case "DTR":
-                    widget = WIDGET_DECO;
-                    params.put("V", Widgets.WIDGET_JUSTIFICATION_TOP);
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
-                    break;
-                case "BL":
-                    widget = WIDGET_BOTTOMLEFT;
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_LEFT);
-                    break;
-                case "BR":
-                    widget = WIDGET_BOTTOMRIGHT;
-                    params.put("J", Widgets.WIDGET_JUSTIFICATION_RIGHT);
-                    break;
+                self.isVisible = false;
             }
-
-            if (widget != null)
+            else
             {
-                self._Widget = WidgetFactory.GetWidget(widget, params);
-            }            
+                self.isVisible = true;
+            }
         }
     }
 }
