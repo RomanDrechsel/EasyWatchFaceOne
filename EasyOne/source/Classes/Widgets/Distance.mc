@@ -18,10 +18,10 @@ module Widgets
         private var _iconPosX = self.locX;
         private var _textPosX = self.locX;
         private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
+        private var _showIndicator = true;
 
         private var _indicatorPadding = 12;
         private var _indicatorVPadding = 12;
-        private var _indicatorDrawing = null as HGfx.DrawRoundAngle;
 
         private var _showStepsPercentage = true;
 
@@ -48,31 +48,24 @@ module Widgets
                 self._lineHeight = 22;
             }
 
-            var theme = $.getTheme();
-
-            self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight);
-            self._indicatorDrawing.BarColors = theme.IndicatorSteps;
-
-            var textheight = (self._lineHeight * 3) + self._indicatorDrawing.ThicknessBold + self._indicatorVPadding;
+            var textheight = (self._lineHeight * 3) + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorVPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
             var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
-                self._indicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
+                self._showIndicator = false;
             }
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
-                self._iconPosX = self.locX - self._indicatorDrawing.ThicknessBold - self._indicatorPadding - 25;
+                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - self._indicatorPadding - 25;
                 self._textPosX = self._iconPosX - 10;
                 self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
             }
             else
             {
-                self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
-                self._iconPosX = self.locX + self._indicatorDrawing.ThicknessBold + self._indicatorPadding;
+                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorPadding;
                 if (!IsSmallDisplay)
                 {
                     self._textPosX = self._iconPosX + 35;
@@ -120,7 +113,10 @@ module Widgets
             self.drawCalories(dc, info);
             self.drawDistance(dc, info);
             self.drawSteps(dc, info);
-            self.drawStepsIndicator(dc, info);
+            if (self._showIndicator)
+            {
+                self.drawStepsIndicator(dc, info);
+            }
         }
 
         private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
@@ -260,7 +256,36 @@ module Widgets
             {
                 amount = info.steps.toFloat() / info.stepGoal.toFloat();
             }
-            self._indicatorDrawing.draw(dc, amount);
+
+            var pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+            }
+            HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._WidgetHeight, self._WidgetHeight, pos);
+
+            HGfx.DrawRoundAngle.draw(dc, 0, 0);
+            if (amount > 0)
+            {
+                var colors = $.getTheme().IndicatorSteps;
+                var factor = 1.0 / colors.size().toFloat();
+                var color = colors[0];
+                var a = 1.0;
+
+                for (var i = 0; i < colors.size(); i++)
+                {
+                    if (a >= amount)
+                    {
+                        color = colors[i];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    a -= factor;
+                }
+                HGfx.DrawRoundAngle.draw(dc, amount, color);
+            }            
         }
 
         private function FormatMiles(centimeters as Number) as String

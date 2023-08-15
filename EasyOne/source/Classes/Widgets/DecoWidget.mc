@@ -6,22 +6,24 @@ module Widgets
 {
     class DecoWidget extends WidgetBase
     {
-        private var _indicatorDrawing = null as HGfx.DrawRoundAngle;
+        private var _width;
+        private var _height;
+        private var _pos;
 
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
 
-            var width = params.get("W");
-            if (width == null)
+            self._width = params.get("W");
+            if (self._width == null)
             {
-                width = 130;
+                self._width = 130;
             }
 
-            var height = params.get("H");
-            if (height == null)
+            self._height = params.get("H");
+            if (self._height == null)
             {
-                height = 150;
+                self._height = 150;
             }
 
             var vertJust = params.get("V");
@@ -35,34 +37,34 @@ module Widgets
                 self.locY = self.locY - height;
             }
 
-            self._indicatorDrawing = new HGfx.DrawRoundAngle(self.locX, self.locY, width, height);
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
                 if (vertJust == WIDGET_JUSTIFICATION_TOP)
                 {
-                    self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_TOPRIGHT;
+                    self._pos = HGfx.DrawRoundAngle.JUST_TOPRIGHT;
                 }
                 else
                 {
-                    self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+                    self._pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
                 }
             }
             else
             {
                 if (vertJust == WIDGET_JUSTIFICATION_TOP)
                 {
-                    self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_TOPLEFT;
+                    self._pos = HGfx.DrawRoundAngle.JUST_TOPLEFT;
                 }
                 else
                 {
-                    self._indicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+                    self._pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
                 }
             }
         }
 
         function draw(dc as Gfx.Dc) as Void 
         {
-            self._indicatorDrawing.draw(dc, 0);
+            HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._width, self._height, self._pos);
+            HGfx.DrawRoundAngle.draw(dc, 0, 0);
         }  
     }
 }

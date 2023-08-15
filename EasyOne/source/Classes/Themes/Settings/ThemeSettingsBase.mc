@@ -34,11 +34,12 @@ module Themes
 
         //Indicatoren
         var IndicatorBackground = 0x535353;
-        var IndicatorLevel1 = 0x00ad15; //Green
-        var IndicatorLevel2 = 0xc4ff31; //Green-Yellow
-        var IndicatorLevel3 = 0xf7fa00; //Yellow
-        var IndicatorLevel4 = 0xfa7a00; //Orange
-        var IndicatorLevel5 = 0xfa0000; //Red
+        var IndivatorLevel = [
+            0x00ad15, //Green
+            0xf7fa00, //Yellow
+            0xfa7a00, //Orange
+            0xfa0000  //Red
+        ];
 
         //Distance Widget
         var DistanceStepsIconColor = 0xf7fa00;

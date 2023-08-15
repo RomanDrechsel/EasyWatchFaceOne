@@ -42,20 +42,22 @@ module Widgets
                     {
                         iconcolor = theme.HealthBreathIconColor;
                     }
-                    indicatorcolor = widget.IndicatorColors[0];
+
+                    var colors = $.getTheme().IndivatorLevel;
+                    indicatorcolor = colors[0];
                     if (breath >= 20)
                     {
                         if (breath > self.MaxRespirationRate)
                         {
-                            color = widget.IndicatorColors[3];
+                            color = colors[3];
                         }
-                        else if (breath > self.MaxRespirationRate - 10)
+                        else if (breath >= self.MaxRespirationRate - 10)
                         {
-                            color = widget.IndicatorColors[2];
+                            color = colors[2];
                         }
                         else
                         {
-                            color = widget.IndicatorColors[1];
+                            color = colors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -96,7 +98,7 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                widget.IndicatorDrawing.drawWithColor(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
+                widget.drawIndicator(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
             }
 
             static function getBreath() as Number

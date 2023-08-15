@@ -33,11 +33,12 @@ module Themes
 
             //Indicatoren
             self.IndicatorBackground = 0xFFFFFF;
-            self.IndicatorLevel1 = 0xFFFFFF; //Green
-            self.IndicatorLevel2 = 0xFFFFFF; //Green-Yellow
-            self.IndicatorLevel3 = 0xFFFFFF; //Yellow
-            self.IndicatorLevel4 = 0xFFFFFF; //Orange
-            self.IndicatorLevel5 = 0xFFFFFF; //Red
+            self.IndivatorLevel = [
+                0xFFFFFF,
+                0xFFFFFF,
+                0xFFFFFF,
+                0xFFFFFF
+            ];
 
             //Distance Widget
             self.DistanceStepsIconColor = 0xFFFFFF;

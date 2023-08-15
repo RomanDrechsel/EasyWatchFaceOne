@@ -46,14 +46,16 @@ module Widgets
                     {
                         iconcolor = theme.HealthHeartIconColor;
                     }
-                    indicatorcolor = widget.IndicatorColors[0];
+
+                    var colors = $.getTheme().IndivatorLevel;
+                    indicatorcolor = colors[0];
                     if (self.HeartbeatZones.size() > 1)
                     {
                         for (var i = 1; i < self.HeartbeatZones.size(); i++)
                         {
                             if (heartrate >= self.HeartbeatZones[i])
                             {
-                                color = widget.IndicatorColors[i];
+                                color = colors[i];
                                 indicatorcolor = color;
                                 iconcolor = color;
                             }                            
@@ -103,7 +105,7 @@ module Widgets
                 {
                     amount = 0.001;
                 }
-                widget.IndicatorDrawing.drawWithColor(dc, amount, indicatorcolor);
+                widget.drawIndicator(dc, amount, indicatorcolor);
             }
 
             public static function getHeartrate() as Number

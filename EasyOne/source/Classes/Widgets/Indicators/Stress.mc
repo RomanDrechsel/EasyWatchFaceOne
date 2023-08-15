@@ -68,20 +68,22 @@ module Widgets
                     {
                         iconcolor = theme.HealthStressIconColor;
                     }
-                    indicatorcolor = widget.IndicatorColors[0];
+
+                    var colors = $.getTheme().IndivatorLevel;
+                    indicatorcolor = colors[0];
                     if (stress >= 60)
                     {
                         if (stress >= 90)
                         {
-                            color = widget.IndicatorColors[3];
+                            color = colors[3];
                         }
                         else if (stress >= 80)
                         {
-                            color = widget.IndicatorColors[2];
+                            color = colors[2];
                         }
                         else
                         {
-                            color = widget.IndicatorColors[1];
+                            color = colors[1];
                         }
                         indicatorcolor = color;
                         iconcolor = color;
@@ -182,7 +184,7 @@ module Widgets
                     dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
                 }
 
-                widget.IndicatorDrawing.drawWithColor(dc, stress / 100.0, indicatorcolor);
+                widget.drawIndicator(dc, stress / 100.0, indicatorcolor);
             }
 
             function OnWakeUp()

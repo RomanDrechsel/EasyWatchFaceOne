@@ -1,7 +1,7 @@
-using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+using Toybox.Graphics as Gfx;
 using Toybox.UserProfile;
 using Helper.Gfx as HGfx;
 using Widgets.Indicators as Indi;
@@ -17,10 +17,9 @@ module Widgets
        
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
+        private var _showIndicator = true;
         
         var _attentionIcon = null as BitmapResource;
-        var IndicatorDrawing = null as HGfx.DrawRoundAngle;
-        var IndicatorColors  = [] as Array<Number>;
 
         var StressWarningLevel = 90.0;
         var BreathWarningLevel = 30;
@@ -41,37 +40,16 @@ module Widgets
                 self.WidgetHeight = height;
             }
 
-            var indicatorPosX = self.locX;
             self.locY = self.locY - self.WidgetHeight;
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                indicatorPosX = self.locX;
                 self.locX = self.locX - self.WidgetWidth;
-            }
-
-            var theme = $.getTheme();
-            self.IndicatorColors = [
-                theme.IndicatorLevel1,
-                theme.IndicatorLevel3,
-                theme.IndicatorLevel4,
-                theme.IndicatorLevel5
-            ];
-
-            self.IndicatorDrawing = new HGfx.DrawRoundAngle(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight);
-
-            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-            {
-                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;                
-            }
-            else
-            {
-                self.IndicatorDrawing.Direction = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
             }
 
             var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
-                self.IndicatorDrawing.BackgroundColor = Gfx.COLOR_TRANSPARENT;
+                self._showIndicator = false;
             }
 
             self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
@@ -191,6 +169,25 @@ module Widgets
         function HideAttentionIcon()
         {
             self._attentionIcon = null;
+        }
+
+        function drawIndicator(dc as Gfx.Dc, amount as Float, color as Number) as Void
+        {
+            if (self._showIndicator == false)
+            {
+                return;
+            }
+
+            var indicatorPosX = self.locX;
+            var pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                indicatorPosX += self.WidgetWidth;
+                pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+            }
+            HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, pos);
+            HGfx.DrawRoundAngle.draw(dc, 0, 0);
+            HGfx.DrawRoundAngle.draw(dc, amount, color);
         }
 
         private function GetAttentionIcon() as BitmapResource
