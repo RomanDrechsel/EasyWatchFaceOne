@@ -93,6 +93,22 @@
     </group>
 
     <group id="groupWidgets" title="@Strings.SgWT">
+        <setting propertyKey="@Properties.FTime" title="@Strings.SFTime">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SFSM</listEntry>
+                <listEntry value="1">Consola Mono</listEntry>
+                <listEntry value="2">Impossible</listEntry>
+                <listEntry value="99">@Strings.SFSystem</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
+            <settingConfig type="list">
+                <listEntry value="0">KAMIKZOM</listEntry>
+                <listEntry value="99">@Strings.SFSystem</listEntry>
+            </settingConfig>
+        </setting>
+        
         <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>

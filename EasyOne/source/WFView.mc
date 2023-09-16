@@ -7,8 +7,10 @@ using Widgets.Indicators as Indi;
 
 class WFView extends WatchUi.WatchFace 
 {
-    private var _isBackground = false;
     var OnWakeUp = [];
+
+    private var _isBackground = false;
+    private var _reloadFontInTicks = -1;
 
     function initialize() 
     {
@@ -24,6 +26,18 @@ class WFView extends WatchUi.WatchFace
 
     function onUpdate(dc as Dc) as Void 
     {
+        if (self._reloadFontInTicks > 0)
+        {
+            self._reloadFontInTicks--;
+            if (self._reloadFontInTicks == 1)
+            {
+                Helper.Gfx.Fonts.LoadDateFont();
+            }
+            else if (self._reloadFontInTicks == 0)
+            {
+                Helper.Gfx.Fonts.LoadTimeFont();
+            }
+        }
         View.onUpdate(dc);
         if (self._isBackground == true)
         {
@@ -59,6 +73,16 @@ class WFView extends WatchUi.WatchFace
             {
                 drawable.Init();
             }
+        }
+
+        if (IsSmallDisplay)
+        {
+            //loading font all in one exeeded memory limit!
+            self._reloadFontInTicks = 3;
+        }
+        else
+        {
+            Helper.Gfx.Fonts.Load();
         }
     }
 }

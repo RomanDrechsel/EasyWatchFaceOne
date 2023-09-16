@@ -40,10 +40,12 @@
     <string id="SCIcons">Icons in text color</string>
 
     <string id="SgWT">Widget settings</string>
+    <string id="SFTime">Time font</string>
+    <string id="SFDate">Date font</string>
+    <string id="SFSystem">System</string>
+    <string id="SFSM">Self made</string>
     <string id="SWZero">Display leading zero at time</string>
-
-    <string id="SSgoal">Display percentage of steps goal</string>
-    
+    <string id="SSgoal">Display percentage of steps goal</string>    
     <string id="SStressW">Stress Warning Level</string>
     <string id="SRrW">Respiration-Rate Warning Level</string>
 

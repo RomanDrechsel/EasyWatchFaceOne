@@ -8,12 +8,6 @@ module Widgets
 {
     class Clock extends WidgetBase
     {
-        private var _hours_pos = null as Number;
-        private var _min_pos = null as Number;
-        private var _sec_posX = null as Number;
-        private var _sec_posY = null as Number;
-        private var _amp_posY = null as Number;
-
         private var _showLeadingZero = true;
 
         function initialize(params as Dictionary) 
@@ -33,26 +27,24 @@ module Widgets
 
         function draw(dc as Gfx.Dc) as Void 
         {
-            if (self._hours_pos == null)
-            {
-                var settings = System.getDeviceSettings() as DeviceSettings;
-                var space_min = settings.screenWidth / 32;
-                var space_sec = settings.screenWidth / 53;
-                var bigwidth = dc.getTextWidthInPixels("99", HGfx.Fonts.Hour);
-                var bigwidth2 = dc.getTextWidthInPixels("99", HGfx.Fonts.Minute);
-                var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.Seconds);
-                var width = bigwidth + bigwidth2 + space_min + space_sec + smallwidth;
-                var center = ((dc.getWidth() - width) / 2) + bigwidth + (space_min / 2);
+            var settings = System.getDeviceSettings() as DeviceSettings;
+            var space_min = settings.screenWidth / 20;
+            var space_sec = settings.screenWidth / 30;
+            var bigwidth = dc.getTextWidthInPixels("99", HGfx.Fonts.Hour);
+            var bigwidth2 = dc.getTextWidthInPixels("99", HGfx.Fonts.Minute);
+            var smallwidth = dc.getTextWidthInPixels("PM", HGfx.Fonts.Seconds);
+            var width = bigwidth + bigwidth2 + space_min + space_sec + smallwidth;
+            var center = ((dc.getWidth() - width) / 2) + bigwidth + (space_min / 2);
 
-                self._hours_pos = center - (space_min / 2);
-                self._min_pos = center + (space_min / 2);
-                self._sec_posX = self._min_pos + bigwidth2 + space_sec;
+            var bigheight = Graphics.getFontAscent(HGfx.Fonts.Hour);
+            var hours_posY = self.locY - (Graphics.getFontHeight(HGfx.Fonts.Hour) / 2);
 
-                self._sec_posY = (self.locY - (dc.getFontHeight(HGfx.Fonts.Minute) / 2));
-                self._sec_posY -= 1;
-                self._amp_posY = self.locY + (dc.getFontHeight(HGfx.Fonts.Minute) / 2) - dc.getFontHeight(HGfx.Fonts.Seconds);
-                self._amp_posY += 1;
-            }
+            var hours_pos = center - (space_min / 2);
+            var min_pos = center + (space_min / 2);
+            var sec_pos = min_pos + bigwidth2 + space_sec;
+            
+            var sec_posY = self.locY - (bigheight / 2);
+            var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds);
 
             var clockTime = System.getClockTime();
             var hour = clockTime.hour;
@@ -90,18 +82,19 @@ module Widgets
                     h = "0" + h;
                 }
             }
+
             dc.setColor(Themes.Colors.TimeHour, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._hours_pos, self.locY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_RIGHT);
+            dc.drawText(hours_pos, hours_posY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_RIGHT);
             dc.setColor(Themes.Colors.TimeMinute, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._min_pos, self.locY, HGfx.Fonts.Minute, m, Gfx.TEXT_JUSTIFY_VCENTER | Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(min_pos, hours_posY, HGfx.Fonts.Minute, m, Gfx.TEXT_JUSTIFY_LEFT);
 
             dc.setColor(Themes.Colors.TimeSecond, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._sec_posX, self._sec_posY, HGfx.Fonts.Seconds, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(sec_pos, sec_posY, HGfx.Fonts.Seconds, clockTime.sec.format("%02d"), Gfx.TEXT_JUSTIFY_LEFT);
 
             if (ampm.length() > 0)
             {
                 dc.setColor(Themes.Colors.TimeAMPM, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._sec_posX, self._amp_posY, HGfx.Fonts.Seconds, ampm, Gfx.TEXT_JUSTIFY_LEFT);
+                dc.drawText(sec_pos, amp_posY, HGfx.Fonts.Seconds, ampm, Gfx.TEXT_JUSTIFY_LEFT);
             }
         }
     }

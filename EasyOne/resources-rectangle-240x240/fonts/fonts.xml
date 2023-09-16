@@ -5,4 +5,10 @@
     <font id="DateFont" filename="DateFont.fnt" antialias="true" />
     <font id="Small" filename="FontSmall.fnt" antialias="true" />
     <font id="Icons" filename="Icons.fnt" antialias="true" />
+
+    <font id="HourConsola" filename="HourConsola.fnt" antialias="true" />
+    <font id="SecondConsola" filename="SecondConsola.fnt" antialias="true" />
+
+    <font id="TimeImpossible" filename="TimeImpossible.fnt" antialias="true" />
+    <font id="SecondImpossible" filename="SecondImpossible.fnt" antialias="true" />
 </fonts>

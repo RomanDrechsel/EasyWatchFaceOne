@@ -1,0 +1,14 @@
+info face="Impossible - 0" size=105 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=0,0 outline=0
+common lineHeight=108 base=82 scaleW=289 scaleH=75 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="TimeImpossible_0.png"
+chars count=10
+char id=48   x=0     y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=49   x=269   y=0     width=20    height=74    xoffset=6     yoffset=15    xadvance=34    page=0  chnl=15
+char id=50   x=213   y=0     width=30    height=74    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=51   x=30    y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=52   x=180   y=0     width=33    height=74    xoffset=6     yoffset=15    xadvance=44    page=0  chnl=15
+char id=53   x=60    y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=54   x=90    y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=55   x=243   y=0     width=26    height=74    xoffset=8     yoffset=15    xadvance=41    page=0  chnl=15
+char id=56   x=120   y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15
+char id=57   x=150   y=0     width=30    height=75    xoffset=8     yoffset=15    xadvance=44    page=0  chnl=15

@@ -38,12 +38,14 @@
     <string id="SCIcons">Icons in Textfarbe</string>
 
     <string id="SgWT">Widget Einstellungen</string>
+    <string id="SFTime">Schriftart Uhrzeit</string>
+    <string id="SFDate">Schriftart Datum</string>
+    <string id="SFSystem">System</string>
+    <string id="SFSM">Selbstgemacht</string>
     <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
-    <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>
-    
+    <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>    
     <string id="SStressW">Warnung bei Stress-Level</string>
     <string id="SRrW">Warnung ab Atemzüge pro Minute</string>
-
     <string id="SDeco">Deko-Linien in den Ecken anzeigen</string>
 
     <string id="ThDarkBlue">Dunkelblau</string>

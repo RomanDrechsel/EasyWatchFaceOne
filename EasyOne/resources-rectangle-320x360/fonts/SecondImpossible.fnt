@@ -1,0 +1,17 @@
+info face="Impossible - 0" size=42 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=0,0 outline=0
+common lineHeight=42 base=34 scaleW=156 scaleH=30 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="SecondImpossible_0.png"
+chars count=13
+char id=48   x=0     y=0     width=12    height=30    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=49   x=148   y=0     width=8     height=28    xoffset=0     yoffset=6     xadvance=9     page=0  chnl=15
+char id=50   x=60    y=0     width=12    height=29    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=51   x=12    y=0     width=12    height=30    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=52   x=100   y=0     width=13    height=28    xoffset=0     yoffset=6     xadvance=13    page=0  chnl=15
+char id=53   x=72    y=0     width=12    height=29    xoffset=0     yoffset=6     xadvance=13    page=0  chnl=15
+char id=54   x=24    y=0     width=12    height=30    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=55   x=138   y=0     width=10    height=28    xoffset=1     yoffset=6     xadvance=12    page=0  chnl=15
+char id=56   x=36    y=0     width=12    height=30    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=57   x=48    y=0     width=12    height=30    xoffset=0     yoffset=5     xadvance=13    page=0  chnl=15
+char id=65   x=113   y=0     width=13    height=28    xoffset=0     yoffset=6     xadvance=13    page=0  chnl=15
+char id=77   x=84    y=0     width=16    height=28    xoffset=1     yoffset=6     xadvance=17    page=0  chnl=15
+char id=80   x=126   y=0     width=12    height=28    xoffset=1     yoffset=6     xadvance=13    page=0  chnl=15

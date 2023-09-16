@@ -21,15 +21,18 @@ class WFApp extends Application.AppBase
         Themes.Colors.ResetColors();
     }
 
-    function getInitialView() as Array<Views or InputDelegates>? {
+    function getInitialView() as Array<Views or InputDelegates>? 
+    {
         self.WatchfaceView = new WFView();
         return [ self.WatchfaceView ] as Array<Views or InputDelegates>;
     }
 
-    function onSettingsChanged() as Void {
+    function onSettingsChanged() as Void 
+    {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
-        
+        //Font is reloaded in WFView
+      
         self.WatchfaceView.onSettingsChanged();
 
         WatchUi.requestUpdate();
