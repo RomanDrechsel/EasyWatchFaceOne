@@ -29,15 +29,17 @@ class WFView extends WatchUi.WatchFace
         if (self._reloadFontInTicks > 0)
         {
             self._reloadFontInTicks--;
+
             if (self._reloadFontInTicks == 1)
-            {
-                Helper.Gfx.Fonts.LoadDateFont();
-            }
-            else if (self._reloadFontInTicks == 0)
             {
                 Helper.Gfx.Fonts.LoadTimeFont();
             }
+            else if (self._reloadFontInTicks == 0)
+            {
+                Helper.Gfx.Fonts.LoadDateFont();
+            }
         }
+        
         View.onUpdate(dc);
         if (self._isBackground == true)
         {
@@ -79,6 +81,7 @@ class WFView extends WatchUi.WatchFace
         {
             //loading font all in one exeeded memory limit!
             self._reloadFontInTicks = 3;
+            Helper.Gfx.Fonts.ResetTimeFonts();
         }
         else
         {

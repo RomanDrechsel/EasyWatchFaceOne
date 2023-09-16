@@ -89,6 +89,10 @@ module Helper
                     {
                         self.Date = WatchUi.loadResource(Rez.Fonts.DateFont);
                     }
+                    else if (self._datefont == 1)
+                    {
+                        self.Date = WatchUi.loadResource(Rez.Fonts.DateGoD);
+                    }
                 }
                 if (self.Date == null)
                 {
@@ -148,6 +152,17 @@ module Helper
                     self.Minute = self.Hour;
                     self.Seconds = Graphics.FONT_TINY;
                 }
+            }
+
+            static function ResetTimeFonts()
+            {
+                Helper.Gfx.Fonts.Hour = Graphics.FONT_NUMBER_THAI_HOT;
+                Helper.Gfx.Fonts.Minute = Graphics.FONT_NUMBER_THAI_HOT;
+                Helper.Gfx.Fonts.Seconds = Graphics.FONT_TINY;
+                Helper.Gfx.Fonts.Date = Graphics.FONT_MEDIUM;
+
+                self._timefont = -1;
+                self._datefont = -1;
             }
         }
     }

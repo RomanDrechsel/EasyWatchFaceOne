@@ -156,7 +156,9 @@
 
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
             <settingConfig type="list">
-                <listEntry value="0">KAMIKZOM</listEntry>
+                <listEntry value="0">Komikazoom</listEntry>
+                <listEntry value="1">Grimoire Of Death</listEntry>
+                
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>

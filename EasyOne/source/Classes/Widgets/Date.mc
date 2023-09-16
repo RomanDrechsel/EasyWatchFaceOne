@@ -26,12 +26,20 @@ module Widgets
 
         function draw(dc as Gfx.Dc)
         {
+            if (HGfx.Fonts.Date == null)
+            {
+                return;
+            }
+
             var now = Time.now();
             var time = D.info(now, Time.FORMAT_MEDIUM);
 
             self._Texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save space
+            self._Texts[0].Font = HGfx.Fonts.Date;
             self._Texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
+            self._Texts[1].Font = HGfx.Fonts.Date;
             self._Texts[2].Text = time.year.toString();
+            self._Texts[2].Font = HGfx.Fonts.Date;
 
             self._textContainer.draw(self._Texts, dc);
         }
