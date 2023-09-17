@@ -46,6 +46,19 @@ module Widgets
             var sec_posY = self.locY - (bigheight / 2);
             var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds);
 
+            if (self has :DebugDots)
+            {
+                self.DebugDots(dc, min_pos, hours_posY, Graphics.COLOR_BLUE,5);
+                self.DebugDots(dc, min_pos, hours_posY + bigheight, Graphics.COLOR_BLUE,2);
+                self.DebugDots(dc, min_pos, hours_posY + Graphics.getFontHeight(HGfx.Fonts.Hour), Graphics.COLOR_BLUE, 8);
+
+                self.DebugDots(dc, sec_pos, sec_posY, Graphics.COLOR_RED, 3);
+                self.DebugDots(dc, sec_pos, sec_posY + Graphics.getFontAscent(HGfx.Fonts.Seconds), Graphics.COLOR_RED, 3);
+
+                self.DebugDots(dc, sec_pos, amp_posY, Graphics.COLOR_YELLOW, 3);
+                self.DebugDots(dc, sec_pos, amp_posY + Graphics.getFontAscent(HGfx.Fonts.Seconds), Graphics.COLOR_YELLOW, 3);
+            }
+
             var clockTime = System.getClockTime();
             var hour = clockTime.hour;
 
@@ -96,6 +109,13 @@ module Widgets
                 dc.setColor(Themes.Colors.TimeAMPM, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(sec_pos, amp_posY, HGfx.Fonts.Seconds, ampm, Gfx.TEXT_JUSTIFY_LEFT);
             }
+        }
+
+        (:debug)
+        protected function DebugDots(dc as Gfx.Dc, x as Number, y as Number, color as Number, radius as Number) as Void
+        {
+            dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+            dc.fillCircle(x, y, radius);
         }
     }
 }

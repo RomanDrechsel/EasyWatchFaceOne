@@ -150,6 +150,7 @@
                 <listEntry value="0">@Strings.SFSM</listEntry>
                 <listEntry value="1">Consola Mono</listEntry>
                 <listEntry value="2">Impossible</listEntry>
+                <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>

@@ -139,6 +139,12 @@ module Helper
                     self.Minute = self.Hour;
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondImpossible);
                 }
+                else if (self._timefont == 3)
+                {
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.TimeKomikazoom);
+                    self.Minute = self.Hour;
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondKamikazoom);
+                }
                 else
                 {
                     if (IsSmallDisplay)
