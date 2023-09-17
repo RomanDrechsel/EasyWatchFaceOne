@@ -15,8 +15,12 @@
     <font id="TimeImpossible" filename="TimeImpossible.fnt" antialias="true" />
     <font id="SecondImpossible" filename="SecondImpossible.fnt" antialias="true" />
 
-    <font id="TimeKomikazoom" filename="TimeKomikazoom.fnt" antialias="true" />
+    <font id="TimeKamikazoom" filename="TimeKamikazoom.fnt" antialias="true" />
     <font id="SecondKamikazoom" filename="SecondKamikazoom.fnt" antialias="true" />
+
+    <font id="HourRoboto" filename="HourRoboto.fnt" antialias="true" />
+    <font id="MinuteRoboto" filename="MinuteRoboto.fnt" antialias="true" />
+    <font id="SecondRoboto" filename="SecondRoboto.fnt" antialias="true" />
 
     <font id="DateGoD" filename="DateGoD.fnt" antialias="true" />
 </fonts>

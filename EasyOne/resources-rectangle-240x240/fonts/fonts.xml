@@ -15,5 +15,8 @@
     <font id="TimeKamikazoom" filename="TimeKamikazoom.fnt" antialias="true" />
     <font id="SecondKamikazoom" filename="SecondKamikazoom.fnt" antialias="true" />
 
+    <font id="HourRoboto" filename="HourRoboto.fnt" antialias="true" />
+    <font id="SecondRoboto" filename="SecondRoboto.fnt" antialias="true" />
+
     <font id="DateGoD" filename="DateGoD.fnt" antialias="true" />
 </fonts>

@@ -145,6 +145,19 @@ module Helper
                     self.Minute = self.Hour;
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondKamikazoom);
                 }
+                else if (self._timefont == 4)
+                {
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.HourRoboto);
+                    if (Rez.Fonts has :MinuteRoboto)
+                    {
+                        self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteRoboto);
+                    }
+                    else
+                    {
+                        self.Minute = self.Hour;
+                    }
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondRoboto);
+                }
                 else
                 {
                     if (IsSmallDisplay)
