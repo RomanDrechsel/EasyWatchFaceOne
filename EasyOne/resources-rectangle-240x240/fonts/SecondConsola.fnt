@@ -1,17 +1,17 @@
-info face="Consola Mono" size=36 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=0,0 outline=0
-common lineHeight=49 base=30 scaleW=94 scaleH=41 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+info face="Consola Mono" size=21 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=0,0 outline=0
+common lineHeight=21 base=21 scaleW=94 scaleH=41 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
 page id=0 file="SecondConsola_0.png"
 chars count=13
-char id=48   x=0     y=0     width=14    height=21    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=49   x=52    y=21    width=12    height=20    xoffset=3     yoffset=10    xadvance=15    page=0  chnl=15
-char id=50   x=0     y=21    width=13    height=20    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=51   x=14    y=0     width=13    height=21    xoffset=1     yoffset=10    xadvance=16    page=0  chnl=15
-char id=52   x=64    y=21    width=12    height=20    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=53   x=27    y=0     width=13    height=21    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=54   x=40    y=0     width=13    height=21    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=55   x=13    y=21    width=13    height=20    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=56   x=53    y=0     width=13    height=21    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=57   x=66    y=0     width=13    height=21    xoffset=1     yoffset=10    xadvance=15    page=0  chnl=15
-char id=65   x=79    y=0     width=15    height=20    xoffset=0     yoffset=13    xadvance=15    page=0  chnl=15
-char id=77   x=26    y=21    width=13    height=20    xoffset=1     yoffset=13    xadvance=15    page=0  chnl=15
-char id=80   x=39    y=21    width=13    height=20    xoffset=1     yoffset=13    xadvance=15    page=0  chnl=15
+char id=48   x=0     y=0     width=14    height=21    xoffset=1     yoffset=0    xadvance=15    page=0  chnl=15
+char id=49   x=52    y=21    width=12    height=20    xoffset=3     yoffset=1    xadvance=15    page=0  chnl=15
+char id=50   x=0     y=21    width=13    height=20    xoffset=1     yoffset=1    xadvance=15    page=0  chnl=15
+char id=51   x=14    y=0     width=13    height=21    xoffset=1     yoffset=0    xadvance=16    page=0  chnl=15
+char id=52   x=64    y=21    width=12    height=20    xoffset=1     yoffset=1    xadvance=15    page=0  chnl=15
+char id=53   x=27    y=0     width=13    height=21    xoffset=1     yoffset=0    xadvance=15    page=0  chnl=15
+char id=54   x=40    y=0     width=13    height=21    xoffset=1     yoffset=0    xadvance=15    page=0  chnl=15
+char id=55   x=13    y=21    width=13    height=20    xoffset=1     yoffset=1    xadvance=15    page=0  chnl=15
+char id=56   x=53    y=0     width=13    height=21    xoffset=1     yoffset=0    xadvance=15    page=0  chnl=15
+char id=57   x=66    y=0     width=13    height=21    xoffset=1     yoffset=0    xadvance=15    page=0  chnl=15
+char id=65   x=79    y=0     width=15    height=20    xoffset=0     yoffset=1    xadvance=15    page=0  chnl=15
+char id=77   x=26    y=21    width=13    height=20    xoffset=1     yoffset=1    xadvance=15    page=0  chnl=15
+char id=80   x=39    y=21    width=13    height=20    xoffset=1     yoffset=1    xadvance=15    page=0  chnl=15

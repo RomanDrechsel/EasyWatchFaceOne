@@ -141,7 +141,7 @@ module Helper
                 }
                 else if (self._timefont == 3)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.TimeKomikazoom);
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.TimeKamikazoom);
                     self.Minute = self.Hour;
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondKamikazoom);
                 }
@@ -149,14 +149,14 @@ module Helper
                 {
                     if (IsSmallDisplay)
                     {
-                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;                        
+                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
                     }
                     else
                     {
-                        self.Hour = Graphics.FONT_NUMBER_MEDIUM;
+                        self.Hour = Graphics.FONT_SYSTEM_NUMBER_MEDIUM;
                     }
                     self.Minute = self.Hour;
-                    self.Seconds = Graphics.FONT_TINY;
+                    self.Seconds = Graphics.FONT_SYSTEM_XTINY;
                 }
             }
 
