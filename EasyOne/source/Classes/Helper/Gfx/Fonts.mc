@@ -122,22 +122,22 @@ module Helper
                 }
                 else if (self._timefont == 1)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.HourConsola);
-                    if (Rez.Fonts has :MinuteConsola)
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.ConsolaHour);
+                    if (Rez.Fonts has :ConsolaMinute)
                     {
-                        self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteConsola);
+                        self.Minute = WatchUi.loadResource(Rez.Fonts.ConsolaMinute);
                     }
                     else
                     {
                         self.Minute = self.Hour;
                     }
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondConsola);
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.ConsolaSecond);
                 }
                 else if (self._timefont == 2)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.TimeImpossible);
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.ImpossibleTime);
                     self.Minute = self.Hour;
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondImpossible);
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.ImpossibleSecond);
                 }
                 else if (self._timefont == 3)
                 {
@@ -157,6 +157,12 @@ module Helper
                         self.Minute = self.Hour;
                     }
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondRoboto);
+                }
+                else if (self._timefont == 5)
+                {
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.TypesauceTime);
+                    self.Minute = self.Hour;
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.TypesauceSecond);
                 }
                 else
                 {

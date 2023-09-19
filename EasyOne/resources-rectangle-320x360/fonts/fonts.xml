@@ -8,19 +8,23 @@
     <font id="Tiny" filename="FontTiny.fnt" antialias="true" />
     <font id="Icons" filename="Icons.fnt" antialias="true" />
 
-    <font id="HourConsola" filename="HourConsola.fnt" antialias="true" />
-    <font id="MinuteConsola" filename="MinuteConsola.fnt" antialias="true" />
-    <font id="SecondConsola" filename="SecondConsola.fnt" antialias="true" />
+    <font id="ConsolaHour" filename="ConsolaHour.fnt" antialias="true" />
+    <font id="ConsolaMinute" filename="ConsolaMinute.fnt" antialias="true" />
+    <font id="ConsolaSecond" filename="ConsolaSecond.fnt" antialias="true" />
 
-    <font id="TimeImpossible" filename="TimeImpossible.fnt" antialias="true" />
-    <font id="SecondImpossible" filename="SecondImpossible.fnt" antialias="true" />
+    <font id="ImpossibleTime" filename="ImpossibleTime.fnt" antialias="true" />
+    <font id="ImpossibleSecond" filename="ImpossibleSecond.fnt" antialias="true" />
 
     <font id="TimeKamikazoom" filename="TimeKamikazoom.fnt" antialias="true" />
     <font id="SecondKamikazoom" filename="SecondKamikazoom.fnt" antialias="true" />
 
+    <!--<font id="RobotoDate" filename="RobotoDate.fnt" antialias="true" />-->
     <font id="HourRoboto" filename="HourRoboto.fnt" antialias="true" />
     <font id="MinuteRoboto" filename="MinuteRoboto.fnt" antialias="true" />
     <font id="SecondRoboto" filename="SecondRoboto.fnt" antialias="true" />
+
+    <font id="TypesauceTime" filename="TypesauceTime.fnt" antialias="true" />
+    <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />
 
     <font id="DateGoD" filename="DateGoD.fnt" antialias="true" />
 </fonts>

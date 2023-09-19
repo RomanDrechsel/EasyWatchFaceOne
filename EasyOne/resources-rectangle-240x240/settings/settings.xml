@@ -100,6 +100,7 @@
                 <listEntry value="2">Impossible</listEntry>
                 <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="4">Roboto</listEntry>
+                <listEntry value="5">Timesauce</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>

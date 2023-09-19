@@ -152,6 +152,7 @@
                 <listEntry value="2">Impossible</listEntry>
                 <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="4">Roboto</listEntry>
+                <listEntry value="5">Typesauce</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
@@ -160,7 +161,7 @@
             <settingConfig type="list">
                 <listEntry value="0">Komikazoom</listEntry>
                 <listEntry value="1">Grimoire Of Death</listEntry>
-                
+                <listEntry value="2">Roboto</listEntry>                
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
