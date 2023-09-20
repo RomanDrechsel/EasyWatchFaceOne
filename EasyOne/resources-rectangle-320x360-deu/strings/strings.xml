@@ -1,6 +1,6 @@
 <strings>
     <string id="SBatDays">Zeige verbleibende Batterieladung in Tagen, falls verfügbar.</string>
-    <string id="SStressAge">Alter des Stress-Levels anzeigen</string>
+    <string id="SStressA">Alter des Stress-Levels anzeigen</string>
 
     <string id="SLo">Widget Anordnung</string>
     <string id="SLoTL">Obere linke Ecke</string>

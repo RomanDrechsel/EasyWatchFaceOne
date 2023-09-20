@@ -1,6 +1,6 @@
 info face="" size=40 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0 outline=0
 common lineHeight=40 base=32 scaleW=256 scaleH=148 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
-page id=0 file="FontNormal_0.png"
+page id=0 file="Normal_0.png"
 chars count=95
 char id=32   x=4     y=32    width=3     height=1     xoffset=-1    yoffset=39    xadvance=10    page=0  chnl=15
 char id=33   x=88    y=107   width=5     height=25    xoffset=3     yoffset=7     xadvance=11    page=0  chnl=15

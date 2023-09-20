@@ -45,6 +45,7 @@
     <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
     <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>    
     <string id="SStressW">Warnung bei Stress-Level</string>
+    <string id="SStressD">Veränderung des Stress-Levels anzeigen</string>
     <string id="SRrW">Warnung ab Atemzüge pro Minute</string>
     <string id="SDeco">Deko-Linien in den Ecken anzeigen</string>
 

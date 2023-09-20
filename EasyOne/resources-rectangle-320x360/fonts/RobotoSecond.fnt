@@ -1,6 +1,6 @@
 info face="Roboto Medium" size=29 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=0,0 outline=0
 common lineHeight=29 base=29 scaleW=138 scaleH=60 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
-page id=0 file="SecondRoboto_0.png"
+page id=0 file="RobotoSecond_0.png"
 chars count=13
 char id=48   x=20    y=0     width=19    height=29    xoffset=1     yoffset=0     xadvance=22    page=0  chnl=15
 char id=49   x=125   y=0     width=12    height=28    xoffset=3     yoffset=0     xadvance=22    page=0  chnl=15

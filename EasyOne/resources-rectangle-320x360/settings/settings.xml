@@ -161,7 +161,6 @@
             <settingConfig type="list">
                 <listEntry value="0">Komikazoom</listEntry>
                 <listEntry value="1">Grimoire Of Death</listEntry>
-                <listEntry value="2">Roboto</listEntry>                
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
@@ -190,7 +189,14 @@
             <settingConfig type="numeric"/>
         </setting>
 
-        <setting propertyKey="@Properties.StressA" title="@Strings.SStressAge">
+        <setting propertyKey="@Properties.StressA" title="@Strings.SStressA">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.StressD" title="@Strings.SStressD">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>

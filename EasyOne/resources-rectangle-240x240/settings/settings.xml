@@ -131,6 +131,13 @@
             <settingConfig type="numeric"/>
         </setting>
 
+        <setting propertyKey="@Properties.StressD" title="@Strings.SStressD">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+
         <setting propertyKey="@Properties.RespW" title="@Strings.SRrW">
             <settingConfig type="numeric"/>
         </setting>

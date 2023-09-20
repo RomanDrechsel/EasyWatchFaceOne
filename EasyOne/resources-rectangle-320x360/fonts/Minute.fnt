@@ -1,6 +1,6 @@
-info face="Minutes Font" size=100 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0 outline=0
+info face="Minutes" size=100 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0 outline=0
 common lineHeight=72 base=72 scaleW=246 scaleH=163 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
-page id=0 file="MinuteFont_0.png"
+page id=0 file="Minute_0.png"
 chars count=10
 char id=48   x=6    y=4     width=44    height=72    xoffset=0     yoffset=0    xadvance=49    page=0  chnl=15
 char id=49   x=50   y=4     width=44    height=72    xoffset=0     yoffset=0    xadvance=49    page=0  chnl=15

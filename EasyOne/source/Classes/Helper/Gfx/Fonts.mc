@@ -30,14 +30,22 @@ module Helper
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
                 if (IsSmallDisplay)
                 {
-                    self.Normal = Graphics.FONT_XTINY;
-                    self.Tiny = self.Small;
+                    self.Normal = Graphics.FONT_TINY;
                 }
                 else
                 {
-                    self.Normal = Graphics.FONT_TINY;
+                    self.Normal = Graphics.FONT_XTINY;
+                }
+
+                if (Rez.Fonts has :Tiny)
+                {
                     self.Tiny = WatchUi.loadResource(Rez.Fonts.Tiny);
                 }
+                else
+                {
+                    self.Tiny = self.Small;
+                }
+                
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
 
@@ -57,7 +65,7 @@ module Helper
 
                 self.Date = null;
 
-                if (self._datefont != 2 && [
+                if (self._datefont != 99 && [
                     System.LANGUAGE_ARA,
                     System.LANGUAGE_HRV,
                     System.LANGUAGE_CES,
@@ -87,13 +95,14 @@ module Helper
                 {
                     if (self._datefont == 0)
                     {
-                        self.Date = WatchUi.loadResource(Rez.Fonts.DateFont);
+                        self.Date = WatchUi.loadResource(Rez.Fonts.KamikazoomDate);
                     }
                     else if (self._datefont == 1)
                     {
-                        self.Date = WatchUi.loadResource(Rez.Fonts.DateGoD);
+                        self.Date = WatchUi.loadResource(Rez.Fonts.GoDDate);
                     }
                 }
+                
                 if (self.Date == null)
                 {
                     self.Date = Graphics.FONT_TINY;
@@ -116,9 +125,9 @@ module Helper
                 
                 if (self._timefont == 0)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.HourFont);
-                    self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteFont);
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondsFont);
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.Hour);
+                    self.Minute = WatchUi.loadResource(Rez.Fonts.Minute);
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.Seconds);
                 }
                 else if (self._timefont == 1)
                 {
@@ -141,22 +150,22 @@ module Helper
                 }
                 else if (self._timefont == 3)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.TimeKamikazoom);
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.KamikazoomTime);
                     self.Minute = self.Hour;
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondKamikazoom);
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.KamikazoomSecond);
                 }
                 else if (self._timefont == 4)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.HourRoboto);
-                    if (Rez.Fonts has :MinuteRoboto)
+                    self.Hour = WatchUi.loadResource(Rez.Fonts.RobotoHour);
+                    if (Rez.Fonts has :RobotoMinute)
                     {
-                        self.Minute = WatchUi.loadResource(Rez.Fonts.MinuteRoboto);
+                        self.Minute = WatchUi.loadResource(Rez.Fonts.RobotoMinute);
                     }
                     else
                     {
                         self.Minute = self.Hour;
                     }
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.SecondRoboto);
+                    self.Seconds = WatchUi.loadResource(Rez.Fonts.RobotoSecond);
                 }
                 else if (self._timefont == 5)
                 {

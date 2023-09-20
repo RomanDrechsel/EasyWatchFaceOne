@@ -23,6 +23,7 @@
     <property type="number" id="ClZero">1</property>
     <property type="number" id="BatDays">1</property>
     <property type="number" id="StressW">85</property>
+    <property type="number" id="StressD">1</property>
     <property type="number" id="RespW">25</property>
     <property type="number" id="StepPer">1</property>
 

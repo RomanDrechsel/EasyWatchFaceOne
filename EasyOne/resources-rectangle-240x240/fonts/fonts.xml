@@ -1,25 +1,25 @@
 <fonts>
-    <font id="HourFont" filename="HourFont.fnt" antialias="true" />
-    <font id="MinuteFont" filename="MinuteFont.fnt" antialias="true" />
-    <font id="SecondsFont" filename="SecondsFont.fnt" antialias="true" />
-    <font id="DateFont" filename="DateFont.fnt" antialias="true" />
-    <font id="Small" filename="FontSmall.fnt" antialias="true" />
+    <font id="Hour" filename="Hour.fnt" antialias="true" />
+    <font id="Minute" filename="Minute.fnt" antialias="true" />
+    <font id="Seconds" filename="Seconds.fnt" antialias="true" />
+    <font id="Small" filename="Small.fnt" antialias="true" />
     <font id="Icons" filename="Icons.fnt" antialias="true" />
 
-    <font id="HourConsola" filename="HourConsola.fnt" antialias="true" />
-    <font id="SecondConsola" filename="SecondConsola.fnt" antialias="true" />
+    <font id="ConsolaHour" filename="ConsolaHour.fnt" antialias="true" />
+    <font id="ConsolaSecond" filename="ConsolaSecond.fnt" antialias="true" />
 
     <font id="ImpossibleTime" filename="ImpossibleTime.fnt" antialias="true" />
     <font id="ImpossibleSecond" filename="ImpossibleSecond.fnt" antialias="true" />
 
-    <font id="TimeKamikazoom" filename="TimeKamikazoom.fnt" antialias="true" />
-    <font id="SecondKamikazoom" filename="SecondKamikazoom.fnt" antialias="true" />
+    <font id="KamikazoomTime" filename="KamikazoomTime.fnt" antialias="true" />
+    <font id="KamikazoomSecond" filename="KamikazoomSecond.fnt" antialias="true" />
+    <font id="KamikazoomDate" filename="KamikazoomDate.fnt" antialias="true" />
 
-    <font id="HourRoboto" filename="HourRoboto.fnt" antialias="true" />
-    <font id="SecondRoboto" filename="SecondRoboto.fnt" antialias="true" />
+    <font id="RobotoHour" filename="RobotoHour.fnt" antialias="true" />
+    <font id="RobotoSecond" filename="RobotoSecond.fnt" antialias="true" />
 
     <font id="TypesauceTime" filename="TypesauceTime.fnt" antialias="true" />
     <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />
 
-    <font id="DateGoD" filename="DateGoD.fnt" antialias="true" />
+    <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
 </fonts>

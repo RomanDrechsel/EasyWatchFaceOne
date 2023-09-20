@@ -16,6 +16,7 @@ module Widgets
 
             private static var _sampleDelta = 0.0;
             private static var _showSampleTime = true;
+            private static var _showDelta = true;
             private static var _lastSampleDate = null as Toybox.Time.Moment;
             private static var _stressLevel = -1.0;
 
@@ -23,7 +24,7 @@ module Widgets
             {
                 if (!IsSmallDisplay)
                 {
-                    var setting = Application.Properties.getValue("StressAge") as Number;
+                    var setting = Application.Properties.getValue("StressA") as Number;
                     if (setting != null && setting <= 0)
                     {
                         self._showSampleTime = false;
@@ -36,6 +37,16 @@ module Widgets
                 else
                 {
                     self._showSampleTime = false;
+                }
+
+                var setting = Application.Properties.getValue("StressD") as Number;
+                if (setting != null && setting <= 0)
+                {
+                    self._showDelta = false;
+                }
+                else
+                {
+                    self._showDelta = true;
                 }
 
                 $.getView().OnWakeUp.add(self);
@@ -91,10 +102,14 @@ module Widgets
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
                     dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+
+                    var width;
+
                     if (self._showSampleTime == false)
                     {
                         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
                         dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                        width = dc.getTextWidthInPixels(stress.toNumber().toString(), HGfx.Fonts.Normal);
                     }
                     else
                     {
@@ -141,31 +156,32 @@ module Widgets
                                 self._texts[0].Color = color;                       
                             }
                         }
-                        var width = self._textContainer.draw(self._texts, dc);
-                        if (self._sampleDelta != 0.0)
+                        
+                        width = self._textContainer.draw(self._texts, dc);
+                    }
+                    if (self._showDelta && self._sampleDelta != 0.0)
+                    {
+                        var icon = "";
+                        if (self._sampleDelta < 0.0)
                         {
-                            var icon = "";
-                            if (self._sampleDelta < 0.0)
-                            {
-                                icon = HGfx.ICONS_ARROWDOWN;
-                            }
-                            else
-                            {
-                                icon = HGfx.ICONS_ARROWUP;
-                            }
-
-                            var yOffset;
-                            if (IsSmallDisplay)
-                            {
-                                yOffset = 14;
-                            }
-                            else
-                            {
-                                yOffset = 10;
-                            }
-
-                            dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + yOffset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+                            icon = HGfx.ICONS_ARROWDOWN;
                         }
+                        else
+                        {
+                            icon = HGfx.ICONS_ARROWUP;
+                        }
+
+                        var yOffset;
+                        if (IsSmallDisplay)
+                        {
+                            yOffset = 14;
+                        }
+                        else
+                        {
+                            yOffset = 10;
+                        }
+
+                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + yOffset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
                     }
 
                     if (stress >= widget.StressWarningLevel)
@@ -216,12 +232,19 @@ module Widgets
                         self._lastSampleDate = null;
                     }
                 }
-
-                self._stressLevel = -1.0;
+                else
+                {
+                    self._sampleDelta = 0.0;
+                    self._lastSampleDate = null;
+                }
             }
 
             static function getStressLevel() as Float
             {
+                self._lastSampleDate = Time.now().subtract(new Time.Duration(456));
+                self._sampleDelta = -1.0;
+
+                return 85.0;
                 return self._stressLevel;
             }
         }

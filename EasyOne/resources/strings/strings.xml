@@ -47,6 +47,7 @@
     <string id="SWZero">Display leading zero at time</string>
     <string id="SSgoal">Display percentage of steps goal</string>    
     <string id="SStressW">Stress Warning Level</string>
+    <string id="SStressD">Show direction of change of stress level</string>
     <string id="SRrW">Respiration-Rate Warning Level</string>
 
     <string id="SDeco">Show decoration-lines in the corners</string>
