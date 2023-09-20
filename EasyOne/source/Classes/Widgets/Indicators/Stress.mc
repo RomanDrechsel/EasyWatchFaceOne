@@ -11,6 +11,8 @@ module Widgets
     {
         class Stress extends IndicatorBase
         {
+            static var _stressLevel = -1.0;
+
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
@@ -18,7 +20,6 @@ module Widgets
             private static var _showSampleTime = true;
             private static var _showDelta = true;
             private static var _lastSampleDate = null as Toybox.Time.Moment;
-            private static var _stressLevel = -1.0;
 
             function initialize()
             {
@@ -205,6 +206,11 @@ module Widgets
 
             function OnWakeUp()
             {
+                self.getStressLevel();
+            }
+
+            static function getStressLevel() as Float
+            {
                 //SAMPLE_VALID = 600
                 if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                 {
@@ -237,14 +243,7 @@ module Widgets
                     self._sampleDelta = 0.0;
                     self._lastSampleDate = null;
                 }
-            }
 
-            static function getStressLevel() as Float
-            {
-                self._lastSampleDate = Time.now().subtract(new Time.Duration(456));
-                self._sampleDelta = -1.0;
-
-                return 85.0;
                 return self._stressLevel;
             }
         }
