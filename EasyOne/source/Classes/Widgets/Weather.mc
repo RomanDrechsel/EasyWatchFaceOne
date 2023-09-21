@@ -63,20 +63,18 @@ module Widgets
                     self.CalcPos(dc);
                 }
 
-                var font = HGfx.Fonts.Small;
-
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
                 dc.drawBitmap(self._iconPosX, self._iconPosY, self._currentWeatherIcon);
-                dc.drawText(self._tempPosX, self._tempPosY, font, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._tempPosX, self._tempPosY, HGfx.Fonts.Small, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
 
                 dc.setPenWidth(1);
                 dc.drawLine(self.locX, self.locY + 10, self.locX, self.locY + self._vertLineHeight);
 
-                dc.drawText(self._maxPosX, self._maxPosY, font, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._maxPosX, self._maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
                 dc.setPenWidth(2);
                 dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
-                dc.drawText(self._minPosX, self._minPosY, font, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self._minPosX, self._minPosY, HGfx.Fonts.Small, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
             }
         }
 
@@ -277,14 +275,13 @@ module Widgets
         {
             if (self._currentWeatherIcon != null)
             {
-                var font = HGfx.Fonts.Small;
-                var textheight = dc.getFontHeight(font);
+                var textheight = dc.getFontHeight(HGfx.Fonts.Small);
                 var horOffset = 5;
 
                 self._iconPosX = self.locX - self._iconWidth - horOffset;
                 self._iconPosY = self.locY;
 
-                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", font) / 2);
+                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", HGfx.Fonts.Small) / 2);
                 self._tempPosY = self._iconPosY + self._iconHeight;
 
                 self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
@@ -321,8 +318,8 @@ module Widgets
                     self._horLineWidth = 35;
                 }
 
-                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", font);
-                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", font);
+                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
+                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", HGfx.Fonts.Small);
 
                 if (self._horLineWidth < txt1)
                 {

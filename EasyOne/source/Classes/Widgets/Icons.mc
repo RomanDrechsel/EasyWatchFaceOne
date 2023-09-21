@@ -44,7 +44,7 @@ module Widgets
                     self.locX = self.locX - (width / 2) + 10;
                 }
 
-                self.locY += 10;
+                self.locY += 20;
             }
 
             var settings = System.getDeviceSettings();

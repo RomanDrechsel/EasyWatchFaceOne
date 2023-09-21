@@ -82,7 +82,7 @@ module Widgets
             var sec_posY = self.locY - (bigheight / 2);
             var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds);
 
-            if (self has :DebugDots)
+            /*if (self has :DebugDots)
             {
                 self.DebugDots(dc, center, self.locY, Graphics.COLOR_WHITE, 8);
 
@@ -99,9 +99,7 @@ module Widgets
 
                 self.DebugDots(dc, sec_pos, amp_posY, Graphics.COLOR_YELLOW, 3);
                 self.DebugDots(dc, sec_pos, amp_posY + Graphics.getFontAscent(HGfx.Fonts.Seconds), Graphics.COLOR_YELLOW, 3);
-            }
-
-            
+            }*/
 
             dc.setColor(Themes.Colors.TimeHour, Gfx.COLOR_TRANSPARENT);
             dc.drawText(hours_pos, hours_posY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_RIGHT);

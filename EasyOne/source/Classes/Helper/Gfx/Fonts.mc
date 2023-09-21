@@ -34,7 +34,7 @@ module Helper
                 }
                 else
                 {
-                    self.Normal = Graphics.FONT_XTINY;
+                    self.Normal = WatchUi.loadResource(Rez.Fonts.Normal);
                 }
 
                 if (Rez.Fonts has :Tiny)
