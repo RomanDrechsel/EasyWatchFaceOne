@@ -56,12 +56,11 @@ module Widgets
 
                 self._iconPosX = centerX;
                 self._textPosX = centerX;
-                self._iconPosY = centerY - (iconHeight / 2);
+                self._iconPosY = centerY - (iconHeight / 2) - 10;
                 self._textPosY = centerY + (fontHeight / 2) - 5; 
 
                 if (!IsSmallDisplay)
                 {
-                    self._iconPosY -= 10;
                     self._textPosY += 10;
                 }
 

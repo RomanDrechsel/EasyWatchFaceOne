@@ -129,8 +129,13 @@ module Widgets
             {
                 dc.setColor($.getTheme().DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
             }
-           
-            dc.drawText(self._iconPosX, self._drawYpos - 2, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+
+            var offset = -4;
+            if (IsSmallDisplay)
+            {
+                offset = 0;
+            }
+            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
@@ -161,7 +166,12 @@ module Widgets
                 dc.setColor($.getTheme().DistanceIconColor, Gfx.COLOR_TRANSPARENT);
             }
 
-            dc.drawText(self._iconPosX, self._drawYpos, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
+            var offset = 0;
+            if (IsSmallDisplay)
+            {
+                offset = 2;
+            }
+            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
@@ -181,8 +191,13 @@ module Widgets
             {
                 dc.setColor($.getTheme().DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
             }
-           
-            dc.drawText(self._iconPosX, self._drawYpos + 2, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+
+            var offset = 2;
+            if (IsSmallDisplay)
+            {
+                offset = 4;
+            }
+            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 var amount = info.steps.toFloat() / info.stepGoal.toFloat();

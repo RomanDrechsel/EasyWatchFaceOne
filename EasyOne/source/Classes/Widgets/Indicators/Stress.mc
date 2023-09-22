@@ -16,7 +16,7 @@ module Widgets
             private var _textContainer = null as Helper.ExtText;
             private var _texts = [] as Array<Helper.ExtTextPart>;
 
-            private static var _sampleDelta = 0.0;
+            private static var _sampleDeltaRise = null;
             private static var _showSampleTime = true;
             private static var _showDelta = true;
             private static var _lastSampleDate = null as Toybox.Time.Moment;
@@ -160,10 +160,10 @@ module Widgets
                         
                         width = self._textContainer.draw(self._texts, dc);
                     }
-                    if (self._showDelta && self._sampleDelta != 0.0)
+                    if (self._showDelta && self._sampleDeltaRise != null)
                     {
                         var icon = "";
-                        if (self._sampleDelta < 0.0)
+                        if (_sampleDeltaRise == false)
                         {
                             icon = HGfx.ICONS_ARROWDOWN;
                         }
@@ -172,17 +172,7 @@ module Widgets
                             icon = HGfx.ICONS_ARROWUP;
                         }
 
-                        var yOffset;
-                        if (IsSmallDisplay)
-                        {
-                            yOffset = 14;
-                        }
-                        else
-                        {
-                            yOffset = 10;
-                        }
-
-                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + yOffset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + 9, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
                     }
 
                     if (stress >= widget.StressWarningLevel)
@@ -221,11 +211,22 @@ module Widgets
                     {
                         if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
                         {
-                            self._sampleDelta = newest_sample.data - prev_sample.data;
+                            if (newest_sample.data > prev_sample.data)
+                            {
+                                self._sampleDeltaRise = true;
+                            }
+                            else if (newest_sample.data < prev_sample.data)
+                            {
+                                self._sampleDeltaRise = false;
+                            }
+                            else
+                            {
+                                self._sampleDeltaRise = null;
+                            }
                         }
                         else
                         {
-                            self._sampleDelta = 0.0;
+                            self._sampleDeltaRise = null;
                             self._lastSampleDate = null;
                         }
                         
@@ -234,15 +235,21 @@ module Widgets
                     }
                     else
                     {
-                        self._sampleDelta = 0.0;
+                        self._sampleDeltaRise = null;
                         self._lastSampleDate = null;
+                        self._stressLevel = -1.0;
                     }
                 }
                 else
                 {
-                    self._sampleDelta = 0.0;
+                    self._sampleDeltaRise = null;
                     self._lastSampleDate = null;
+                    self._stressLevel = -1.0;
                 }
+
+                /*self._sampleDeltaRise = true;
+                self._lastSampleDate = null;
+                self._stressLevel = 85.0;*/
 
                 return self._stressLevel;
             }

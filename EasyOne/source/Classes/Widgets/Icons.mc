@@ -44,11 +44,14 @@ module Widgets
                     self.locX = self.locX - (width / 2) + 10;
                 }
 
-                self.locY += 20;
+                self.locY += 13;
+                if (!IsSmallDisplay)
+                {
+                    self.locY += 7;
+                }
             }
 
             var settings = System.getDeviceSettings();
-
             var theme = $.getTheme();
 
             //Messages
