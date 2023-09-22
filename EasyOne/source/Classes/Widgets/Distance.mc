@@ -10,9 +10,8 @@ module Widgets
     class Distance extends WidgetBase
     {
         private var _WidgetHeight = 150;
-        private var _WidgetWidth = 150;
+        private var _WidgetWidth = 130;
         private var _inMiles = false as Boolean;
-        private var _drawYpos as Number;
         private var _startdrawYpos as Number;
         private var _lineHeight = 33;
         private var _iconPosX = self.locX;
@@ -20,35 +19,34 @@ module Widgets
         private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
         private var _showIndicator = true;
 
-        private var _indicatorPadding = 12;
-        private var _indicatorVPadding = 12;
-
         private var _showStepsPercentage = true;
 
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-            var width = params.get("W");
-            if (width != null)
+
+            self._WidgetWidth = params.get("W");
+            if (self._WidgetWidth == null)
             {
-                self._WidgetWidth = width;
+                self._WidgetWidth = 130;
             }
 
-            var height = params.get("H");
-            if (height != null)
+            self._WidgetHeight = params.get("H");
+            if (self._WidgetHeight == null)
             {
-                self._WidgetHeight = height;
+                self._WidgetHeight = 150;
             }
+
             self.locY = self.locY - self._WidgetHeight;
 
+            var indicatorPadding = 12;
             if (IsSmallDisplay)
             {
-                self._indicatorPadding = 8;
-                self._indicatorVPadding = 8;
+                indicatorPadding = 8;
                 self._lineHeight = 22;
             }
 
-            var textheight = (self._lineHeight * 3) + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorVPadding;
+            var textheight = (self._lineHeight * 3) + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
             self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
 
             var show = Application.Properties.getValue("Deco") as Number;
@@ -59,13 +57,13 @@ module Widgets
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - self._indicatorPadding - 25;
+                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - indicatorPadding - 25;
                 self._textPosX = self._iconPosX - 10;
                 self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
             }
             else
             {
-                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorPadding;
+                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
                 if (!IsSmallDisplay)
                 {
                     self._textPosX = self._iconPosX + 35;
@@ -108,18 +106,18 @@ module Widgets
             info.steps = 5687;
             info.stepGoal = 6500;*/
 
-            self._drawYpos = self._startdrawYpos;
+            var drawYpos = self._startdrawYpos;
 
-            self.drawCalories(dc, info);
-            self.drawDistance(dc, info);
-            self.drawSteps(dc, info);
+            drawYpos = self.drawCalories(dc, info, drawYpos);
+            drawYpos = self.drawDistance(dc, info, drawYpos);
+            drawYpos = self.drawSteps(dc, info, drawYpos);
             if (self._showIndicator)
             {
                 self.drawStepsIndicator(dc, info);
             }
         }
 
-        private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info)
+        private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
@@ -135,18 +133,19 @@ module Widgets
             {
                 offset = 0;
             }
-            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
+                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
             }
 
-            self._drawYpos += self._lineHeight;
+            drawYpos += self._lineHeight;
+            return drawYpos;
         }
 
-        private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info)
-        {            
+        private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
+        {
             var str = "";
             if (self._inMiles == true)
             {
@@ -171,17 +170,18 @@ module Widgets
             {
                 offset = 2;
             }
-            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
+                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
             }
 
-            self._drawYpos += self._lineHeight;
+            drawYpos += self._lineHeight;
+            return drawYpos;
         }
 
-        private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info)
+        private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
@@ -197,7 +197,7 @@ module Widgets
             {
                 offset = 4;
             }
-            dc.drawText(self._iconPosX, self._drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
             if (info != null)
             {
                 var amount = info.steps.toFloat() / info.stepGoal.toFloat();
@@ -215,24 +215,24 @@ module Widgets
                     }
 
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);                 
-                    dc.drawText(self._textPosX, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                    dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                     if (self._showStepsPercentage == true)
                     {
                         if (amount >= 1.0)
                         {
                             if (IsSmallDisplay)
                             {
-                                dc.drawText(self._textPosX + width + 3, self._drawYpos + 4, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                                dc.drawText(self._textPosX + width + 3, drawYpos + 4, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
                             }
                             else
                             {
-                                dc.drawText(self._textPosX + width + 5, self._drawYpos + yOffset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                                dc.drawText(self._textPosX + width + 5, drawYpos + yOffset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
                             }
                         }
                         else
                         {
                             var percent = "(" + (amount * 100).toNumber().toString() + "%)";
-                            dc.drawText(self._textPosX + width + 5, self._drawYpos + yOffset, HGfx.Fonts.Tiny, percent, self._textJust);
+                            dc.drawText(self._textPosX + width + 5, drawYpos + yOffset, HGfx.Fonts.Tiny, percent, self._textJust);
                         }
                     }
                 }
@@ -240,11 +240,11 @@ module Widgets
                 {
                     if (amount >= 1.0)
                     {                               
-                        dc.drawText(self._textPosX , self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                        dc.drawText(self._textPosX , drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                         if (self._showStepsPercentage == true)
                         {
                             var textwidth = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small) + 5; 
-                            dc.drawText(self._textPosX - textwidth, self._drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                            dc.drawText(self._textPosX - textwidth, drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
                         }
                     }
                     else
@@ -253,15 +253,16 @@ module Widgets
                         if (self._showStepsPercentage == true)
                         {
                             var percent = "(" + (amount * 100).toNumber().toString() + "%)";                            
-                            dc.drawText(self._textPosX, self._drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
+                            dc.drawText(self._textPosX, drawYpos + 6, HGfx.Fonts.Tiny, percent, self._textJust);
                             percent_width = dc.getTextWidthInPixels(percent, HGfx.Fonts.Tiny) + 5;
                         }
-                        dc.drawText(self._textPosX - percent_width, self._drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
+                        dc.drawText(self._textPosX - percent_width, drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                     }                    
                 }
             }
 
-            self._drawYpos += self._lineHeight;
+            drawYpos += self._lineHeight;
+            return drawYpos;
         }
 
         private function drawStepsIndicator(dc as Gfx.Dc, info as ActivityMonitor.Info)
@@ -277,7 +278,7 @@ module Widgets
             {
                 pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
             }
-            HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._WidgetHeight, self._WidgetHeight, pos);
+            HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, pos);
 
             HGfx.DrawRoundAngle.draw(dc, 0, 0);
             if (amount > 0)

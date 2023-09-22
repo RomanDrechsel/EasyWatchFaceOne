@@ -13,7 +13,7 @@ module Widgets
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
         var WidgetHeight = 150;
-        var WidgetWidth = 150;
+        var WidgetWidth = 130;
        
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
@@ -28,16 +28,16 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            var width = params.get("W");
-            if (width != null)
+            self.WidgetWidth = params.get("W");
+            if (self.WidgetWidth == null)
             {
-                self.WidgetWidth = width;
+                self.WidgetWidth = 130;
             }
 
-            var height = params.get("H");
-            if (height != null)
+            self.WidgetHeight = params.get("H");
+            if (self.WidgetHeight == null)
             {
-                self.WidgetHeight = height;
+                self.WidgetHeight = 150;
             }
 
             self.locY = self.locY - self.WidgetHeight;

@@ -34,7 +34,7 @@ module Widgets
             var now = Time.now();
             var time = D.info(now, Time.FORMAT_MEDIUM);
 
-            self._Texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save space
+            self._Texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save memory
             self._Texts[0].Font = HGfx.Fonts.Date;
             self._Texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
             self._Texts[1].Font = HGfx.Fonts.Date;
