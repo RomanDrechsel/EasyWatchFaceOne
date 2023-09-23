@@ -12,8 +12,7 @@ module Widgets
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
-        var WidgetHeight = 150;
-        var WidgetWidth = 130;
+        var WidgetSize = 150;
        
         private var _indicatorPadding = 10;
         private var _display = null as Indi.IndicatorBase;
@@ -28,22 +27,15 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            self.WidgetWidth = params.get("W");
-            if (self.WidgetWidth == null)
+            self.WidgetSize = params.get("W");
+            if (self.WidgetSize == null)
             {
-                self.WidgetWidth = 130;
+                self.WidgetSize = 130;
             }
 
-            self.WidgetHeight = params.get("H");
-            if (self.WidgetHeight == null)
-            {
-                self.WidgetHeight = 150;
-            }
-
-            self.locY = self.locY - self.WidgetHeight;
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self.locX = self.locX - self.WidgetWidth;
+                self.locX = self.locX - self.WidgetSize;
             }
 
             var show = Application.Properties.getValue("Deco") as Number;
@@ -79,11 +71,12 @@ module Widgets
 
             var indicator = INDICATOR_HEARTRATE;
             var heartrate = Indi.Heartbeat.getHeartrate();
-            var stress = Indi.Stress.getStressLevel();
-            var breath = Indi.Breath.getBreath();
 
             if (heartrate > 0)
             {
+                var stress = Indi.Stress.getStressLevel();
+                var breath = Indi.Breath.getBreath();
+
                 indicator = INDICATOR_RANDOM;
                 if (heartrate >= Indi.Heartbeat.HeartbeatZones[2])
                 {
@@ -103,30 +96,34 @@ module Widgets
                         }
                     }
                 }
+
+                if (indicator == INDICATOR_RANDOM)
+                {
+                    indicator = self.getRandomWidget(stress, breath);
+                }
+
+                if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
+                {
+                    self._display = new Indi.Stress();
+                }
+                else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
+                {
+                    self._display = new Indi.Breath();
+                }
+                else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
+                {
+                    self._display = new  Indi.Heartbeat();
+                }
             }
 
-            if (indicator == INDICATOR_RANDOM)
+            if (self._display == null)
             {
-                indicator = self.getRandomWidget(stress, breath);
-            }
-
-            if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
-            {
-                self._display = new Indi.Stress();
-            }
-            else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
-            {
-                self._display = new Indi.Breath();
-            }
-            else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
-            {
-                self._display = new  Indi.Heartbeat();
+                self._display = new Indi.Heartbeat();
             }
         }
 
         private function getRandomWidget(s as Float, b as Number) as Indicator
         {
-            var heartrate = 1;
             var stress = 1;
             var breath = 1;
             
@@ -134,30 +131,30 @@ module Widgets
             {
                 stress = 0;
             }
+
             if (b <= 0)
             {
                 breath = 0;
             }
 
-            var max = heartrate + stress + breath;
+            var max = 1 + stress + breath;
             if (max <= 0)
             {
                 return INDICATOR_HEARTRATE;
             }
 
             var rdm = Helper.MathHelper.RandomInRange(0, max);
-
-            if (heartrate > 0 && rdm < heartrate)
-            {
-                return INDICATOR_HEARTRATE;
-            }
-            else if (stress > 0 && rdm < heartrate + stress)
+            if (stress > 0 && rdm > 1)
             {
                 return INDICATOR_STRESS;
             }
-            else
+            else if (breath > 0 && rdm > 0)
             {
                 return INDICATOR_BREATH;
+            }
+            else
+            {
+                return INDICATOR_HEARTRATE;
             }
         }
 
@@ -182,10 +179,10 @@ module Widgets
             var pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                indicatorPosX += self.WidgetWidth;
+                indicatorPosX += self.WidgetSize;
                 pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
             }
-            HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY, self.WidgetWidth, self.WidgetHeight, pos);
+            HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY - self.WidgetSize, self.WidgetSize, self.WidgetSize, pos);
             HGfx.DrawRoundAngle.draw(dc, 0, 0);
             HGfx.DrawRoundAngle.draw(dc, amount, color);
         }

@@ -76,10 +76,6 @@ module Helper
                         {
                             yoffset *= 1.2;
                         }
-                        else
-                        {
-                            yoffset *= 1.1;
-                        }
                     }
                 }
 

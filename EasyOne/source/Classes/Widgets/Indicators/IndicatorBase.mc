@@ -26,20 +26,24 @@ module Widgets
 
             protected function Init(dc as Dc, widget as HealthIndicator)
             {
-                var iconHeight = dc.getFontHeight(HGfx.Fonts.Icons);
-                var fontHeight = dc.getFontHeight(HGfx.Fonts.Small);
+                var iconHeight = Graphics.getFontAscent(HGfx.Fonts.Icons);
+                var fontHeight = Graphics.getFontAscent(HGfx.Fonts.Small);
 
-                var centerX;
-                var centerY;
+                var indicatorPadding = 12;
                 if (IsSmallDisplay)
                 {
-                    centerX = widget.locX + (widget.WidgetWidth / 2.0);
-                    centerY = widget.locY + (widget.WidgetHeight / 1.5);
+                    indicatorPadding = 8;
+                }
+
+
+                var centerX;
+                if (IsSmallDisplay)
+                {
+                    centerX = widget.locX + (widget.WidgetSize / 2.0);
                 }
                 else
                 {
-                    centerX = widget.locX + (widget.WidgetWidth / 2.4);
-                    centerY = widget.locY + (widget.WidgetHeight / 2.2);
+                    centerX = widget.locX + (widget.WidgetSize / 2.4);
                 }
 
                 if (widget.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
@@ -56,12 +60,14 @@ module Widgets
 
                 self._iconPosX = centerX;
                 self._textPosX = centerX;
-                self._iconPosY = centerY - (iconHeight / 2) - 10;
-                self._textPosY = centerY + (fontHeight / 2) - 5; 
 
-                if (!IsSmallDisplay)
+                self._textPosY = widget.locY - indicatorPadding - fontHeight - 25;
+                self._iconPosY = self._textPosY - iconHeight - 10;
+
+                if (IsSmallDisplay)
                 {
                     self._textPosY += 10;
+                    self._iconPosY += 18;
                 }
 
                 self._initialized = true;

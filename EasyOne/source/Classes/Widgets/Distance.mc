@@ -9,8 +9,7 @@ module Widgets
 {
     class Distance extends WidgetBase
     {
-        private var _WidgetHeight = 150;
-        private var _WidgetWidth = 130;
+        private var _WidgetSize = 130;
         private var _inMiles = false as Boolean;
         private var _startdrawYpos as Number;
         private var _lineHeight = 33;
@@ -25,19 +24,11 @@ module Widgets
         {
             WidgetBase.initialize(params);
 
-            self._WidgetWidth = params.get("W");
-            if (self._WidgetWidth == null)
+            self._WidgetSize = params.get("W");
+            if (self._WidgetSize == null)
             {
-                self._WidgetWidth = 130;
+                self._WidgetSize = 130;
             }
-
-            self._WidgetHeight = params.get("H");
-            if (self._WidgetHeight == null)
-            {
-                self._WidgetHeight = 150;
-            }
-
-            self.locY = self.locY - self._WidgetHeight;
 
             var indicatorPadding = 12;
             if (IsSmallDisplay)
@@ -47,7 +38,7 @@ module Widgets
             }
 
             var textheight = (self._lineHeight * 3) + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
-            self._startdrawYpos = self.locY + self._WidgetHeight - textheight;
+            self._startdrawYpos = self.locY - indicatorPadding - self._lineHeight;
 
             var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
@@ -108,16 +99,19 @@ module Widgets
 
             var drawYpos = self._startdrawYpos;
 
-            drawYpos = self.drawCalories(dc, info, drawYpos);
-            drawYpos = self.drawDistance(dc, info, drawYpos);
-            drawYpos = self.drawSteps(dc, info, drawYpos);
+            self.drawSteps(dc, info, drawYpos);
+            drawYpos -= self._lineHeight;
+            self.drawDistance(dc, info, drawYpos);
+            drawYpos -= self._lineHeight;
+            self.drawCalories(dc, info, drawYpos);
+            
             if (self._showIndicator)
             {
                 self.drawStepsIndicator(dc, info);
             }
         }
 
-        private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
+        private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
@@ -139,12 +133,9 @@ module Widgets
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
             }
-
-            drawYpos += self._lineHeight;
-            return drawYpos;
         }
 
-        private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
+        private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
             var str = "";
             if (self._inMiles == true)
@@ -176,12 +167,9 @@ module Widgets
                 dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
             }
-
-            drawYpos += self._lineHeight;
-            return drawYpos;
         }
 
-        private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Number
+        private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
@@ -260,12 +248,9 @@ module Widgets
                     }                    
                 }
             }
-
-            drawYpos += self._lineHeight;
-            return drawYpos;
         }
 
-        private function drawStepsIndicator(dc as Gfx.Dc, info as ActivityMonitor.Info)
+        private function drawStepsIndicator(dc as Gfx.Dc, info as ActivityMonitor.Info) as Void
         {
             var amount = 0.0;
             if (info != null)
@@ -278,7 +263,7 @@ module Widgets
             {
                 pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
             }
-            HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._WidgetWidth, self._WidgetHeight, pos);
+            HGfx.DrawRoundAngle.Configure(self.locX, self.locY - self._WidgetSize, self._WidgetSize, self._WidgetSize, pos);
 
             HGfx.DrawRoundAngle.draw(dc, 0, 0);
             if (amount > 0)

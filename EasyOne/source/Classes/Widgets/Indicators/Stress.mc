@@ -56,7 +56,7 @@ module Widgets
             protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
             {
                 IndicatorBase.Init(dc, widget);
-                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_CENTER);
+                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_TOP);
             }
 
             function draw(dc as Gfx.Dc, widget as HealthIndicator)
@@ -102,14 +102,14 @@ module Widgets
                     }
 
                     dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER);
 
                     var width;
 
                     if (self._showSampleTime == false)
                     {
                         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                        dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                        dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER);
                         width = dc.getTextWidthInPixels(stress.toNumber().toString(), HGfx.Fonts.Normal);
                     }
                     else
@@ -120,7 +120,7 @@ module Widgets
                             var ts = Time.now().subtract(self._lastSampleDate).value();
                             if (ts > 120)
                             {
-                                datestr = " (~" + (ts/60) + "m)";
+                                datestr = " (" + (ts/60) + "m)";
                             }
                         }
 
@@ -130,7 +130,7 @@ module Widgets
                             {
                                 self._texts = [
                                     new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
-                                    new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Tiny)
+                                    new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Small)
                                 ];
                                 self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                             }
@@ -172,12 +172,23 @@ module Widgets
                             icon = HGfx.ICONS_ARROWUP;
                         }
 
-                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + 9, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+                        var offset = -5;
+                        if (IsSmallDisplay)
+                        {
+                            offset = -3;
+                        }
+
+                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + (Graphics.getFontAscent(HGfx.Fonts.Normal) / 2) + offset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT);
                     }
 
                     if (stress >= widget.StressWarningLevel)
                     {
-                        widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY);
+                        var offset = 12;
+                        if (IsSmallDisplay)
+                        {
+                            offset = 18;
+                        }
+                        widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY + offset);
                     }
                     else
                     {
@@ -187,8 +198,8 @@ module Widgets
                 else
                 {
                     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER);
+                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
                 }
 
                 widget.drawIndicator(dc, stress / 100.0, indicatorcolor);
@@ -202,36 +213,45 @@ module Widgets
             static function getStressLevel() as Float
             {
                 //SAMPLE_VALID = 600
-                if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
+                if (self._lastSampleDate != null && Time.now().subtract(self._lastSampleDate).value() > 5)
                 {
-                    var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
-                    var newest_sample = hist.next();
-                    var prev_sample = hist.next();
-                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
+                    if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
                     {
-                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
+                        var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
+                        var newest_sample = hist.next();
+                        var prev_sample = hist.next();
+                        if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
                         {
-                            if (newest_sample.data > prev_sample.data)
+                            if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
                             {
-                                self._sampleDeltaRise = true;
-                            }
-                            else if (newest_sample.data < prev_sample.data)
-                            {
-                                self._sampleDeltaRise = false;
+                                if (newest_sample.data > prev_sample.data)
+                                {
+                                    self._sampleDeltaRise = true;
+                                }
+                                else if (newest_sample.data < prev_sample.data)
+                                {
+                                    self._sampleDeltaRise = false;
+                                }
+                                else
+                                {
+                                    self._sampleDeltaRise = null;
+                                }
                             }
                             else
                             {
                                 self._sampleDeltaRise = null;
+                                self._lastSampleDate = null;
                             }
+                            
+                            self._stressLevel = newest_sample.data;
+                            self._lastSampleDate = newest_sample.when;
                         }
                         else
                         {
                             self._sampleDeltaRise = null;
                             self._lastSampleDate = null;
+                            self._stressLevel = -1.0;
                         }
-                        
-                        self._stressLevel = newest_sample.data;
-                        self._lastSampleDate = newest_sample.when;
                     }
                     else
                     {
@@ -240,15 +260,9 @@ module Widgets
                         self._stressLevel = -1.0;
                     }
                 }
-                else
-                {
-                    self._sampleDeltaRise = null;
-                    self._lastSampleDate = null;
-                    self._stressLevel = -1.0;
-                }
 
                 /*self._sampleDeltaRise = true;
-                self._lastSampleDate = null;
+                self._lastSampleDate = Time.now().subtract(new Time.Duration(345));
                 self._stressLevel = 85.0;*/
 
                 return self._stressLevel;
