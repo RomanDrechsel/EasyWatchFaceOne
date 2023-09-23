@@ -63,7 +63,7 @@ module Widgets
             {
                 IndicatorBase.draw(dc, widget);
 
-                var stress = self.getStressLevel();
+                var stress = self._stressLevel; //self.getStressLevel();
                 var theme = $.getTheme();
 
                 var color = theme.IconsOff;
@@ -261,7 +261,7 @@ module Widgets
                     }
                 }
 
-                /*self._sampleDeltaRise = true;
+                /*self._sampleDeltaRise = false;
                 self._lastSampleDate = Time.now().subtract(new Time.Duration(345));
                 self._stressLevel = 85.0;*/
 

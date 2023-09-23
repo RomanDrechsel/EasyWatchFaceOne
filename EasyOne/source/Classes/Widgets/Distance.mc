@@ -36,8 +36,7 @@ module Widgets
                 indicatorPadding = 8;
                 self._lineHeight = 22;
             }
-
-            var textheight = (self._lineHeight * 3) + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
+            
             self._startdrawYpos = self.locY - indicatorPadding - self._lineHeight;
 
             var show = Application.Properties.getValue("Deco") as Number;

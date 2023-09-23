@@ -138,7 +138,7 @@ module Widgets
             }
 
             var max = 1 + stress + breath;
-            if (max <= 0)
+            if (max <= 1)
             {
                 return INDICATOR_HEARTRATE;
             }
