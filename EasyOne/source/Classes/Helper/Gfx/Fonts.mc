@@ -181,10 +181,11 @@ module Helper
                     }
                     else
                     {
-                        self.Hour = Graphics.FONT_SYSTEM_NUMBER_MEDIUM;
+                        self.Hour = Graphics.FONT_NUMBER_MEDIUM;
                     }
                     self.Minute = self.Hour;
                     self.Seconds = Graphics.FONT_SYSTEM_XTINY;
+                    self.Seconds = Graphics.FONT_XTINY;
                 }
             }
 

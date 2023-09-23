@@ -62,7 +62,6 @@ module Widgets
                 }
             }
 
-
             var settings = System.getDeviceSettings() as DeviceSettings;
             var space_min = settings.screenWidth / 20;
             var space_sec = settings.screenWidth / 30;
@@ -79,8 +78,14 @@ module Widgets
             var min_pos = center + (space_min / 2);
             var sec_pos = min_pos + bigwidth2 + space_sec;
             
-            var sec_posY = self.locY - (bigheight / 2);
-            var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds);
+            var offset = 0;
+            if (HGfx.Fonts.Seconds instanceof Number)
+            {
+                offset = 3;
+            }
+
+            var sec_posY = self.locY - (bigheight / 2) + offset;
+            var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds) - offset;
 
             /*if (self has :DebugDots)
             {

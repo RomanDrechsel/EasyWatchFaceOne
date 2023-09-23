@@ -58,14 +58,13 @@ module Helper
                 posy -= self._height;
             }
 
-            for(var i = 0; i < texts.size(); i++)
+            for (var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
-
                 var yoffset = 0;
                 if (text.Vjust != VJUST_TOP)
                 {
-                    var h = dc.getFontHeight(text.Font) * 0.9;
+                    var h = Graphics.getFontAscent(text.Font);
                     if (text.Vjust == VJUST_CENTER)
                     {
                         yoffset = (self._height - h) / 2;
@@ -73,7 +72,14 @@ module Helper
                     if (text.Vjust == VJUST_BOTTOM)
                     {
                         yoffset = self._height - h;
-                        yoffset *= 0.9;
+                        if (IsSmallDisplay)
+                        {
+                            yoffset *= 1.2;
+                        }
+                        else
+                        {
+                            yoffset *= 1.1;
+                        }
                     }
                 }
 
@@ -91,9 +97,9 @@ module Helper
             self._height = 0;
             for(var i = 0; i < texts.size(); i++)
             {
-                var d = dc.getTextDimensions(texts[i].Text.toString(), texts[i].Font);
-                self._width += d[0];
-                var height = d[1] * 0.9;
+                var width = dc.getTextWidthInPixels(texts[i].Text.toString(), texts[i].Font);
+                var height = Graphics.getFontAscent(texts[i].Font);
+                self._width += width;
                 if (height > self._height)
                 {
                     self._height = height;
