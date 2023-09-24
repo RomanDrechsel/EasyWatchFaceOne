@@ -21,7 +21,7 @@ module Widgets
         
         var _attentionIcon = null as BitmapResource;
 
-        var StressWarningLevel = 90.0;
+        var StressWarningLevel = 90;
         var BreathWarningLevel = 30;
 
         private var _indicatorPadding = 10;
@@ -49,7 +49,7 @@ module Widgets
                 self._showIndicator = false;
             }
 
-            self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
+            self.StressWarningLevel = Application.Properties.getValue("StressW") as Number;
             self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
 
             var iconHeight = Graphics.getFontAscent(HGfx.Fonts.Icons);
@@ -103,6 +103,11 @@ module Widgets
             if (self._display == null)
             {
                 self.OnWakeUp();
+            }
+            else if ($.getView().IsBackground)
+            {
+                //update cache
+                Indi.Breath.getBreath();
             }
 
             if (self._display != null)
@@ -270,17 +275,24 @@ module Widgets
             }
 
             var rdm = Helper.MathHelper.RandomInRange(0, max);
-            if (stress > 0 && rdm > 1)
-            {
-                return INDICATOR_STRESS;
-            }
-            else if (breath > 0 && rdm > 0)
+            if (rdm <= 0)
             {
                 return INDICATOR_BREATH;
             }
-            else
+            else if (rdm == 1)
             {
-                return INDICATOR_HEARTRATE;
+                if (stress > 0)
+                {
+                    return INDICATOR_STRESS;
+                }
+                else
+                {
+                    return INDICATOR_BREATH;
+                }
+            }
+            else 
+            {
+                return INDICATOR_BREATH;
             }
         }
     }

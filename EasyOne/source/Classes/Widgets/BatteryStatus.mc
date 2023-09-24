@@ -7,9 +7,7 @@ module Widgets
 {
     class BatteryStatus extends WidgetBase
     {
-        private var _Font = null as FontResource;
-        private var _hasBatteryInDays = false;
-        private var _BatteryDays = null;
+        private var _BatteryDaysText = null;
         private var _arcRadius = 35;
         private var _arcWidth = 9;
 
@@ -18,23 +16,8 @@ module Widgets
             WidgetBase.initialize(params);
             if (IsSmallDisplay)
             {
-                self._hasBatteryInDays = false;
                 self._arcRadius = 25;
                 self._arcWidth = 6;
-            }
-            else
-            {
-                self._hasBatteryInDays = System.getSystemStats() has :batteryInDays;
-                var showdays = Application.Properties.getValue("BatDays") as Number;
-                if (showdays != null && showdays <= 0)
-                {
-                    self._hasBatteryInDays = false;
-                }
-            }
-
-            if (self._hasBatteryInDays == true)
-            {
-                self._BatteryDays = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
             }
 
             //adjust position to center of widget
@@ -53,8 +36,22 @@ module Widgets
 
         function draw(dc as Dc) as Void 
         {
-            //Background
             var theme = $.getTheme();
+
+            var hasBatteryInDays = false;
+            if (IsSmallDisplay)
+            {
+                hasBatteryInDays = false;
+                self._arcRadius = 25;
+                self._arcWidth = 6;
+            }
+
+            if (hasBatteryInDays == true && self._BatteryDaysText == null)
+            {
+                self._BatteryDaysText = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
+            }
+
+            //Background
             dc.setColor(theme.BatteryIndicatorBackgroundColor, Graphics.COLOR_TRANSPARENT);
             self.drawArc(dc, 100.0);
 
@@ -72,13 +69,12 @@ module Widgets
             }
 
             dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-
             self.drawArc(dc, stats.battery);
 
-            if (self._hasBatteryInDays == true)
+            if (hasBatteryInDays == true)
             {
                 dc.drawText(self.locX, self.locY - dc.getFontHeight(HGfx.Fonts.Tiny) + 2, HGfx.Fonts.Tiny, stats.battery.format("%2d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
-                dc.drawText(self.locX, self.locY - 2, HGfx.Fonts.Tiny, stats.batteryInDays.format("%2d") + self._BatteryDays, Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX, self.locY - 2, HGfx.Fonts.Tiny, stats.batteryInDays.format("%2d") + self._BatteryDaysText, Graphics.TEXT_JUSTIFY_CENTER);
             }
             else
             {

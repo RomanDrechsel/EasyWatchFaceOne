@@ -19,18 +19,17 @@ module Widgets
             var padding = 12;
             if (IsSmallDisplay)
             {
-                padding = 8;
+                padding = 12;
             }
 
             var posX = self.locX;
-
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
                 posX = self.locX - btWidth - msgWidth - padding;
             }
             else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
             {
-                posX += 10;
+                posX += 15;
             }
             else if (self.Justification == WIDGET_JUSTIFICATION_CENTER)
             {
@@ -61,19 +60,17 @@ module Widgets
                     msgstr = "9+";
                 }
 
-                var xOffset;
+                var xOffset = 35;
+                var yOffset = 10;
                 if (IsSmallDisplay)
                 {
-                    xOffset = 23;
-                }
-                else
-                {
-                    xOffset = 35;
+                    xOffset = 26;
+                    yOffset = 7;
                 }
 
                 dc.setColor(theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(posX, posY + 3, HGfx.Fonts.Icons, Helper.Gfx.ICONS_NEWMESSAGES, Gfx.TEXT_JUSTIFY_LEFT);
-                dc.drawText(posX + xOffset, posY + 9, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
+                dc.drawText(posX + xOffset, posY + yOffset, HGfx.Fonts.Small, msgstr, Gfx.TEXT_JUSTIFY_CENTER);
             }
             else
             {

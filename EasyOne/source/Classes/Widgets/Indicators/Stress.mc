@@ -11,7 +11,7 @@ module Widgets
     {
         class Stress
         {
-            static var _stressLevel = -1.0;
+            static var _stressLevel = 0;
 
             private var _color = Gfx.COLOR_WHITE;
             private var _iconColor = Gfx.COLOR_WHITE;
@@ -56,7 +56,7 @@ module Widgets
                 widget.DrawIcon(dc, HGfx.ICONS_STRESS, self._iconColor);
                 var width = widget.DrawText(dc);
 
-                if (self._stressLevel > 0.0)
+                if (self._stressLevel > 0)
                 {
                     if (self._showDelta && self._sampleDeltaRise != null)
                     {
@@ -89,7 +89,7 @@ module Widgets
                         widget.HideAttentionIcon();
                     }
 
-                    widget.drawIndicator(dc, self._stressLevel / 100.0, self._indicatorColor);
+                    widget.drawIndicator(dc, self._stressLevel.toFloat() / 100.0, self._indicatorColor);
                 }
             }
 
@@ -130,17 +130,17 @@ module Widgets
                     self._iconColor = self._color;
                 }
 
-                if (self._stressLevel > 0.0)
+                if (self._stressLevel > 0)
                 {
                     if (widget.Texts == null || widget.Texts.size() < 1)
                     {
                         widget.Texts = [
-                            new Helper.ExtTextPart(self._stressLevel.toNumber().toString(), self._color, HGfx.Fonts.Normal),
+                            new Helper.ExtTextPart(self._stressLevel.toString(), self._color, HGfx.Fonts.Normal),
                         ];
                     }
                     else
                     {
-                        widget.Texts[0].Text = self._stressLevel.toNumber().toString();
+                        widget.Texts[0].Text = self._stressLevel.toString();
                         widget.Texts[0].Color = self._color;
                     }
 
@@ -173,55 +173,51 @@ module Widgets
                 }
             }
 
-            static function getStressLevel() as Float
+            static function getStressLevel() as Number
             {
+                self._sampleDeltaRise = null;
+                self._stressLevel = 0;
+
                 //SAMPLE_VALID = 600
-                if (self._lastSampleDate != null && Time.now().subtract(self._lastSampleDate).value() > 5)
+                if (Toybox has :SensorHistory && SensorHistory has :getStressHistory &&
+                    (self._lastSampleDate == null || Time.now().subtract(self._lastSampleDate).value() > 5))
                 {
-                    if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) 
+                    var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
+                    var newest_sample = hist.next();
+                    var prev_sample = hist.next();
+                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
                     {
-                        var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
-                        var newest_sample = hist.next();
-                        var prev_sample = hist.next();
-                        if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
+                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
                         {
-                            if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
+                            if (newest_sample.data > prev_sample.data)
                             {
-                                if (newest_sample.data > prev_sample.data)
-                                {
-                                    self._sampleDeltaRise = true;
-                                }
-                                else if (newest_sample.data < prev_sample.data)
-                                {
-                                    self._sampleDeltaRise = false;
-                                }
-                                else
-                                {
-                                    self._sampleDeltaRise = null;
-                                }
+                                self._sampleDeltaRise = true;
+                            }
+                            else if (newest_sample.data < prev_sample.data)
+                            {
+                                self._sampleDeltaRise = false;
                             }
                             else
                             {
                                 self._sampleDeltaRise = null;
-                                self._lastSampleDate = null;
                             }
-                            
-                            self._stressLevel = newest_sample.data;
-                            self._lastSampleDate = newest_sample.when;
                         }
                         else
                         {
-                            self._sampleDeltaRise = null;
                             self._lastSampleDate = null;
-                            self._stressLevel = -1.0;
                         }
+                        
+                        self._stressLevel = newest_sample.data.toNumber();
+                        self._lastSampleDate = newest_sample.when;
                     }
                     else
                     {
-                        self._sampleDeltaRise = null;
                         self._lastSampleDate = null;
-                        self._stressLevel = -1.0;
                     }
+                }
+                else
+                {
+                    self._lastSampleDate = null;
                 }
 
                 /*self._sampleDeltaRise = false;

@@ -171,12 +171,6 @@
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.BatDays" title="@Strings.SBatDays">
-            <settingConfig type="list">
-                <listEntry value="1">@Strings.Yes</listEntry>
-                <listEntry value="0">@Strings.No</listEntry>
-            </settingConfig>
-        </setting>
 
         <setting propertyKey="@Properties.StepPer" title="@Strings.SSgoal">
             <settingConfig type="list">

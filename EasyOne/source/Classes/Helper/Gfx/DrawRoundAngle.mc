@@ -214,19 +214,19 @@ module Helper
                             height *= (rest / self._vertLineValue);
                         }
                         dc.drawLine(startx, starty, startx, starty - height);
-                        self.drawDot(dc, startx, starty - height);
+                        dc.fillCircle(startx, starty - height, self.DotRadius);
                     }
                     else
                     {
                         //dot on arc
                         var y = Math.sin(Math.toRadians(270 - deg)) * self.AngleRadius;
                         var x = Math.cos(Math.toRadians(270 - deg)) * self.AngleRadius;
-                        self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
+                        dc.fillCircle(startx + x, starty - self.AngleRadius - y, self.DotRadius);
                     }
                 }
                 else
                 {
-                    self.drawDot(dc, startx - width, starty);
+                    dc.fillCircle(startx - width, starty, self.DotRadius);
                 }
             }
 
@@ -275,30 +275,20 @@ module Helper
                             height *= (rest / self._vertLineValue);
                         }
                         dc.drawLine(startx, starty, startx, starty - height);
-                        self.drawDot(dc, startx, starty - height);
+                        dc.fillCircle(startx, starty - height, self.DotRadius);
                     }
                     else
                     {
                         //dot on arc
                         var y = Math.sin(Math.toRadians(270 + deg)) * self.AngleRadius;
                         var x = Math.cos(Math.toRadians(270 + deg)) * self.AngleRadius;
-                        self.drawDot(dc, startx + x, starty - self.AngleRadius - y);
+                        dc.fillCircle(startx + x, starty - self.AngleRadius - y, self.DotRadius);
                     }
                 }
                 else
                 {
-                    self.drawDot(dc, startx + width, starty);
+                    dc.fillCircle(startx + width, starty, self.DotRadius);
                 }
-            }
-
-            private static function drawDot(dc as Gfx.Dc, x as Number, y as Number)
-            {
-                if (self.DotRadius <= 0)
-                {
-                    return;
-                }
-
-                dc.fillCircle(x, y, self.DotRadius);
             }
         }
     }
