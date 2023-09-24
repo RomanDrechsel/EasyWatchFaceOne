@@ -91,7 +91,7 @@
             </settingConfig>
         </setting>
     </group>
-
+    
     <group id="groupLayout" title="@Strings.SLo">
         <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
             <settingConfig type="list">

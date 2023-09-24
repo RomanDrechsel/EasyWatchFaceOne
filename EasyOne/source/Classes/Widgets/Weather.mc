@@ -26,22 +26,26 @@ module Widgets
             {
                 var iconSize = self._currentWeatherIcon.getWidth();
                 var textheight = dc.getFontHeight(HGfx.Fonts.Small);
-                var horOffset = 5;
+                var horPadding = 3;
 
-                var locX = self.locX;
+                var centerX = self.locX;
                 if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
                 {
-                    locX = self.locX - iconSize + 10;
+                    centerX = self.locX - iconSize + 10;
                 }
                 else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
                 {
-                    locX = self.locX + iconSize + 10;
+                    centerX = self.locX + iconSize + 15;
+                    if (IsSmallDisplay)
+                    {
+                        centerX -= 10;
+                    }
                 }
 
-                var iconPosX = locX - iconSize - horOffset;
+                var iconPosX = centerX - iconSize - horPadding;
                 var iconPosY = self.locY;
 
-                var tempPosX = iconPosX + (iconSize / 2) + (dc.getTextWidthInPixels("°", HGfx.Fonts.Small) / 2);
+                var tempPosX = iconPosX + (iconSize / 2);
                 var tempPosY = iconPosY + iconSize;                
 
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
@@ -57,10 +61,10 @@ module Widgets
                     vertLineHeight -= 3;
                 }
                 dc.setPenWidth(1);
-                dc.drawLine(self.locX, self.locY + 10, self.locX, self.locY + vertLineHeight);
+                dc.drawLine(centerX, self.locY + 10, centerX, self.locY + vertLineHeight);
 
                 //maximum temperature
-                var maxPosX = self.locX + (iconSize / 2) + horOffset;
+                var maxPosX = centerX + (iconSize / 2) + horPadding;
                 var maxPosY = self.locY + 15;
                 if (IsSmallDisplay)
                 {
@@ -70,7 +74,7 @@ module Widgets
                 dc.setPenWidth(2);
 
                 //horizontal line
-                var horLineX = self.locX + horOffset + 5;
+                var horLineX = centerX + horPadding + 5;
                 var horLineY = self.locY + textheight + 18;
 
                 var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
@@ -82,7 +86,7 @@ module Widgets
                 }
                 if (IsSmallDisplay)
                 {
-                    horLineY-= 6;
+                    horLineY -= 6;
                 }
                 dc.drawLine(horLineX, horLineY, horLineX + horLineWidth, horLineY);
 
