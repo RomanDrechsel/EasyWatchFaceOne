@@ -93,11 +93,6 @@ module Widgets
            
             var arcPartSeparatorWidth = 5;
 
-            if (IsSmallDisplay)  
-            {
-                arcPartSeparatorWidth = 3;
-            }
-
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
                 arcFactor = -1.0;
