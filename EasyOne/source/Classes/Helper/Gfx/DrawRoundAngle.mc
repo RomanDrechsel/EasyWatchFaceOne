@@ -116,9 +116,7 @@ module Helper
                     var starty = topY;
 
                     dc.drawLine(startx, starty, startx, starty + self._lineHeight);
-
                     dc.drawArc(startx - self.AngleRadius, starty + self._lineHeight, self.AngleRadius, Gfx.ARC_CLOCKWISE, 0, 270);
-
                     startx -= self.AngleRadius;
                     starty += self.AngleRadius + self._lineHeight;
                     dc.drawLine(startx, starty, startx - self._lineWidth, starty);

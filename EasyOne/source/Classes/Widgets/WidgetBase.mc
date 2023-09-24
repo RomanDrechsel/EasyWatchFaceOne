@@ -7,27 +7,27 @@ module Widgets
 
     class WidgetBase
     {
-        var locX = 0.0;
-        var locY = 0.0;
+        var locX = 0;
+        var locY = 0;
         var Justification = WIDGET_JUSTIFICATION_LEFT;
 
         function initialize(container_params as Dictionary)
         {
-            var posx = container_params.get("X");
-            if (posx != null)
+            self.locX = container_params.get("X");
+            if (self.locX == null)
             {
-                self.locX = posx.toFloat();
+                self.locX = 0;
             }
-            var posy = container_params.get("Y");
-            if (posy != null)
+            self.locY = container_params.get("Y");
+            if (self.locY == null)
             {
-                self.locY = posy.toFloat();
+                self.locY = 0;
             }
 
-            var just = container_params.get("J") as Number;
-            if (just != null)
+            self.Justification = container_params.get("J") as Number;
+            if (self.Justification == null)
             {
-                self.Justification = just;
+                self.Justification = WIDGET_JUSTIFICATION_LEFT;
             }
         }
     }

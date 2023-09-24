@@ -10,13 +10,12 @@ module Widgets
     class Distance extends WidgetBase
     {
         private var _WidgetSize = 130;
-        private var _inMiles = false as Boolean;
-        private var _startdrawYpos as Number;
-        private var _lineHeight = 33;
+        private var _inMiles = false;
         private var _iconPosX = self.locX;
         private var _textPosX = self.locX;
         private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
         private var _showIndicator = true;
+        private var _indicatorPadding = 12;
 
         private var _showStepsPercentage = true;
 
@@ -30,15 +29,11 @@ module Widgets
                 self._WidgetSize = 130;
             }
 
-            var indicatorPadding = 12;
             if (IsSmallDisplay)
             {
-                indicatorPadding = 8;
-                self._lineHeight = 22;
+                self._indicatorPadding = 8;
             }
             
-            self._startdrawYpos = self.locY - indicatorPadding - self._lineHeight;
-
             var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
@@ -47,13 +42,13 @@ module Widgets
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - indicatorPadding - 25;
+                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - self._indicatorPadding - 25;
                 self._textPosX = self._iconPosX - 10;
                 self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
             }
             else
             {
-                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
+                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorPadding;
                 if (!IsSmallDisplay)
                 {
                     self._textPosX = self._iconPosX + 35;
@@ -96,12 +91,18 @@ module Widgets
             info.steps = 5687;
             info.stepGoal = 6500;*/
 
-            var drawYpos = self._startdrawYpos;
+            var lineHeight = 33;
+            if (IsSmallDisplay)
+            {
+                lineHeight = 22;
+            }
+
+            var drawYpos = self.locY - self._indicatorPadding - lineHeight;
 
             self.drawSteps(dc, info, drawYpos);
-            drawYpos -= self._lineHeight;
+            drawYpos -= lineHeight;
             self.drawDistance(dc, info, drawYpos);
-            drawYpos -= self._lineHeight;
+            drawYpos -= lineHeight;
             self.drawCalories(dc, info, drawYpos);
             
             if (self._showIndicator)
@@ -127,23 +128,28 @@ module Widgets
                 offset = 0;
             }
             dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+            var text = "-";
             if (info != null)
-            {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
+            {              
+                text = info.calories.toString();
             }
+            dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, text, self._textJust);
         }
 
         private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
-            var str = "";
-            if (self._inMiles == true)
+            var text = "-";
+            if (info != null)
             {
-                str = self.FormatMiles(info.distance);
-            }
-            else
-            {
-                str = self.FormatMeters(info.distance);
+                if (self._inMiles == true)
+                {
+                    text = self.FormatMiles(info.distance);
+                }
+                else
+                {
+                    text = self.FormatMeters(info.distance);
+                }
             }
 
             if (Themes.Colors.IconsInTextColor == true)
@@ -161,11 +167,8 @@ module Widgets
                 offset = 2;
             }
             dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
-            if (info != null)
-            {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
-            }
+            dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, text, self._textJust);
         }
 
         private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
@@ -185,10 +188,10 @@ module Widgets
                 offset = 4;
             }
             dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
             if (info != null)
             {
-                var amount = info.steps.toFloat() / info.stepGoal.toFloat();
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+                var amount = info.steps.toFloat() / info.stepGoal.toFloat();                
                 if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
                 {   
                     var yOffset;
@@ -246,6 +249,10 @@ module Widgets
                         dc.drawText(self._textPosX - percent_width, drawYpos + 3, HGfx.Fonts.Small, info.steps, self._textJust);
                     }                    
                 }
+            }
+            else
+            {
+                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, "-", self._textJust);
             }
         }
 
