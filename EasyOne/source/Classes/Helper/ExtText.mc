@@ -1,31 +1,26 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
-using Toybox.Graphics as Gfx;
+import Toybox.Graphics;
 
 module Helper 
 {
     class ExtText
     {
-        enum H_JUSTIFICATION { HJUST_CENTER, HJUST_LEFT, HJUST_RIGHT }
-        enum V_JUSTIFICATION { VJUST_CENTER, VJUST_TOP, VJUST_BOTTOM }
-
         var AnchorX = NaN as Number;
         var AnchorY = NaN as Number;
-        var Hjust = HJUST_CENTER as H_JUSTIFICATION;
-        var Vjust = VJUST_CENTER as V_JUSTIFICATION;
 
+        private var _just = Graphics.TEXT_JUSTIFY_CENTER;
         private var _width = 0;
         private var _height = 0;
 
-        function initialize(posx as Number, posy as Number, hjust as H_JUSTIFICATION, vjust as V_JUSTIFICATION)
+        function initialize(posx as Number, posy as Number, just as Graphics.TextJustification)
         {
             self.AnchorX = posx;
             self.AnchorY = posy;
-            self.Hjust = hjust;
-            self.Vjust = vjust;
+            self._just = just;
         }
 
-        function draw(texts as Array<ExtTextPart>, dc as Gfx.Dc) as Number
+        function draw(texts as Array<ExtTextPart>, dc as Graphics.Dc) as Number
         {
             if (texts.size() == 0)
             {
@@ -39,55 +34,34 @@ module Helper
             }
 
             var posx = self.AnchorX as Number;
-            if (self.Hjust == HJUST_CENTER)
+            if (self._just == Graphics.TEXT_JUSTIFY_CENTER)
             {
                 posx -= (self._width / 2);
             }
-            else if (self.Hjust == HJUST_RIGHT)
+            else if (self._just == Graphics.TEXT_JUSTIFY_RIGHT)
             {
                 posx -= self._width;
-            }
-
-            var posy = self.AnchorY as Number;
-            if (self.Vjust == VJUST_CENTER)
-            {
-                posy -= (self._height / 2);
-            }
-            else if (self.Vjust == VJUST_BOTTOM)
-            {
-                posy -= self._height;
             }
 
             for (var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
-                var yoffset = 0;
-                if (text.Vjust != VJUST_TOP)
+                var h = Graphics.getFontAscent(text.Font);
+                var yoffset = self._height - h;
+                if (IsSmallDisplay)
                 {
-                    var h = Graphics.getFontAscent(text.Font);
-                    if (text.Vjust == VJUST_CENTER)
-                    {
-                        yoffset = (self._height - h) / 2;
-                    }
-                    if (text.Vjust == VJUST_BOTTOM)
-                    {
-                        yoffset = self._height - h;
-                        if (IsSmallDisplay)
-                        {
-                            yoffset *= 1.2;
-                        }
-                    }
+                    yoffset *= 1.2;
                 }
 
-                dc.setColor(text.Color, text.BackgroundColor);
-                dc.drawText(posx, posy + yoffset, text.Font, text.Text, Gfx.TEXT_JUSTIFY_LEFT);
+                dc.setColor(text.Color, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(posx, self.AnchorY + yoffset, text.Font, text.Text, Graphics.TEXT_JUSTIFY_LEFT);
                 posx += dc.getTextWidthInPixels(text.Text.toString(), text.Font);
             }
 
             return self._width;
         }
 
-        private function calcDimensions(texts as Array<ExtTextPart>, dc as Gfx.Dc)
+        private function calcDimensions(texts as Array<ExtTextPart>, dc as Graphics.Dc)
         {
             self._width = 0;
             self._height = 0;
@@ -107,10 +81,8 @@ module Helper
     class ExtTextPart
     {
         var Text as String;
-        var Color = Gfx.COLOR_BLACK as Number;
+        var Color as Number;
         var Font as FontResource;
-        var BackgroundColor = Gfx.COLOR_TRANSPARENT as Number;
-        var Vjust = ExtText.VJUST_TOP as ExtText.V_JUSTIFICATION;
 
         function initialize(text as String, color as Number, font as FontResource)
         {

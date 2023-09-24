@@ -9,13 +9,13 @@ module Widgets
 {
     module Indicators
     {
-        class Stress extends IndicatorBase
+        class Stress
         {
             static var _stressLevel = -1.0;
 
-            private var _textContainer = null as Helper.ExtText;
-            private var _texts = [] as Array<Helper.ExtTextPart>;
-
+            private var _color = Gfx.COLOR_WHITE;
+            private var _iconColor = Gfx.COLOR_WHITE;
+            private var _indicatorColor = Gfx.COLOR_WHITE;
             private static var _sampleDeltaRise = null;
             private static var _showSampleTime = true;
             private static var _showDelta = true;
@@ -49,117 +49,15 @@ module Widgets
                 {
                     self._showDelta = true;
                 }
-
-                $.getView().OnWakeUp.add(self);
-            }
-
-            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
-            {
-                IndicatorBase.Init(dc, widget);
-                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_TOP);
             }
 
             function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc, widget);
+                widget.DrawIcon(dc, HGfx.ICONS_STRESS, self._iconColor);
+                var width = widget.DrawText(dc);
 
-                var stress = self._stressLevel; //self.getStressLevel();
-                var theme = $.getTheme();
-
-                var color = theme.IconsOff;
-                var iconcolor = theme.IconsOff;
-                var indicatorcolor = color;
-                if (stress > 0.0)
+                if (self._stressLevel > 0.0)
                 {
-                    color = Themes.Colors.Text2;
-                    if (Themes.Colors.IconsInTextColor == true)
-                    {
-                        iconcolor = color;
-                    }
-                    else
-                    {
-                        iconcolor = theme.HealthStressIconColor;
-                    }
-
-                    var colors = $.getTheme().IndivatorLevel;
-                    indicatorcolor = colors[0];
-                    if (stress >= 60)
-                    {
-                        if (stress >= 90)
-                        {
-                            color = colors[3];
-                        }
-                        else if (stress >= 80)
-                        {
-                            color = colors[2];
-                        }
-                        else
-                        {
-                            color = colors[1];
-                        }
-                        indicatorcolor = color;
-                        iconcolor = color;
-                    }
-
-                    dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER);
-
-                    var width;
-
-                    if (self._showSampleTime == false)
-                    {
-                        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                        dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, stress.toNumber().toString(), Gfx.TEXT_JUSTIFY_CENTER);
-                        width = dc.getTextWidthInPixels(stress.toNumber().toString(), HGfx.Fonts.Normal);
-                    }
-                    else
-                    {
-                        var datestr = "";
-                        if (self._lastSampleDate != null)
-                        {
-                            var ts = Time.now().subtract(self._lastSampleDate).value();
-                            if (ts > 120)
-                            {
-                                datestr = " (" + (ts/60) + "m)";
-                            }
-                        }
-
-                        if (!IsSmallDisplay)
-                        {
-                            if (self._texts.size() < 2)
-                            {
-                                self._texts = [
-                                    new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
-                                    new Helper.ExtTextPart(datestr, color, HGfx.Fonts.Small)
-                                ];
-                                self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
-                            }
-                            else
-                            {
-                                self._texts[0].Text = stress.toNumber().toString();
-                                self._texts[0].Color = color;
-                                self._texts[1].Text = datestr;
-                                self._texts[1].Color = color;
-                            }
-                        }
-                        else
-                        {
-                            //No datestr on small devices
-                            if (self._texts.size() < 1)
-                            {
-                                self._texts = [
-                                    new Helper.ExtTextPart(stress.toNumber().toString(), color, HGfx.Fonts.Normal),
-                                ];
-                            }
-                            else
-                            {
-                                self._texts[0].Text = stress.toNumber().toString();
-                                self._texts[0].Color = color;                       
-                            }
-                        }
-                        
-                        width = self._textContainer.draw(self._texts, dc);
-                    }
                     if (self._showDelta && self._sampleDeltaRise != null)
                     {
                         var icon = "";
@@ -171,43 +69,108 @@ module Widgets
                         {
                             icon = HGfx.ICONS_ARROWUP;
                         }
-
+                        
                         var offset = -5;
                         if (IsSmallDisplay)
                         {
                             offset = -3;
                         }
 
-                        dc.drawText(self._textPosX - (width / 2) - 5, self._textPosY + (Graphics.getFontAscent(HGfx.Fonts.Normal) / 2) + offset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT);
+                        dc.setColor(self._color, Graphics.COLOR_TRANSPARENT);
+                        dc.drawText(widget.TextContainer.AnchorX - (width / 2) - 5, widget.TextContainer.AnchorY + (Graphics.getFontAscent(HGfx.Fonts.Normal) / 2) + offset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT);
                     }
 
-                    if (stress >= widget.StressWarningLevel)
+                    if (self._stressLevel >= widget.StressWarningLevel)
                     {
-                        var offset = 12;
-                        if (IsSmallDisplay)
-                        {
-                            offset = 18;
-                        }
-                        widget.DrawAttentionIcon(dc, self._iconPosX - 7, self._iconPosY + offset);
+                        widget.DrawAttentionIcon(dc);
                     }
                     else
                     {
                         widget.HideAttentionIcon();
                     }
+
+                    widget.drawIndicator(dc, self._stressLevel / 100.0, self._indicatorColor);
+                }
+            }
+
+            function calcColor(widget as HealthIndicator) as Void
+            {
+                var theme = $.getTheme();
+
+                self._color = Themes.Colors.Text2;
+                self._iconColor = theme.IconsOff;
+                self._indicatorColor = theme.IconsOff;
+
+                if (Themes.Colors.IconsInTextColor == true)
+                {
+                    self._iconColor = self._color;
                 }
                 else
                 {
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_STRESS, Gfx.TEXT_JUSTIFY_CENTER);
-                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
+                    self._iconColor = theme.HealthStressIconColor;
                 }
 
-                widget.drawIndicator(dc, stress / 100.0, indicatorcolor);
-            }
+                var colors = $.getTheme().IndivatorLevel;
+                self._indicatorColor = colors[0];
+                if (self._stressLevel >= 60)
+                {
+                    if (self._stressLevel >= 90)
+                    {
+                        self._color = colors[3];
+                    }
+                    else if (self._stressLevel >= 80)
+                    {
+                        self._color = colors[2];
+                    }
+                    else
+                    {
+                        self._color = colors[1];
+                    }
+                    self._indicatorColor = self._color;
+                    self._iconColor = self._color;
+                }
 
-            function OnWakeUp()
-            {
-                self.getStressLevel();
+                if (self._stressLevel > 0.0)
+                {
+                    if (widget.Texts == null || widget.Texts.size() < 1)
+                    {
+                        widget.Texts = [
+                            new Helper.ExtTextPart(self._stressLevel.toNumber().toString(), self._color, HGfx.Fonts.Normal),
+                        ];
+                    }
+                    else
+                    {
+                        widget.Texts[0].Text = self._stressLevel.toNumber().toString();
+                        widget.Texts[0].Color = self._color;
+                    }
+
+                    if (self._showSampleTime == true && !IsSmallDisplay)
+                    {
+                        var datestr = "";
+                        if (self._lastSampleDate != null)
+                        {
+                            var ts = Time.now().subtract(self._lastSampleDate).value();
+                            if (ts > 120)
+                            {
+                                datestr = " (" + (ts/60) + "m)";
+                            }
+                        }
+
+                        if (widget.Texts.size() < 2)
+                        {
+                            widget.Texts.add(new Helper.ExtTextPart(datestr, self._color, HGfx.Fonts.Small));
+                        }
+                        else
+                        {
+                            widget.Texts[1].Text = datestr;
+                            widget.Texts[1].Color = self._color;
+                        }
+                    }
+                }
+                else
+                {
+                    widget.Texts = null;
+                }
             }
 
             static function getStressLevel() as Float

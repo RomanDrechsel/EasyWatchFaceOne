@@ -13,15 +13,20 @@ module Widgets
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
         var WidgetSize = 150;
-       
-        private var _indicatorPadding = 10;
-        private var _display = null as Indi.IndicatorBase;
-        private var _showIndicator = true;
+
+        var Texts = null as Array<Helper.ExtTextPart>;
+        var TextContainer = null as Helper.ExtText;        
+        private var _iconPosX as Number;
+        private var _iconPosY as Number;
         
         var _attentionIcon = null as BitmapResource;
 
         var StressWarningLevel = 90.0;
         var BreathWarningLevel = 30;
+
+        private var _indicatorPadding = 10;
+        private var _display = null as Indi.IndicatorBase;
+        private var _showIndicator = true;
 
         function initialize(params as Dictionary) 
         {
@@ -47,10 +52,53 @@ module Widgets
             self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
             self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
 
+            var iconHeight = Graphics.getFontAscent(HGfx.Fonts.Icons);
+            var fontHeight = Graphics.getFontAscent(HGfx.Fonts.Small);
+
+            var indicatorPadding = 12;
+            if (IsSmallDisplay)
+            {
+                indicatorPadding = 8;
+            }
+
+            var centerX;
+            if (IsSmallDisplay)
+            {
+                centerX = self.locX + (self.WidgetSize / 2.0);
+            }
+            else
+            {
+                centerX = self.locX + (self.WidgetSize / 2.4);
+            }
+
+            if (self.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT)
+            {
+                if (IsSmallDisplay)
+                {
+                    centerX += 5;
+                }
+                else
+                {
+                    centerX += 20;
+                }
+            }
+
+            var textPosY = self.locY - indicatorPadding - fontHeight - 25;
+            self._iconPosY = textPosY - iconHeight - 10;
+            self._iconPosX = centerX;
+
+            if (IsSmallDisplay)
+            {
+                textPosY += 10;
+                self._iconPosY += 18;
+            }
+
+            self.TextContainer = new Helper.ExtText(centerX, textPosY, Graphics.TEXT_JUSTIFY_CENTER);
+
             $.getView().OnWakeUp.add(self);
         }
 
-        function draw(dc as Gfx.Dc)
+        function draw(dc as Gfx.Dc) as Void
         {
             if (self._display == null)
             {
@@ -63,7 +111,7 @@ module Widgets
             }
         }
 
-        function OnWakeUp()
+        function OnWakeUp() as Void
         {
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
@@ -104,22 +152,100 @@ module Widgets
 
                 if (indicator == INDICATOR_STRESS && (self._display == null || self._display instanceof Indi.Stress == false))
                 {
+                    self.Texts = null;
                     self._display = new Indi.Stress();
                 }
                 else if (indicator == INDICATOR_BREATH && (self._display == null || self._display instanceof Indi.Breath == false))
                 {
+                    self.Texts = null;
                     self._display = new Indi.Breath();
                 }
                 else if (self._display == null || (indicator == INDICATOR_HEARTRATE && self._display instanceof Indi.Heartbeat == false))
                 {
+                    self.Texts = null;
                     self._display = new  Indi.Heartbeat();
                 }
             }
 
             if (self._display == null)
             {
+                self.Texts = null;
                 self._display = new Indi.Heartbeat();
             }
+            else if (self._display instanceof Indi.Stress)
+            {
+                self._display.calcColor(self);
+            }
+        }
+
+        function DrawAttentionIcon(dc as Gfx.Dc) as Void
+        {
+            var offsetX = 5;
+            var offsetY = -10;
+            if (IsSmallDisplay)
+            {
+                offsetX = 3;
+                offsetY = -8;
+            }
+            dc.drawBitmap(self._iconPosX + offsetX, self._iconPosY + offsetY, self.GetAttentionIcon());
+        }
+
+        function HideAttentionIcon() as Void
+        {
+            self._attentionIcon = null;
+        }
+
+        function DrawIcon(dc as Gfx.Dc, icon as String, color as Number) as Void
+        {
+            dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_CENTER);
+        }
+
+        function DrawText(dc as Gfx.Dc) as Number
+        {
+            if (self.Texts != null)
+            {
+                if (self.Texts.size() > 0)
+                {
+                    return self.TextContainer.draw(self.Texts, dc);
+                }
+                return 0;
+            }
+            else
+            {
+                dc.setColor($.getTheme().IconsOff, Gfx.COLOR_TRANSPARENT);
+                dc.drawText(self.TextContainer.AnchorX, self.TextContainer.AnchorY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
+                return dc.getTextWidthInPixels("-", HGfx.Fonts.Normal);
+            }
+        }
+
+        function drawIndicator(dc as Gfx.Dc, amount as Float, color as Number) as Void
+        {
+            if (self._showIndicator == false)
+            {
+                return;
+            }
+
+            var indicatorPosX = self.locX;
+            var pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
+            {
+                indicatorPosX += self.WidgetSize;
+                pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
+            }
+            HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY - self.WidgetSize, self.WidgetSize, self.WidgetSize, pos);
+            HGfx.DrawRoundAngle.draw(dc, 0, 0);
+            HGfx.DrawRoundAngle.draw(dc, amount, color);
+        }
+
+        private function GetAttentionIcon() as BitmapResource
+        {
+            if (self._attentionIcon == null)
+            {
+                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
+            }
+
+            return self._attentionIcon;
         }
 
         private function getRandomWidget(s as Float, b as Number) as Indicator
@@ -156,45 +282,6 @@ module Widgets
             {
                 return INDICATOR_HEARTRATE;
             }
-        }
-
-        function DrawAttentionIcon(dc as Gfx.Dc, ix as Number, iy as Number)
-        {
-            dc.drawBitmap(ix + 10, iy - 25, self.GetAttentionIcon());
-        }
-
-        function HideAttentionIcon()
-        {
-            self._attentionIcon = null;
-        }
-
-        function drawIndicator(dc as Gfx.Dc, amount as Float, color as Number) as Void
-        {
-            if (self._showIndicator == false)
-            {
-                return;
-            }
-
-            var indicatorPosX = self.locX;
-            var pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
-            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-            {
-                indicatorPosX += self.WidgetSize;
-                pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
-            }
-            HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY - self.WidgetSize, self.WidgetSize, self.WidgetSize, pos);
-            HGfx.DrawRoundAngle.draw(dc, 0, 0);
-            HGfx.DrawRoundAngle.draw(dc, amount, color);
-        }
-
-        private function GetAttentionIcon() as BitmapResource
-        {
-            if (self._attentionIcon == null)
-            {
-                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
-            }
-
-            return self._attentionIcon;
         }
     }
 }

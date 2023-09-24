@@ -3,12 +3,12 @@
 
     <drawable class="DrawableContainers.WidgetContainer" id="C">
         <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">dc.getHeight() * .5</param>
+        <param name="locY">(dc.getHeight() * .5) + 3</param>
     </drawable>
     
     <drawable class="DrawableContainers.WidgetContainer" id="UC">
         <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">(dc.getHeight() * .5) - 44</param>
+        <param name="locY">(dc.getHeight() * .5) - 57</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="DTL">

@@ -7,30 +7,21 @@ module Widgets
 {
     module Indicators
     {
-        class Breath extends IndicatorBase
+        class Breath
         {
             static var MaxRespirationRate = 40.0;
             private static var _lastRespirationRate = null as Float;
             private static var _lastSample = null as Toybox.Time.Moment;
 
-            private var _textContainer = null as Helper.ExtText;
-            private var _texts = [] as Array<Helper.ExtTextPart>;
-
-            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
-            {
-                IndicatorBase.Init(dc, widget);
-                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_TOP);
-            }
-
             function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc, widget);
                 var breath = self.getBreath();
                 var theme = $.getTheme();
 
                 var color = theme.IconsOff;
                 var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
+
                 if (breath > 0.0)
                 {
                     color = Themes.Colors.Text2;
@@ -63,28 +54,23 @@ module Widgets
                         iconcolor = color;
                     }
 
-                    dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER);
-                    if (self._texts.size() < 2)
+                    if (widget.Texts == null || widget.Texts.size() < 2)
                     {
-                        self._texts = [
+                        widget.Texts = [
                             new Helper.ExtTextPart(breath.toString(), color, HGfx.Fonts.Normal),
                             new Helper.ExtTextPart(" brpm", color, HGfx.Fonts.Small)
                         ];
-                        self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                     }
                     else
                     {
-                        self._texts[0].Text = breath.toString();
-                        self._texts[0].Color = color;
-                        self._texts[1].Color = color;
+                        widget.Texts[0].Text = breath.toString();
+                        widget.Texts[0].Color = color;
+                        widget.Texts[1].Color = color;
                     }
-                    
-                    self._textContainer.draw(self._texts, dc);
 
                     if (breath >= widget.BreathWarningLevel)
                     {
-                        widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                        widget.DrawAttentionIcon(dc);
                     }
                     else
                     {
@@ -93,11 +79,11 @@ module Widgets
                 }
                 else
                 {
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_BREATH, Gfx.TEXT_JUSTIFY_CENTER);
-                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
+                    widget.Texts = null;
                 }
 
+                widget.DrawIcon(dc, HGfx.ICONS_BREATH, iconcolor);
+                widget.DrawText(dc);
                 widget.drawIndicator(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
             }
 
@@ -112,7 +98,6 @@ module Widgets
                 }
                 else if (self._lastSample != null && self._lastRespirationRate != null && Toybox.Time.now().subtract(self._lastSample).value() <= 300)
                 {
-                    //last RespirationRate is valid 
                     return self._lastRespirationRate;
                 }
 

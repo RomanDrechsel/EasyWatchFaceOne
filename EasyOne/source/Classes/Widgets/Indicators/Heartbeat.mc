@@ -7,34 +7,20 @@ module Widgets
 {
     module Indicators
     {
-        class Heartbeat extends IndicatorBase
+        class Heartbeat
         {
-            private var _textContainer = null as Helper.ExtText;
-            private var _texts = [] as Array<Helper.ExtTextPart>;
-            private var _heartbeatMinDisplay = 40;
-
-            private var _attentionIcon = null as Gfx.BitmapResource;
-
             static var HeartbeatZones = [] as Array<Number>;
             static var HeartbeatMin = 0;
 
-            protected function Init(dc as Gfx.Dc, widget as HealthIndicator)
-            {
-                IndicatorBase.Init(dc, widget);
-                self._textContainer = new Helper.ExtText(self._textPosX, self._textPosY, Helper.ExtText.HJUST_CENTER, Helper.ExtText.VJUST_TOP);
-                self._texts = [] as Array<Helper.ExtTextPart>;
-            }
-
             function draw(dc as Gfx.Dc, widget as HealthIndicator)
             {
-                IndicatorBase.draw(dc, widget);
                 var heartrate = self.getHeartrate();
-
                 var theme = $.getTheme();
 
                 var color = theme.IconsOff;
                 var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
+
                 if (heartrate > 0)
                 {
                     color = Themes.Colors.Text2;
@@ -61,24 +47,20 @@ module Widgets
                             }                            
                         }
                     }
-
-                    dc.setColor(iconcolor, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER);
-                    if (self._texts.size() < 2)
+                    
+                    if (widget.Texts == null || widget.Texts.size() < 2)
                     {
-                        self._texts = [
+                        widget.Texts = [
                             new Helper.ExtTextPart(heartrate.toString(), color, HGfx.Fonts.Normal),
                             new Helper.ExtTextPart(" bpm", color, HGfx.Fonts.Small)
                         ];
-                        self._texts[1].Vjust = Helper.ExtText.VJUST_BOTTOM;
                     }
                     else
                     {
-                        self._texts[0].Text = heartrate.toString();
-                        self._texts[0].Color = color;
-                        self._texts[1].Color = color;
+                        widget.Texts[0].Text = heartrate.toString();
+                        widget.Texts[0].Color = color;
+                        widget.Texts[1].Color = color;
                     }
-                    self._textContainer.draw(self._texts, dc);
 
                     if (heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
                     {
@@ -91,13 +73,14 @@ module Widgets
                 }
                 else
                 {
-                    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-                    dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, HGfx.ICONS_HEART, Gfx.TEXT_JUSTIFY_CENTER);
-                    dc.drawText(self._textPosX, self._textPosY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
+                    widget.Texts = null;
                 }
 
+                widget.DrawIcon(dc, HGfx.ICONS_HEART, iconcolor);
+                widget.DrawText(dc);
+
                 var amount = 0.0;
-                if (heartrate >= self._heartbeatMinDisplay)
+                if (heartrate >= 40)
                 {
                     amount = (heartrate - self.HeartbeatMin).toFloat() / (self.HeartbeatZones[3] - self.HeartbeatMin).toFloat();
                 }

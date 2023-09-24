@@ -8,7 +8,7 @@
     
     <drawable class="DrawableContainers.WidgetContainer" id="UC">
         <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">(dc.getHeight() * .5) - 64</param>
+        <param name="locY">(dc.getHeight() * .5) - 85</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="DTL">

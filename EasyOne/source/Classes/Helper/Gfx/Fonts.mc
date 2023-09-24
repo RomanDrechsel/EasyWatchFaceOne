@@ -19,8 +19,8 @@ module Helper
             static var Tiny = null as FontResource;
             static var Icons = null as FontResource;
 
-            private static var _timefont = -1 as Number;
-            private static var _datefont = -1 as Number;
+            static var TimeFontRez = -1 as Number;
+            static var DateFontRez = -1 as Number;
 
             static function Load() as Void
             {
@@ -57,15 +57,15 @@ module Helper
                     datefont = 0;
                 }
 
-                if (self._datefont == datefont)
+                if (self.DateFontRez == datefont)
                 {
                     return;
                 }
-                self._datefont = datefont;
+                self.DateFontRez = datefont;
 
                 self.Date = null;
 
-                if (self._datefont != 99 && [
+                if (self.DateFontRez != 99 && [
                     System.LANGUAGE_ARA,
                     System.LANGUAGE_HRV,
                     System.LANGUAGE_CES,
@@ -93,11 +93,11 @@ module Helper
                     System.LANGUAGE_TUR
                 ].indexOf(System.getDeviceSettings().systemLanguage) >= 0)
                 {
-                    if (self._datefont == 0)
+                    if (self.DateFontRez == 0)
                     {
                         self.Date = WatchUi.loadResource(Rez.Fonts.KamikazoomDate);
                     }
-                    else if (self._datefont == 1)
+                    else if (self.DateFontRez == 1)
                     {
                         self.Date = WatchUi.loadResource(Rez.Fonts.GoDDate);
                     }
@@ -117,19 +117,19 @@ module Helper
                     timefont = 0;
                 }
 
-                if (self._timefont == timefont)
+                if (self.TimeFontRez == timefont)
                 {
                     return;
                 }
-                self._timefont = timefont;
+                self.TimeFontRez = timefont;
                 
-                if (self._timefont == 0)
+                if (self.TimeFontRez == 0)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.Hour);
                     self.Minute = WatchUi.loadResource(Rez.Fonts.Minute);
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.Seconds);
                 }
-                else if (self._timefont == 1)
+                else if (self.TimeFontRez == 1)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.ConsolaHour);
                     if (Rez.Fonts has :ConsolaMinute)
@@ -142,19 +142,19 @@ module Helper
                     }
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.ConsolaSecond);
                 }
-                else if (self._timefont == 2)
+                else if (self.TimeFontRez == 2)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.ImpossibleTime);
                     self.Minute = self.Hour;
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.ImpossibleSecond);
                 }
-                else if (self._timefont == 3)
+                else if (self.TimeFontRez == 3)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.KamikazoomTime);
                     self.Minute = self.Hour;
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.KamikazoomSecond);
                 }
-                else if (self._timefont == 4)
+                else if (self.TimeFontRez == 4)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.RobotoHour);
                     if (Rez.Fonts has :RobotoMinute)
@@ -167,7 +167,7 @@ module Helper
                     }
                     self.Seconds = WatchUi.loadResource(Rez.Fonts.RobotoSecond);
                 }
-                else if (self._timefont == 5)
+                else if (self.TimeFontRez == 5)
                 {
                     self.Hour = WatchUi.loadResource(Rez.Fonts.TypesauceTime);
                     self.Minute = self.Hour;
@@ -196,8 +196,8 @@ module Helper
                 Helper.Gfx.Fonts.Seconds = Graphics.FONT_TINY;
                 Helper.Gfx.Fonts.Date = Graphics.FONT_MEDIUM;
 
-                self._timefont = -1;
-                self._datefont = -1;
+                self.TimeFontRez = -1;
+                self.DateFontRez = -1;
             }
         }
     }
