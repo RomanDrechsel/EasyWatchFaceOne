@@ -1,20 +1,3 @@
 <strings>
-    <string id="SBatDays">Display remaining battery charge in days, if available.</string>
     <string id="SStressA">Display age of stress data</string>
-    
-    <string id="SLo">Widget arrangement</string>
-    <string id="SLoTL">Top left corner</string>
-    <string id="SLoTC">Top center</string>
-    <string id="SLoTR">Top right corner</string>
-    <string id="SLoBL">Bottom left corner</string>
-    <string id="SLoBR">Bottom right corner</string>
-
-    <string id="SLoWE">Empty</string>
-    <string id="SLoWB">Battery Status</string>
-    <string id="SLoWW">Weather</string>
-    <string id="SLoWI">Icons</string>
-    <string id="SLoWD">Physical exercise</string>
-    <string id="SLoWH">Health monitor</string>
-
-
 </strings>

@@ -1,4 +1,4 @@
-    import Widgets;
+import Widgets;
 import Toybox.Lang;
 import Toybox.Application;
 

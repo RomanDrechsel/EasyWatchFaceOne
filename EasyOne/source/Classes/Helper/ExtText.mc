@@ -46,8 +46,7 @@ module Helper
             for (var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
-                var h = Graphics.getFontAscent(text.Font);
-                var yoffset = self._height - h;
+                var yoffset = self._height - Graphics.getFontAscent(text.Font);
                 if (IsSmallDisplay)
                 {
                     yoffset *= 1.2;

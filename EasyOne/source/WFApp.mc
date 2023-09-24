@@ -34,8 +34,6 @@ class WFApp extends Application.AppBase
         //Font is reloaded in WFView
       
         self.WatchfaceView.onSettingsChanged();
-
-        WatchUi.requestUpdate();
     }
 }
 

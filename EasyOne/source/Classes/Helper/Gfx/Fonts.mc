@@ -26,7 +26,6 @@ module Helper
             {
                 self.LoadDateFont();
                 self.LoadTimeFont();
-
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
                 if (IsSmallDisplay)
                 {

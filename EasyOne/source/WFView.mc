@@ -9,7 +9,7 @@ class WFView extends WatchUi.WatchFace
 {
     var OnWakeUp = [];
 
-    private var _isBackground = false;
+    var IsBackground = false;
     private var _reloadFontInTicks = -1;
 
     function initialize() 
@@ -21,7 +21,7 @@ class WFView extends WatchUi.WatchFace
     {
         Helper.Gfx.Fonts.Load();
         setLayout(Rez.Layouts.WatchFace(dc));
-        self._isBackground = false;
+        self.IsBackground = false;
     }
 
     function onUpdate(dc as Dc) as Void 
@@ -41,15 +41,11 @@ class WFView extends WatchUi.WatchFace
         }
         
         View.onUpdate(dc);
-        if (self._isBackground == true)
-        {
-            Indi.Breath.getBreath();
-        }
     }
 
     function onExitSleep() as Void 
     {
-        self._isBackground = false;
+        self.IsBackground = false;
         if (self.OnWakeUp.size() > 0)
         {
             for (var i = 0; i < self.OnWakeUp.size(); i++)
@@ -61,7 +57,7 @@ class WFView extends WatchUi.WatchFace
 
     function onEnterSleep() as Void 
     {
-        self._isBackground = true;
+        self.IsBackground = true;
     }
 
     function onSettingsChanged()

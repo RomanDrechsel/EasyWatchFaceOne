@@ -13,43 +13,9 @@ module Widgets
         private var _maxTemp = null as String;
         private var _minTemp = null as String;
 
-        private var _calcPos = false;
-
-        private var _iconWidth = 50;
-        private var _iconHeight = 50;
-        private var _iconPosX = 0;
-        private var _iconPosY = 0;
-        private var _tempPosX = 0;
-        private var _tempPosY = 0;
-        private var _maxPosX = 0;
-        private var _maxPosY = 0;
-        private var _minPosX = 0;
-        private var _minPosY = 0;
-        private var _horLineX = 0;
-        private var _horLineY = 0;
-        private var _horLineWidth = 35;
-        private var _vertLineHeight = 10;
-
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-
-            if (IsSmallDisplay)
-            {
-                self._iconWidth = 35;
-                self._iconHeight = 35;
-            }
-
-            //adjust position to center of widget
-            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-            {
-                self.locX = self.locX - self._iconWidth + 10;
-            }
-            else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
-            {
-                self.locX = self.locX + self._iconWidth + 10;
-            }
-
             $.getView().OnWakeUp.add(self);
             self.OnWakeUp();
         }
@@ -58,23 +24,80 @@ module Widgets
         {
             if (self._currentWeatherIcon != null && self._currentTemp != null)
             {
-                if (self._calcPos == false)
+                var iconSize = self._currentWeatherIcon.getWidth();
+                var textheight = dc.getFontHeight(HGfx.Fonts.Small);
+                var horPadding = 3;
+
+                var centerX = self.locX;
+                if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
                 {
-                    self.CalcPos(dc);
+                    centerX = self.locX - iconSize + 10;
                 }
+                else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
+                {
+                    centerX = self.locX + iconSize + 15;
+                    if (IsSmallDisplay)
+                    {
+                        centerX -= 10;
+                    }
+                }
+
+                var iconPosX = centerX - iconSize - horPadding;
+                var iconPosY = self.locY;
+
+                var tempPosX = iconPosX + (iconSize / 2);
+                var tempPosY = iconPosY + iconSize;                
 
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
-                dc.drawBitmap(self._iconPosX, self._iconPosY, self._currentWeatherIcon);
-                dc.drawText(self._tempPosX, self._tempPosY, HGfx.Fonts.Small, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                //Icon
+                dc.drawBitmap(iconPosX, iconPosY, self._currentWeatherIcon);
+                dc.drawText(tempPosX, tempPosY, HGfx.Fonts.Small, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
 
+                //vertical line
+                var vertLineHeight = iconSize + textheight - 5;
+                if (IsSmallDisplay)
+                {
+                    vertLineHeight -= 3;
+                }
                 dc.setPenWidth(1);
-                dc.drawLine(self.locX, self.locY + 10, self.locX, self.locY + self._vertLineHeight);
+                dc.drawLine(centerX, self.locY + 10, centerX, self.locY + vertLineHeight);
 
-                dc.drawText(self._maxPosX, self._maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                //maximum temperature
+                var maxPosX = centerX + (iconSize / 2) + horPadding;
+                var maxPosY = self.locY + 15;
+                if (IsSmallDisplay)
+                {
+                    maxPosY -= 5;
+                }
+                dc.drawText(maxPosX, maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
                 dc.setPenWidth(2);
-                dc.drawLine(self._horLineX, self._horLineY, self._horLineX + self._horLineWidth, self._horLineY);
-                dc.drawText(self._minPosX, self._minPosY, HGfx.Fonts.Small, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+
+                //horizontal line
+                var horLineX = centerX + horPadding + 5;
+                var horLineY = self.locY + textheight + 18;
+
+                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
+                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", HGfx.Fonts.Small);
+                var horLineWidth = txt1;
+                if (horLineWidth < txt2)
+                {
+                    horLineWidth = txt2;
+                }
+                if (IsSmallDisplay)
+                {
+                    horLineY -= 6;
+                }
+                dc.drawLine(horLineX, horLineY, horLineX + horLineWidth, horLineY);
+
+                //minimum temperature
+                var minPosX = maxPosX;
+                var minPosY = maxPosY + textheight + 6;
+                if (IsSmallDisplay)
+                {
+                    minPosY -= 2;
+                }
+                dc.drawText(minPosX, minPosY, HGfx.Fonts.Small, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
             }
         }
 
@@ -84,7 +107,6 @@ module Widgets
             var current = Weather.getCurrentConditions();
             if (current != null)
             {
-                self._calcPos = false;
                 var settings = Toybox.System.getDeviceSettings();
                 var maxtemp = current.highTemperature;
                 var mintemp = current.lowTemperature;
@@ -267,71 +289,7 @@ module Widgets
                 self._maxTemp = null;
                 self._minTemp = null;
                 self._currentWeatherIcon = null;
-                self._calcPos = false;
             }
-        }
-
-        private function CalcPos(dc as Gfx.Dc)
-        {
-            if (self._currentWeatherIcon != null)
-            {
-                var textheight = dc.getFontHeight(HGfx.Fonts.Small);
-                var horOffset = 5;
-
-                self._iconPosX = self.locX - self._iconWidth - horOffset;
-                self._iconPosY = self.locY;
-
-                self._tempPosX = self._iconPosX + (self._iconWidth / 2) + (dc.getTextWidthInPixels("°", HGfx.Fonts.Small) / 2);
-                self._tempPosY = self._iconPosY + self._iconHeight;
-
-                self._maxPosX = self.locX + (self._iconWidth / 2) + horOffset;
-                if (IsSmallDisplay)
-                {
-                    self._maxPosY = self.locY + 10;
-                }
-                else
-                {
-                    self._maxPosY = self.locY + 15;
-                }
-
-                self._minPosX = self._maxPosX;
-                if (IsSmallDisplay)
-                {
-                    self._minPosY = self._maxPosY + textheight + 4;
-                }
-                else
-                {
-                    self._minPosY = self._maxPosY + textheight + 6;
-                }
-
-                self._horLineX = self.locX + horOffset + 5;
-                if (IsSmallDisplay)
-                {
-                    self._horLineY = self.locY + 12 + textheight;
-                    self._vertLineHeight = (self._iconHeight + textheight) - 5;
-                    self._horLineWidth = 23;
-                }
-                else
-                {
-                    self._horLineY = self.locY + 18 + textheight;
-                    self._vertLineHeight = (self._iconHeight + textheight) - 8;
-                    self._horLineWidth = 35;
-                }
-
-                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
-                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", HGfx.Fonts.Small);
-
-                if (self._horLineWidth < txt1)
-                {
-                    self._horLineWidth = txt1;
-                }
-
-                if (self._horLineWidth < txt2)
-                {
-                    self._horLineWidth = txt2;
-                }
-            }
-            self._calcPos = true;
         }
     }
 }

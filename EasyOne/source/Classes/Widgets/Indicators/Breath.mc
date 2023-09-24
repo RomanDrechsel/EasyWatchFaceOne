@@ -1,6 +1,6 @@
 import Toybox.Lang;
 import Widgets;
-using Toybox.Graphics as Gfx;
+import Toybox.Graphics;
 using Helper.Gfx as HGfx;
 
 module Widgets 
@@ -9,11 +9,11 @@ module Widgets
     {
         class Breath
         {
-            static var MaxRespirationRate = 40.0;
-            private static var _lastRespirationRate = null as Float;
+            static var MaxRespirationRate = 40;
+            private static var _lastRespirationRate = 0 as Number;
             private static var _lastSample = null as Toybox.Time.Moment;
 
-            function draw(dc as Gfx.Dc, widget as HealthIndicator)
+            function draw(dc as Dc, widget as HealthIndicator)
             {
                 var breath = self.getBreath();
                 var theme = $.getTheme();
@@ -22,7 +22,7 @@ module Widgets
                 var iconcolor = theme.IconsOff;
                 var indicatorcolor = color;
 
-                if (breath > 0.0)
+                if (breath > 0)
                 {
                     color = Themes.Colors.Text2;
                     if (Themes.Colors.IconsInTextColor == true)
@@ -84,7 +84,7 @@ module Widgets
 
                 widget.DrawIcon(dc, HGfx.ICONS_BREATH, iconcolor);
                 widget.DrawText(dc);
-                widget.drawIndicator(dc, breath.toFloat() / self.MaxRespirationRate, indicatorcolor);
+                widget.drawIndicator(dc, breath.toFloat() / self.MaxRespirationRate.toFloat(), indicatorcolor);
             }
 
             static function getBreath() as Number

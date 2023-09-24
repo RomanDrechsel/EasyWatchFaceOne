@@ -91,7 +91,7 @@
             </settingConfig>
         </setting>
     </group>
-
+    
     <group id="groupLayout" title="@Strings.SLo">
         <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
             <settingConfig type="list">
@@ -166,12 +166,6 @@
         </setting>
 
         <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
-            <settingConfig type="list">
-                <listEntry value="1">@Strings.Yes</listEntry>
-                <listEntry value="0">@Strings.No</listEntry>
-            </settingConfig>
-        </setting>
-        <setting propertyKey="@Properties.BatDays" title="@Strings.SBatDays">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>

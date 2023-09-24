@@ -92,6 +92,59 @@
         </setting>
     </group>
 
+    <group id="groupLayout" title="@Strings.SLo">
+        <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WTC" title="@Strings.SLoTC">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WTR" title="@Strings.SLoTR">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWB</listEntry>
+                <listEntry value="2">@Strings.SLoWW</listEntry>
+                <listEntry value="3">@Strings.SLoWI</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WBL" title="@Strings.SLoBL">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWD</listEntry>
+                <listEntry value="2">@Strings.SLoWH</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.WBR" title="@Strings.SLoBR">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.SLoWE</listEntry>
+                <listEntry value="1">@Strings.SLoWD</listEntry>
+                <listEntry value="2">@Strings.SLoWH</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.Deco" title="@Strings.SDeco">
+            <settingConfig type="list">
+                <listEntry value="1">@Strings.Yes</listEntry>
+                <listEntry value="0">@Strings.No</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+
     <group id="groupWidgets" title="@Strings.SgWT">
         <setting propertyKey="@Properties.FTime" title="@Strings.SFTime">
             <settingConfig type="list">

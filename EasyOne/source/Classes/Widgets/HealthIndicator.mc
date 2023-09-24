@@ -1,7 +1,7 @@
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
-using Toybox.Graphics as Gfx;
+import Toybox.Graphics;
 using Toybox.UserProfile;
 using Helper.Gfx as HGfx;
 using Widgets.Indicators as Indi;
@@ -21,7 +21,7 @@ module Widgets
         
         var _attentionIcon = null as BitmapResource;
 
-        var StressWarningLevel = 90.0;
+        var StressWarningLevel = 90;
         var BreathWarningLevel = 30;
 
         private var _indicatorPadding = 10;
@@ -44,13 +44,21 @@ module Widgets
             }
 
             var show = Application.Properties.getValue("Deco") as Number;
-            if (show != null && show <= 0)
+            if (show <= 0)
             {
                 self._showIndicator = false;
             }
 
-            self.StressWarningLevel = Application.Properties.getValue("StressW") as Float;
+            self.StressWarningLevel = Application.Properties.getValue("StressW") as Number;
+            if (self.StressWarningLevel <= 0)
+            {
+                self.StressWarningLevel = 999;
+            }
             self.BreathWarningLevel = Application.Properties.getValue("RespW") as Number;
+            if (self.BreathWarningLevel <= 0)
+            {
+                self.BreathWarningLevel = 999;
+            }
 
             var iconHeight = Graphics.getFontAscent(HGfx.Fonts.Icons);
             var fontHeight = Graphics.getFontAscent(HGfx.Fonts.Small);
@@ -98,15 +106,25 @@ module Widgets
             $.getView().OnWakeUp.add(self);
         }
 
-        function draw(dc as Gfx.Dc) as Void
+        function draw(dc as Dc) as Void
         {
             if (self._display == null)
             {
                 self.OnWakeUp();
             }
+            else if ($.getView().IsBackground)
+            {
+                //update cache
+                Indi.Breath.getBreath();
+            }
 
             if (self._display != null)
             {
+                if (self._display instanceof Indi.Heartbeat == false && Indi.Heartbeat.getHeartrate() <= 0)
+                {
+                    self.Texts = null;
+                    self._display = new  Indi.Heartbeat();
+                }
                 self._display.draw(dc, self);
             }
         }
@@ -178,7 +196,7 @@ module Widgets
             }
         }
 
-        function DrawAttentionIcon(dc as Gfx.Dc) as Void
+        function DrawAttentionIcon(dc as Dc) as Void
         {
             var offsetX = 5;
             var offsetY = -10;
@@ -195,13 +213,13 @@ module Widgets
             self._attentionIcon = null;
         }
 
-        function DrawIcon(dc as Gfx.Dc, icon as String, color as Number) as Void
+        function DrawIcon(dc as Dc, icon as String, color as Number) as Void
         {
-            dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-            dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_CENTER);
+            dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(self._iconPosX, self._iconPosY, HGfx.Fonts.Icons, icon, Graphics.TEXT_JUSTIFY_CENTER);
         }
 
-        function DrawText(dc as Gfx.Dc) as Number
+        function DrawText(dc as Dc) as Number
         {
             if (self.Texts != null)
             {
@@ -213,13 +231,13 @@ module Widgets
             }
             else
             {
-                dc.setColor($.getTheme().IconsOff, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self.TextContainer.AnchorX, self.TextContainer.AnchorY, HGfx.Fonts.Normal, "-", Gfx.TEXT_JUSTIFY_CENTER);
+                dc.setColor($.getTheme().IconsOff, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(self.TextContainer.AnchorX, self.TextContainer.AnchorY, HGfx.Fonts.Normal, "-", Graphics.TEXT_JUSTIFY_CENTER);
                 return dc.getTextWidthInPixels("-", HGfx.Fonts.Normal);
             }
         }
 
-        function drawIndicator(dc as Gfx.Dc, amount as Float, color as Number) as Void
+        function drawIndicator(dc as Dc, amount as Float, color as Number) as Void
         {
             if (self._showIndicator == false)
             {
@@ -270,17 +288,24 @@ module Widgets
             }
 
             var rdm = Helper.MathHelper.RandomInRange(0, max);
-            if (stress > 0 && rdm > 1)
-            {
-                return INDICATOR_STRESS;
-            }
-            else if (breath > 0 && rdm > 0)
+            if (rdm <= 0)
             {
                 return INDICATOR_BREATH;
             }
-            else
+            else if (rdm == 1)
             {
-                return INDICATOR_HEARTRATE;
+                if (stress > 0)
+                {
+                    return INDICATOR_STRESS;
+                }
+                else
+                {
+                    return INDICATOR_BREATH;
+                }
+            }
+            else 
+            {
+                return INDICATOR_BREATH;
             }
         }
     }

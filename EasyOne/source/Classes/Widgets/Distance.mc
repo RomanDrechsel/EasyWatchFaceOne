@@ -1,6 +1,6 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
-using Toybox.Graphics as Gfx;
+import Toybox.Graphics;
 using Toybox.ActivityMonitor;
 using Toybox.Math;
 using Helper.Gfx as HGfx;
@@ -10,13 +10,12 @@ module Widgets
     class Distance extends WidgetBase
     {
         private var _WidgetSize = 130;
-        private var _inMiles = false as Boolean;
-        private var _startdrawYpos as Number;
-        private var _lineHeight = 33;
-        private var _iconPosX = self.locX;
-        private var _textPosX = self.locX;
-        private var _textJust = Gfx.TEXT_JUSTIFY_LEFT;
+        private var _inMiles = false;
+        private var _iconPosX = 0;
+        private var _textPosX = 0;
+        private var _textJust = Graphics.TEXT_JUSTIFY_LEFT;
         private var _showIndicator = true;
+        private var _indicatorPadding = 12;
 
         private var _showStepsPercentage = true;
 
@@ -30,15 +29,11 @@ module Widgets
                 self._WidgetSize = 130;
             }
 
-            var indicatorPadding = 12;
             if (IsSmallDisplay)
             {
-                indicatorPadding = 8;
-                self._lineHeight = 22;
+                self._indicatorPadding = 8;
             }
             
-            self._startdrawYpos = self.locY - indicatorPadding - self._lineHeight;
-
             var show = Application.Properties.getValue("Deco") as Number;
             if (show != null && show <= 0)
             {
@@ -47,22 +42,22 @@ module Widgets
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
             {
-                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - indicatorPadding - 25;
+                self._iconPosX = self.locX - HGfx.DrawRoundAngle.ThicknessBold - self._indicatorPadding - 25;
                 self._textPosX = self._iconPosX - 10;
-                self._textJust = Gfx.TEXT_JUSTIFY_RIGHT;
+                self._textJust = Graphics.TEXT_JUSTIFY_RIGHT;
             }
             else
             {
-                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + indicatorPadding;
+                self._iconPosX = self.locX + HGfx.DrawRoundAngle.ThicknessBold + self._indicatorPadding - 5;
                 if (!IsSmallDisplay)
                 {
-                    self._textPosX = self._iconPosX + 35;
+                    self._textPosX = self._iconPosX + 32;
                 }
                 else
                 {
                     self._textPosX = self._iconPosX + 22;
                 }
-                self._textJust = Gfx.TEXT_JUSTIFY_LEFT;
+                self._textJust = Graphics.TEXT_JUSTIFY_LEFT;
             }
 
             //Show distane in miles
@@ -86,7 +81,7 @@ module Widgets
             }
         }
 
-        function draw(dc as Gfx.Dc) as Void 
+        function draw(dc as Dc) as Void 
         {
             var info = ActivityMonitor.getInfo();
 
@@ -96,12 +91,18 @@ module Widgets
             info.steps = 5687;
             info.stepGoal = 6500;*/
 
-            var drawYpos = self._startdrawYpos;
+            var lineHeight = 33;
+            if (IsSmallDisplay)
+            {
+                lineHeight = 22;
+            }
+
+            var drawYpos = self.locY - self._indicatorPadding - lineHeight;
 
             self.drawSteps(dc, info, drawYpos);
-            drawYpos -= self._lineHeight;
+            drawYpos -= lineHeight;
             self.drawDistance(dc, info, drawYpos);
-            drawYpos -= self._lineHeight;
+            drawYpos -= lineHeight;
             self.drawCalories(dc, info, drawYpos);
             
             if (self._showIndicator)
@@ -110,15 +111,15 @@ module Widgets
             }
         }
 
-        private function drawCalories(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
+        private function drawCalories(dc as Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
             }
             else
             {
-                dc.setColor($.getTheme().DistanceCaloriesColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceCaloriesColor, Graphics.COLOR_TRANSPARENT);
             }
 
             var offset = -4;
@@ -126,33 +127,38 @@ module Widgets
             {
                 offset = 0;
             }
-            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_CALORIES, Graphics.TEXT_JUSTIFY_LEFT);
+            dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
+            var text = "-";
             if (info != null)
-            {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, info.calories.toString(), self._textJust);
+            {              
+                text = info.calories.toString();
             }
+            dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, text, self._textJust);
         }
 
-        private function drawDistance(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
+        private function drawDistance(dc as Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
-            var str = "";
-            if (self._inMiles == true)
+            var text = "-";
+            if (info != null)
             {
-                str = self.FormatMiles(info.distance);
-            }
-            else
-            {
-                str = self.FormatMeters(info.distance);
+                if (self._inMiles == true)
+                {
+                    text = self.FormatMiles(info.distance);
+                }
+                else
+                {
+                    text = self.FormatMeters(info.distance);
+                }
             }
 
             if (Themes.Colors.IconsInTextColor == true)
             {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
             }
             else
             {
-                dc.setColor($.getTheme().DistanceIconColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceIconColor, Graphics.COLOR_TRANSPARENT);
             }
 
             var offset = 0;
@@ -160,23 +166,20 @@ module Widgets
             {
                 offset = 2;
             }
-            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_DISTANCE, Gfx.TEXT_JUSTIFY_LEFT);
-            if (info != null)
-            {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, str, self._textJust);
-            }
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_DISTANCE, Graphics.TEXT_JUSTIFY_LEFT);
+            dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, text, self._textJust);
         }
 
-        private function drawSteps(dc as Gfx.Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
+        private function drawSteps(dc as Dc, info as ActivityMonitor.Info, drawYpos as Number) as Void
         {
             if (Themes.Colors.IconsInTextColor == true)
             {
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
             }
             else
             {
-                dc.setColor($.getTheme().DistanceStepsIconColor, Gfx.COLOR_TRANSPARENT);
+                dc.setColor($.getTheme().DistanceStepsIconColor, Graphics.COLOR_TRANSPARENT);
             }
 
             var offset = 2;
@@ -184,12 +187,12 @@ module Widgets
             {
                 offset = 4;
             }
-            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_STEPS, Gfx.TEXT_JUSTIFY_LEFT);
+            dc.drawText(self._iconPosX, drawYpos + offset, HGfx.Fonts.Icons, HGfx.ICONS_STEPS, Graphics.TEXT_JUSTIFY_LEFT);
+            dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
             if (info != null)
             {
-                var amount = info.steps.toFloat() / info.stepGoal.toFloat();
-                dc.setColor(Themes.Colors.Text2, Gfx.COLOR_TRANSPARENT);
-                if (self._textJust == Gfx.TEXT_JUSTIFY_LEFT)
+                var amount = info.steps.toFloat() / info.stepGoal.toFloat();                
+                if (self._textJust == Graphics.TEXT_JUSTIFY_LEFT)
                 {   
                     var yOffset;
                     if (IsSmallDisplay)
@@ -209,11 +212,11 @@ module Widgets
                         {
                             if (IsSmallDisplay)
                             {
-                                dc.drawText(self._textPosX + width + 3, drawYpos + 4, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                                dc.drawText(self._textPosX + width + 3, drawYpos + 4, HGfx.Fonts.Icons, HGfx.ICONS_CHECKMARK, self._textJust);
                             }
                             else
                             {
-                                dc.drawText(self._textPosX + width + 5, drawYpos + yOffset, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                                dc.drawText(self._textPosX + width + 5, drawYpos + yOffset, HGfx.Fonts.Icons, HGfx.ICONS_CHECKMARK, self._textJust);
                             }
                         }
                         else
@@ -231,7 +234,7 @@ module Widgets
                         if (self._showStepsPercentage == true)
                         {
                             var textwidth = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small) + 5; 
-                            dc.drawText(self._textPosX - textwidth, drawYpos + 6, HGfx.Fonts.Icons, Helper.Gfx.ICONS_CHECKMARK, self._textJust);
+                            dc.drawText(self._textPosX - textwidth, drawYpos + 6, HGfx.Fonts.Icons, HGfx.ICONS_CHECKMARK, self._textJust);
                         }
                     }
                     else
@@ -247,9 +250,13 @@ module Widgets
                     }                    
                 }
             }
+            else
+            {
+                dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, "-", self._textJust);
+            }
         }
 
-        private function drawStepsIndicator(dc as Gfx.Dc, info as ActivityMonitor.Info) as Void
+        private function drawStepsIndicator(dc as Dc, info as ActivityMonitor.Info) as Void
         {
             var amount = 0.0;
             if (info != null)
