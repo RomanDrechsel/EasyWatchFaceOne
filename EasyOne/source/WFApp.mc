@@ -19,6 +19,7 @@ class WFApp extends Application.AppBase
     {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
+        Math.srand(Time.now().value());
     }
 
     function getInitialView() as Array<Views or InputDelegates>? 

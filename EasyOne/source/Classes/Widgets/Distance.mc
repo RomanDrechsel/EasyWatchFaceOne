@@ -98,6 +98,10 @@ module Widgets
             }
 
             var drawYpos = self.locY - self._indicatorPadding - lineHeight;
+            if (!IsSmallDisplay)
+            {
+                drawYpos -= 3;
+            }
 
             self.drawSteps(dc, info, drawYpos);
             drawYpos -= lineHeight;

@@ -103,14 +103,14 @@ module Widgets
 
             self.TextContainer = new Helper.ExtText(centerX, textPosY, Graphics.TEXT_JUSTIFY_CENTER);
 
-            $.getView().OnWakeUp.add(self);
+            $.getView().OnShow.add(self);
         }
 
         function draw(dc as Dc) as Void
         {
             if (self._display == null)
             {
-                self.OnWakeUp();
+                self.OnShow();
             }
             else if ($.getView().IsBackground)
             {
@@ -129,7 +129,7 @@ module Widgets
             }
         }
 
-        function OnWakeUp() as Void
+        function OnShow() as Void
         {
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
@@ -266,12 +266,12 @@ module Widgets
             return self._attentionIcon;
         }
 
-        private function getRandomWidget(s as Float, b as Number) as Indicator
+        private function getRandomWidget(s as Number, b as Number) as Indicator
         {
             var stress = 1;
             var breath = 1;
             
-            if (s <= 0.0)
+            if (s <= 0)
             {
                 stress = 0;
             }
@@ -287,10 +287,10 @@ module Widgets
                 return INDICATOR_HEARTRATE;
             }
 
-            var rdm = Helper.MathHelper.RandomInRange(0, max);
+            var rdm = Math.rand() % max;
             if (rdm <= 0)
             {
-                return INDICATOR_BREATH;
+                return INDICATOR_HEARTRATE;
             }
             else if (rdm == 1)
             {
