@@ -97,7 +97,7 @@ module Widgets
                 lineHeight = 22;
             }
 
-            var drawYpos = self.locY - self._indicatorPadding - lineHeight;
+            var drawYpos = self.locY - self._indicatorPadding - lineHeight - 3;
             if (!IsSmallDisplay)
             {
                 drawYpos -= 3;
