@@ -16,8 +16,9 @@ module Widgets
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
-            $.getView().OnWakeUp.add(self);
-            self.OnWakeUp();
+            $.getView().OnShow.add(self);
+            $.getView().OnSleep.add(self);
+            self.OnShow();
         }
 
         function draw(dc as Gfx.Dc) as Void 
@@ -101,7 +102,7 @@ module Widgets
             }
         }
 
-        function OnWakeUp()
+        function OnShow()
         {
             //get current weather
             var current = Weather.getCurrentConditions();
@@ -290,6 +291,14 @@ module Widgets
                 self._minTemp = null;
                 self._currentWeatherIcon = null;
             }
+        }
+
+        function OnSleep()
+        {
+            self._currentTemp = null;
+            self._maxTemp = null;
+            self._minTemp = null;
+            self._currentWeatherIcon = null;
         }
     }
 }

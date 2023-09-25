@@ -7,7 +7,8 @@ using Widgets.Indicators as Indi;
 
 class WFView extends WatchUi.WatchFace 
 {
-    var OnWakeUp = [];
+    var OnShow = [];
+    var OnSleep = [];
 
     var IsBackground = false;
     private var _reloadFontInTicks = -1;
@@ -46,23 +47,25 @@ class WFView extends WatchUi.WatchFace
     function onExitSleep() as Void 
     {
         self.IsBackground = false;
-        if (self.OnWakeUp.size() > 0)
+        for (var i = 0; i < self.OnShow.size(); i++)
         {
-            for (var i = 0; i < self.OnWakeUp.size(); i++)
-            {
-                self.OnWakeUp[i].OnWakeUp();
-            }
+            self.OnShow[i].OnShow();
         }
     }
 
     function onEnterSleep() as Void 
     {
         self.IsBackground = true;
+        for (var i = 0; i < self.OnSleep.size(); i++)
+        {
+            self.OnSleep[i].OnSleep();
+        }
     }
 
     function onSettingsChanged()
     {
-        self.OnWakeUp = [] as Array<Method>;
+        self.OnShow = [];
+        self.OnSleep = [];
         var ids = ["BG", "C", "UC", "DTL", "TL", "TC", "TR", "DTR", "BL", "BR"];
         for (var i = 0; i < ids.size(); i++)
         {

@@ -178,16 +178,16 @@ module Widgets
                 self._sampleDeltaRise = null;
                 self._stressLevel = 0;
 
-                //SAMPLE_VALID = 600
+                //SAMPLE_VALID = 1800
                 if (Toybox has :SensorHistory && SensorHistory has :getStressHistory &&
                     (self._lastSampleDate == null || Time.now().subtract(self._lastSampleDate).value() > 5))
                 {
                     var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
                     var newest_sample = hist.next();
                     var prev_sample = hist.next();
-                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 600)
+                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 1800)
                     {
-                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 600)
+                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 1800)
                         {
                             if (newest_sample.data > prev_sample.data)
                             {
