@@ -133,7 +133,7 @@ module Widgets
         {
             var zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
             Indi.Heartbeat.HeartbeatZones = [ zones[2], zones[3], zones[4], zones[5] ];
-            Indi.Heartbeat.HeartbeatMin = zones[0] * 0.6;
+            Indi.Heartbeat.HeartbeatMin = zones[0] * 0.5;
 
             var indicator = INDICATOR_HEARTRATE;
             var heartrate = Indi.Heartbeat.getHeartrate();
@@ -205,7 +205,13 @@ module Widgets
                 offsetX = 3;
                 offsetY = -8;
             }
-            dc.drawBitmap(self._iconPosX + offsetX, self._iconPosY + offsetY, self.GetAttentionIcon());
+
+            if (self._attentionIcon == null)
+            {
+                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
+            }
+
+            dc.drawBitmap(self._iconPosX + offsetX, self._iconPosY + offsetY, self._attentionIcon);
         }
 
         function HideAttentionIcon() as Void
@@ -254,16 +260,6 @@ module Widgets
             HGfx.DrawRoundAngle.Configure(indicatorPosX, self.locY - self.WidgetSize, self.WidgetSize, self.WidgetSize, pos);
             HGfx.DrawRoundAngle.draw(dc, 0, 0);
             HGfx.DrawRoundAngle.draw(dc, amount, color);
-        }
-
-        private function GetAttentionIcon() as BitmapResource
-        {
-            if (self._attentionIcon == null)
-            {
-                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
-            }
-
-            return self._attentionIcon;
         }
 
         private function getRandomWidget(s as Number, b as Number) as Indicator
