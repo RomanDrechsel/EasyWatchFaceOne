@@ -27,6 +27,11 @@ class WFView extends WatchUi.WatchFace
 
     function onUpdate(dc as Dc) as Void 
     {
+        if (Helper.Gfx has :GetFontCodePoints)
+        {
+            Helper.Gfx.GetFontCodePoints();
+        }
+        
         if (self._reloadFontInTicks > 0)
         {
             self._reloadFontInTicks--;
