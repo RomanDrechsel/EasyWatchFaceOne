@@ -102,26 +102,33 @@ module Helper
 
             Application.Storage.setValue("codepoints", storage);
 
-            if (storage.size() >= 36)
-            {
-                Output(storage);
-            }
+            //OutputLatin(storage);
+            OutputGreek(storage);
         }
 
-        function Output(storage as Dictionary) as Void
+        function OutputLatin(storage as Dictionary) as Void
         {
             var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE","TUR" ];
+            OutputChatset(storage, latin);
+        }
 
+        function OutputGreek(storage as Dictionary) as Void
+        {
+            OutputChatset(storage, [ "GRE" ]);
+        }
+
+        function OutputChatset(storage as Dictionary, languages as Array) as Void
+        {
             var all = [];
-            for (var i = 0; i < latin.size(); i++)
+            for (var i = 0; i < languages.size(); i++)
             {
-                if (!storage.hasKey(latin[i]))
+                if (!storage.hasKey(languages[i]))
                 {
-                    System.println("Language " + latin[i] + " not found!");
+                    System.println("Language " + languages[i] + " not found!");
                     return;
                 }
 
-                var codepoints = storage[latin[i]];
+                var codepoints = storage[languages[i]];
                 for (var j = 0; j < codepoints.size(); j++)
                 {
                     var c = codepoints[j]. toNumber();
@@ -133,29 +140,10 @@ module Helper
             }
 
             all = MergeSort.Sort(all);
-
-            System.println("CodePoints Latin: " + all.size() + " characters");
+            System.println("CodePoints: " + all.size() + " characters\n");
             for (var i = 0; i < all.size(); i++)
             {
                 System.print(all[i] + " ");
-            }
-            System.println("\n---------------------------------");
-            System.println("\n\n");
-        }
-
-        function OutputLang(storage as Dictionary, lang as String) as Void
-        {
-            if (storage.hasKey(lang))
-            {
-                var codepoints = storage[lang];
-                System.println("Language: " + lang);
-                for (var j = 0; j < codepoints.size(); j++)
-                {
-                    System.println(codepoints[j] + ": " + codepoints[j].toNumber());
-                }
-
-                System.println("---------------------------------");
-                System.println("\n\n");
             }
         }
 
