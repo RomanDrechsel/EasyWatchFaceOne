@@ -22,6 +22,15 @@ module Helper
 
             var codepoints = [];
 
+            var chars = " 0123456789.".toCharArray();
+            for (var i = 0; i < chars.size(); i++)
+            {
+                if (codepoints.indexOf(chars[i]) < 0)
+                {
+                    codepoints.add(chars[i]);
+                }
+            }
+
             //Weekdays 
             var day = 1;
             while (day <= 7)
@@ -36,7 +45,7 @@ module Helper
                 var date = Gregorian.moment(options);
                 var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
 
-                var chars = info.day_of_week.toUpper().toCharArray();
+                chars = info.day_of_week.toUpper().toCharArray();
                 for (var i = 0; i < chars.size(); i++)
                 {
                     if (codepoints.indexOf(chars[i]) < 0)
@@ -61,7 +70,7 @@ module Helper
                 var date = Gregorian.moment(options);
                 var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
 
-                var chars = info.month.toUpper().toCharArray();
+                chars = info.month.toUpper().toCharArray();
                 for (var i = 0; i < chars.size(); i++)
                 {
                     if (codepoints.indexOf(chars[i]) < 0)
@@ -95,7 +104,58 @@ module Helper
 
             if (storage.size() >= 36)
             {
-                Output();
+                Output(storage);
+            }
+        }
+
+        function Output(storage as Dictionary) as Void
+        {
+            var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE","TUR" ];
+
+            var all = [];
+            for (var i = 0; i < latin.size(); i++)
+            {
+                if (!storage.hasKey(latin[i]))
+                {
+                    System.println("Language " + latin[i] + " not found!");
+                    return;
+                }
+
+                var codepoints = storage[latin[i]];
+                for (var j = 0; j < codepoints.size(); j++)
+                {
+                    var c = codepoints[j]. toNumber();
+                    if (all.indexOf(c) < 0)
+                    {
+                        all.add(c);
+                    }
+                }
+            }
+
+            all = MergeSort.Sort(all);
+
+            System.println("CodePoints Latin: " + all.size() + " characters");
+            for (var i = 0; i < all.size(); i++)
+            {
+                System.print(all[i] + " ");
+            }
+            System.println("\n---------------------------------");
+            System.println("\n\n");
+        }
+
+        function OutputLang(storage as Dictionary, lang as String) as Void
+        {
+            if (storage.hasKey(lang))
+            {
+                var codepoints = storage[lang];
+                System.println("Language: " + lang);
+                for (var j = 0; j < codepoints.size(); j++)
+                {
+                    System.println(codepoints[j] + ": " + codepoints[j].toNumber());
+                }
+
+                System.println("---------------------------------");
+                System.println("\n\n");
             }
         }
 
@@ -158,7 +218,7 @@ module Helper
                 case 8389366:
                     return "RUS";
                 case 8389367:
-                    return "SOL";
+                    return "SLO";
                 case 8389368:
                     return "SLV";
                 case 8389369:

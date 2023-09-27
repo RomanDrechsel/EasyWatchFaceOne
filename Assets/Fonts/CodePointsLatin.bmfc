@@ -3,7 +3,7 @@ fileVersion=1
 
 # font settings
 fontName=Roboto Medium
-fontFile=../Roboto/Roboto-Medium.ttf
+fontFile=Roboto/Roboto-Medium.ttf
 charSet=0
 fontSize=44
 aa=2
@@ -34,8 +34,8 @@ forceZero=0
 widthPaddingFactor=0.00
 
 # output file
-outWidth=220
-outHeight=175
+outWidth=350
+outHeight=340
 outBitDepth=8
 fontDescFormat=0
 fourChnlPacked=0
