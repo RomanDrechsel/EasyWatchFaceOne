@@ -63,42 +63,64 @@ module Helper
                 self.DateFontRez = datefont;
 
                 self.Date = null;
+                var systemlang = System.getDeviceSettings().systemLanguage;
 
-                if (self.DateFontRez != 99 && [
-                    System.LANGUAGE_ARA,
-                    System.LANGUAGE_HRV,
-                    System.LANGUAGE_CES,
-                    System.LANGUAGE_DAN,
-                    System.LANGUAGE_DUT,
-                    System.LANGUAGE_DEU,
-                    System.LANGUAGE_ENG,
-                    System.LANGUAGE_EST,
-                    System.LANGUAGE_FIN,
-                    System.LANGUAGE_FRE,
-                    System.LANGUAGE_HEB,
-                    System.LANGUAGE_HUN,
-                    System.LANGUAGE_IND,
-                    System.LANGUAGE_ITA,
-                    System.LANGUAGE_LIT,
-                    System.LANGUAGE_ZSM,
-                    System.LANGUAGE_NOB,
-                    System.LANGUAGE_POL,
-                    System.LANGUAGE_POR,
-                    System.LANGUAGE_RON,
-                    System.LANGUAGE_SLO,
-                    System.LANGUAGE_SLV,
-                    System.LANGUAGE_SPA,
-                    System.LANGUAGE_SWE,
-                    System.LANGUAGE_TUR
-                ].indexOf(System.getDeviceSettings().systemLanguage) >= 0)
+                if (self.DateFontRez != 99)
                 {
-                    if (self.DateFontRez == 0)
+                    if ([
+                        System.LANGUAGE_ARA,
+                        System.LANGUAGE_HRV,
+                        System.LANGUAGE_CES,
+                        System.LANGUAGE_DAN,
+                        System.LANGUAGE_DUT,
+                        System.LANGUAGE_DEU,
+                        System.LANGUAGE_ENG,
+                        System.LANGUAGE_EST,
+                        System.LANGUAGE_FIN,
+                        System.LANGUAGE_FRE,
+                        System.LANGUAGE_HEB,
+                        System.LANGUAGE_HUN,
+                        System.LANGUAGE_IND,
+                        System.LANGUAGE_ITA,
+                        System.LANGUAGE_LIT,
+                        System.LANGUAGE_ZSM,
+                        System.LANGUAGE_NOB,
+                        System.LANGUAGE_POL,
+                        System.LANGUAGE_POR,
+                        System.LANGUAGE_RON,
+                        System.LANGUAGE_SLO,
+                        System.LANGUAGE_SLV,
+                        System.LANGUAGE_SPA,
+                        System.LANGUAGE_SWE,
+                        System.LANGUAGE_TUR
+                    ].indexOf(systemlang) >= 0)
                     {
-                        self.Date = WatchUi.loadResource(Rez.Fonts.KamikazoomDate);
+                        if (self.DateFontRez == 0)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.KamikazoomDate);
+                        }
+                        else if (self.DateFontRez == 1)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.GoDDate);
+                        }
+                        else if (self.DateFontRez == 2)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDate);
+                        }
                     }
-                    else if (self.DateFontRez == 1)
+                    else if (systemlang == System.LANGUAGE_GRE)
                     {
-                        self.Date = WatchUi.loadResource(Rez.Fonts.GoDDate);
+                        if (self.DateFontRez == 2)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDateGreek);
+                        }
+                    }
+                    else if ([System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
+                    {
+                        if (self.DateFontRez == 2)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDateCyrillic);
+                        }
                     }
                 }
                 

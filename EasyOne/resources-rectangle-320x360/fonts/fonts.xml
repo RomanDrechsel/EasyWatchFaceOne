@@ -10,6 +10,9 @@
     <font id="ConsolaHour" filename="ConsolaHour.fnt" antialias="true" />
     <font id="ConsolaMinute" filename="ConsolaMinute.fnt" antialias="true" />
     <font id="ConsolaSecond" filename="ConsolaSecond.fnt" antialias="true" />
+    <font id="ConsolaDate" filename="ConsolaDate.fnt" antialias="true" />
+    <font id="ConsolaDateGreek" filename="ConsolaDateGreek.fnt" antialias="true" />
+    <font id="ConsolaDateCyrillic" filename="ConsolaDateCyrillic.fnt" antialias="true" />
 
     <font id="ImpossibleTime" filename="ImpossibleTime.fnt" antialias="true" />
     <font id="ImpossibleSecond" filename="ImpossibleSecond.fnt" antialias="true" />

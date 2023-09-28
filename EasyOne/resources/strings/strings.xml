@@ -54,8 +54,10 @@
     <string id="SLoWH">Health monitor</string>
 
     <string id="SgWT">Widget settings</string>
+    <string id="SF">Fonts</string>
     <string id="SFTime">Time font</string>
     <string id="SFDate">Date font</string>
+    <string id="SFDateLatin">only Latin characters</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Self made</string>
     <string id="SWZero">Display leading zero at time</string>
