@@ -103,7 +103,7 @@ module Helper
             Application.Storage.setValue("codepoints", storage);
 
             //OutputLatin(storage);
-            OutputGreek(storage);
+            OutputCyrillic(storage);
         }
 
         function OutputLatin(storage as Dictionary) as Void
@@ -115,6 +115,12 @@ module Helper
         function OutputGreek(storage as Dictionary) as Void
         {
             OutputChatset(storage, [ "GRE" ]);
+        }
+
+        function OutputCyrillic(storage as Dictionary) as Void
+        {
+            var cyrilic = [ "RUS", "BUL", "UKR" ];
+            OutputChatset(storage, cyrilic);
         }
 
         function OutputChatset(storage as Dictionary, languages as Array) as Void
