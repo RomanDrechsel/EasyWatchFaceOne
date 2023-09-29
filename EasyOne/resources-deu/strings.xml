@@ -55,7 +55,9 @@
     <string id="SF">Schriftarten</string>
     <string id="SFTime">Schriftart Uhrzeit</string>
     <string id="SFDate">Schriftart Datum</string>
-    <string id="SFDateLatin">nur lateinische Zeichen</string>
+    <string id="SFKa">Komikazoom (nur lateinische Zeichen)</string>
+    <string id="SFGoD">Grimoire Of Death (nur lateinische Zeichen)</string>
+
     <string id="SFSystem">System</string>
     <string id="SFSM">Selbstgemacht</string>
     <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>

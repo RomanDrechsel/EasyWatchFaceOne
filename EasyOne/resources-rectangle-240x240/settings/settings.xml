@@ -144,8 +144,7 @@
         </setting>
     </group>
 
-
-    <group id="groupWidgets" title="@Strings.SgWT">
+    <group id="groupFonts" title="@Strings.SF">
         <setting propertyKey="@Properties.FTime" title="@Strings.SFTime">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.SFSM</listEntry>
@@ -153,19 +152,21 @@
                 <listEntry value="2">Impossible</listEntry>
                 <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="4">Roboto</listEntry>
-                <listEntry value="5">Timesauce</listEntry>
+                <listEntry value="5">Typesauce</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
-
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
             <settingConfig type="list">
-                <listEntry value="0">Komikazoom</listEntry>
-                <listEntry value="1">Grimoire Of Death</listEntry>
+                <listEntry value="0">@Strings.SFKa</listEntry>
+                <listEntry value="1">@Strings.SFGoD</listEntry>
+                <listEntry value="2">Troika</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
-        
+    </group>
+
+    <group id="groupWidgets" title="@Strings.SgWT">
         <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
             <settingConfig type="list">
                 <listEntry value="1">@Strings.Yes</listEntry>

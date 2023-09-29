@@ -57,9 +57,11 @@
     <string id="SF">Fonts</string>
     <string id="SFTime">Time font</string>
     <string id="SFDate">Date font</string>
-    <string id="SFDateLatin">only Latin characters</string>
+    <string id="SFKa">Komikazoom (Latin characters only)</string>
+    <string id="SFGoD">Grimoire Of Death (Latin characters only)</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Self made</string>
+    
     <string id="SWZero">Display leading zero at time</string>
     <string id="SSgoal">Display percentage of steps goal</string>    
     <string id="SStressW">Stress Warning Level</string>

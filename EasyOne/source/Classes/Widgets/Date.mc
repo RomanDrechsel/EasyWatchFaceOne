@@ -45,7 +45,7 @@ module Widgets
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }
-            else if (Gfx.Fonts.DateFontRez == 2)
+            else if (Gfx.Fonts.DateFontRez == 2 && !IsSmallDisplay)
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }
@@ -53,12 +53,14 @@ module Widgets
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
 
             var systemlang = System.getDeviceSettings().systemLanguage;
-            if (systemlang!= System.LANGUAGE_GRE)
+            if (systemlang != System.LANGUAGE_GRE && systemlang != System.LANGUAGE_HUN && systemlang != System.LANGUAGE_LAV)
             {
-                self._texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save memory
+                //toUpper() because date-font only have uppercase letters to save memory
+                self._texts[0].Text = time.day_of_week.toUpper() + " ";
             }
             else
             {
+                //string would be too long
                 self._texts[0].Text = "";
             }
             
