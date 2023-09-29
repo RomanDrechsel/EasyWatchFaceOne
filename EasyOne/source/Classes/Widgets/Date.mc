@@ -45,10 +45,23 @@ module Widgets
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }
+            else if (Gfx.Fonts.DateFontRez == 2)
+            {
+                self._textContainer.AnchorY = self.locY - 5;
+            }
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
 
-            self._texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save memory
+            var systemlang = System.getDeviceSettings().systemLanguage;
+            if (systemlang!= System.LANGUAGE_GRE)
+            {
+                self._texts[0].Text = time.day_of_week.toUpper() + " "; //toUpper() because date-font only have uppercase letters to save memory
+            }
+            else
+            {
+                self._texts[0].Text = "";
+            }
+            
             self._texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
             self._texts[2].Text = time.year.toString();
 

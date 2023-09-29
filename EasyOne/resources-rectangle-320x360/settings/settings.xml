@@ -160,7 +160,7 @@
             <settingConfig type="list">
                 <listEntry value="0">@Strings.SFKa</listEntry>
                 <listEntry value="1">@Strings.SFGoD</listEntry>
-                <listEntry value="2">Consola Mono</listEntry>
+                <listEntry value="2">Troika</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>

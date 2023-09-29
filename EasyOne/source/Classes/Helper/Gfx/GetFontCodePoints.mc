@@ -32,29 +32,32 @@ module Helper
             }
 
             //Weekdays 
-            var day = 1;
-            while (day <= 7)
+            if (lang != "GRE")
             {
-                var options = {
-                    :year   => 1970,
-                    :month  => 1,
-                    :day    => day,
-                    :hour   => 12
-                };
-
-                var date = Gregorian.moment(options);
-                var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
-
-                chars = info.day_of_week.toUpper().toCharArray();
-                for (var i = 0; i < chars.size(); i++)
+                var day = 1;
+                while (day <= 7)
                 {
-                    if (codepoints.indexOf(chars[i]) < 0)
-                    {
-                        codepoints.add(chars[i]);
-                    }
-                }
+                    var options = {
+                        :year   => 1970,
+                        :month  => 1,
+                        :day    => day,
+                        :hour   => 12
+                    };
 
-                day++;
+                    var date = Gregorian.moment(options);
+                    var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
+
+                    chars = info.day_of_week.toUpper().toCharArray();
+                    for (var i = 0; i < chars.size(); i++)
+                    {
+                        if (codepoints.indexOf(chars[i]) < 0)
+                        {
+                            codepoints.add(chars[i]);
+                        }
+                    }
+
+                    day++;
+                }
             }
 
             var month = 1;
@@ -103,7 +106,8 @@ module Helper
             Application.Storage.setValue("codepoints", storage);
 
             //OutputLatin(storage);
-            OutputCyrillic(storage);
+            OutputGreek(storage);
+            //OutputCyrillic(storage);
         }
 
         function OutputLatin(storage as Dictionary) as Void

@@ -22,4 +22,8 @@
     <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />
 
     <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
+
+    <font id="TroikaDate" filename="TroikaDate.fnt" antialias="true" />
+    <font id="TroikaDateGreek" filename="TroikaDateGreek.fnt" antialias="true" />
+    <font id="TroikaDateCyrillic" filename="TroikaDateCyrillic.fnt" antialias="true" />
 </fonts>

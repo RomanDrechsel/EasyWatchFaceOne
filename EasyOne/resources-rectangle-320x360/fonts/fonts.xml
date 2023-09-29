@@ -10,9 +10,6 @@
     <font id="ConsolaHour" filename="ConsolaHour.fnt" antialias="true" />
     <font id="ConsolaMinute" filename="ConsolaMinute.fnt" antialias="true" />
     <font id="ConsolaSecond" filename="ConsolaSecond.fnt" antialias="true" />
-    <font id="ConsolaDate" filename="ConsolaDate.fnt" antialias="true" />
-    <font id="ConsolaDateGreek" filename="ConsolaDateGreek.fnt" antialias="true" />
-    <font id="ConsolaDateCyrillic" filename="ConsolaDateCyrillic.fnt" antialias="true" />
 
     <font id="ImpossibleTime" filename="ImpossibleTime.fnt" antialias="true" />
     <font id="ImpossibleSecond" filename="ImpossibleSecond.fnt" antialias="true" />
@@ -27,6 +24,10 @@
 
     <font id="TypesauceTime" filename="TypesauceTime.fnt" antialias="true" />
     <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />
+
+    <font id="TroikaDate" filename="TroikaDate.fnt" antialias="true" />
+    <font id="TroikaDateGreek" filename="TroikaDateGreek.fnt" antialias="true" />
+    <font id="TroikaDateCyrillic" filename="TroikaDateCyrillic.fnt" antialias="true" />
 
     <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
 </fonts>

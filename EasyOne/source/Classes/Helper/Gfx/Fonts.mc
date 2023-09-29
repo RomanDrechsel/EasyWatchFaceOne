@@ -105,21 +105,21 @@ module Helper
                         }
                         else if (self.DateFontRez == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDate);
+                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDate);
                         }
                     }
                     else if (systemlang == System.LANGUAGE_GRE)
                     {
                         if (self.DateFontRez == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDateGreek);
+                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateGreek);
                         }
                     }
                     else if ([System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
                     {
                         if (self.DateFontRez == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.ConsolaDateCyrillic);
+                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateCyrillic);
                         }
                     }
                 }
