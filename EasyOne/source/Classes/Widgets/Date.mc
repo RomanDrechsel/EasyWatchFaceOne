@@ -52,8 +52,13 @@ module Widgets
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
 
+            //in some languages, the day_of_week string is too long to be displayed ...
             var systemlang = System.getDeviceSettings().systemLanguage;
-            if (systemlang != System.LANGUAGE_GRE && systemlang != System.LANGUAGE_HUN && systemlang != System.LANGUAGE_LAV)
+            if (systemlang != System.LANGUAGE_LAV &&
+                (IsSmallDisplay || (systemlang != System.LANGUAGE_GRE 
+                    && systemlang != System.LANGUAGE_HUN 
+                    && systemlang != System.LANGUAGE_LAV
+                    && !(systemlang == System.LANGUAGE_LIT && Fonts.DateFontRez == 2))))
             {
                 //toUpper() because date-font only have uppercase letters to save memory
                 self._texts[0].Text = time.day_of_week.toUpper() + " ";
@@ -61,7 +66,7 @@ module Widgets
             else
             {
                 //string would be too long
-                self._texts[0].Text = "";
+                self._texts[0].Text = null;
             }
             
             self._texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";

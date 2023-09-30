@@ -83,6 +83,7 @@ module Helper
                         System.LANGUAGE_IND,
                         System.LANGUAGE_ITA,
                         System.LANGUAGE_LIT,
+                        System.LANGUAGE_LAV,
                         System.LANGUAGE_ZSM,
                         System.LANGUAGE_NOB,
                         System.LANGUAGE_POL,

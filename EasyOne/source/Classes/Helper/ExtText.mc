@@ -46,6 +46,10 @@ module Helper
             for (var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
+                if (text.Text == null)
+                {
+                    continue;
+                }
                 var yoffset = self._height - Graphics.getFontAscent(text.Font);
                 if (IsSmallDisplay)
                 {
@@ -66,6 +70,10 @@ module Helper
             self._height = 0;
             for(var i = 0; i < texts.size(); i++)
             {
+                if (texts[i].Text == null)
+                {
+                    continue;
+                }
                 var width = dc.getTextWidthInPixels(texts[i].Text.toString(), texts[i].Font);
                 var height = Graphics.getFontAscent(texts[i].Font);
                 self._width += width;
