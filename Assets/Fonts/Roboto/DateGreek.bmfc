@@ -3,9 +3,9 @@ fileVersion=1
 
 # font settings
 fontName=Roboto Medium
-fontFile=Roboto/Roboto-Medium.ttf
+fontFile=Roboto-Medium.ttf
 charSet=0
-fontSize=44
+fontSize=50
 aa=2
 scaleH=100
 useSmoothing=1
@@ -34,8 +34,8 @@ forceZero=0
 widthPaddingFactor=0.00
 
 # output file
-outWidth=350
-outHeight=340
+outWidth=256
+outHeight=93
 outBitDepth=8
 fontDescFormat=0
 fourChnlPacked=0
@@ -54,7 +54,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=32,46,48-57,65-90,193-194,196-197,199,201,205,214,216,218,220,268,282,286,344,346,350,352,377,381
-
+chars=32,46,48-57,902,904,910,913-917,919,921-925,927-929,931-934
 
 # imported icon images

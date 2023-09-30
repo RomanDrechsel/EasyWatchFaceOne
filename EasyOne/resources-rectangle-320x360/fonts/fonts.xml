@@ -21,6 +21,9 @@
     <font id="RobotoHour" filename="RobotoHour.fnt" antialias="true" />
     <font id="RobotoMinute" filename="RobotoMinute.fnt" antialias="true" />
     <font id="RobotoSecond" filename="RobotoSecond.fnt" antialias="true" />
+    <font id="RobotoDate" filename="RobotoDate.fnt" antialias="true" />
+    <font id="RobotoDateGreek" filename="RobotoDateGreek.fnt" antialias="true" />
+    <font id="RobotoDateCyrillic" filename="RobotoDateCyrillic.fnt" antialias="true" />
 
     <font id="TypesauceTime" filename="TypesauceTime.fnt" antialias="true" />
     <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />

@@ -41,35 +41,23 @@ module Widgets
                 self._texts[2].Font = Gfx.Fonts.Date;
             }
 
-            if (Gfx.Fonts.DateFontRez == 0)
-            {
-                self._textContainer.AnchorY = self.locY - 5;
-            }
-            else if (Gfx.Fonts.DateFontRez == 2 && !IsSmallDisplay)
+            if (Fonts.DateFontRez == 0 || Fonts.DateFontRez == 2 || Fonts.DateFontRez == 90)
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-
-            //in some languages, the day_of_week string is too long to be displayed ...
-            var systemlang = System.getDeviceSettings().systemLanguage;
-            if (systemlang != System.LANGUAGE_LAV &&
-                (IsSmallDisplay || (systemlang != System.LANGUAGE_GRE 
-                    && systemlang != System.LANGUAGE_HUN
-                    && !(systemlang == System.LANGUAGE_LIT && Fonts.DateFontRez == 2))))
-            {
-                //toUpper() because date-font only have uppercase letters to save memory
-                self._texts[0].Text = time.day_of_week.toUpper() + " ";
-            }
-            else
-            {
-                //string would be too long
-                self._texts[0].Text = null;
-            }
             
+            //toUpper() because date-font only have uppercase letters to save memorya
+            self._texts[0].Text = time.day_of_week.toUpper() + " ";
             self._texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
             self._texts[2].Text = time.year.toString();
+
+            //in some languages, the day_of_week string is too long to be displayed ...
+            if (ExtText.calcDimensions(self._texts, dc)[0] > dc.getWidth() * 0.9)
+            {
+                self._texts[0].Text = null;
+            }
 
             self._textContainer.draw(self._texts, dc);
         }

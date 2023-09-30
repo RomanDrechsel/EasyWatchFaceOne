@@ -93,8 +93,7 @@ module Helper
                         System.LANGUAGE_SLV,
                         System.LANGUAGE_SPA,
                         System.LANGUAGE_SWE,
-                        System.LANGUAGE_TUR,
-                        System.LANGUAGE_VIE
+                        System.LANGUAGE_TUR
                     ].indexOf(systemlang) >= 0)
                     {
                         if (self.DateFontRez == 0)
@@ -109,12 +108,24 @@ module Helper
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDate);
                         }
+                        else if (self.DateFontRez == 90)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDate);
+                        }
+                    }
+                    else if (systemlang == System.LANGUAGE_VIE && self.DateFontRez == 90)
+                    {
+                        self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDate);
                     }
                     else if (systemlang == System.LANGUAGE_GRE)
                     {
                         if (self.DateFontRez == 2)
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateGreek);
+                        }
+                        else if (self.DateFontRez == 90)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateGreek);
                         }
                     }
                     else if ([System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
@@ -123,11 +134,16 @@ module Helper
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateCyrillic);
                         }
+                        else if (self.DateFontRez == 90)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateCyrillic);
+                        }
                     }
                 }
                 
                 if (self.Date == null)
                 {
+                    self.DateFontRez = 99;
                     self.Date = Graphics.FONT_TINY;
                 }
             }
