@@ -56,8 +56,7 @@ module Widgets
             var systemlang = System.getDeviceSettings().systemLanguage;
             if (systemlang != System.LANGUAGE_LAV &&
                 (IsSmallDisplay || (systemlang != System.LANGUAGE_GRE 
-                    && systemlang != System.LANGUAGE_HUN 
-                    && systemlang != System.LANGUAGE_LAV
+                    && systemlang != System.LANGUAGE_HUN
                     && !(systemlang == System.LANGUAGE_LIT && Fonts.DateFontRez == 2))))
             {
                 //toUpper() because date-font only have uppercase letters to save memory

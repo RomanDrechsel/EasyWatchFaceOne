@@ -10,6 +10,7 @@ module Helper
     module Gfx
     {
         var lastlang = null;
+
         function GetFontCodePoints() as Void
         {
             if (lastlang == System.getDeviceSettings().systemLanguage)
@@ -32,7 +33,7 @@ module Helper
             }
 
             //Weekdays 
-            if (lang != "GRE")
+            if (lang != "GRE" && lang != "VIE")
             {
                 var day = 1;
                 while (day <= 7)
@@ -106,13 +107,15 @@ module Helper
             Application.Storage.setValue("codepoints", storage);
 
             //OutputLatin(storage);
-            OutputGreek(storage);
+            //OutputGreek(storage);
             //OutputCyrillic(storage);
+            //OutputLogogram(storage);
+            OutputChatset(storage, [lang]);
         }
 
         function OutputLatin(storage as Dictionary) as Void
         {
-            var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE","TUR" ];
+            var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "HEB", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE", "TUR", "VIE" ];
             OutputChatset(storage, latin);
         }
 
@@ -127,15 +130,23 @@ module Helper
             OutputChatset(storage, cyrilic);
         }
 
+        function OutputLogogram(storage as Dictionary) as Void
+        {
+            var logogram = [ "CHS", "CHT", "JPN", "KOR", "THA" ];
+            OutputChatset(storage, logogram);
+        }
+
         function OutputChatset(storage as Dictionary, languages as Array) as Void
         {
             var all = [];
+            var notfound = false;
             for (var i = 0; i < languages.size(); i++)
             {
                 if (!storage.hasKey(languages[i]))
                 {
                     System.println("Language " + languages[i] + " not found!");
-                    return;
+                    notfound = true;
+                    continue;
                 }
 
                 var codepoints = storage[languages[i]];
@@ -147,6 +158,11 @@ module Helper
                         all.add(c);
                     }
                 }
+            }
+
+            if (notfound) 
+            {
+                return;
             }
 
             all = MergeSort.Sort(all);
@@ -162,138 +178,80 @@ module Helper
             switch (code)
             {
                 case 8389920:
-                    return "ARA";
+                    return "ARA"; //Latin
                 case 8389921:
-                    return "BUL";
+                    return "BUL"; //Cyrillic
                 case 8389352:
-                    return "CES";
+                    return "CES"; //Lation
                 case 8389372:
-                    return "CHS";
+                    return "CHS"; //Logogram
                 case 8389371:
-                    return "CHT";
+                    return "CHT"; //Logogram
                 case 8389353:
-                    return "DAN";
+                    return "DAN"; //Latin
                 case 8389358:
-                    return "DEU";
+                    return "DEU"; //Latin
                 case 8389354:
-                    return "DUT";
+                    return "DUT"; //Latin
                 case 8389355:
-                    return "ENG";
+                    return "ENG"; //Latin
                 case 8390796:
-                    return "EST";
+                    return "EST"; //Latin
                 case 8389356:
-                    return "FIN";
+                    return "FIN"; //Latin
                 case 8389357:
-                    return "FRE";
+                    return "FRE"; //Latin
                 case 8389359:
-                    return "GRE";
+                    return "GRE"; //Greek
                 case 8389919:
-                    return "HEB";
+                    return "HEB"; //Latin
                 case 8389361:
-                    return "HRV";
+                    return "HRV"; //Latin
                 case 8389360:
-                    return "HUN";
+                    return "HUN"; //Latin
                 case 8389578:
-                    return "IND";
+                    return "IND"; //Latin
                 case 8389362:
-                    return "ITA";
+                    return "ITA"; //Latin
                 case 8389373:
-                    return "JPN";
+                    return "JPN"; //Logogram
                 case 8389696:
-                    return "KOR";
+                    return "KOR"; //Logogram
                 case 8390797:
-                    return "LAV";
+                    return "LAV"; //Latin
                 case 8390798:
-                    return "LIT";
+                    return "LIT"; //Latin
                 case 8389363:
-                    return "NOB";
+                    return "NOB"; //Latin
                 case 8389364:
-                    return "POL";
+                    return "POL"; //Latin
                 case 8389365:
-                    return "POR";
+                    return "POR"; //Latin
                 case 8390799:
-                    return "RON";
+                    return "RON"; //Latin
                 case 8389366:
-                    return "RUS";
+                    return "RUS"; //Cyrillic
                 case 8389367:
-                    return "SLO";
+                    return "SLO"; //Latin
                 case 8389368:
-                    return "SLV";
+                    return "SLV"; //Latin
                 case 8389369:
-                    return "SPA";
+                    return "SPA"; //Latin
                 case 8389370:
-                    return "SWE";
+                    return "SWE"; //Latin
                 case 8389548:
-                    return "THA";
+                    return "THA"; //Logogram
                 case 8389774:
-                    return "TUR";
+                    return "TUR"; //Latin
                 case 8390800:
-                    return "UKR";
+                    return "UKR"; //Cyrillic
                 case 8390206:
-                    return "VIE";
+                    return "VIE"; //Latin
                 case 8389579:
-                    return "ZSM";
+                    return "ZSM"; //Latin
             }
 
             return code.toString();
-        }
-
-        class MergeSort 
-        {
-            static function Sort(array as Array) as Array
-            {
-                if (array == null || !(array instanceof Array))
-                {
-                    return null;
-                }
-                else if (array.size() <= 1)
-                {
-                    return array;
-                }
-
-                var mid = (array.size() / 2).toNumber();
-                var subarray1 = self.Sort(array.slice(0, mid));
-                var subarray2 = self.Sort(array.slice(mid, null));
-                
-                return self.Merge(subarray1, subarray2);
-            }
-
-            private static function Merge(array1 as Array, array2 as Array) as Array
-            {
-                var result = [];
-
-                var val1, val2;
-
-                while (array1.size() > 0 && array2.size() > 0)
-                {
-                    val1 = array1[0];
-                    val2 = array2[0];
-                    if(val1 != null && (val2 == null || val1 > val2))
-                    {
-                        result.add(array2[0]);
-                        array2 = array2.slice(1, null);
-                    }
-                    else
-                    {
-                        result.add(array1[0]);
-                        array1 = array1.slice(1, null);
-                    }
-                }
-
-                while (array1.size() > 0)
-                {
-                    result.add(array1[0]);
-                    array1 = array1.slice(1, null);
-                }
-
-                while (array2.size() > 0)
-                {
-                    result.add(array2[0]);
-                    array2 = array2.slice(1, null);
-                }
-
-                return result;
-            }
         }
     }
 }

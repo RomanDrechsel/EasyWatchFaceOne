@@ -93,7 +93,8 @@ module Helper
                         System.LANGUAGE_SLV,
                         System.LANGUAGE_SPA,
                         System.LANGUAGE_SWE,
-                        System.LANGUAGE_TUR
+                        System.LANGUAGE_TUR,
+                        System.LANGUAGE_VIE
                     ].indexOf(systemlang) >= 0)
                     {
                         if (self.DateFontRez == 0)
