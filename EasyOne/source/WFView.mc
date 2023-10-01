@@ -9,6 +9,7 @@ class WFView extends WatchUi.WatchFace
 {
     var OnShow = [];
     var OnSleep = [];
+    var OnUpdate = [];
 
     var IsBackground = false;
     private var _reloadFontInTicks = -1;
@@ -27,7 +28,7 @@ class WFView extends WatchUi.WatchFace
 
     function onUpdate(dc as Dc) as Void 
     {
-        if (Helper.Gfx has :GetFontCodePoints)
+        if (!IsSmallDisplay && Helper.Gfx has :GetFontCodePoints)
         {
             Helper.Gfx.GetFontCodePoints();
         }

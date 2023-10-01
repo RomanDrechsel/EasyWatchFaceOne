@@ -33,4 +33,6 @@
     <font id="TroikaDateCyrillic" filename="TroikaDateCyrillic.fnt" antialias="true" />
 
     <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
+
+    <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
 </fonts>

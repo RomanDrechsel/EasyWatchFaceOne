@@ -41,9 +41,20 @@ module Widgets
                 self._texts[2].Font = Gfx.Fonts.Date;
             }
 
-            if (Fonts.DateFontRez == 0 || Fonts.DateFontRez == 2 || Fonts.DateFontRez == 90)
+            if (Fonts.DateFontRez == 0 || (!IsSmallDisplay && (Fonts.DateFontRez == 2 || Fonts.DateFontRez == 90)))
             {
                 self._textContainer.AnchorY = self.locY - 5;
+            }
+            else if (Fonts.DateFontRez == 80)
+            {
+                if (IsSmallDisplay)
+                {
+                    self._textContainer.AnchorY = self.locY - 10;
+                }
+                else
+                {
+                    self._textContainer.AnchorY = self.locY - 15;
+                }
             }
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);

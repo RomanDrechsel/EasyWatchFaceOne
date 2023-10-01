@@ -110,7 +110,8 @@ module Helper
             //OutputGreek(storage);
             //OutputCyrillic(storage);
             //OutputLogogram(storage);
-            OutputChatset(storage, [lang]);
+            OutputThai(storage);
+            //OutputChatset(storage, [lang]);
         }
 
         function OutputLatin(storage as Dictionary) as Void
@@ -134,6 +135,11 @@ module Helper
         {
             var logogram = [ "CHS", "CHT", "JPN", "KOR", "THA" ];
             OutputChatset(storage, logogram);
+        }
+
+        function OutputThai(storage as Dictionary) as Void
+        {
+            OutputChatset(storage, [ "THA" ]);
         }
 
         function OutputChatset(storage as Dictionary, languages as Array) as Void

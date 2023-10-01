@@ -64,6 +64,7 @@ module Helper
 
                 self.Date = null;
                 var systemlang = System.getDeviceSettings().systemLanguage;
+                var fallback = -1;
 
                 if (self.DateFontRez != 99)
                 {
@@ -112,6 +113,10 @@ module Helper
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDate);
                         }
+                        else 
+                        {
+                            fallback = Rez.Fonts.KamikazoomDate;
+                        }
                     }
                     else if (systemlang == System.LANGUAGE_VIE && self.DateFontRez == 90)
                     {
@@ -127,6 +132,10 @@ module Helper
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateGreek);
                         }
+                        else 
+                        {
+                            fallback = Rez.Fonts.TroikaDateGreek;
+                        }
                     }
                     else if ([System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
                     {
@@ -138,13 +147,44 @@ module Helper
                         {
                             self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateCyrillic);
                         }
+                        else 
+                        {
+                            fallback = Rez.Fonts.TroikaDateCyrillic;
+                        }
                     }
+                    else if (systemlang == System.LANGUAGE_THA)
+                    {
+                        if (self.DateFontRez == 80)
+                        {
+                            self.Date = WatchUi.loadResource(Rez.Fonts.KanitDateThai);
+                        }
+                        else 
+                        {
+                            fallback = -1;
+                        }
+                    }
+                }
+                else 
+                {
+                    fallback = -1;
                 }
                 
                 if (self.Date == null)
                 {
-                    self.DateFontRez = 99;
-                    self.Date = Graphics.FONT_TINY;
+                    if (WatchUi has :showToast)
+                    {
+                        WatchUi.showToast(text, null);
+                    }
+
+                    self.DateFontRez = fallback;
+                    if (fallback > 0)
+                    {
+                        self.Date = WatchUi.loadResource(fallback);
+                    }
+                    if (self.Date == null)
+                    {
+                        self.Date = Graphics.FONT_TINY;
+                    }
                 }
             }
 

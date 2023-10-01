@@ -162,6 +162,7 @@
                 <listEntry value="1">@Strings.SFGoD</listEntry>
                 <listEntry value="2">@Strings.SFTR</listEntry>
                 <listEntry value="90">Roboto</listEntry>
+                <listEntry value="80">@Strings.SFK</listEntry>
                 <listEntry value="99">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
