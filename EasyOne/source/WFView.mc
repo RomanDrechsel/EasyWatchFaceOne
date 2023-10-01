@@ -32,6 +32,11 @@ class WFView extends WatchUi.WatchFace
         {
             Helper.Gfx.GetFontCodePoints();
         }
+
+        for (var i = 0; i < self.OnUpdate.size(); i++)
+        {
+            self.OnUpdate[i].OnUpdate();
+        }
         
         if (self._reloadFontInTicks > 0)
         {

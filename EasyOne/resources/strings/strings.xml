@@ -53,7 +53,6 @@
     <string id="SLoWD">Physical exercise</string>
     <string id="SLoWH">Health monitor</string>
 
-    <string id="SgWT">Widget settings</string>
     <string id="SF">Fonts</string>
     <string id="SFTime">Time font</string>
     <string id="SFDate">Date font</string>
@@ -63,7 +62,9 @@
     <string id="SFK">Kanit (Thai only)</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Self made</string>
+    <string id="FError">Font not available!</string>
     
+    <string id="SgWT">Widget settings</string>
     <string id="SWZero">Display leading zero at time</string>
     <string id="SSgoal">Display percentage of steps goal</string>    
     <string id="SStressW">Stress Warning Level</string>

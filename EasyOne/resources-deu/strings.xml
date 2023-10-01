@@ -51,7 +51,6 @@
     <string id="SLoWD">Tägliche Bewegung</string>
     <string id="SLoWH">Vitalparameter</string>
 
-    <string id="SgWT">Widget Einstellungen</string>
     <string id="SF">Schriftarten</string>
     <string id="SFTime">Schriftart Uhrzeit</string>
     <string id="SFDate">Schriftart Datum</string>
@@ -59,9 +58,11 @@
     <string id="SFGoD">Grimoire Of Death (nur lateinische Zeichen)</string>
     <string id="SFTR">Troika (nur lateinische Zeichen, kein Vietnamesisch)</string>
     <string id="SFK">Kanit (nur Thai)</string>
-
     <string id="SFSystem">System</string>
     <string id="SFSM">Selbstgemacht</string>
+    <string id="FError">Font not available!</string>
+
+    <string id="SgWT">Widget Einstellungen</string>
     <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
     <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>    
     <string id="SStressW">Warnung bei Stress-Level</string>

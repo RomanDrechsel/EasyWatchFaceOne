@@ -173,7 +173,7 @@ module Helper
                 {
                     if (WatchUi has :showToast)
                     {
-                        WatchUi.showToast(text, null);
+                        WatchUi.showToast(Application.loadResource(Rez.Strings.FError), null);
                     }
 
                     self.DateFontRez = fallback;

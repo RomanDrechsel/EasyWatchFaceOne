@@ -5,21 +5,21 @@ import Toybox.Time.Gregorian;
 import Toybox.System;
 
 (:debug)
-module Helper
-{ 
-    module Gfx
+module Debug
+{
+    class GetCodepoints
     {
-        var lastlang = null;
+        private var lastlang = null;
 
         function GetFontCodePoints() as Void
         {
-            if (lastlang == System.getDeviceSettings().systemLanguage)
+            if (self.lastlang == System.getDeviceSettings().systemLanguage)
             {
                 return; 
             }
 
-            lastlang = System.getDeviceSettings().systemLanguage;
-            var lang = getLang(lastlang);
+            self.lastlang = System.getDeviceSettings().systemLanguage;
+            var lang = getLang(self.lastlang);
 
             var codepoints = [];
 
@@ -106,43 +106,43 @@ module Helper
 
             Application.Storage.setValue("codepoints", storage);
 
-            //OutputLatin(storage);
-            //OutputGreek(storage);
-            //OutputCyrillic(storage);
-            //OutputLogogram(storage);
-            OutputThai(storage);
-            //OutputChatset(storage, [lang]);
+            //self.OutputLatin(storage);
+            //self.OutputGreek(storage);
+            //self.OutputCyrillic(storage);
+            //self.OutputLogogram(storage);
+            //self.OutputThai(storage);
+            self.OutputChatset(storage, [lang]);
         }
 
-        function OutputLatin(storage as Dictionary) as Void
+        private function OutputLatin(storage as Dictionary) as Void
         {
             var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "HEB", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE", "TUR", "VIE" ];
-            OutputChatset(storage, latin);
+            self.OutputChatset(storage, latin);
         }
 
-        function OutputGreek(storage as Dictionary) as Void
+        private function OutputGreek(storage as Dictionary) as Void
         {
-            OutputChatset(storage, [ "GRE" ]);
+            self.OutputChatset(storage, [ "GRE" ]);
         }
 
-        function OutputCyrillic(storage as Dictionary) as Void
+        private function OutputCyrillic(storage as Dictionary) as Void
         {
             var cyrilic = [ "RUS", "BUL", "UKR" ];
-            OutputChatset(storage, cyrilic);
+            self.OutputChatset(storage, cyrilic);
         }
 
-        function OutputLogogram(storage as Dictionary) as Void
+        private function OutputLogogram(storage as Dictionary) as Void
         {
             var logogram = [ "CHS", "CHT", "JPN", "KOR", "THA" ];
-            OutputChatset(storage, logogram);
+            self.OutputChatset(storage, logogram);
         }
 
-        function OutputThai(storage as Dictionary) as Void
+        private function OutputThai(storage as Dictionary) as Void
         {
-            OutputChatset(storage, [ "THA" ]);
+            self.OutputChatset(storage, [ "THA" ]);
         }
 
-        function OutputChatset(storage as Dictionary, languages as Array) as Void
+        private function OutputChatset(storage as Dictionary, languages as Array) as Void
         {
             var all = [];
             var notfound = false;
@@ -179,7 +179,7 @@ module Helper
             }
         }
 
-        function getLang(code as Number) as String
+        private function getLang(code as Number) as String
         {
             switch (code)
             {

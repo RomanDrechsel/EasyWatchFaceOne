@@ -1,7 +1,7 @@
 import Toybox.Lang;
 
 (:debug)
-module Helper
+module Debug
 { 
     class MergeSort 
     {

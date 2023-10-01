@@ -20,6 +20,11 @@ class WFApp extends Application.AppBase
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
         Math.srand(Time.now().value());
+
+        if (!IsSmallDisplay && Debug has :GetCodepoints)
+        {
+            (new Debug.GetCodepoints()).GetFontCodePoints();
+        }
     }
 
     function getInitialView() as Array<Views or InputDelegates>? 
