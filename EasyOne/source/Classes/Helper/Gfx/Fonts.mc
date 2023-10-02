@@ -217,7 +217,7 @@ module Helper
                         {
                             return [Rez.Fonts.TroikaDate];
                         }
-                        else if (prop == 90)
+                        else if (prop == 50)
                         {
                             return [Rez.Fonts.RobotoDate];
                         }
@@ -228,7 +228,7 @@ module Helper
                             return [Rez.Fonts.KamikazoomDate, false];
                         }
                     }
-                    else if (systemlang == System.LANGUAGE_VIE && prop == 90)
+                    else if (systemlang == System.LANGUAGE_VIE && prop == 50)
                     {
                         return [Rez.Fonts.RobotoDate];
                     }
@@ -238,7 +238,7 @@ module Helper
                         {
                             return [Rez.Fonts.TroikaDateGreek];
                         }
-                        else if (prop == 90)
+                        else if (prop == 50)
                         {
                             return [Rez.Fonts.RobotoDateGreek];
                         }
@@ -255,7 +255,7 @@ module Helper
                         {
                             return [Rez.Fonts.TroikaDateCyrillic];
                         }
-                        else if (prop == 90)
+                        else if (prop == 50)
                         {
                             return [Rez.Fonts.RobotoDateCyrillic];
                         }
@@ -264,6 +264,13 @@ module Helper
                             Application.Properties.setValue("FDate", 2);
                             self.DateFontProp = 2;
                             return [Rez.Fonts.TroikaDateCyrillic, false];
+                        }
+                    }
+                    else if ([System.LANGUAGE_CHS, System.LANGUAGE_CHT, System.LANGUAGE_JPN, System.LANGUAGE_KOR].indexOf(systemlang) >= 0)
+                    {
+                        if (prop == 70)
+                        {
+                            return [Rez.Fonts.NotoDateLogogram];
                         }
                     }
                     else if (systemlang == System.LANGUAGE_THA)

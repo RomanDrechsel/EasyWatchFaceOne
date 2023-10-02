@@ -41,7 +41,7 @@ module Widgets
                 self._texts[2].Font = Fonts.Date;
             }
 
-            if (Fonts.DateFontProp == 0 || (!IsSmallDisplay && (Fonts.DateFontProp == 2 || Fonts.DateFontProp == 90)))
+            if (Fonts.DateFontProp == 0 || Fonts.DateFontProp == 70 || (!IsSmallDisplay && (Fonts.DateFontProp == 2 || Fonts.DateFontProp == 90)))
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }

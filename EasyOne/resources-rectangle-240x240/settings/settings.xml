@@ -161,7 +161,8 @@
                 <listEntry value="0">@Strings.SFKa</listEntry>
                 <listEntry value="1">@Strings.SFGoD</listEntry>
                 <listEntry value="2">@Strings.SFTR</listEntry>
-                <listEntry value="90">Roboto</listEntry>
+                <listEntry value="50">@Strings.SR</listEntry>
+                <listEntry value="70">@Strings.SN</listEntry>
                 <listEntry value="80">@Strings.SFK</listEntry>
                 <listEntry value="-1">@Strings.SFSystem</listEntry>
             </settingConfig>

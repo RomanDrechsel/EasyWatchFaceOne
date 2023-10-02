@@ -9,7 +9,7 @@ module Debug
 {
     class GetCodepoints
     {
-        private var lastlang = null;
+        private static var lastlang = null;
 
         function GetFontCodePoints() as Void
         {
@@ -133,7 +133,7 @@ module Debug
 
         private function OutputLogogram(storage as Dictionary) as Void
         {
-            var logogram = [ "CHS", "CHT", "JPN", "KOR", "THA" ];
+            var logogram = [ "CHS", "CHT", "JPN", "KOR" ];
             self.OutputChatset(storage, logogram);
         }
 

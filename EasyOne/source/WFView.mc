@@ -27,9 +27,9 @@ class WFView extends WatchUi.WatchFace
 
     function onUpdate(dc as Dc) as Void 
     {
-        /*if (!IsSmallDisplay && Helper.Gfx has :GetFontCodePoints)
+        /*if (!IsSmallDisplay && Debug has :GetCodepoints)
         {
-            Helper.Gfx.GetFontCodePoints();
+            (new Debug.GetCodepoints()).GetFontCodePoints();
         }*/
 
         if (self.OneTimePerTick != null)

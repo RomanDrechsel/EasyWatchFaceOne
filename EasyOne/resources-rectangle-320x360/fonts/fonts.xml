@@ -35,4 +35,6 @@
     <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
 
     <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
+    
+    <font id="NotoDateLogogram" filename="NotoDateLogogram.fnt" antialias="true" />
 </fonts>

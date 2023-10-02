@@ -31,4 +31,6 @@
     <font id="TroikaDateCyrillic" filename="TroikaDateCyrillic.fnt" antialias="true" />
 
     <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
+
+    <font id="NotoDateLogogram" filename="NotoDateLogogram.fnt" antialias="true" />
 </fonts>
