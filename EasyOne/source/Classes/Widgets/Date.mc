@@ -22,7 +22,7 @@ module Widgets
 
         function draw(dc as Dc)
         {
-            if (Gfx.Fonts.Date == null)
+            if (Fonts.Date == null)
             {
                 self._texts = null;
                 return;
@@ -30,22 +30,22 @@ module Widgets
             else if (self._texts == null)
             {
                 self._texts = [];
-                self._texts.add(new ExtTextPart("", Themes.Colors.DateWeekday, Gfx.Fonts.Date));
-                self._texts.add(new ExtTextPart("", Themes.Colors.DateDay, Gfx.Fonts.Date));
-                self._texts.add(new ExtTextPart("", Themes.Colors.DateYear, Gfx.Fonts.Date));
+                self._texts.add(new ExtTextPart("", Themes.Colors.DateWeekday, Fonts.Date));
+                self._texts.add(new ExtTextPart("", Themes.Colors.DateDay, Fonts.Date));
+                self._texts.add(new ExtTextPart("", Themes.Colors.DateYear, Fonts.Date));
             }
             else
             {
-                self._texts[0].Font = Gfx.Fonts.Date;
-                self._texts[1].Font = Gfx.Fonts.Date;
-                self._texts[2].Font = Gfx.Fonts.Date;
+                self._texts[0].Font = Fonts.Date;
+                self._texts[1].Font = Fonts.Date;
+                self._texts[2].Font = Fonts.Date;
             }
 
-            if (Fonts.DateFontRez == 0 || (!IsSmallDisplay && (Fonts.DateFontRez == 2 || Fonts.DateFontRez == 90)))
+            if (Fonts.DateFontProp == 0 || (!IsSmallDisplay && (Fonts.DateFontProp == 2 || Fonts.DateFontProp == 90)))
             {
                 self._textContainer.AnchorY = self.locY - 5;
             }
-            else if (Fonts.DateFontRez == 80)
+            else if (Fonts.DateFontProp == 80)
             {
                 if (IsSmallDisplay)
                 {
@@ -55,6 +55,10 @@ module Widgets
                 {
                     self._textContainer.AnchorY = self.locY - 15;
                 }
+            }
+            else if (Fonts.DateFontProp == 80 && System.getDeviceSettings().systemLanguage == System.LANGUAGE_THA)
+            {
+                self._textContainer.AnchorY = self.locY - 15;
             }
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);

@@ -10,22 +10,62 @@ module Helper
     {
         class Fonts
         {
-            static var Hour = null as FontResource;
-            static var Minute = null as FontResource;
-            static var Seconds = null as FontResource;
-            static var Date = null as FontResource;
-            static var Normal = null as FontResource;
-            static var Small = null as FontResource;
-            static var Tiny = null as FontResource;
-            static var Icons = null as FontResource;
+            static var Hour = null;
+            static var Minute = null;
+            static var Seconds = null;
+            static var Date = null;
+            static var Normal = null;
+            static var Small = null;
+            static var Tiny = null;
+            static var Icons = null;
 
-            static var TimeFontRez = -1 as Number;
-            static var DateFontRez = -1 as Number;
+            static var DateFontProp = -999;
+            static var TimeFontProp = -999;
 
-            static function Load() as Void
+            static function Load(delayed as Boolean) as Void
             {
-                self.LoadDateFont();
-                self.LoadTimeFont();
+                //date font
+                var prop = Application.Properties.getValue("FDate") as Number;
+                if (prop != self.DateFontProp)
+                {
+                    if (delayed)
+                    {
+                        self.Date = Graphics.FONT_TINY;
+                        if ($.getView().OneTimePerTick == null)
+                        {
+                            $.getView().OneTimePerTick = [1];
+                        }
+                        $.getView().OneTimePerTick.add(new Method(self, :loadDateFont));
+                    }
+                    else
+                    {
+                        self.loadDateFont(prop);
+                    }
+                }
+
+                //Time fonts
+                prop = Application.Properties.getValue("FTime") as Number;
+                if (prop != self.TimeFontProp)
+                {
+                    if (delayed)
+                    {
+                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
+                        self.Minute = self.Hour;
+                        self.Seconds = Graphics.FONT_XTINY;
+
+                        if ($.getView().OneTimePerTick == null)
+                        {
+                            $.getView().OneTimePerTick = [1];
+                        }
+                        $.getView().OneTimePerTick.add(new Method(self, :loadTimeFont));
+                    }
+                    else
+                    {
+                        self.loadTimeFont(prop);
+                    }
+                }
+
+                //texts
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
                 if (IsSmallDisplay)
                 {
@@ -48,25 +88,93 @@ module Helper
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
 
-            static function LoadDateFont() as Void
+            static function loadDateFont(prop as Number) as Void
             {
-                var datefont = Application.Properties.getValue("FDate") as Number;
-                if (datefont == null)
+                if (prop == null)
                 {
-                    datefont = 0;
+                    prop = Application.Properties.getValue("FDate") as Number;
                 }
 
-                if (self.DateFontRez == datefont)
+                var rez = self.getDateFontRez(prop);
+
+                if (rez.size() > 1 && WatchUi has :showToast)
                 {
-                    return;
+                    WatchUi.showToast(Rez.Strings.FError, null);
                 }
-                self.DateFontRez = datefont;
 
                 self.Date = null;
-                var systemlang = System.getDeviceSettings().systemLanguage;
-                var fallback = -1;
 
-                if (self.DateFontRez != 99)
+                if (rez[0] >= 0)
+                {
+                    self.Date = WatchUi.loadResource(rez[0]);
+                }
+
+                if (self.Date == null)
+                {
+                    if (System.getDeviceSettings().systemLanguage == System.LANGUAGE_THA)
+                    {
+                        self.Date = Graphics.FONT_SYSTEM_LARGE;
+                    }
+                    else
+                    {
+                        self.Date = Graphics.FONT_TINY;
+                    }                    
+                }
+            }
+
+            static function loadTimeFont(prop as Number) as Void
+            {
+                if (prop == null)
+                {
+                    prop = Application.Properties.getValue("FTime") as Number;
+                }
+
+                var rez = self.getTimeFontRez(prop);
+                if (rez[0] >= 0)
+                {
+                    self.Hour = WatchUi.loadResource(rez[0]);
+                }
+                else
+                {
+                    if (IsSmallDisplay)
+                    {
+                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
+                    }
+                    else
+                    {
+                        self.Hour = Graphics.FONT_NUMBER_MEDIUM;
+                    }
+                }
+                if (rez[1] >= 0)
+                {
+                    if (rez[0] == rez[1])
+                    {
+                        self.Minute = self.Hour;
+                    }
+                    else 
+                    {
+                        self.Minute = WatchUi.loadResource(rez[1]);
+                    }
+                }
+                else 
+                {
+                    self.Minute = self.Hour;
+                }
+                if (rez[2] >= 0)
+                {
+                    self.Seconds = WatchUi.loadResource(rez[2]);
+                }
+                else
+                {
+                    self.Seconds = Graphics.FONT_XTINY;
+                }
+            }
+
+            private static function getDateFontRez(prop as Number) as Array
+            {
+                var systemlang = System.getDeviceSettings().systemLanguage;
+                self.DateFontProp = prop;
+                if (prop >= 0)
                 {
                     if ([
                         System.LANGUAGE_ARA,
@@ -97,186 +205,141 @@ module Helper
                         System.LANGUAGE_TUR
                     ].indexOf(systemlang) >= 0)
                     {
-                        if (self.DateFontRez == 0)
+                        if (prop == 0)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.KamikazoomDate);
+                            return [Rez.Fonts.KamikazoomDate];
                         }
-                        else if (self.DateFontRez == 1)
+                        else if (prop == 1)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.GoDDate);
+                            return [Rez.Fonts.GoDDate];
                         }
-                        else if (self.DateFontRez == 2)
+                        else if (prop == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDate);
+                            return [Rez.Fonts.TroikaDate];
                         }
-                        else if (self.DateFontRez == 90)
+                        else if (prop == 90)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDate);
+                            return [Rez.Fonts.RobotoDate];
                         }
-                        else 
+                        else if (prop > 0)
                         {
-                            fallback = Rez.Fonts.KamikazoomDate;
+                            Application.Properties.setValue("FDate", 0);
+                            self.DateFontProp = 0;
+                            return [Rez.Fonts.KamikazoomDate, false];
                         }
                     }
-                    else if (systemlang == System.LANGUAGE_VIE && self.DateFontRez == 90)
+                    else if (systemlang == System.LANGUAGE_VIE && prop == 90)
                     {
-                        self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDate);
+                        return [Rez.Fonts.RobotoDate];
                     }
                     else if (systemlang == System.LANGUAGE_GRE)
                     {
-                        if (self.DateFontRez == 2)
+                        if (prop == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateGreek);
+                            return [Rez.Fonts.TroikaDateGreek];
                         }
-                        else if (self.DateFontRez == 90)
+                        else if (prop == 90)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateGreek);
+                            return [Rez.Fonts.RobotoDateGreek];
                         }
-                        else 
+                        else if (prop > 0)
                         {
-                            fallback = Rez.Fonts.TroikaDateGreek;
+                            Application.Properties.setValue("FDate", 2);
+                            self.DateFontProp = 2;
+                            return [Rez.Fonts.TroikaDateGreek, false];
                         }
                     }
                     else if ([System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
                     {
-                        if (self.DateFontRez == 2)
+                        if (prop == 2)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.TroikaDateCyrillic);
+                            return [Rez.Fonts.TroikaDateCyrillic];
                         }
-                        else if (self.DateFontRez == 90)
+                        else if (prop == 90)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.RobotoDateCyrillic);
+                            return [Rez.Fonts.RobotoDateCyrillic];
                         }
-                        else 
+                        else if (prop > 0)
                         {
-                            fallback = Rez.Fonts.TroikaDateCyrillic;
+                            Application.Properties.setValue("FDate", 2);
+                            self.DateFontProp = 2;
+                            return [Rez.Fonts.TroikaDateCyrillic, false];
                         }
                     }
                     else if (systemlang == System.LANGUAGE_THA)
                     {
-                        if (self.DateFontRez == 80)
+                        if (prop == 80)
                         {
-                            self.Date = WatchUi.loadResource(Rez.Fonts.KanitDateThai);
+                            return [Rez.Fonts.KanitDateThai];
                         }
-                        else 
+                        else if (prop > 0)
                         {
-                            fallback = -1;
+                            self.DateFontProp = 80;
+                            Application.Properties.setValue("FDate", 80);
                         }
                     }
                 }
-                else 
-                {
-                    fallback = -1;
-                }
-                
-                if (self.Date == null)
-                {
-                    if (WatchUi has :showToast)
-                    {
-                        WatchUi.showToast(Application.loadResource(Rez.Strings.FError), null);
-                    }
 
-                    self.DateFontRez = fallback;
-                    if (fallback > 0)
-                    {
-                        self.Date = WatchUi.loadResource(fallback);
-                    }
-                    if (self.Date == null)
-                    {
-                        self.Date = Graphics.FONT_TINY;
-                    }
-                }
+                self.DateFontProp = -1;
+                return [-1];
             }
 
-            static function LoadTimeFont() as Void
+            private static function getTimeFontRez(prop as Number) as Array
             {
-                var timefont = Application.Properties.getValue("FTime") as Number;
-                if (timefont == null)
+                self.TimeFontProp = prop;
+                if (prop == 0)
                 {
-                    timefont = 0;
+                    return [Rez.Fonts.Hour, Rez.Fonts.Minute, Rez.Fonts.Seconds];
                 }
-
-                if (self.TimeFontRez == timefont)
+                else if (prop == 1)
                 {
-                    return;
-                }
-                self.TimeFontRez = timefont;
-                
-                if (self.TimeFontRez == 0)
-                {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.Hour);
-                    self.Minute = WatchUi.loadResource(Rez.Fonts.Minute);
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.Seconds);
-                }
-                else if (self.TimeFontRez == 1)
-                {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.ConsolaHour);
+                    var ret = [Rez.Fonts.ConsolaHour];
                     if (Rez.Fonts has :ConsolaMinute)
                     {
-                        self.Minute = WatchUi.loadResource(Rez.Fonts.ConsolaMinute);
+                        ret.add(Rez.Fonts.ConsolaMinute);
                     }
                     else
                     {
-                        self.Minute = self.Hour;
+                        ret.add(Rez.Fonts.ConsolaHour);
                     }
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.ConsolaSecond);
+                    ret.add(Rez.Fonts.ConsolaSecond);
+                    return ret;
                 }
-                else if (self.TimeFontRez == 2)
+                else if (prop == 2)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.ImpossibleTime);
-                    self.Minute = self.Hour;
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.ImpossibleSecond);
+                    return [Rez.Fonts.ImpossibleTime, Rez.Fonts.ImpossibleTime, Rez.Fonts.ImpossibleSecond];
                 }
-                else if (self.TimeFontRez == 3)
+                else if (prop == 3)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.KamikazoomTime);
-                    self.Minute = self.Hour;
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.KamikazoomSecond);
+                    return [Rez.Fonts.KamikazoomTime, Rez.Fonts.KamikazoomTime, Rez.Fonts.KamikazoomSecond];
                 }
-                else if (self.TimeFontRez == 4)
+                else if (prop == 4)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.RobotoHour);
+                    var ret = [Rez.Fonts.RobotoHour];
                     if (Rez.Fonts has :RobotoMinute)
                     {
-                        self.Minute = WatchUi.loadResource(Rez.Fonts.RobotoMinute);
+                        ret.add(Rez.Fonts.RobotoMinute);
                     }
                     else
                     {
-                        self.Minute = self.Hour;
+                        ret.add(Rez.Fonts.RobotoHour);
                     }
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.RobotoSecond);
+                    ret.add(Rez.Fonts.RobotoSecond);
+                    return ret;
                 }
-                else if (self.TimeFontRez == 5)
+                else if (prop == 5)
                 {
-                    self.Hour = WatchUi.loadResource(Rez.Fonts.TypesauceTime);
-                    self.Minute = self.Hour;
-                    self.Seconds = WatchUi.loadResource(Rez.Fonts.TypesauceSecond);
+                    return [Rez.Fonts.TypesauceTime, Rez.Fonts.TypesauceTime, Rez.Fonts.TypesauceSecond];
                 }
                 else
                 {
-                    if (IsSmallDisplay)
+                    if (prop > 0)
                     {
-                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
+                        Application.Properties.getValue("FTime", -1);
                     }
-                    else
-                    {
-                        self.Hour = Graphics.FONT_NUMBER_MEDIUM;
-                    }
-                    self.Minute = self.Hour;
-                    self.Seconds = Graphics.FONT_SYSTEM_XTINY;
-                    self.Seconds = Graphics.FONT_XTINY;
+                    self.TimeFontProp = -1;
+                    return [-1, -1, -1];
                 }
-            }
-
-            static function ResetTimeFonts()
-            {
-                Helper.Gfx.Fonts.Hour = Graphics.FONT_NUMBER_THAI_HOT;
-                Helper.Gfx.Fonts.Minute = Graphics.FONT_NUMBER_THAI_HOT;
-                Helper.Gfx.Fonts.Seconds = Graphics.FONT_TINY;
-                Helper.Gfx.Fonts.Date = Graphics.FONT_MEDIUM;
-
-                self.TimeFontRez = -1;
-                self.DateFontRez = -1;
             }
         }
     }

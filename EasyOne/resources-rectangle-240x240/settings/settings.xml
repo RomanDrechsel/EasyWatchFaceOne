@@ -153,7 +153,7 @@
                 <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="4">Roboto</listEntry>
                 <listEntry value="5">Typesauce</listEntry>
-                <listEntry value="99">@Strings.SFSystem</listEntry>
+                <listEntry value="-1">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
@@ -163,7 +163,7 @@
                 <listEntry value="2">@Strings.SFTR</listEntry>
                 <listEntry value="90">Roboto</listEntry>
                 <listEntry value="80">@Strings.SFK</listEntry>
-                <listEntry value="99">@Strings.SFSystem</listEntry>
+                <listEntry value="-1">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
     </group>
