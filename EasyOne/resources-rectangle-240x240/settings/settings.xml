@@ -1,7 +1,7 @@
 <settings>
 
     <setting propertyKey="@Properties.Th" title="@Strings.SettingsTh">
-        <settingConfig type="list">
+        <settingConfig type="list" required="true">
             <listEntry value="0">@Strings.ThDarkBlue</listEntry>
             <listEntry value="1">@Strings.ThFire</listEntry>
             <listEntry value="2">@Strings.ThSunset</listEntry>
@@ -12,7 +12,7 @@
 
     <group id="groupBG" title="@Strings.STB">
         <setting propertyKey="@Properties.BG" title="@Strings.STBResource">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.STBTh</listEntry>
                 <listEntry value="1">@Strings.STBSystem</listEntry>
                 <listEntry value="2">@Strings.STBFixedColorSelect</listEntry>
@@ -20,14 +20,14 @@
         </setting>
 
         <setting propertyKey="@Properties.BGCT" title="@Strings.STBFixedColor">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.STBPredefinedSelect</listEntry>
                 <listEntry value="1">@Strings.STBColorCustom</listEntry>
             </settingConfig>
         </setting>
 
         <setting propertyKey="@Properties.BGCPre" title="@Strings.STBPredefined">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.STBColorBlack</listEntry>
                 <listEntry value="1">DarkSlateGrey</listEntry>
                 <listEntry value="2">@Strings.STBColorDarkGrey</listEntry>
@@ -46,7 +46,7 @@
 
     <group id="groupColors" title="@Strings.SC">
         <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
             </settingConfig>
@@ -85,7 +85,7 @@
         </setting>
 
         <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
             </settingConfig>
@@ -94,7 +94,7 @@
 
     <group id="groupLayout" title="@Strings.SLo">
         <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -103,7 +103,7 @@
         </setting>
 
         <setting propertyKey="@Properties.WTC" title="@Strings.SLoTC">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -112,7 +112,7 @@
         </setting>
 
         <setting propertyKey="@Properties.WTR" title="@Strings.SLoTR">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -121,7 +121,7 @@
         </setting>
 
         <setting propertyKey="@Properties.WBL" title="@Strings.SLoBL">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWD</listEntry>
                 <listEntry value="2">@Strings.SLoWH</listEntry>
@@ -129,7 +129,7 @@
         </setting>
 
         <setting propertyKey="@Properties.WBR" title="@Strings.SLoBR">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWD</listEntry>
                 <listEntry value="2">@Strings.SLoWH</listEntry>
@@ -137,7 +137,7 @@
         </setting>
 
         <setting propertyKey="@Properties.Deco" title="@Strings.SDeco">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
@@ -146,7 +146,7 @@
 
     <group id="groupFonts" title="@Strings.SF">
         <setting propertyKey="@Properties.FTime" title="@Strings.SFTime">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SFSM</listEntry>
                 <listEntry value="1">Consola Mono</listEntry>
                 <listEntry value="2">Impossible</listEntry>
@@ -157,7 +157,7 @@
             </settingConfig>
         </setting>
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SFKa</listEntry>
                 <listEntry value="1">@Strings.SFGoD</listEntry>
                 <listEntry value="2">@Strings.SFTR</listEntry>
@@ -170,15 +170,22 @@
     </group>
 
     <group id="groupWidgets" title="@Strings.SgWT">
+        <setting propertyKey="@Properties.Bat" title="@Strings.SBat">
+            <settingConfig type="list" required="true">
+                <listEntry value="0">@Strings.SBat0</listEntry>
+                <listEntry value="1">@Strings.SBat1</listEntry>
+            </settingConfig>
+        </setting>
+
         <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
         <setting propertyKey="@Properties.StepPer" title="@Strings.SSgoal">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
@@ -189,7 +196,7 @@
         </setting>
 
         <setting propertyKey="@Properties.StressD" title="@Strings.SStressD">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>

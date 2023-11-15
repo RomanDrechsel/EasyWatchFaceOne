@@ -67,13 +67,13 @@ module Helper
 
                 //texts
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
-                if (IsSmallDisplay)
+                if (Rez.Fonts has :Normal)
                 {
-                    self.Normal = Graphics.FONT_TINY;
+                    self.Normal = WatchUi.loadResource(Rez.Fonts.Normal);
                 }
                 else
                 {
-                    self.Normal = WatchUi.loadResource(Rez.Fonts.Normal);
+                    self.Normal = Graphics.FONT_TINY;
                 }
 
                 if (Rez.Fonts has :Tiny)
@@ -97,9 +97,10 @@ module Helper
 
                 var rez = self.getDateFontRez(prop);
 
-                if (rez.size() > 1 && WatchUi has :showToast)
+                if (rez.size() > 1 && WatchUi has :showToast && Rez.Strings has :FError)
                 {
-                    WatchUi.showToast(Rez.Strings.FError, null);
+                    var txt = Application.loadResource(Rez.Strings.FError) as String;
+                    WatchUi.showToast(txt, {:icon => Rez.Drawables.Attention});
                 }
 
                 self.Date = null;
@@ -113,7 +114,7 @@ module Helper
                 {
                     if (System.getDeviceSettings().systemLanguage == System.LANGUAGE_THA)
                     {
-                        self.Date = Graphics.FONT_SYSTEM_LARGE;
+                        self.Date = Graphics.FONT_LARGE;
                     }
                     else
                     {
@@ -173,7 +174,35 @@ module Helper
             private static function getDateFontRez(prop as Number) as Array
             {
                 var systemlang = System.getDeviceSettings().systemLanguage;
+
+                if (prop < -1)
+                {
+                    if ([System.LANGUAGE_GRE, System.LANGUAGE_BUL, System.LANGUAGE_RUS, System.LANGUAGE_UKR].indexOf(systemlang) >= 0)
+                    {
+                        prop = 2;
+                    }
+                    else if (systemlang == System.LANGUAGE_VIE)
+                    {
+                        prop = 50;
+                    }
+                    else if ([System.LANGUAGE_CHS, System.LANGUAGE_CHT, System.LANGUAGE_JPN, System.LANGUAGE_KOR].indexOf(systemlang) >= 0)
+                    {
+                        prop = 70;
+                    }
+                    else if (systemlang == System.LANGUAGE_THA)
+                    {
+                        prop = 80;
+                    }                    
+                    else 
+                    {
+                        prop = 0;
+                    }
+
+                    Application.Properties.setValue("FDate", prop);
+                }
+
                 self.DateFontProp = prop;
+
                 if (prop >= 0)
                 {
                     if ([

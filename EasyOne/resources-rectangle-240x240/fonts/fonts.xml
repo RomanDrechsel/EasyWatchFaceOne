@@ -2,6 +2,7 @@
     <font id="Hour" filename="Hour.fnt" antialias="true" />
     <font id="Minute" filename="Minute.fnt" antialias="true" />
     <font id="Seconds" filename="Seconds.fnt" antialias="true" />
+    <font id="Normal" filename="Normal.fnt" antialias="true" />
     <font id="Small" filename="Small.fnt" antialias="true" />
     <font id="Icons" filename="Icons.fnt" antialias="true" />
 
@@ -32,5 +33,5 @@
 
     <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
 
-    <font id="NotoDateLogogram" filename="NotoDateLogogram.fnt" antialias="true" />
+    <font id="NotoDateLogogram" filename="NotoSansDateLogogram.fnt" antialias="true" />
 </fonts>

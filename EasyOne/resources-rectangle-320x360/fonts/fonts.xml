@@ -36,5 +36,5 @@
 
     <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
     
-    <font id="NotoDateLogogram" filename="NotoDateLogogram.fnt" antialias="true" />
+    <font id="NotoDateLogogram" filename="NotoSansDateLogogram.fnt" antialias="true" />
 </fonts>

@@ -41,29 +41,48 @@ module Widgets
                 self._texts[2].Font = Fonts.Date;
             }
 
-            if (Fonts.DateFontProp == 0 || Fonts.DateFontProp == 70 || (!IsSmallDisplay && (Fonts.DateFontProp == 2 || Fonts.DateFontProp == 90)))
+            if (IsSmallDisplay)
             {
-                self._textContainer.AnchorY = self.locY - 5;
+                if (Fonts.DateFontProp == 0 || Fonts.DateFontProp == 2 || Fonts.DateFontProp == 90)
+                {
+                    self._textContainer.AnchorY = self.locY - 5;
+                }
+                else if (Fonts.DateFontProp == 70)
+                {
+                    self._textContainer.AnchorY = self.locY - 8;
+                }
+                else if (Fonts.DateFontProp == 80)
+                {
+                    self._textContainer.AnchorY = self.locY - 12;
+                }
+                else if (Fonts.DateFontProp == -1)
+                {
+                    self._textContainer.AnchorY = self.locY + 2;
+                }
             }
-            else if (Fonts.DateFontProp == 80)
+            else
             {
-                if (IsSmallDisplay)
+                if (Fonts.DateFontProp == 0 || Fonts.DateFontProp == 50 || Fonts.DateFontProp == 90)
+                {
+                    self._textContainer.AnchorY = self.locY - 5;
+                }
+                else if (Fonts.DateFontProp == 70)
                 {
                     self._textContainer.AnchorY = self.locY - 10;
                 }
-                else
+                else if (Fonts.DateFontProp == 80)
                 {
                     self._textContainer.AnchorY = self.locY - 15;
                 }
-            }
-            else if (Fonts.DateFontProp == 80 && System.getDeviceSettings().systemLanguage == System.LANGUAGE_THA)
-            {
-                self._textContainer.AnchorY = self.locY - 15;
+                else if (Fonts.DateFontProp == -1 && [System.LANGUAGE_CHS, System.LANGUAGE_CHT].indexOf(System.getDeviceSettings().systemLanguage) >= 0)
+                {
+                    self._textContainer.AnchorY = self.locY - 3;
+                }
             }
 
             var time = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
             
-            //toUpper() because date-font only have uppercase letters to save memorya
+            //toUpper() because date-font only have uppercase letters to save memory
             self._texts[0].Text = time.day_of_week.toUpper() + " ";
             self._texts[1].Text = time.day.toString() + "." + time.month.toUpper() + " ";
             self._texts[2].Text = time.year.toString();

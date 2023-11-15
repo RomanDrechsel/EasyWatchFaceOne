@@ -56,15 +56,18 @@
     <string id="SFDate">Schriftart Datum</string>
     <string id="SFKa">Komikazoom (nur lateinische Zeichen)</string>
     <string id="SFGoD">Grimoire Of Death (nur lateinische Zeichen)</string>
-    <string id="SFTR">Troika (nur lateinische Zeichen, kein Vietnamesisch)</string>
-    <string id="SR">Roboto (keine Logograme)</string>
+    <string id="SFTR">Troika (keine Logograme, kein Vietnamesisch/Thai)</string>
+    <string id="SR">Roboto (keine Logograme, kein Thai)</string>
     <string id="SFK">Kanit (nur Thai)</string>
     <string id="SN">Noto Sans (Chinesisch, Japanisch, Koreanisch)</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Selbstgemacht</string>
-    <string id="FError">Font not available!</string>
 
     <string id="SgWT">Widget Einstellungen</string>
+    <string id="SBat">Batteriestand anzeigen</string>
+    <string id="SBat0">nur Balken</string>
+    <string id="SBat1">Prozent</string>
+    <string id="SBat2">verbleibende Tage</string>
     <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
     <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>    
     <string id="SStressW">Warnung bei Stress-Level</string>

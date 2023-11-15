@@ -87,6 +87,26 @@ module Widgets
             var sec_posY = self.locY - (bigheight / 2) + offset;
             var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds) - offset;
 
+            if (HGfx.Fonts.TimeFontProp == 1 || HGfx.Fonts.TimeFontProp == 3)
+            {
+                sec_posY += 2;
+            }
+            else if (HGfx.Fonts.TimeFontProp == 2)
+            {
+                sec_posY += 6;
+                amp_posY += 2;
+                hours_posY += 4;
+            }
+            else if (HGfx.Fonts.TimeFontProp == 4)
+            {
+                sec_posY += 2;
+                amp_posY += 1;
+            }
+            else if (HGfx.Fonts.TimeFontProp == 5)
+            {
+                sec_posY += 1;
+            }
+
             /*if (self has :DebugDots)
             {
                 self.DebugDots(dc, center, self.locY, Graphics.COLOR_WHITE, 8);
