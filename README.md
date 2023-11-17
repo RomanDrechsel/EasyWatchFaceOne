@@ -1,6 +1,6 @@
 <a href="https://apps.garmin.com/en-US/apps/ecf7eede-95f5-4f02-8ec5-0caa6cd3e60c" target="_blank"><img src="/Assets/Images/Screenshots/Title.jpg" width="300" /></a>
 <br /><br />
-Since I couldn't find a suitable watch face, I created one by myself.<br />
+Since I couldn't find a suitable watch face for my Garmin watch, I created one by myself.<br />
 Download at <a href="https://apps.garmin.com/en-US/apps/ecf7eede-95f5-4f02-8ec5-0caa6cd3e60c" target="_blank">Garmin Connect IQ Store</a>
 <br /><br />
 
@@ -13,10 +13,17 @@ They have been slightly modified and one has been created by myself.<br />
 <br />
 <br />
 **Fonts are from:**
-> <a href="https://www.dafont.com/komikazoom.font" target="_blank">Komikazoom</a><br />
-> <a href="https://www.dafont.com/roboto.font" target="_blank">Roboto</a>
+> <a href="https://www.fontspace.com/komikazoom-font-f403" target="_blank">Komikazoom</a> by Apostrophic Lab<br />
+> <a href="https://www.fontspace.com/roboto-font-f13281" target="_blank">Roboto</a> by Google<br />
+> <a href="https://www.fontspace.com/consola-mono-font-f17268" target="_blank">Consola Mono</a> by Wojciech Kalinowski<br />
+> <a href="https://www.fontspace.com/impossible-font-f384" target="_blank">Impossible</a> by Apostrophic Lab<br />
+> <a href="https://www.fontspace.com/grimoire-of-death-font-f97399" target="_blank">Grimoire Of Death</a> by GGBotNet<br />
+> <a href="https://www.fontspace.com/typesauce-font-f83277" target="_blank">Typesauce</a> by MaxiGamer<br />
+> <a href="https://www.fontsquirrel.com/fonts/troika" target="_blank">Troika</a> by Joel Carrouche<br />
+> <a href="https://fonts.google.com/specimen/Kanit" target="_blank">Kanit</a> by Cadson Demak<br />
+> <a href="https://fonts.google.com/noto/specimen/Noto+Sans+KR" target="_blank">Noto Sans Korean</a><br />
 
-As well as self-created.<br />
+As well as one self-created font for time display.<br />
 <br /><br />
 
 **Icons:**<br />
