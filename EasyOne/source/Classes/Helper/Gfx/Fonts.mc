@@ -236,7 +236,7 @@ module Helper
                     {
                         if (prop == 0)
                         {
-                            return [Rez.Fonts.KamikazoomDate];
+                            return [Rez.Fonts.KomikazoomDate];
                         }
                         else if (prop == 1)
                         {
@@ -254,7 +254,7 @@ module Helper
                         {
                             Application.Properties.setValue("FDate", 0);
                             self.DateFontProp = 0;
-                            return [Rez.Fonts.KamikazoomDate, false];
+                            return [Rez.Fonts.KomikazoomDate, false];
                         }
                     }
                     else if (systemlang == System.LANGUAGE_VIE && prop == 50)

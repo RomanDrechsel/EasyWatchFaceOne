@@ -14,7 +14,7 @@
 
     <font id="KamikazoomTime" filename="KamikazoomTime.fnt" antialias="true" />
     <font id="KamikazoomSecond" filename="KamikazoomSecond.fnt" antialias="true" />
-    <font id="KamikazoomDate" filename="KamikazoomDate.fnt" antialias="true" />
+    <font id="KomikazoomDate" filename="KomikazoomDate.fnt" antialias="true" />
 
     <font id="RobotoHour" filename="RobotoHour.fnt" antialias="true" />
     <font id="RobotoSecond" filename="RobotoSecond.fnt" antialias="true" />

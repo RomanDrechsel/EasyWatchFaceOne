@@ -20,6 +20,7 @@
     <property type="string" id="CMAP">#FFFFFF</property>
     <property type="number" id="IconC">0</property>
 
+    <property type="number" id="DF">1</property>
     <property type="number" id="ClZero">1</property>
     <property type="number" id="StressW">85</property>
     <property type="number" id="StressD">1</property>

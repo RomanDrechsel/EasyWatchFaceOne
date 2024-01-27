@@ -64,6 +64,9 @@
     <string id="SFSM">Selbstgemacht</string>
 
     <string id="SgWT">Widget Einstellungen</string>
+    <string id="DF">Datumsformat</string>
+    <string id="DF1">DO 28. Apr 1983</string>
+    <string id="DF2">DO Apr 28 1983</string>
     <string id="SBat">Batteriestand anzeigen</string>
     <string id="SBat0">nur Balken</string>
     <string id="SBat1">Prozent</string>
