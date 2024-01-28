@@ -1,5 +1,5 @@
 <strings>
     <string id="SStressA">Alter des Stress-Levels anzeigen</string>
     <string id="SBat3">Beides</string>
-    <string id="FError">Font in der Sprache nicht verfügbar!</string>
+    <string id="FError">Font in dieser Sprache nicht verfügbar!</string>
 </strings>

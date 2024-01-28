@@ -12,7 +12,10 @@ avail_fonts = {
     "Consola": "ConsolaMono/ConsolaMono-Book.ttf",
     "ConsolaBold": "ConsolaMono/ConsolaMono-Bold.ttf",
     "Impossible": "Impossible/Impossible.ttf",
-    "Typesauce": "Typesauce/Typesauce-2OX9w.ttf"
+    "Typesauce": "Typesauce/Typesauce-2OX9w.ttf",
+    "Normal": "Roboto/Roboto-Medium.ttf",
+    "Small": "Roboto/Roboto-Medium.ttf",
+    "Tiny": "Roboto/Roboto-Medium.ttf",
 }
 
 avail_codepoints = {
@@ -21,7 +24,7 @@ avail_codepoints = {
         "cyrillic": "32,46-57,1030,1040-1046,1048-1060,1063,1066,1070-1071",
         "greek": "32,46-57,902,904,910,913-917,919,921-925,927-929,931-934",
         "logograms": "32,46-57,19968,19977,20108,20116,20845,21608,22235,22303,26085,26376,26408,27700,28779,36913,37329,44552,47785,49688,50900,51068,53664,54868",
-        "thai": "32,46-57,3585,3588,3592,3605,3608,3614,3617-3618,3620,3624,3626,3629,3634,3648"
+        "thai": "32,46-57,3585,3588,3592,3605,3608,3614,3617-3618,3620,3624,3626,3629,3634,3648",
     },
     "hours": {
         "hours": "48-57"
@@ -31,6 +34,11 @@ avail_codepoints = {
     },
     "seconds": {
         "seconds": "48-57,65,77,80"
+    },
+    "text": {
+        "normal": "32,45,48-57",
+        "small": "32,37,40-41,43-46,48-57,84,98,100,102,105,107,109,112,114,116,176",
+        "tiny": "32,37,40-41,48-57,84,100,109"
     }
 }
 
@@ -42,7 +50,10 @@ avail_charsets = {
     "tha": "thai",
     "hrs": "hours",
     "min": "minutes",
-    "sec": "seconds"
+    "sec": "seconds",
+    "nor": "normal",
+    "sma": "small",
+    "tin": "tiny"
 }
 
 avail_configs = {
@@ -217,6 +228,34 @@ avail_configs = {
             "Small": {
                 "Fontsize": 22,
                 "MaxHeight": 128,
+            }
+        }
+    },
+    "text": {
+        "Normal": {
+            "Normal": {
+                "Fontsize": 40,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 28,
+                "MaxHeight": 128,
+            }
+        },
+        "Small": {
+            "Normal": {
+                "Fontsize": 26,
+                "MaxHeight": 256,
+            },
+            "Small": {                
+                "Fontsize": 16,
+                "MaxHeight": 128,
+            }
+        },
+        "Tiny": {
+            "Normal": {
+                "Fontsize": 20,
+                "MaxHeight": 256,
             }
         }
     }

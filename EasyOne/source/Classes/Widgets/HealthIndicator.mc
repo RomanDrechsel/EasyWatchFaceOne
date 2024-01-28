@@ -97,12 +97,11 @@ module Widgets
 
             if (IsSmallDisplay)
             {
-                textPosY += 10;
-                self._iconPosY += 18;
+                textPosY += 8;
+                self._iconPosY += 15;
             }
 
             self.TextContainer = new Helper.ExtText(centerX, textPosY, Graphics.TEXT_JUSTIFY_CENTER);
-
             $.getView().OnShow.add(self);
         }
 

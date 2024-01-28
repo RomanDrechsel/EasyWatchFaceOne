@@ -68,14 +68,7 @@ module Widgets
                         widget.Texts[1].Color = color;
                     }
 
-                    if (breath >= widget.BreathWarningLevel)
-                    {
-                        widget.DrawAttentionIcon(dc);
-                    }
-                    else
-                    {
-                        widget.HideAttentionIcon();
-                    }
+                   
                 }
                 else
                 {
@@ -85,6 +78,15 @@ module Widgets
                 widget.DrawIcon(dc, HGfx.ICONS_BREATH, iconcolor);
                 widget.DrawText(dc);
                 widget.drawIndicator(dc, breath.toFloat() / self.MaxRespirationRate.toFloat(), indicatorcolor);
+
+                if (breath > 0 && breath >= widget.BreathWarningLevel)
+                {
+                    widget.DrawAttentionIcon(dc);
+                }
+                else
+                {
+                    widget.HideAttentionIcon();
+                }
             }
 
             static function getBreath() as Number

@@ -96,7 +96,7 @@ module Widgets
                 {
                     txt = stats.battery.format("%2d") + "%";
                 }
-                else if (self._BatteryDisplay == 2)
+                else if (!IsSmallDisplay && self._BatteryDisplay == 2)
                 {
                     txt = stats.batteryInDays.format("%2d") + self._BatteryDaysText;
                 }

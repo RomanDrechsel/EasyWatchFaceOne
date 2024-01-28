@@ -67,6 +67,12 @@ fonts[41]="-s hour Typesauce hrs -o \"$output_small/TypesauceTime\""
 fonts[42]="seconds Typesauce sec -o \"$output_normal/TypesauceSecond\""
 fonts[43]="-s seconds Typesauce sec -o \"$output_small/TypesauceSecond\""
 
+### Texts
+fonts[100]="text Normal nor -o \"$output_normal/Normal\""
+fonts[101]="-s text Normal nor -o \"$output_small/Normal\""
+fonts[102]="text Small sma -o \"$output_normal/Small\""
+fonts[103]="-s text Small sma -o \"$output_small/Small\""
+fonts[104]="text Tiny tin -o \"$output_normal/Tiny\""
 
 i=1
 len=${#fonts[@]}

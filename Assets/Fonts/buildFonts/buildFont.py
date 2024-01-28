@@ -57,6 +57,8 @@ while i < len(argv):
             type = "minutes"
         elif (param.lower() == "second" or param.lower() == "seconds"):
             type = "seconds"
+        elif (param.lower() == "text" or param.lower() == "texts"):
+            type = "text"
         elif font == None and getFontFile(param) != None:
             font = param
         elif charset == None and getCharset(param) != None:
@@ -73,7 +75,7 @@ elif charset == None:
     print(info + "     possible charsets are: \"" + '\", \"'.join(x for x, y in avail_charsets.items()) + "\"")
     exit(1)
 elif type == None:
-    print(info + "Only dates (-d) and times (-t) are supported")
+    print(info + "Only dates (date), times (hours, minutes, seconds) and texts (text) are supported")
     exit(1)
 
 codepoints = avail_codepoints[type][charset]

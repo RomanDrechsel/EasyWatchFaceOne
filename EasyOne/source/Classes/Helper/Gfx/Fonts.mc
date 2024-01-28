@@ -100,6 +100,7 @@ module Helper
                 if (rez.size() > 1 && WatchUi has :showToast && Rez.Strings has :FError)
                 {
                     var txt = Application.loadResource(Rez.Strings.FError) as String;
+                    System.println(txt);
                     WatchUi.showToast(txt, {:icon => Rez.Drawables.Attention});
                 }
 

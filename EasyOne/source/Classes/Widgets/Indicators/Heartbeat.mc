@@ -61,15 +61,6 @@ module Widgets
                         widget.Texts[0].Color = color;
                         widget.Texts[1].Color = color;
                     }
-
-                    if (heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
-                    {
-                        widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
-                    }
-                    else
-                    {
-                        widget.HideAttentionIcon();
-                    }
                 }
                 else
                 {
@@ -88,6 +79,16 @@ module Widgets
                 {
                     amount = 0.001;
                 }
+
+                if (heartrate > 0 && heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() -1])
+                {
+                    widget.DrawAttentionIcon(dc, self._iconPosX, self._iconPosY);
+                }
+                else
+                {
+                    widget.HideAttentionIcon();
+                }
+                
                 widget.drawIndicator(dc, amount, indicatorcolor);
             }
 
