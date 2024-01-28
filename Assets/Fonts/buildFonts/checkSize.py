@@ -4,7 +4,7 @@ import subprocess
 def checkSize(fontfile, fontsize, maxheight, codepoints, prefix):
     startheight = 64
     width = maxheight
-    step = 8
+    step = 4
 
     tmp = "./tmp"
     
@@ -43,8 +43,17 @@ def checkSize(fontfile, fontsize, maxheight, codepoints, prefix):
 --max-texture-count 1"
 
         p = subprocess.Popen("~/MyStuff/Coding/Tools/FontBM/fontbm " + params, stdout=subprocess.PIPE, shell=True)
-        (output, err) = p.communicate()
+        (output, _) = p.communicate()
+        
+        # optimize
+        for file in os.scandir(tmp):
+            if file.is_file():
+                _, ext = os.path.splitext(file.path)
+                if ext == ".png":
+                    p = subprocess.Popen("optipng -o7 -preserve -quiet " + file.path , stdout=subprocess.PIPE, shell=True)
+                    (output, _) = p.communicate()
 
+        # get size difference
         size = 0
         for file in os.scandir(tmp):
             if file.is_file():
@@ -52,7 +61,7 @@ def checkSize(fontfile, fontsize, maxheight, codepoints, prefix):
                 if ext == ".png":
                     size += os.stat(file.path).st_size
                 p = subprocess.Popen("rm " + file.path, stdout=subprocess.PIPE, shell=True)
-                (output, err) = p.communicate() 
+                (output, _) = p.communicate() 
         
         
         

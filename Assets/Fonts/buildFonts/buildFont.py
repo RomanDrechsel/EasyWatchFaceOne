@@ -125,6 +125,12 @@ if width > 0 and height > 0:
     p = subprocess.Popen("~/MyStuff/Coding/Tools/FontBM/fontbm " + params, stdout=subprocess.PIPE, shell=True)
     (o, err) = p.communicate()
     
+    # optimize 
+    for file in os.scandir(output_dir):
+        if file.is_file() and re.search(output_file + "_.*.png", file.name) != None:
+            p = subprocess.Popen("optipng -o7 -preserve -quiet " + file.path, stdout=subprocess.PIPE, shell=True)
+            (o, err) = p.communicate()
+    
     new_size = 0
     for file in os.scandir(output_dir):
         if file.is_file() and re.search(output_file + "_.*.png", file.name) != None:
