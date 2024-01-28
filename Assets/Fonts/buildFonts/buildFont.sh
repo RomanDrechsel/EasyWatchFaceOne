@@ -11,34 +11,62 @@ output_normal="../../../EasyOne/resources-rectangle-320x360/fonts"
 output_small="../../../EasyOne/resources-rectangle-240x240/fonts"
 
 declare -a fonts
-fonts[0]="-d Komikazoom lat -o \"$output_normal/KomikazoomDate\""
-fonts[1]="-ds Komikazoom lat -o \"$output_small/KomikazoomDate\""
 
-fonts[2]="-d GoD lat -o \"$output_normal/GoDDate\""
-fonts[3]="-ds GoD lat -o \"$output_small/GoDDate\""
+### Date
+fonts[0]="date Komikazoom lat -o \"$output_normal/KomikazoomDate\""
+fonts[1]="-s date Komikazoom lat -o \"$output_small/KomikazoomDate\""
 
-fonts[4]="-d Troika lat -o \"$output_normal/TroikaDate\""
-fonts[5]="-ds Troika lat -o \"$output_small/TroikaDate\""
-fonts[6]="-d Troika cyr -o \"$output_normal/TroikaDateCyrillic\""
-fonts[7]="-ds Troika cyr -o \"$output_small/TroikaDateCyrillic\""
-fonts[8]="-d Troika gre -o \"$output_normal/TroikaDateGreek\""
-fonts[9]="-ds Troika gre -o \"$output_small/TroikaDateGreek\""
+fonts[2]="date GoD lat -o \"$output_normal/GoDDate\""
+fonts[3]="-s date GoD lat -o \"$output_small/GoDDate\""
 
-fonts[10]="-d Roboto lat -o \"$output_normal/RobotoDate\""
-fonts[11]="-ds Roboto lat -o \"$output_small/RobotoDate\""
-fonts[12]="-d Roboto cyr -o \"$output_normal/RobotoDateCyrillic\""
-fonts[13]="-ds Roboto cyr -o \"$output_small/RobotoDateCyrillic\""
-fonts[14]="-d Roboto gre -o \"$output_normal/RobotoDateGreek\""
-fonts[15]="-ds Roboto gre -o \"$output_small/RobotoDateGreek\""
+fonts[4]="date Troika lat -o \"$output_normal/TroikaDate\""
+fonts[5]="-s date Troika lat -o \"$output_small/TroikaDate\""
+fonts[6]="date Troika cyr -o \"$output_normal/TroikaDateCyrillic\""
+fonts[7]="-s date Troika cyr -o \"$output_small/TroikaDateCyrillic\""
+fonts[8]="date Troika gre -o \"$output_normal/TroikaDateGreek\""
+fonts[9]="-s date Troika gre -o \"$output_small/TroikaDateGreek\""
 
-fonts[16]="-d NotoSans log -o \"$output_normal/NotoSansDateLogogram\""
-fonts[17]="-ds NotoSans log -o \"$output_small/NotoSansDateLogogram\""
+fonts[10]="date Roboto lat -o \"$output_normal/RobotoDate\""
+fonts[11]="-s date Roboto lat -o \"$output_small/RobotoDate\""
+fonts[12]="date Roboto cyr -o \"$output_normal/RobotoDateCyrillic\""
+fonts[13]="-s date Roboto cyr -o \"$output_small/RobotoDateCyrillic\""
+fonts[14]="date Roboto gre -o \"$output_normal/RobotoDateGreek\""
+fonts[15]="-s date Roboto gre -o \"$output_small/RobotoDateGreek\""
 
-fonts[18]="-d Kanit tha -o \"$output_normal/KanitDateThai\""
-fonts[19]="-ds Kanit tha -o \"$output_small/KanitDateThai\""
+fonts[16]="date NotoSans log -o \"$output_normal/NotoSansDateLogogram\""
+fonts[17]="-s date NotoSans log -o \"$output_small/NotoSansDateLogogram\""
 
-fonts[20]="-t ConsolaBold hrs -o \"$output_normal/ConsolaHour\""
-fonts[20]="-ts ConsolaBold hrs -o \"$output_small/ConsolaHour\""
+fonts[18]="date Kanit tha -o \"$output_normal/KanitDateThai\""
+fonts[19]="-s date Kanit tha -o \"$output_small/KanitDateThai\""
+
+### Time
+fonts[20]="hour ConsolaBold hrs -o \"$output_normal/ConsolaHour\""
+fonts[21]="-s hour ConsolaBold hrs -o \"$output_small/ConsolaHour\""
+fonts[22]="minutes Consola min -o \"$output_normal/ConsolaMinute\""
+fonts[24]="seconds Consola sec -o \"$output_normal/ConsolaSecond\""
+fonts[25]="-s seconds Consola sec -o \"$output_small/ConsolaSecond\""
+
+fonts[26]="hour Impossible hrs -o \"$output_normal/ImpossibleTime\""
+fonts[27]="-s hour Impossible hrs -o \"$output_small/ImpossibleTime\""
+fonts[28]="seconds Impossible sec -o \"$output_normal/ImpossibleSecond\""
+fonts[29]="-s seconds Impossible sec -o \"$output_small/ImpossibleSecond\""
+
+fonts[30]="hour Komikazoom hrs -o \"$output_normal/KamikazoomTime\""
+fonts[31]="-s hour Komikazoom hrs -o \"$output_small/KamikazoomTime\""
+fonts[32]="seconds Komikazoom sec -o \"$output_normal/KamikazoomSecond\""
+fonts[33]="-s seconds Komikazoom sec -o \"$output_small/KamikazoomSecond\""
+
+fonts[34]="hour RobotoBold hrs -o \"$output_normal/RobotoHour\""
+fonts[35]="-s hour RobotoBold hrs -o \"$output_small/RobotoHour\""
+fonts[36]="minutes RobotoRegular min -o \"$output_normal/RobotoMinute\""
+fonts[38]="seconds Roboto sec -o \"$output_normal/RobotoSecond\""
+fonts[39]="-s seconds Roboto sec -o \"$output_small/RobotoSecond\""
+
+fonts[40]="hour Typesauce hrs -o \"$output_normal/TypesauceTime\""
+fonts[41]="-s hour Typesauce hrs -o \"$output_small/TypesauceTime\""
+fonts[42]="seconds Typesauce sec -o \"$output_normal/TypesauceSecond\""
+fonts[43]="-s seconds Typesauce sec -o \"$output_small/TypesauceSecond\""
+
 
 i=1
 len=${#fonts[@]}

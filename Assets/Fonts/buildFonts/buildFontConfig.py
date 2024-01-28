@@ -1,53 +1,18 @@
+font_basedir = "../"
+
 avail_fonts = {
-    "Komikazoom": {
-        "Fontfile": "../Komikazoom/KAMIKZOM.ttf",
-        "Fontsize": 44,
-        "MaxHeight": 512,
-        "FontsizeSmall": 32,
-        "MaxHeightSmall": 256
-    },
-    "GoD": {
-        "Fontfile": "../GrimoireOfDeath/GrimoireOfDeath-2O2jX.ttf",
-        "Fontsize": 52,
-        "MaxHeight": 512,
-        "FontsizeSmall": 32,
-        "MaxHeightSmall": 256
-    },
-    "Troika": {
-        "Fontfile": "../Troika/troika.otf",
-        "Fontsize": 48,
-        "MaxHeight": 512,
-        "FontsizeSmall": 32,
-        "MaxHeightSmall": 256
-    },
-    "Roboto": {
-        "Fontfile": "../Roboto/Roboto-Medium.ttf",
-        "Fontsize": 46,
-        "MaxHeight": 512,
-        "FontsizeSmall": 32,
-        "MaxHeightSmall": 256
-    },
-    "NotoSans": {
-        "Fontfile": "../Noto Sans/NotoSansKR-SemiBold.ttf",
-        "Fontsize": 40,
-        "MaxHeight": 512,
-        "FontsizeSmall": 28,
-        "MaxHeightSmall": 256
-    },
-    "Kanit": {
-        "Fontfile": "../Kanit/Kanit-Medium.ttf",
-        "Fontsize": 46,
-        "MaxHeight": 512,
-        "FontsizeSmall": 32,
-        "MaxHeightSmall": 256
-    },
-    "ConsolaBold": {
-        "Fontfile": "../ConsolaMono/ConsolaMono-Bold.ttf",
-        "Fontsize": 67,
-        "MaxHeight": 512,
-        "FontsizeSmall": 49,
-        "MaxHeightSmall": 256
-    }
+    "Komikazoom": "Komikazoom/KAMIKZOM.ttf",
+    "GoD": "GrimoireOfDeath/GrimoireOfDeath-2O2jX.ttf",
+    "Troika": "Troika/troika.otf",
+    "Roboto": "Roboto/Roboto-Medium.ttf",
+    "RobotoBold": "Roboto/Roboto-Black.ttf",
+    "RobotoRegular": "Roboto/Roboto-Regular.ttf",
+    "NotoSans": "Noto Sans/NotoSansKR-SemiBold.ttf",
+    "Kanit": "Kanit/Kanit-Medium.ttf",
+    "Consola": "ConsolaMono/ConsolaMono-Book.ttf",
+    "ConsolaBold": "ConsolaMono/ConsolaMono-Bold.ttf",
+    "Impossible": "Impossible/Impossible.ttf",
+    "Typesauce": "Typesauce/Typesauce-2OX9w.ttf"
 }
 
 avail_codepoints = {
@@ -58,9 +23,13 @@ avail_codepoints = {
         "logograms": "32,46-57,19968,19977,20108,20116,20845,21608,22235,22303,26085,26376,26408,27700,28779,36913,37329,44552,47785,49688,50900,51068,53664,54868",
         "thai": "32,46-57,3585,3588,3592,3605,3608,3614,3617-3618,3620,3624,3626,3629,3634,3648"
     },
-    "time": {
-        "hours": "48-57",
-        "minutes": "48-57",
+    "hours": {
+        "hours": "48-57"
+    },
+    "minutes": {
+        "minutes": "48-57"
+    },
+    "seconds": {
         "seconds": "48-57,65,77,80"
     }
 }
@@ -74,4 +43,181 @@ avail_charsets = {
     "hrs": "hours",
     "min": "minutes",
     "sec": "seconds"
+}
+
+avail_configs = {
+    "date": {
+        "Komikazoom": {
+            "Normal": {
+                "Fontsize": 44,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 30,
+                "MaxHeight": 256
+            }
+        },
+        "GoD": {
+            "Normal": {
+                "Fontsize": 52,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 32,
+                "MaxHeight": 256
+            }
+        },
+        "Trokia": {
+            "Normal": {
+                "Fontsize": 48,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 32,
+                "MaxHeight": 256
+            }
+        },
+        "Roboto": {
+            "Normal": {
+                "Fontsize": 44,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 32,
+                "MaxHeight": 256
+            }        
+        },
+        "NotoSans": {
+            "Normal": {
+                "Fontsize": 40,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 28,
+                "MaxHeight": 256
+            }
+        },
+        "Kanit": {
+            "Normal": {
+                "Fontsize": 46,
+                "MaxHeight": 512
+            },
+            "Small": {
+                "Fontsize": 32,
+                "MaxHeight": 256
+            }
+        }
+    },
+    "hours": {
+        "ConsolaBold": {
+            "Normal": {
+                "Fontsize": 98,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 70,
+                "MaxHeight": 256
+            }
+        },
+        "Impossible": {
+            "Normal": {
+                "Fontsize": 104,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 70,
+                "MaxHeight": 256
+            }
+        },
+        "Komikazoom": {
+            "Normal": {
+                "Fontsize": 96,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 66,
+                "MaxHeight": 256
+            }
+        },
+        "RobotoBold": {
+            "Normal": {
+                "Fontsize": 96,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 66,
+                "MaxHeight": 256
+            }
+        },
+        "Typesauce": {
+            "Normal": {
+                "Fontsize": 76,
+                "MaxHeight": 512,
+            },
+            "Small": {
+                "Fontsize": 60,
+                "MaxHeight": 256,
+            }
+        }
+    },
+    "minutes": {
+        "RobotoRegular": {
+            "Normal": {
+                "Fontsize": 96,
+                "MaxHeight": 512,
+            },
+        }
+    },
+    "seconds": {
+        "Consola": {
+            "Normal": {
+                "Fontsize": 42,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 26,
+                "MaxHeight": 128
+            }
+        },
+        "Impossible": {
+            "Normal": {
+                "Fontsize": 44,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 28,
+                "MaxHeight": 128
+            }
+        },
+        "Komikazoom": {
+            "Normal": {
+                "Fontsize": 40,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 26,
+                "MaxHeight": 128
+            }
+        },
+        "Roboto": {
+            "Normal": {
+                "Fontsize": 40,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 26,
+                "MaxHeight": 128
+            }
+        },
+        "Typesauce": {
+            "Normal": {
+                "Fontsize": 32,
+                "MaxHeight": 256,
+            },
+            "Small": {
+                "Fontsize": 22,
+                "MaxHeight": 128,
+            }
+        }
+    }
 }

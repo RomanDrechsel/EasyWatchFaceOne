@@ -5,10 +5,10 @@ import subprocess
 from checkSize import checkSize
 from buildFontConfig import *
 
-def getFont(input):
+def getFontFile(input):
     for key, value in avail_fonts.items():
         if key == input:
-            return value
+            return os.path.join(font_basedir, value)
     return None
 
 def getCharset(input):
@@ -21,7 +21,7 @@ font = None
 charset = None
 type = None
 output = "."
-small = False
+size = "Normal"
 codepoints = None
 info = ""
 
@@ -32,17 +32,14 @@ while i < len(argv):
     
     if param[0] == "-":
         for opt in param:
-            if opt == "d":
-                type = "date"
-            elif opt == "t":
-                type = "time"
-            elif opt == "s":
-                small = True
+            if opt == "s":
+                size = "Small"
             elif opt == "o":
                 output = argv[i + 1]
                 i += 1
             elif opt == "f":
-                font = getFont(argv[i + 1])
+                if getFontFile(argv[i + 1]) != None:
+                    font = argv[i + 1]
                 i += 1
             elif opt == "c":
                 charset = getCharset(argv[i + 1])
@@ -50,17 +47,20 @@ while i < len(argv):
             elif opt == "i":
                 info = argv[i + 1]
                 i += 1
-                
+    
     else:
-        found = False
-        if font == None:
-            font = getFont(param)
-            if font != None:
-                found = True
-        if found == False and charset == None:
+        if param.lower() == "date":
+            type = "date"
+        elif param.lower() == "hour" or param.lower() == "hours":
+            type = "hours"
+        elif (param.lower() == "minute" or param.lower() == "minutes"):
+            type = "minutes"
+        elif (param.lower() == "second" or param.lower() == "seconds"):
+            type = "seconds"
+        elif font == None and getFontFile(param) != None:
+            font = param
+        elif charset == None and getCharset(param) != None:
             charset = getCharset(param)
-            if charset != None:
-                found = True
     i += 1
         
     
@@ -76,25 +76,21 @@ elif type == None:
     print(info + "Only dates (-d) and times (-t) are supported")
     exit(1)
 
-if font != None:
-    codepoints = avail_codepoints[type][charset]
+codepoints = avail_codepoints[type][charset]
 
 if codepoints == None:
     print(info + "No Codepoints found for " + charset + " " + type)
     exit(1)
+    
+config = avail_configs[type][font][size]
+fontfile = getFontFile(font)
 
-fontsize = font["Fontsize"]
-maxheight = font["MaxHeight"]
-if small == True:
-    fontsize = font["FontsizeSmall"]
-    maxheight = font["MaxHeightSmall"]
-
-width, height = checkSize(font["Fontfile"], fontsize, maxheight, codepoints, info)
+width, height = checkSize(fontfile, config["Fontsize"], config["MaxHeight"], codepoints, info)
 
 if width > 0 and height > 0:
-    params = "--font-file=\"" + font["Fontfile"] + "\" \
+    params = "--font-file=\"" + fontfile + "\" \
 --output=\"" + output + "\" \
---font-size=" + str(fontsize) + " \
+--font-size=" + str(config["Fontsize"]) + " \
 --chars=\"" + codepoints + "\" \
 --texture-size=" + str(width) + "x" + str(height) + " \
 --texture-crop-width \

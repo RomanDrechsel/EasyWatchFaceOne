@@ -94,7 +94,7 @@ module Widgets
                 }
                 else if (Fonts.DateFontProp == -1 && [System.LANGUAGE_CHS, System.LANGUAGE_CHT].indexOf(System.getDeviceSettings().systemLanguage) >= 0)
                 {
-                    self._textContainer.AnchorY = self.locY - 3;
+                    self._textContainer.AnchorY = self.locY - 5;
                 }
             }
 
