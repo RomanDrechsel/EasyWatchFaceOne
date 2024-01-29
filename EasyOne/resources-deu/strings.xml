@@ -1,5 +1,7 @@
 <strings>
 
+    <string id="AppName">Easy WatchFace One</string>
+
     <string id="Yes">Ja</string>
     <string id="No">Nein</string> 
 
