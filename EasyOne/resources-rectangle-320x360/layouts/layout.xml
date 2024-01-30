@@ -2,20 +2,20 @@
     <drawable class="WFBackground" id="BG" />
 
     <drawable class="DrawableContainers.WidgetContainer" id="C">
-        <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">dc.getHeight() * .5</param>
+        <param name="locX">160</param>
+        <param name="locY">180</param>
     </drawable>
     
     <drawable class="DrawableContainers.WidgetContainer" id="UC">
-        <param name="locX">dc.getWidth() * .5</param>
-        <param name="locY">(dc.getHeight() * .5) - 85</param>
+        <param name="locX">160</param>
+        <param name="locY">95</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="DTL">
         <param name="locX">5</param>
         <param name="locY">5</param>
-        <param name="width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="height">dc.getHeight() * .40</param>
+        <param name="width">130</param>
+        <param name="height">160</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="TL">
@@ -24,33 +24,33 @@
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="TC">
-        <param name="locX">dc.getWidth() / 2</param>
+        <param name="locX">160</param>
         <param name="locY">10</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="TR">
-        <param name="locX">dc.getWidth() - 25</param>
+        <param name="locX">295</param>
         <param name="locY">10</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="DTR">
-        <param name="locX">dc.getWidth() - 5</param>
+        <param name="locX">315</param>
         <param name="locY">5</param>
-        <param name="width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="height">dc.getHeight() * .40</param>
+        <param name="width">130</param>
+        <param name="height">160</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="BL">
         <param name="locX">5</param>
-        <param name="locY">dc.getHeight() - 7</param>
-        <param name="width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="height">dc.getHeight() * .40</param>
+        <param name="locY">355</param>
+        <param name="width">130</param>
+        <param name="height">160</param>
     </drawable>
 
     <drawable class="DrawableContainers.WidgetContainer" id="BR">
-        <param name="locX">dc.getWidth() - 5</param>
-        <param name="locY">dc.getHeight() - 7</param>
-        <param name="width">(dc.getWidth() / 2) * 0.8</param>
-        <param name="height">dc.getHeight() * .40</param>
+        <param name="locX">315</param>
+        <param name="locY">355</param>
+        <param name="width">130</param>
+        <param name="height">160</param>
     </drawable>
 </layout>

@@ -6,7 +6,7 @@
     <property type="number" id="BGCPre">0</property>
     <property type="string" id="BGCCu">#000000</property>
 
-    <property type="number" id="FDate">0</property>
+    <property type="number" id="FDate">-2</property>
     <property type="number" id="FTime">0</property>
 
     <property type="number" id="CC">0</property>
@@ -20,6 +20,7 @@
     <property type="string" id="CMAP">#FFFFFF</property>
     <property type="number" id="IconC">0</property>
 
+    <property type="number" id="DF">1</property>
     <property type="number" id="ClZero">1</property>
     <property type="number" id="StressW">85</property>
     <property type="number" id="StressD">1</property>

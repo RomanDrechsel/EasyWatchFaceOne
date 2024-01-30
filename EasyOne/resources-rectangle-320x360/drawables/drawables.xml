@@ -1,4 +1,6 @@
 <drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png" />
+
     <bitmap id="Attention" filename="Attention.png"  packingFormat="default" />
 
     <bitmap id="BackgroundImageDark" filename="Backgrounds/Dark.jpg" scaleY="100%" scaleRelativeTo="screen" />

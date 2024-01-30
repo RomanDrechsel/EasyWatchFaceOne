@@ -66,28 +66,30 @@ module Widgets
 
                 //maximum temperature
                 var maxPosX = centerX + (iconSize / 2) + horPadding;
-                var maxPosY = self.locY + 15;
+                var maxPosY = self.locY + 10;
                 if (IsSmallDisplay)
                 {
-                    maxPosY -= 5;
+                    maxPosY -= 4;
                 }
                 dc.drawText(maxPosX, maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
                 dc.setPenWidth(2);
 
-                //horizontal line
-                var horLineX = centerX + horPadding + 5;
-                var horLineY = self.locY + textheight + 18;
-
                 var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
                 var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", HGfx.Fonts.Small);
+
+                //horizontal line
                 var horLineWidth = txt1;
                 if (horLineWidth < txt2)
                 {
                     horLineWidth = txt2;
                 }
+
+                var horLineX = maxPosX - (horLineWidth / 2) - 3;
+                var horLineY = maxPosY + textheight + 5;
                 if (IsSmallDisplay)
                 {
-                    horLineY -= 6;
+                    horLineY -= 3;
+                    horLineX += 2;
                 }
                 dc.drawLine(horLineX, horLineY, horLineX + horLineWidth, horLineY);
 

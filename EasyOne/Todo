@@ -1,7 +1,10 @@
+https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax
+
+
 TODO:
-- optimize fonts, only uppercase and needed characters
 - Sleep-Mode
 
-
 Feature-Requests:
-- customize informations on info-widget
+- customize informations on info-widget & Health Widget
+
+79.2

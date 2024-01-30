@@ -9,9 +9,10 @@ class WFView extends WatchUi.WatchFace
 {
     var OnShow = [];
     var OnSleep = [];
+    var OneTimePerTick = null;
 
     var IsBackground = false;
-    private var _reloadFontInTicks = -1;
+    var fontupdate = null;
 
     function initialize() 
     {
@@ -20,24 +21,39 @@ class WFView extends WatchUi.WatchFace
 
     function onLayout(dc as Dc) as Void 
     {
-        Helper.Gfx.Fonts.Load();
-        setLayout(Rez.Layouts.WatchFace(dc));
+        self.setLayout(Rez.Layouts.WatchFace(dc));
         self.IsBackground = false;
     }
 
     function onUpdate(dc as Dc) as Void 
     {
-        if (self._reloadFontInTicks > 0)
+        /*if (!IsSmallDisplay && Debug has :GetCodepoints)
         {
-            self._reloadFontInTicks--;
+            (new Debug.GetCodepoints()).GetFontCodePoints();
+        }*/
 
-            if (self._reloadFontInTicks == 1)
+        if (self.OneTimePerTick != null)
+        {
+            if (self.OneTimePerTick.size() > 0)
             {
-                Helper.Gfx.Fonts.LoadTimeFont();
-            }
-            else if (self._reloadFontInTicks == 0)
-            {
-                Helper.Gfx.Fonts.LoadDateFont();
+                if (self.OneTimePerTick[0] instanceof Number)
+                {
+                    //wait for x ticks
+                    self.OneTimePerTick[0]--;
+                    if (self.OneTimePerTick[0] <= 0)
+                    {
+                        self.OneTimePerTick.remove(self.OneTimePerTick[0]);
+                    }
+                }
+                else 
+                {
+                    self.OneTimePerTick[0].invoke(null);
+                    self.OneTimePerTick.remove(self.OneTimePerTick[0]);
+                }
+                if (self.OneTimePerTick.size() == 0)
+                {
+                    self.OneTimePerTick = null;
+                }
             }
         }
         
@@ -74,17 +90,6 @@ class WFView extends WatchUi.WatchFace
             {
                 drawable.Init();
             }
-        }
-
-        if (IsSmallDisplay)
-        {
-            //loading font all in one exeeded memory limit!
-            self._reloadFontInTicks = 3;
-            Helper.Gfx.Fonts.ResetTimeFonts();
-        }
-        else
-        {
-            Helper.Gfx.Fonts.Load();
         }
     }
 }

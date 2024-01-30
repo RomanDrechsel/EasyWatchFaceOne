@@ -53,24 +53,36 @@
     <string id="SLoWD">Physical exercise</string>
     <string id="SLoWH">Health monitor</string>
 
-    <string id="SgWT">Widget settings</string>
+    <string id="SF">Fonts</string>
     <string id="SFTime">Time font</string>
     <string id="SFDate">Date font</string>
+    <string id="SFKa">Komikazoom (Latin characters only)</string>
+    <string id="SFGoD">Grimoire Of Death (Latin characters only)</string>
+    <string id="SFTR">Troika (no logograms, no Vietnamese/Thai)</string>
+    <string id="SR">Roboto (no logograms, no Thai)</string>
+    <string id="SFK">Kanit (Thai only)</string>
+    <string id="SN">Noto Sans (Chinese, Japanese, Korean)</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Self made</string>
-    <string id="SWZero">Display leading zero at time</string>
-    <string id="SSgoal">Display percentage of steps goal</string>    
-    <string id="SStressW">Stress Warning Level</string>
-    <string id="SStressD">Show direction of change of stress level</string>
-    <string id="SRrW">Respiration-Rate Warning Level</string>
+    
+    <string id="SgWT">Widget settings</string>
+    <string id="DF">Date format</string>
+    <string id="DF1">THU 28. APR 1983</string>
+    <string id="DF2">THU APR 28 1983</string>
+    <string id="SBat">Display battery level</string>
+    <string id="SBat0">Bars only</string>
+    <string id="SBat1">Percentage</string>
+    <string id="SWZero">Leading zero for time</string>
+    <string id="SSgoal">Percentage of steps goal</string>    
+    <string id="SStressW">Stress warning level</string>
+    <string id="SStressD">Direction of change of stress level</string>
+    <string id="SRrW">Respiratory rate Warning level</string>
 
-    <string id="SDeco">Show decoration-lines in the corners</string>
+    <string id="SDeco">Decorative lines in corners</string>
     
     <string id="ThDarkBlue">Dark Blue</string>
     <string id="ThFire">Fire &amp; Ice</string>
     <string id="ThSunset">Sunset</string>
     <string id="ThBaW">Black &amp; White</string>
-
-    <string id="ShortBatteryDays">d</string>
 
 </strings>

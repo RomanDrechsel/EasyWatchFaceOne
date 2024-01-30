@@ -87,24 +87,76 @@ module Widgets
             var sec_posY = self.locY - (bigheight / 2) + offset;
             var amp_posY = self.locY + (bigheight / 2) - Graphics.getFontAscent(HGfx.Fonts.Seconds) - Graphics.getFontDescent(HGfx.Fonts.Seconds) - offset;
 
-            /*if (self has :DebugDots)
+            if (IsSmallDisplay)
             {
-                self.DebugDots(dc, center, self.locY, Graphics.COLOR_WHITE, 8);
-
-                self.DebugDots(dc, hours_pos - (bigwidth / 2), hours_posY, Graphics.COLOR_RED, 3);
-                self.DebugDots(dc, hours_pos - (bigwidth / 2), hours_posY + bigheight, Graphics.COLOR_RED, 3);
-                self.DebugDots(dc, hours_pos - (bigwidth / 2), hours_posY + Graphics.getFontHeight(HGfx.Fonts.Hour), Graphics.COLOR_GREEN, 3);
-
-                self.DebugDots(dc, min_pos + (bigwidth2 / 2), hours_posY, Graphics.COLOR_RED, 3);
-                self.DebugDots(dc, min_pos + (bigwidth2 / 2), hours_posY + bigheight, Graphics.COLOR_RED, 3);
-                self.DebugDots(dc, min_pos + (bigwidth2 / 2), hours_posY + Graphics.getFontHeight(HGfx.Fonts.Minute), Graphics.COLOR_GREEN, 3);
-
-                self.DebugDots(dc, sec_pos, sec_posY, Graphics.COLOR_RED, 3);
-                self.DebugDots(dc, sec_pos, sec_posY + Graphics.getFontAscent(HGfx.Fonts.Seconds), Graphics.COLOR_RED, 3);
-
-                self.DebugDots(dc, sec_pos, amp_posY, Graphics.COLOR_YELLOW, 3);
-                self.DebugDots(dc, sec_pos, amp_posY + Graphics.getFontAscent(HGfx.Fonts.Seconds), Graphics.COLOR_YELLOW, 3);
-            }*/
+                if (HGfx.Fonts.TimeFontProp == 1 /*ConsolaMono*/)
+                {
+                    hours_posY -= 5;
+                    sec_posY += 7;
+                    amp_posY -= 8;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 2 /*Impossible*/)
+                {
+                    hours_posY += 5;
+                    sec_pos += 5;
+                    sec_posY += 5;
+                    amp_posY += 3;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 3) /* Komikazoom */
+                {
+                    sec_pos += 3;
+                    sec_posY += 5;
+                    amp_posY -= 2;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 4) /* Roboto */
+                {
+                    // 76,8 Kb
+                    sec_posY += 3;
+                    amp_posY -= 4;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 5) /* Typesauce */
+                {
+                    // 76,8 Kb
+                    hours_posY += 10;
+                    sec_posY += 5;
+                    amp_posY += 7;
+                }
+            }
+            else
+            {
+                if (HGfx.Fonts.TimeFontProp == 1) /*ConsolaMono*/
+                {
+                    hours_posY -= 10;
+                    sec_posY += 3;
+                    sec_pos -= 8;
+                    amp_posY -= 11;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 2) /*Impossible*/
+                {
+                    hours_posY += 4;
+                    sec_pos += 5;
+                    sec_posY += 5;
+                    amp_posY += 2;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 3) /* Komikazoom */
+                {
+                    sec_pos += 5;
+                    sec_posY += 5;
+                    amp_posY -= 2;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 4) /* Roboto */
+                {
+                    hours_pos += 10;
+                    sec_pos -= 8;
+                    sec_posY += 2;
+                    amp_posY -= 1;
+                }
+                else if (HGfx.Fonts.TimeFontProp == 5) /* Typesauce */
+                {
+                    hours_posY += 10;
+                    amp_posY += 8;
+                }
+            }
 
             dc.setColor(Themes.Colors.TimeHour, Gfx.COLOR_TRANSPARENT);
             dc.drawText(hours_pos, hours_posY, HGfx.Fonts.Hour, h, Gfx.TEXT_JUSTIFY_RIGHT);
@@ -119,13 +171,6 @@ module Widgets
                 dc.setColor(Themes.Colors.TimeAMPM, Gfx.COLOR_TRANSPARENT);
                 dc.drawText(sec_pos, amp_posY, HGfx.Fonts.Seconds, ampm, Gfx.TEXT_JUSTIFY_LEFT);
             }
-        }
-
-        (:debug)
-        protected function DebugDots(dc as Gfx.Dc, x as Number, y as Number, color as Number, radius as Number) as Void
-        {
-            dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(x, y, radius);
         }
     }
 }

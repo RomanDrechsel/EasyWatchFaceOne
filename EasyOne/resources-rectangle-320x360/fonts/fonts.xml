@@ -16,14 +16,25 @@
 
     <font id="KamikazoomTime" filename="KamikazoomTime.fnt" antialias="true" />
     <font id="KamikazoomSecond" filename="KamikazoomSecond.fnt" antialias="true" />
-    <font id="KamikazoomDate" filename="KamikazoomDate.fnt" antialias="true" />
+    <font id="KomikazoomDate" filename="KomikazoomDate.fnt" antialias="true" />
 
     <font id="RobotoHour" filename="RobotoHour.fnt" antialias="true" />
     <font id="RobotoMinute" filename="RobotoMinute.fnt" antialias="true" />
     <font id="RobotoSecond" filename="RobotoSecond.fnt" antialias="true" />
+    <font id="RobotoDate" filename="RobotoDate.fnt" antialias="true" />
+    <font id="RobotoDateGreek" filename="RobotoDateGreek.fnt" antialias="true" />
+    <font id="RobotoDateCyrillic" filename="RobotoDateCyrillic.fnt" antialias="true" />
 
     <font id="TypesauceTime" filename="TypesauceTime.fnt" antialias="true" />
     <font id="TypesauceSecond" filename="TypesauceSecond.fnt" antialias="true" />
 
+    <font id="TroikaDate" filename="TroikaDate.fnt" antialias="true" />
+    <font id="TroikaDateGreek" filename="TroikaDateGreek.fnt" antialias="true" />
+    <font id="TroikaDateCyrillic" filename="TroikaDateCyrillic.fnt" antialias="true" />
+
     <font id="GoDDate" filename="GoDDate.fnt" antialias="true" />
+
+    <font id="KanitDateThai" filename="KanitDateThai.fnt" antialias="true" />
+    
+    <font id="NotoDateLogogram" filename="NotoSansDateLogogram.fnt" antialias="true" />
 </fonts>

@@ -10,8 +10,6 @@ module Helper
         var AnchorY = NaN as Number;
 
         private var _just = Graphics.TEXT_JUSTIFY_CENTER;
-        private var _width = 0;
-        private var _height = 0;
 
         function initialize(posx as Number, posy as Number, just as Graphics.TextJustification)
         {
@@ -27,8 +25,8 @@ module Helper
                 return;
             }
 
-            self.calcDimensions(texts, dc);
-            if (self._width <= 0 || self._height <= 0)
+            var dim = self.calcDimensions(texts, dc);
+            if (dim[0] <= 0 || dim[1] <= 0)
             {
                 return;
             }
@@ -36,17 +34,21 @@ module Helper
             var posx = self.AnchorX as Number;
             if (self._just == Graphics.TEXT_JUSTIFY_CENTER)
             {
-                posx -= (self._width / 2);
+                posx -= (dim[0] / 2);
             }
             else if (self._just == Graphics.TEXT_JUSTIFY_RIGHT)
             {
-                posx -= self._width;
+                posx -= dim[0];
             }
 
             for (var i = 0; i < texts.size(); i++)
             {
                 var text = texts[i];
-                var yoffset = self._height - Graphics.getFontAscent(text.Font);
+                if (text.Text == null)
+                {
+                    continue;
+                }
+                var yoffset = dim[1] - Graphics.getFontAscent(text.Font);
                 if (IsSmallDisplay)
                 {
                     yoffset *= 1.2;
@@ -57,23 +59,29 @@ module Helper
                 posx += dc.getTextWidthInPixels(text.Text.toString(), text.Font);
             }
 
-            return self._width;
+            return dim[0];
         }
 
-        private function calcDimensions(texts as Array<ExtTextPart>, dc as Graphics.Dc)
+        static function calcDimensions(texts as Array<ExtTextPart>, dc as Graphics.Dc) as Array<Number>
         {
-            self._width = 0;
-            self._height = 0;
+            var totalwidth = 0;
+            var totalheight = 0;
             for(var i = 0; i < texts.size(); i++)
             {
+                if (texts[i].Text == null)
+                {
+                    continue;
+                }
                 var width = dc.getTextWidthInPixels(texts[i].Text.toString(), texts[i].Font);
                 var height = Graphics.getFontAscent(texts[i].Font);
-                self._width += width;
-                if (height > self._height)
+                totalwidth += width;
+                if (height > totalheight)
                 {
-                    self._height = height;
+                    totalheight = height;
                 }
             }
+
+            return [totalwidth, totalheight];
         }
     }
 

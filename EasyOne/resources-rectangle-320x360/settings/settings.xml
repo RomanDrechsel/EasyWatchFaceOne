@@ -1,7 +1,8 @@
 <settings>
 
+    <!-- themes -->
     <setting propertyKey="@Properties.Th" title="@Strings.SettingsTh">
-        <settingConfig type="list">
+        <settingConfig type="list" required="true">
             <listEntry value="0">@Strings.ThDarkBlue</listEntry>
             <listEntry value="1">@Strings.ThFire</listEntry>
             <listEntry value="2">@Strings.ThSunset</listEntry>
@@ -10,15 +11,18 @@
         </settingConfig>
     </setting>
 
+    <!-- background -->
     <group id="groupBackground" title="@Strings.STB">
+        <!-- background resource -->
         <setting propertyKey="@Properties.BG" title="@Strings.STBResource">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.STBTh</listEntry>
                 <listEntry value="1">@Strings.STBSystem</listEntry>
                 <listEntry value="2">@Strings.STBFixedColorSelect</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- bckground color-->
         <setting propertyKey="@Properties.BGCT" title="@Strings.STBFixedColor">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.STBPredefinedSelect</listEntry>
@@ -26,6 +30,7 @@
             </settingConfig>
         </setting>
 
+        <!-- predefined background colors -->
         <setting propertyKey="@Properties.BGCPre" title="@Strings.STBPredefined">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.STBColorBlack</listEntry>
@@ -39,12 +44,16 @@
             </settingConfig>
         </setting>
 
+        <!-- custom background color -->
         <setting propertyKey="@Properties.BGCCu" title="@Strings.STBColorCustom">
             <settingConfig type="alphaNumeric" />
         </setting>
     </group>
 
+    <!-- colors -->
     <group id="groupColors" title="@Strings.SC">
+
+        <!-- use custom colors -->
         <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
@@ -52,49 +61,60 @@
             </settingConfig>
         </setting>
 
+        <!-- text color -->
         <setting propertyKey="@Properties.CT" title="@Strings.SCText">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- week of day color -->
         <setting propertyKey="@Properties.CWeek" title="@Strings.SCCWeek">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- month color -->
         <setting propertyKey="@Properties.CDay" title="@Strings.SCCDay">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- year color -->
         <setting propertyKey="@Properties.CYear" title="@Strings.SCCYear">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- hours color -->
         <setting propertyKey="@Properties.CHour" title="@Strings.SCTimeHours">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- minutes color -->
         <setting propertyKey="@Properties.CMin" title="@Strings.SCTimeMinute">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- seconds color -->
         <setting propertyKey="@Properties.CSec" title="@Strings.SCTimeSecond">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- am/pm color-->
         <setting propertyKey="@Properties.CMAP" title="@Strings.SCTimeAMPM">
             <settingConfig type="alphaNumeric" />
         </setting>
 
+        <!-- icons in text color -->
         <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
                 <listEntry value="1">@Strings.Yes</listEntry>                
             </settingConfig>
         </setting>
     </group>
     
+    <!-- widget arrangement -->
     <group id="groupLayout" title="@Strings.SLo">
+        <!-- top left corner -->
         <setting propertyKey="@Properties.WTL" title="@Strings.SLoTL">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -102,8 +122,9 @@
             </settingConfig>
         </setting>
 
+        <!-- top center -->
         <setting propertyKey="@Properties.WTC" title="@Strings.SLoTC">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -111,8 +132,9 @@
             </settingConfig>
         </setting>
 
+        <!-- top right corner -->
         <setting propertyKey="@Properties.WTR" title="@Strings.SLoTR">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWB</listEntry>
                 <listEntry value="2">@Strings.SLoWW</listEntry>
@@ -120,83 +142,122 @@
             </settingConfig>
         </setting>
 
+        <!-- bottom left corner -->
         <setting propertyKey="@Properties.WBL" title="@Strings.SLoBL">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWD</listEntry>
                 <listEntry value="2">@Strings.SLoWH</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- bottom right corner -->
         <setting propertyKey="@Properties.WBR" title="@Strings.SLoBR">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SLoWE</listEntry>
                 <listEntry value="1">@Strings.SLoWD</listEntry>
                 <listEntry value="2">@Strings.SLoWH</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- deco lines -->
         <setting propertyKey="@Properties.Deco" title="@Strings.SDeco">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
     </group>
 
-    <group id="groupWidgets" title="@Strings.SgWT">
+    <!-- fonts -->
+    <group id="groupFonts" title="@Strings.SF">
+        <!-- time font -->
         <setting propertyKey="@Properties.FTime" title="@Strings.SFTime">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.SFSM</listEntry>
                 <listEntry value="1">Consola Mono</listEntry>
                 <listEntry value="2">Impossible</listEntry>
                 <listEntry value="3">Komikazoom</listEntry>
                 <listEntry value="4">Roboto</listEntry>
                 <listEntry value="5">Typesauce</listEntry>
-                <listEntry value="99">@Strings.SFSystem</listEntry>
+                <listEntry value="-1">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
-
+        <!-- date font -->
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
-            <settingConfig type="list">
-                <listEntry value="0">Komikazoom</listEntry>
-                <listEntry value="1">Grimoire Of Death</listEntry>
-                <listEntry value="99">@Strings.SFSystem</listEntry>
+            <settingConfig type="list" required="true">
+                <listEntry value="0">@Strings.SFKa</listEntry>
+                <listEntry value="1">@Strings.SFGoD</listEntry>
+                <listEntry value="2">@Strings.SFTR</listEntry>
+                <listEntry value="50">@Strings.SR</listEntry>
+                <listEntry value="70">@Strings.SN</listEntry>
+                <listEntry value="80">@Strings.SFK</listEntry>
+                <listEntry value="-1">@Strings.SFSystem</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+    <!-- widgets settings-->
+    <group id="groupWidgets" title="@Strings.SgWT">
+        <!-- date format -->
+        <setting propertyKey="@Properties.DF" title="@Strings.DF">
+            <settingConfig type="list" required="true">
+                <listEntry value="1">@Strings.DF1</listEntry>
+                <listEntry value="2">@Strings.DF2</listEntry>
+                <listEntry value="3">28.04.1983</listEntry>
+                <listEntry value="4">04/28/1983</listEntry>
+                <listEntry value="5">1983/04/28</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- leading zero at time -->
         <setting propertyKey="@Properties.ClZero" title="@Strings.SWZero">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- display battery level as -->
+        <setting propertyKey="@Properties.Bat" title="@Strings.SBat">
+            <settingConfig type="list" required="true">
+                <listEntry value="0">@Strings.SBat0</listEntry>
+                <listEntry value="1">@Strings.SBat1</listEntry>
+                <listEntry value="2">@Strings.SBat2</listEntry>
+                <listEntry value="3">@Strings.SBat3</listEntry>
+            </settingConfig>
+        </setting>
+
+        <!-- daily steps goal -->
         <setting propertyKey="@Properties.StepPer" title="@Strings.SSgoal">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- stress warning level -->
         <setting propertyKey="@Properties.StressW" title="@Strings.SStressW">
             <settingConfig type="numeric"/>
         </setting>
 
+        <!-- show age of stress data -->
         <setting propertyKey="@Properties.StressA" title="@Strings.SStressA">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true"> 
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- show direction of stress level -->
         <setting propertyKey="@Properties.StressD" title="@Strings.SStressD">
-            <settingConfig type="list">
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>
         </setting>
 
+        <!-- respiration date warning level -->
         <setting propertyKey="@Properties.RespW" title="@Strings.SRrW">
             <settingConfig type="numeric"/>
         </setting>

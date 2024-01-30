@@ -8,16 +8,42 @@ module Widgets
     class BatteryStatus extends WidgetBase
     {
         private var _BatteryDaysText = null;
+        private var _BatteryDisplay = 1;
         private var _arcRadius = 35;
         private var _arcWidth = 9;
 
         function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
+
             if (IsSmallDisplay)
             {
                 self._arcRadius = 25;
                 self._arcWidth = 6;
+            }
+
+            self._BatteryDaysText = null;
+
+            var settings = Application.Properties.getValue("Bat") as Number;
+            if (settings == null)
+            {
+                if (IsSmallDisplay)
+                {
+                    self._BatteryDisplay = 1;
+                }
+                else
+                {
+                    self._BatteryDisplay = 3;
+                }
+            }
+            else
+            {
+                self._BatteryDisplay = settings;
+            }
+
+            if (self._BatteryDisplay >= 2 && Rez.Strings has :ShortBatteryDays)
+            {
+                self._BatteryDaysText = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
             }
 
             //adjust position to center of widget
@@ -37,19 +63,6 @@ module Widgets
         function draw(dc as Dc) as Void 
         {
             var theme = $.getTheme();
-
-            var hasBatteryInDays = false;
-            if (IsSmallDisplay)
-            {
-                hasBatteryInDays = false;
-                self._arcRadius = 25;
-                self._arcWidth = 6;
-            }
-
-            if (hasBatteryInDays == true && self._BatteryDaysText == null)
-            {
-                self._BatteryDaysText = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
-            }
 
             //Background
             dc.setColor(theme.BatteryIndicatorBackgroundColor, Graphics.COLOR_TRANSPARENT);
@@ -71,14 +84,27 @@ module Widgets
             dc.setColor(color, Graphics.COLOR_TRANSPARENT);
             self.drawArc(dc, stats.battery);
 
-            if (hasBatteryInDays == true)
+            if (self._BatteryDisplay >= 3 && self._BatteryDaysText != null)
             {
-                dc.drawText(self.locX, self.locY - dc.getFontHeight(HGfx.Fonts.Tiny) + 2, HGfx.Fonts.Tiny, stats.battery.format("%2d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(self.locX, self.locY - dc.getFontHeight(HGfx.Fonts.Tiny), HGfx.Fonts.Tiny, stats.battery.format("%2d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
                 dc.drawText(self.locX, self.locY - 2, HGfx.Fonts.Tiny, stats.batteryInDays.format("%2d") + self._BatteryDaysText, Graphics.TEXT_JUSTIFY_CENTER);
             }
             else
             {
-                dc.drawText(self.locX, self.locY - 3, HGfx.Fonts.Small, stats.battery.format("%2d") + "%", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+                var txt = null;
+                if (self._BatteryDisplay == 1)
+                {
+                    txt = stats.battery.format("%2d") + "%";
+                }
+                else if (!IsSmallDisplay && self._BatteryDisplay == 2)
+                {
+                    txt = stats.batteryInDays.format("%2d") + self._BatteryDaysText;
+                }
+
+                if (txt != null)
+                {
+                    dc.drawText(self.locX, self.locY - 3, HGfx.Fonts.Small, txt, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+                }
             }            
         }
 

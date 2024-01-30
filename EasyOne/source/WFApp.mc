@@ -19,6 +19,7 @@ class WFApp extends Application.AppBase
     {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
+        Helper.Gfx.Fonts.Load(false);
         Math.srand(Time.now().value());
     }
 
@@ -32,8 +33,7 @@ class WFApp extends Application.AppBase
     {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
-        //Font is reloaded in WFView
-      
+        Helper.Gfx.Fonts.Load(IsSmallDisplay);
         self.WatchfaceView.onSettingsChanged();
     }
 }

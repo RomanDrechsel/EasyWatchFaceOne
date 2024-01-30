@@ -64,8 +64,8 @@ module Widgets
                 var yOffset = 10;
                 if (IsSmallDisplay)
                 {
-                    xOffset = 26;
-                    yOffset = 7;
+                    xOffset = 23;
+                    yOffset = 9;
                 }
 
                 dc.setColor(theme.IconsOn, Gfx.COLOR_TRANSPARENT);

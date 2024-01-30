@@ -1,7 +1,8 @@
 <drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png" />
     <bitmap id="Attention" filename="Attention.png" />
 
-    <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png" />
+    <bitmap id="WeatherCloudy" filename="Weather/Cloudy.png"  />
     <bitmap id="WeatherExtreme" filename="Weather/Extreme.png" />
     <bitmap id="WeatherFog" filename="Weather/Fog.png" />
     <bitmap id="WeatherHeavyRain" filename="Weather/HeavyRain.png" />
