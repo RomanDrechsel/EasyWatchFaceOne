@@ -12,7 +12,7 @@ module Widgets
     {
         private enum Indicator { INDICATOR_RANDOM, INDICATOR_HEARTRATE, INDICATOR_STRESS, INDICATOR_BREATH }
 
-        var WidgetSize = 150;
+        var WidgetSize = 130;
 
         var Texts = null as Array<Helper.ExtTextPart>;
         var TextContainer = null as Helper.ExtText;        
@@ -72,7 +72,7 @@ module Widgets
             var centerX;
             if (IsSmallDisplay)
             {
-                centerX = self.locX + (self.WidgetSize / 2.0);
+                centerX = self.locX + (self.WidgetSize / 2.2);
             }
             else
             {

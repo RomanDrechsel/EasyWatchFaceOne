@@ -70,22 +70,19 @@
     <string id="DF1">THU 28. APR 1983</string>
     <string id="DF2">THU APR 28 1983</string>
     <string id="SBat">Display battery level</string>
-    <string id="SBat0">Bar only</string>
+    <string id="SBat0">Bars only</string>
     <string id="SBat1">Percentage</string>
-    <string id="SBat2">Remaining days</string>
-    <string id="SWZero">Display leading zero at time</string>
-    <string id="SSgoal">Display percentage of steps goal</string>    
-    <string id="SStressW">Stress Warning Level</string>
-    <string id="SStressD">Show direction of change of stress level</string>
-    <string id="SRrW">Respiration-Rate Warning Level</string>
+    <string id="SWZero">Leading zero for time</string>
+    <string id="SSgoal">Percentage of steps goal</string>    
+    <string id="SStressW">Stress warning level</string>
+    <string id="SStressD">Direction of change of stress level</string>
+    <string id="SRrW">Respiratory rate Warning level</string>
 
-    <string id="SDeco">Show decoration-lines in the corners</string>
+    <string id="SDeco">Decorative lines in corners</string>
     
     <string id="ThDarkBlue">Dark Blue</string>
     <string id="ThFire">Fire &amp; Ice</string>
     <string id="ThSunset">Sunset</string>
     <string id="ThBaW">Black &amp; White</string>
-
-    <string id="ShortBatteryDays">d</string>
 
 </strings>

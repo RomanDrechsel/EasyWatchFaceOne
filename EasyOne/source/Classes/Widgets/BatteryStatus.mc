@@ -41,7 +41,7 @@ module Widgets
                 self._BatteryDisplay = settings;
             }
 
-            if (!IsSmallDisplay && self._BatteryDisplay >= 2)
+            if (self._BatteryDisplay >= 2 && Rez.Strings has :ShortBatteryDays)
             {
                 self._BatteryDaysText = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
             }

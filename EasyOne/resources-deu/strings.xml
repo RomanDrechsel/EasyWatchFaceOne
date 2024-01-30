@@ -72,19 +72,16 @@
     <string id="SBat">Batteriestand anzeigen</string>
     <string id="SBat0">nur Balken</string>
     <string id="SBat1">Prozent</string>
-    <string id="SBat2">verbleibende Tage</string>
-    <string id="SWZero">Zeige führende Null bei der Uhrzeit</string>
-    <string id="SSgoal">Prozentsatz des Schrittziels anzeigen</string>    
+    <string id="SWZero">Führende Null bei der Uhrzeit</string>
+    <string id="SSgoal">Prozentsatz des tägl. Schrittziels</string>    
     <string id="SStressW">Warnung bei Stress-Level</string>
     <string id="SStressD">Veränderung des Stress-Levels anzeigen</string>
     <string id="SRrW">Warnung ab Atemzüge pro Minute</string>
-    <string id="SDeco">Deko-Linien in den Ecken anzeigen</string>
+    <string id="SDeco">Deko-Linien in den Ecken</string>
 
     <string id="ThDarkBlue">Dunkelblau</string>
     <string id="ThFire">Feuer &amp; Eis</string>    
     <string id="ThSunset">Sonnenuntergang</string>
     <string id="ThBaW">Schwarz-Weiß</string>
-
-    <string id="ShortBatteryDays">T</string>
 
 </strings>

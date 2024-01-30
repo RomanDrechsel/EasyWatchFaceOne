@@ -60,7 +60,7 @@ avail_configs = {
     "date": {
         "Komikazoom": {
             "Normal": {
-                "Fontsize": 44,
+                "Fontsize": 42,
                 "MaxHeight": 512,
             },
             "Small": {
@@ -70,7 +70,7 @@ avail_configs = {
         },
         "GoD": {
             "Normal": {
-                "Fontsize": 52,
+                "Fontsize": 48,
                 "MaxHeight": 512,
             },
             "Small": {
@@ -90,7 +90,7 @@ avail_configs = {
         },
         "Roboto": {
             "Normal": {
-                "Fontsize": 44,
+                "Fontsize": 42,
                 "MaxHeight": 512,
             },
             "Small": {
@@ -100,7 +100,7 @@ avail_configs = {
         },
         "NotoSans": {
             "Normal": {
-                "Fontsize": 40,
+                "Fontsize": 38,
                 "MaxHeight": 512,
             },
             "Small": {
@@ -234,7 +234,7 @@ avail_configs = {
     "text": {
         "Normal": {
             "Normal": {
-                "Fontsize": 40,
+                "Fontsize": 38,
                 "MaxHeight": 256,
             },
             "Small": {
@@ -244,7 +244,7 @@ avail_configs = {
         },
         "Small": {
             "Normal": {
-                "Fontsize": 26,
+                "Fontsize": 24,
                 "MaxHeight": 256,
             },
             "Small": {                
