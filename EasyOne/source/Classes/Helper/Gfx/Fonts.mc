@@ -5,7 +5,7 @@ import Toybox.System;
 import Toybox.Application;
 
 module Helper
-{ 
+{
     module Gfx
     {
         class Fonts
@@ -84,7 +84,7 @@ module Helper
                 {
                     self.Tiny = self.Small;
                 }
-                
+
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
 
@@ -120,7 +120,7 @@ module Helper
                     else
                     {
                         self.Date = Graphics.FONT_TINY;
-                    }                    
+                    }
                 }
             }
 
@@ -153,12 +153,12 @@ module Helper
                     {
                         self.Minute = self.Hour;
                     }
-                    else 
+                    else
                     {
                         self.Minute = WatchUi.loadResource(rez[1]);
                     }
                 }
-                else 
+                else
                 {
                     self.Minute = self.Hour;
                 }
@@ -193,8 +193,8 @@ module Helper
                     else if (systemlang == System.LANGUAGE_THA)
                     {
                         prop = 80;
-                    }                    
-                    else 
+                    }
+                    else
                     {
                         prop = 0;
                     }
