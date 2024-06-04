@@ -2,16 +2,12 @@ import Toybox.Lang;
 
 (:debug)
 module Debug
-{ 
-    class MergeSort 
+{
+    class MergeSort
     {
         static function Sort(array as Array) as Array
         {
-            if (array == null || !(array instanceof Array))
-            {
-                return null;
-            }
-            else if (array.size() <= 1)
+            if (array.size() <= 1)
             {
                 return array;
             }
@@ -19,7 +15,7 @@ module Debug
             var mid = (array.size() / 2).toNumber();
             var subarray1 = self.Sort(array.slice(0, mid));
             var subarray2 = self.Sort(array.slice(mid, null));
-            
+
             return self.Merge(subarray1, subarray2);
         }
 
