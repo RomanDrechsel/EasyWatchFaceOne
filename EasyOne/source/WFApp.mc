@@ -4,33 +4,28 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.System;
 
-class WFApp extends Application.AppBase 
-{
-    var WatchfaceView = null as WFView;
+class WFApp extends Application.AppBase {
+    var WatchfaceView = null as WFView?;
 
-    function initialize() 
-    {
+    function initialize() {
         AppBase.initialize();
         var settings = System.getDeviceSettings() as DeviceSettings;
         IsSmallDisplay = settings.screenWidth < 320;
     }
 
-    function onStart(state as Dictionary?) as Void 
-    {
+    function onStart(state as Dictionary?) as Void {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
         Helper.Gfx.Fonts.Load(false);
         Math.srand(Time.now().value());
     }
 
-    function getInitialView() as Array<Views or InputDelegates>? 
-    {
+    function getInitialView() as Array<Views or InputDelegates>? {
         self.WatchfaceView = new WFView();
-        return [ self.WatchfaceView ] as Array<Views or InputDelegates>;
+        return [self.WatchfaceView] as Array<Views or InputDelegates>;
     }
 
-    function onSettingsChanged() as Void 
-    {
+    function onSettingsChanged() as Void {
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
         Helper.Gfx.Fonts.Load(IsSmallDisplay);
@@ -38,13 +33,11 @@ class WFApp extends Application.AppBase
     }
 }
 
-function getApp() as WFApp 
-{
+function getApp() as WFApp {
     return Application.getApp() as WFApp;
 }
 
-function getView() as WFView
-{
+function getView() as WFView {
     return getApp().WatchfaceView;
 }
 

@@ -35,7 +35,7 @@ module Helper
                         {
                             $.getView().OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Method(self, :loadDateFont));
+                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadDateFont));
                     }
                     else
                     {
@@ -57,7 +57,7 @@ module Helper
                         {
                             $.getView().OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Method(self, :loadTimeFont));
+                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadTimeFont));
                     }
                     else
                     {
@@ -99,8 +99,7 @@ module Helper
 
                 if (rez.size() > 1 && WatchUi has :showToast && Rez.Strings has :FError)
                 {
-                    var txt = Application.loadResource(Rez.Strings.FError) as String;
-                    System.println(txt);
+                    var txt = Application.loadResource(Rez.Strings.FError) as Lang.String;
                     WatchUi.showToast(txt, {:icon => Rez.Drawables.Attention});
                 }
 
@@ -372,7 +371,7 @@ module Helper
                 {
                     if (prop > 0)
                     {
-                        Application.Properties.getValue("FTime", -1);
+                        Application.Properties.setValue("FTime", -1);
                     }
                     self.TimeFontProp = -1;
                     return [-1, -1, -1];
