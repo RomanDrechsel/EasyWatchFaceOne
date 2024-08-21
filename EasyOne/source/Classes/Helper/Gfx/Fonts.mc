@@ -5,7 +5,7 @@ import Toybox.System;
 import Toybox.Application;
 
 module Helper
-{
+{ 
     module Gfx
     {
         class Fonts
@@ -35,7 +35,7 @@ module Helper
                         {
                             $.getView().OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadDateFont));
+                        $.getView().OneTimePerTick.add(new Method(self, :loadDateFont));
                     }
                     else
                     {
@@ -57,7 +57,7 @@ module Helper
                         {
                             $.getView().OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadTimeFont));
+                        $.getView().OneTimePerTick.add(new Method(self, :loadTimeFont));
                     }
                     else
                     {
@@ -84,7 +84,7 @@ module Helper
                 {
                     self.Tiny = self.Small;
                 }
-
+                
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
 
@@ -99,7 +99,8 @@ module Helper
 
                 if (rez.size() > 1 && WatchUi has :showToast && Rez.Strings has :FError)
                 {
-                    var txt = Application.loadResource(Rez.Strings.FError) as Lang.String;
+                    var txt = Application.loadResource(Rez.Strings.FError) as String;
+                    System.println(txt);
                     WatchUi.showToast(txt, {:icon => Rez.Drawables.Attention});
                 }
 
@@ -119,7 +120,7 @@ module Helper
                     else
                     {
                         self.Date = Graphics.FONT_TINY;
-                    }
+                    }                    
                 }
             }
 
@@ -152,12 +153,12 @@ module Helper
                     {
                         self.Minute = self.Hour;
                     }
-                    else
+                    else 
                     {
                         self.Minute = WatchUi.loadResource(rez[1]);
                     }
                 }
-                else
+                else 
                 {
                     self.Minute = self.Hour;
                 }
@@ -192,8 +193,8 @@ module Helper
                     else if (systemlang == System.LANGUAGE_THA)
                     {
                         prop = 80;
-                    }
-                    else
+                    }                    
+                    else 
                     {
                         prop = 0;
                     }
@@ -371,7 +372,7 @@ module Helper
                 {
                     if (prop > 0)
                     {
-                        Application.Properties.setValue("FTime", -1);
+                        Application.Properties.getValue("FTime", -1);
                     }
                     self.TimeFontProp = -1;
                     return [-1, -1, -1];

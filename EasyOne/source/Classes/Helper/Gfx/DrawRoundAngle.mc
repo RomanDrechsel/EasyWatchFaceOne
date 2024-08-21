@@ -3,7 +3,7 @@ import Toybox.Math;
 using Toybox.Graphics as Gfx;
 
 module Helper
-{
+{ 
     module Gfx
     {
         class DrawRoundAngle
@@ -19,9 +19,9 @@ module Helper
             static var BarColors = [] as Array<Number>;
             static var DotRadius = 5;
 
-            static var Thickness = 4;
+            static var Thickness = 4; 
             static var ThicknessBold = 6;
-            static var Justification = JUST_TOPLEFT;
+            static var Justification = JUST_TOPLEFT; 
 
             private static var _lineWidth = 4;
             private static var _lineHeight as Float;
@@ -50,7 +50,7 @@ module Helper
 
                 self._lineWidth = self.Width - self.AngleRadius - (self.ThicknessBold / 2);
                 self._lineHeight = self.Height - self.AngleRadius - (self.ThicknessBold / 2);
-                self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Toybox.Math.PI * 2.0) / 4.0);
+                self._totalBarLength = self._lineWidth + self._lineHeight + ((self.AngleRadius.toFloat() * Toybox.Math.PI * 2.0) / 4.0);                
                 self._horLineValue = self._lineWidth / self._totalBarLength;
                 self._vertLineValue = self._lineHeight / self._totalBarLength;
 
@@ -260,7 +260,7 @@ module Helper
                     if (deg > 1.0)
                     {
                         dc.drawArc(startx, starty - self.AngleRadius, self.AngleRadius, Gfx.ARC_COUNTER_CLOCKWISE, 270, 270 + deg);
-                    }
+                    }                    
 
                     if (amount > self._horLineValue + self._arcValue)
                     {

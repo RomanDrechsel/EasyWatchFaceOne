@@ -2,14 +2,14 @@ using Helper.Gfx as HGfx;
 import Toybox.Lang;
 using Toybox.Graphics as Gfx;
 
-module Widgets
+module Widgets 
 {
     class DecoWidget extends WidgetBase
     {
         private var _size;
         private var _pos;
 
-        function initialize(params as Dictionary)
+        function initialize(params as Dictionary) 
         {
             WidgetBase.initialize(params);
 
@@ -27,7 +27,7 @@ module Widgets
 
             if (vertJust != WIDGET_JUSTIFICATION_TOP)
             {
-                self.locY = self.locY - self._size;
+                self.locY = self.locY - height;
             }
 
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
@@ -54,10 +54,10 @@ module Widgets
             }
         }
 
-        function draw(dc as Gfx.Dc) as Void
+        function draw(dc as Gfx.Dc) as Void 
         {
             HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._size, self._size, self._pos);
-            HGfx.DrawRoundAngle.draw(dc, 0.0, 0);
-        }
+            HGfx.DrawRoundAngle.draw(dc, 0, 0);
+        }  
     }
 }
