@@ -1,17 +1,19 @@
 import Toybox.Lang;
 import Widgets;
 import Toybox.Graphics;
-import Toybox.Time;
 using Helper.Gfx as HGfx;
 
 module Widgets {
     module Indicators {
-        class Breath extends IndicatorBase {
-            static var MaxRespirationRate = 40;
-            private static var _lastRespirationRate = 0 as Number;
-            private static var _lastSample = null as Time.Moment?;
+        class Breath {
+            static var MaxRespirationRate as Number = 40;
+            private static var _lastRespirationRate as Number = 0;
+            private static var _lastSample as Toybox.Time.Moment? = null;
 
             function draw(dc as Dc, widget as HealthIndicator) {
+                if (HGfx.Fonts.Normal == null || HGfx.Fonts.Small == null) {
+                    return;
+                }
                 var breath = self.getBreath();
                 var theme = $.getTheme();
 
@@ -21,12 +23,7 @@ module Widgets {
 
                 if (breath > 0) {
                     color = Themes.Colors.Text2;
-                    if (Themes.Colors.IconsInTextColor == true) {
-                        iconcolor = color;
-                    } else {
-                        iconcolor = theme.HealthBreathIconColor;
-                    }
-
+                    iconcolor = Themes.Colors.IconsInTextColor ? color : theme.HealthBreathIconColor;
                     var colors = $.getTheme().IndivatorLevel;
                     indicatorcolor = colors[0];
                     if (breath >= 20) {

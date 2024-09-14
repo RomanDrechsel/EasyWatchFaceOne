@@ -1,15 +1,9 @@
-module Themes
-{
-    class DarkBlue extends ThemeSettingsBase
-    {
-        function initialize()
-        {
-            if (Rez.Drawables has :BackgroundImageDark)
-            {
+module Themes {
+    class DarkBlue extends ThemeSettingsBase {
+        function initialize() {
+            if (Rez.Drawables has :BackgroundImageDark) {
                 self.BackgroundImage = Rez.Drawables.BackgroundImageDark;
-            }
-            else
-            {
+            } else {
                 self.BackgroundImage = null;
             }
 

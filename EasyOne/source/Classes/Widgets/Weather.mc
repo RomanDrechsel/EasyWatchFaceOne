@@ -6,20 +6,21 @@ using Helper.Gfx as HGfx;
 
 module Widgets {
     class Weather extends WidgetBase {
-        private var _currentTemp = null as String?;
-        private var _currentWeatherIcon = null;
-        private var _maxTemp = null as String?;
-        private var _minTemp = null as String?;
+        private var _currentTemp as String? = null;
+        private var _currentWeatherIcon as Gfx.BitmapType? = null;
+        private var _maxTemp as String? = null;
+        private var _minTemp as String? = null;
 
         function initialize(params as Dictionary) {
             WidgetBase.initialize(params);
             $.getView().OnShow.add(self);
             $.getView().OnSleep.add(self);
             self.OnShow();
+            $.Log("Initialized Weather Widget at " + self.Justification);
         }
 
         function draw(dc as Gfx.Dc) as Void {
-            if (self._currentWeatherIcon != null && self._currentTemp != null) {
+            if (self._currentWeatherIcon != null && self._currentTemp != null && HGfx.Fonts.Small != null) {
                 var iconSize = self._currentWeatherIcon.getWidth();
                 var textheight = dc.getFontHeight(HGfx.Fonts.Small);
                 var horPadding = 3;
@@ -37,7 +38,7 @@ module Widgets {
                 var iconPosX = centerX - iconSize - horPadding;
                 var iconPosY = self.locY;
 
-                var tempPosX = iconPosX + iconSize / 2;
+                var tempPosX = iconPosX + (iconSize / 2).toNumber();
                 var tempPosY = iconPosY + iconSize;
 
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
@@ -55,7 +56,7 @@ module Widgets {
                 dc.drawLine(centerX, self.locY + 10, centerX, self.locY + vertLineHeight);
 
                 //maximum temperature
-                var maxPosX = centerX + iconSize / 2 + horPadding;
+                var maxPosX = centerX + (iconSize / 2).toNumber() + horPadding;
                 var maxPosY = self.locY + 10;
                 if (IsSmallDisplay) {
                     maxPosY -= 4;
@@ -72,7 +73,7 @@ module Widgets {
                     horLineWidth = txt2;
                 }
 
-                var horLineX = maxPosX - horLineWidth / 2 - 3;
+                var horLineX = maxPosX - (horLineWidth / 2).toNumber() - 3;
                 var horLineY = maxPosY + textheight + 5;
                 if (IsSmallDisplay) {
                     horLineY -= 3;
@@ -95,13 +96,16 @@ module Widgets {
             var current = Weather.getCurrentConditions();
             if (current != null) {
                 var settings = Toybox.System.getDeviceSettings();
-                var maxtemp = current.highTemperature;
-                var mintemp = current.lowTemperature;
-                var ctemp = current.temperature;
+                var maxtemp = current.highTemperature.toNumber();
+                var mintemp = current.lowTemperature.toNumber();
+                var ctemp = current.temperature.toNumber();
 
                 var location = current.observationLocationPosition;
                 if (location == null) {
-                    location = Toybox.Position.getInfo().position;
+                    var info = Toybox.Position.getInfo();
+                    if (info != null) {
+                        location = info.position;
+                    }
                 }
 
                 var isNight = false;
@@ -121,22 +125,19 @@ module Widgets {
                 if (settings.temperatureUnits == Toybox.System.UNIT_STATUTE) {
                     //calc to fahrenheit
                     if (ctemp != null) {
-                        ctemp = ctemp.toFloat() * (9.0 / 5.0) + 32.0;
-                        ctemp = ctemp.toNumber();
+                        ctemp = (ctemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
                     if (mintemp != null) {
-                        mintemp = mintemp.toFloat() * (9.0 / 5.0) + 32.0;
-                        mintemp = mintemp.toNumber();
+                        mintemp = (mintemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
                     if (maxtemp != null) {
-                        maxtemp = maxtemp.toFloat() * (9.0 / 5.0) + 32.0;
-                        maxtemp = maxtemp.toNumber();
+                        maxtemp = (maxtemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
                 }
 
-                self._currentTemp = ctemp.toNumber();
-                self._maxTemp = maxtemp.toNumber();
-                self._minTemp = mintemp.toNumber();
+                self._currentTemp = ctemp;
+                self._maxTemp = maxtemp;
+                self._minTemp = mintemp;
 
                 self._currentWeatherIcon = null;
                 var condition = current.condition;

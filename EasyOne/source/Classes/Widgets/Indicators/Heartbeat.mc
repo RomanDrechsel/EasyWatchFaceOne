@@ -5,11 +5,15 @@ using Helper.Gfx as HGfx;
 
 module Widgets {
     module Indicators {
-        class Heartbeat extends IndicatorBase {
-            static var HeartbeatZones = [] as Array<Number>;
+        class Heartbeat {
+            static var HeartbeatZones as Array<Number> = [];
             static var HeartbeatMin = 0;
 
             function draw(dc as Gfx.Dc, widget as HealthIndicator) {
+                if (HGfx.Fonts.Normal == null || HGfx.Fonts.Small == null) {
+                    return;
+                }
+
                 var heartrate = self.getHeartrate();
                 var theme = $.getTheme();
 
@@ -19,11 +23,7 @@ module Widgets {
 
                 if (heartrate > 0) {
                     color = Themes.Colors.Text2;
-                    if (Themes.Colors.IconsInTextColor == true) {
-                        iconcolor = color;
-                    } else {
-                        iconcolor = theme.HealthHeartIconColor;
-                    }
+                    iconcolor = Themes.Colors.IconsInTextColor ? color : theme.HealthHeartIconColor;
 
                     var colors = $.getTheme().IndivatorLevel;
                     indicatorcolor = colors[0];
@@ -58,13 +58,13 @@ module Widgets {
                     amount = 0.001;
                 }
 
+                widget.drawIndicator(dc, amount, indicatorcolor);
+
                 if (heartrate > 0 && heartrate >= self.HeartbeatZones[self.HeartbeatZones.size() - 1]) {
                     widget.DrawAttentionIcon(dc);
                 } else {
                     widget.HideAttentionIcon();
                 }
-
-                widget.drawIndicator(dc, amount, indicatorcolor);
             }
 
             public static function getHeartrate() as Number {

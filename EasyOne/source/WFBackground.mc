@@ -4,8 +4,8 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 class WFBackground extends WatchUi.Drawable {
-    private var _color = 0 as Number;
-    private var _image = null as BitmapResource?;
+    private var _color as Number = 0;
+    private var _image as BitmapResource? = null;
 
     function initialize(params) {
         Drawable.initialize(params);
@@ -27,13 +27,15 @@ class WFBackground extends WatchUi.Drawable {
         self._color = theme.BackgroundColor;
         self._image = null;
 
-        var bgResource = Application.Properties.getValue("BG") as Number;
-
+        var bgResource = Helper.Properties.Get("BG", 0) as Number;
         if (bgResource == 0) {
             //theme background
             var bgimage = theme.BackgroundImage;
             if (bgimage != null) {
                 self._image = Application.loadResource(bgimage) as BitmapResource;
+                if (self._image != null) {
+                    $.Log("Background initialized with image " + bgimage);
+                }
             }
             self._color = theme.BackgroundColor;
         } else if (bgResource == 1) {
@@ -41,10 +43,10 @@ class WFBackground extends WatchUi.Drawable {
             self._color = Graphics.COLOR_TRANSPARENT;
         } else {
             //fixed color
-            var colorType = Application.Properties.getValue("BGCT") as Number;
+            var colorType = Helper.Properties.Get("BGCT", 0) as Number;
             if (colorType == 0) {
                 //predefined color
-                var predefined_color = Application.Properties.getValue("BGCPre") as Number;
+                var predefined_color = Helper.Properties.Get("BGCPre", 0) as Number;
                 var colors = [
                     0, //Black
                     0x2f4f4f, //DarkSlateGrey
@@ -63,13 +65,20 @@ class WFBackground extends WatchUi.Drawable {
                 }
             } else {
                 //custom color
-                var customcolor = Application.Properties.getValue("BGCCu") as String;
-                self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
+                var customcolor = Helper.Properties.Get("BGCCu", "#000000") as String;
+                if (customcolor.length() == 0) {
+                    self._color = null;
+                } else {
+                    self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
+                }
 
                 if (self._color == null) {
                     self._color = Graphics.COLOR_TRANSPARENT;
                 }
             }
+        }
+        if (self._image == null) {
+            $.Log("Background initialized with color " + self._color);
         }
     }
 }

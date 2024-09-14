@@ -3,10 +3,11 @@ import Toybox.Application;
 
 module Themes {
     class ThemesLoader {
-        static var Theme = null as ThemeSettingsBase?;
+        static var Theme as ThemeSettingsBase? = null;
 
         static function loadTheme() as Void {
-            var theme = Application.Properties.getValue("Th") as Number;
+            var theme = Helper.Properties.Get("Th", -1) as Number;
+
             switch (theme) {
                 default:
                 case 0:
@@ -25,6 +26,7 @@ module Themes {
                     self.Theme = new BSoD();
                     break;
             }
+            $.Log("Loaded Theme " + theme.toString());
         }
     }
 }

@@ -1,59 +1,49 @@
-module Themes
-{
-    class BlackAndWhite extends ThemeSettingsBase
-    {
-        function initialize()
-        {
+module Themes {
+    class BlackAndWhite extends ThemeSettingsBase {
+        function initialize() {
             //Global
-            self.MainTextColor = 0xFFFFFF;
-            self.MainTextColor2 = 0xFFFFFF;
+            self.MainTextColor = 0xffffff;
+            self.MainTextColor2 = 0xffffff;
 
             //Background
             self.BackgroundColor = 0;
 
             //Clock Widget
-            self.ClockHourColor = 0xFFFFFF;
-            self.ClockMinutesColor = 0xFFFFFF;
-            self.ClockSecondsColor = 0xFFFFFF;
+            self.ClockHourColor = 0xffffff;
+            self.ClockMinutesColor = 0xffffff;
+            self.ClockSecondsColor = 0xffffff;
 
             //Date Widget
-            self.DateWeekdayColor = 0xFFFFFF;
-            self.DateDayColor = 0xFFFFFF;
-            self.DateYearColor = 0xFFFFFF;
+            self.DateWeekdayColor = 0xffffff;
+            self.DateDayColor = 0xffffff;
+            self.DateYearColor = 0xffffff;
 
             //Battery Widget
-            self.BatteryIndicatorBackgroundColor = 0xFFFFFF;
+            self.BatteryIndicatorBackgroundColor = 0xffffff;
             self.BatteryIndicatorFullColor = 0x3dd33a;
             self.BatteryIndicatorHalfColor = 0xe1ef1a;
             self.BatteryIndicatorLowColor = 0xee0520;
 
             //Icons Widget
-            self.IconsOff = 0xFFFFFF;
+            self.IconsOff = 0xffffff;
             self.IconsOn = 0x3dd33a;
 
             //Indicatoren
-            self.IndicatorBackground = 0xFFFFFF;
-            self.IndivatorLevel = [
-                0xFFFFFF,
-                0xFFFFFF,
-                0xFFFFFF,
-                0xFFFFFF
-            ];
+            self.IndicatorBackground = 0xffffff;
+            self.IndivatorLevel = [0xffffff, 0xffffff, 0xffffff, 0xffffff];
 
             //Distance Widget
-            self.DistanceStepsIconColor = 0xFFFFFF;
-            self.DistanceIconColor = 0xFFFFFF;
-            self.DistanceCaloriesColor = 0xFFFFFF;
+            self.DistanceStepsIconColor = 0xffffff;
+            self.DistanceIconColor = 0xffffff;
+            self.DistanceCaloriesColor = 0xffffff;
 
             //DistanceWidget Indicator Colors
-            self.IndicatorSteps = [
-                0xFFFFFF
-            ];
+            self.IndicatorSteps = [0xffffff];
 
             //Health Widget
-            self.HealthHeartIconColor = 0xFFFFFF;
-            self.HealthStressIconColor = 0xFFFFFF;
-            self.HealthBreathIconColor = 0xFFFFFF;
+            self.HealthHeartIconColor = 0xffffff;
+            self.HealthStressIconColor = 0xffffff;
+            self.HealthBreathIconColor = 0xffffff;
         }
     }
 }

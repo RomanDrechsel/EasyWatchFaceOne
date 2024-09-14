@@ -1,10 +1,8 @@
 import Toybox.Lang;
 import Toybox.Application;
 
-module Themes
-{
-    class Colors
-    {
+module Themes {
+    class Colors {
         static var Text = 0xffffff;
         static var Text2 = 0xffffff;
         static var DateWeekday = 0xffffff;
@@ -16,13 +14,9 @@ module Themes
         static var TimeAMPM = 0xffffff;
         static var IconsInTextColor = false;
 
-        private static var fallbackColor = 0xFFFFFF;
-
-        static function ResetColors()
-        {
-            var customcolors = Application.Properties.getValue("CC") as Number;
-            if (customcolors == 1)
-            {
+        static function ResetColors() {
+            var customcolors = Helper.Properties.Get("CC", -1);
+            if (customcolors == 1) {
                 self.Text = self.GetColorFromProperties("CT");
                 self.Text2 = self.Text;
                 self.DateWeekday = self.GetColorFromProperties("CWeek");
@@ -32,18 +26,13 @@ module Themes
                 self.TimeMinute = self.GetColorFromProperties("CMin");
                 self.TimeSecond = self.GetColorFromProperties("CSec");
                 self.TimeAMPM = self.GetColorFromProperties("CMAP");
-                var icons = Application.Properties.getValue("IconC") as Number;
-                if (icons == 1)
-                {
+                var icons = Helper.Properties.Get("IconC", 0) as Number;
+                if (icons == 1) {
                     self.IconsInTextColor = true;
-                }
-                else
-                {
+                } else {
                     self.IconsInTextColor = false;
                 }
-            }
-            else
-            {
+            } else {
                 var theme = $.getTheme();
                 self.Text = theme.MainTextColor;
                 self.Text2 = theme.MainTextColor2;
@@ -58,18 +47,20 @@ module Themes
             }
         }
 
-        private static function GetColorFromProperties(key as String) as Number
-        {
+        private static function GetColorFromProperties(key as String) as Number {
             //custom color
-            var customcolor = Application.Properties.getValue(key) as String;
-            var color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
+            var fallbackColor = 0xffffff;
+            var customcolor = Helper.Properties.Get(key, "") as String;
+            if (customcolor.length() > 0) {
+                var color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
 
-            if (color == null)
-            {
-                color = self.fallbackColor;
+                if (color == null) {
+                    color = fallbackColor;
+                }
+                return color;
             }
 
-            return color;
+            return fallbackColor;
         }
     }
 }
