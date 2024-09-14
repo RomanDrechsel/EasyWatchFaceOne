@@ -1,15 +1,9 @@
-module Themes
-{
-    class DarkBlue extends ThemeSettingsBase
-    {
-        function initialize()
-        {
-            if (Rez.Drawables has :BackgroundImageDark)
-            {
+module Themes {
+    class DarkBlue extends ThemeSettingsBase {
+        function initialize() {
+            if (Rez.Drawables has :BackgroundImageDark) {
                 self.BackgroundImage = Rez.Drawables.BackgroundImageDark;
-            }
-            else
-            {
+            } else {
                 self.BackgroundImage = null;
             }
 
@@ -19,7 +13,7 @@ module Themes
             //Background
             self.BackgroundColor = 0x282a32;
 
-            //Clock Widget        
+            //Clock Widget
             self.ClockHourColor = 0x73b9e0;
             self.ClockMinutesColor = 0x0071a2;
             self.ClockSecondsColor = 0xffffff;

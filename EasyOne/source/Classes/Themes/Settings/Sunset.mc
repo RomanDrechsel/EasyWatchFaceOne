@@ -1,15 +1,9 @@
-module Themes
-{
-    class Sunset extends ThemeSettingsBase
-    {
-        function initialize()
-        {
-            if (Rez.Drawables has :BackgroundImageSunset)
-            {
+module Themes {
+    class Sunset extends ThemeSettingsBase {
+        function initialize() {
+            if (Rez.Drawables has :BackgroundImageSunset) {
                 self.BackgroundImage = Rez.Drawables.BackgroundImageSunset;
-            }
-            else
-            {
+            } else {
                 self.BackgroundImage = null;
             }
 
@@ -22,7 +16,7 @@ module Themes
             //Clock Widget
             self.ClockHourColor = 0x56def0;
             self.ClockMinutesColor = 0x3ebcd7;
-            self.ClockSecondsColor = 0x0DE4FF;
+            self.ClockSecondsColor = 0x0de4ff;
 
             //Date Widget
             self.DateWeekdayColor = 0x09b0c7;

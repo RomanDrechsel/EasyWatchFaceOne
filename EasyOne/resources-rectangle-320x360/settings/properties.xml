@@ -2,4 +2,5 @@
     <property type="number" id="BG">0</property>
     <property type="number" id="StressA">0</property>
     <property type="number" id="WBD">1</property>
+    <property type="number" id="Bat">3</property>
 </properties>
