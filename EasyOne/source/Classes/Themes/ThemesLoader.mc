@@ -1,14 +1,17 @@
 import Toybox.Lang;
 import Toybox.Application;
 
-module Themes {
-    class ThemesLoader {
-        static var Theme as ThemeSettingsBase? = null;
+module Themes
+{
+    class ThemesLoader
+    {
+        static var Theme = null as ThemeSettingsBase;
 
-        static function loadTheme() as Void {
-            var theme = Helper.Properties.Get("Th", -1) as Number;
-
-            switch (theme) {
+        static function loadTheme() as Void
+        {
+            var theme = Application.Properties.getValue("Th") as Number;
+            switch (theme)
+            {
                 default:
                 case 0:
                     self.Theme = new DarkBlue();
@@ -26,13 +29,19 @@ module Themes {
                     self.Theme = new BSoD();
                     break;
             }
-            $.Log("Loaded Theme " + theme.toString());
+
+            if (self.Theme == null)
+            {
+                self.Theme = new ThemeSettingsBase();
+            }
         }
     }
 }
 
-function getTheme() as Themes.ThemeSettingsBase {
-    if (Themes.ThemesLoader.Theme == null) {
+function getTheme() as Themes.ThemeSettingsBase
+{
+    if (Themes.ThemesLoader.Theme == null)
+    {
         Themes.ThemesLoader.loadTheme();
     }
     return Themes.ThemesLoader.Theme;
