@@ -5,87 +5,43 @@ using Toybox.Graphics as Gfx;
 using Helper.Gfx as HGfx;
 using Toybox.Time.Gregorian as D;
 
-module Widgets 
-{
-    module Indicators
-    {
-        class Stress
-        {
+module Widgets {
+    module Indicators {
+        class Stress {
+            var Name = "Stress";
             static var _stressLevel = 0;
-
             private var _color = Gfx.COLOR_WHITE;
             private var _iconColor = Gfx.COLOR_WHITE;
             private var _indicatorColor = Gfx.COLOR_WHITE;
-            private static var _sampleDeltaRise = null;
-            private static var _showSampleTime = true;
-            private static var _showDelta = true;
-            private static var _lastSampleDate = null as Toybox.Time.Moment;
-
-            function initialize()
-            {
-                if (!IsSmallDisplay)
-                {
-                    var setting = Application.Properties.getValue("StressA") as Number;
-                    if (setting != null && setting <= 0)
-                    {
-                        self._showSampleTime = false;
-                    }
-                    else
-                    {
-                        self._showSampleTime = true;
-                    }
-                }
-                else
-                {
-                    self._showSampleTime = false;
-                }
-
-                var setting = Application.Properties.getValue("StressD") as Number;
-                if (setting != null && setting <= 0)
-                {
-                    self._showDelta = false;
-                }
-                else
-                {
-                    self._showDelta = true;
-                }
+            private static var _sampleDeltaRise as Boolean? = null;
+            private static var _showSampleTime as Boolean;
+            private static var _showDelta as Boolean;
+            private static var _lastSampleDate as Toybox.Time.Moment? = null;
+            function initialize() {
+                self._showSampleTime = !IsSmallDisplay && (Helper.Properties.Get("StressA", 0) as Number) > 0;
+                self._showDelta = (Helper.Properties.Get("StressD", 1) as Number) > 0;
             }
 
-            function draw(dc as Gfx.Dc, widget as HealthIndicator)
-            {
+            function draw(dc as Gfx.Dc, widget as HealthIndicator) {
+                if (HGfx.Fonts.Icons == null || HGfx.Fonts.Normal == null) {
+                    return;
+                }
                 widget.DrawIcon(dc, HGfx.ICONS_STRESS, self._iconColor);
                 var width = widget.DrawText(dc);
 
-                if (self._stressLevel > 0)
-                {
-                    if (self._showDelta && self._sampleDeltaRise != null)
-                    {
-                        var icon = "";
-                        if (_sampleDeltaRise == false)
-                        {
-                            icon = HGfx.ICONS_ARROWDOWN;
-                        }
-                        else
-                        {
-                            icon = HGfx.ICONS_ARROWUP;
-                        }
-                        
-                        var offset = -5;
-                        if (IsSmallDisplay)
-                        {
-                            offset = -3;
-                        }
+                if (self._stressLevel > 0) {
+                    //delta icon
+                    if (self._showDelta && self._sampleDeltaRise != null) {
+                        var icon = self._sampleDeltaRise ? HGfx.ICONS_ARROWUP : HGfx.ICONS_ARROWDOWN;
+                        var offset = IsSmallDisplay ? -3 : -5;
 
                         dc.setColor(self._color, Graphics.COLOR_TRANSPARENT);
-                        dc.drawText(widget.TextContainer.AnchorX - (width / 2) - 5, widget.TextContainer.AnchorY + (Graphics.getFontAscent(HGfx.Fonts.Normal) / 2) + offset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT);
+                        dc.drawText(widget.TextContainer.AnchorX - (width / 2).toNumber() - 5, widget.TextContainer.AnchorY + (Graphics.getFontAscent(HGfx.Fonts.Normal) / 2).toNumber() + offset, HGfx.Fonts.Icons, icon, Gfx.TEXT_JUSTIFY_RIGHT);
                     }
 
-                    if (self._stressLevel >= widget.StressWarningLevel)
-                    {
+                    if (self._stressLevel >= widget.StressWarningLevel) {
                         widget.DrawAttentionIcon(dc);
-                    }
-                    else
-                    {
+                    } else {
                         widget.HideAttentionIcon();
                     }
 
@@ -93,136 +49,90 @@ module Widgets
                 }
             }
 
-            function calcColor(widget as HealthIndicator) as Void
-            {
+            function calcColor(widget as HealthIndicator) {
                 var theme = $.getTheme();
 
                 self._color = Themes.Colors.Text2;
-                self._iconColor = theme.IconsOff;
                 self._indicatorColor = theme.IconsOff;
-
-                if (Themes.Colors.IconsInTextColor == true)
-                {
-                    self._iconColor = self._color;
-                }
-                else
-                {
-                    self._iconColor = theme.HealthStressIconColor;
-                }
+                self._iconColor = Themes.Colors.IconsInTextColor ? self._color : theme.HealthStressIconColor;
 
                 var colors = $.getTheme().IndivatorLevel;
                 self._indicatorColor = colors[0];
-                if (self._stressLevel >= 60)
-                {
-                    if (self._stressLevel >= 90)
-                    {
+                if (self._stressLevel >= 60) {
+                    if (self._stressLevel >= 90) {
                         self._color = colors[3];
-                    }
-                    else if (self._stressLevel >= 80)
-                    {
+                    } else if (self._stressLevel >= 80) {
                         self._color = colors[2];
-                    }
-                    else
-                    {
+                    } else {
                         self._color = colors[1];
                     }
                     self._indicatorColor = self._color;
                     self._iconColor = self._color;
                 }
 
-                if (self._stressLevel > 0)
-                {
-                    if (widget.Texts == null || widget.Texts.size() < 1)
-                    {
-                        widget.Texts = [
-                            new Helper.ExtTextPart(self._stressLevel.toString(), self._color, HGfx.Fonts.Normal),
-                        ];
-                    }
-                    else
-                    {
+                if (self._stressLevel > 0 && HGfx.Fonts.Normal != null) {
+                    if (widget.Texts == null || widget.Texts.size() < 1) {
+                        widget.Texts = [new Helper.ExtTextPart(self._stressLevel.toString(), self._color, HGfx.Fonts.Normal)];
+                    } else {
                         widget.Texts[0].Text = self._stressLevel.toString();
                         widget.Texts[0].Color = self._color;
                     }
 
-                    if (self._showSampleTime == true && !IsSmallDisplay)
-                    {
+                    if (self._showSampleTime == true && !IsSmallDisplay && HGfx.Fonts.Small != null) {
                         var datestr = "";
-                        if (self._lastSampleDate != null)
-                        {
+                        if (self._lastSampleDate != null) {
                             var ts = Time.now().subtract(self._lastSampleDate).value();
-                            if (ts > 120)
-                            {
-                                datestr = " (" + (ts/60) + "m)";
+                            if (ts > 120) {
+                                datestr = " (" + (ts / 60).toNumber() + "m)";
                             }
                         }
 
-                        if (widget.Texts.size() < 2)
-                        {
+                        if (widget.Texts.size() < 2) {
                             widget.Texts.add(new Helper.ExtTextPart(datestr, self._color, HGfx.Fonts.Small));
-                        }
-                        else
-                        {
+                        } else {
                             widget.Texts[1].Text = datestr;
                             widget.Texts[1].Color = self._color;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     widget.Texts = null;
                 }
             }
 
-            static function getStressLevel() as Number
-            {
+            static function getStressLevel() as Number {
                 self._sampleDeltaRise = null;
                 self._stressLevel = 0;
 
-                //SAMPLE_VALID = 1800
-                if (Toybox has :SensorHistory && SensorHistory has :getStressHistory &&
-                    (self._lastSampleDate == null || Time.now().subtract(self._lastSampleDate).value() > 5))
-                {
-                    var hist = SensorHistory.getStressHistory({ "period" => 2, "order" => SensorHistory.ORDER_NEWEST_FIRST});
+                var sample_valid = 1800; // 30 min
+                if ((self._lastSampleDate == null || Toybox.Time.now().subtract(self._lastSampleDate).value() > 5) && Toybox.SensorHistory has :getStressHistory) {
+                    var hist = Toybox.SensorHistory.getStressHistory({ "period" => 2, "order" => Toybox.SensorHistory.ORDER_NEWEST_FIRST });
                     var newest_sample = hist.next();
                     var prev_sample = hist.next();
-                    if (newest_sample != null && Time.now().subtract(newest_sample.when).value() <= 1800)
-                    {
-                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= 1800)
-                        {
-                            if (newest_sample.data > prev_sample.data)
-                            {
+                    if (newest_sample != null && Toybox.Time.now().subtract(newest_sample.when).value() <= sample_valid) {
+                        if (prev_sample != null && newest_sample.when.subtract(prev_sample.when).value() <= sample_valid) {
+                            if (newest_sample.data > prev_sample.data) {
                                 self._sampleDeltaRise = true;
-                            }
-                            else if (newest_sample.data < prev_sample.data)
-                            {
+                            } else if (newest_sample.data < prev_sample.data) {
                                 self._sampleDeltaRise = false;
-                            }
-                            else
-                            {
+                            } else {
                                 self._sampleDeltaRise = null;
                             }
-                        }
-                        else
-                        {
+                        } else {
                             self._lastSampleDate = null;
                         }
-                        
+
                         self._stressLevel = newest_sample.data.toNumber();
                         self._lastSampleDate = newest_sample.when;
-                    }
-                    else
-                    {
+                    } else {
                         self._lastSampleDate = null;
                     }
-                }
-                else
-                {
+                } else {
                     self._lastSampleDate = null;
                 }
 
-                /*self._sampleDeltaRise = false;
-                self._lastSampleDate = Time.now().subtract(new Time.Duration(345));
-                self._stressLevel = 85.0;*/
+                /*self._sampleDeltaRise = true;
+                self._lastSampleDate = Time.now().subtract(new Time.Duration(645));
+                self._stressLevel = 92;*/
 
                 return self._stressLevel;
             }

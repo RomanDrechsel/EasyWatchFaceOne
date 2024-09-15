@@ -4,41 +4,36 @@ import Toybox.WatchUi;
 import Toybox.Weather;
 using Helper.Gfx as HGfx;
 
-module Widgets 
-{
-    class Weather extends WidgetBase
-    {  
-        private var _currentTemp = null as String;
-        private var _currentWeatherIcon = null;
-        private var _maxTemp = null as String;
-        private var _minTemp = null as String;
+module Widgets {
+    class Weather extends WidgetBase {
+        private var _currentTemp as String? = null;
+        private var _currentWeatherIcon as Gfx.BitmapType? = null;
+        private var _maxTemp as String? = null;
+        private var _minTemp as String? = null;
 
-        function initialize(params as Dictionary) 
-        {
-            WidgetBase.initialize(params);
-            $.getView().OnShow.add(self);
-            $.getView().OnSleep.add(self);
+        function initialize(params as Dictionary) {
+            WidgetBase.initialize(params, "Weather");
+            var view = $.getView();
+            if (view != null) {
+                view.OnShow.add(self);
+                view.OnSleep.add(self);
+            }
             self.OnShow();
+            $.Log(self.Name + " widget at " + self.Justification);
         }
 
-        function draw(dc as Gfx.Dc) as Void 
-        {
-            if (self._currentWeatherIcon != null && self._currentTemp != null)
-            {
+        function draw(dc as Gfx.Dc) as Void {
+            if (self._currentWeatherIcon != null && self._currentTemp != null && HGfx.Fonts.Small != null) {
                 var iconSize = self._currentWeatherIcon.getWidth();
                 var textheight = dc.getFontHeight(HGfx.Fonts.Small);
                 var horPadding = 3;
 
                 var centerX = self.locX;
-                if (self.Justification == WIDGET_JUSTIFICATION_RIGHT)
-                {
+                if (self.Justification == WIDGET_JUSTIFICATION_RIGHT) {
                     centerX = self.locX - iconSize + 10;
-                }
-                else if (self.Justification == WIDGET_JUSTIFICATION_LEFT)
-                {
+                } else if (self.Justification == WIDGET_JUSTIFICATION_LEFT) {
                     centerX = self.locX + iconSize + 15;
-                    if (IsSmallDisplay)
-                    {
+                    if (IsSmallDisplay) {
                         centerX -= 10;
                     }
                 }
@@ -46,8 +41,8 @@ module Widgets
                 var iconPosX = centerX - iconSize - horPadding;
                 var iconPosY = self.locY;
 
-                var tempPosX = iconPosX + (iconSize / 2);
-                var tempPosY = iconPosY + iconSize;                
+                var tempPosX = iconPosX + (iconSize / 2).toNumber();
+                var tempPosY = iconPosY + iconSize;
 
                 dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
@@ -57,18 +52,16 @@ module Widgets
 
                 //vertical line
                 var vertLineHeight = iconSize + textheight - 5;
-                if (IsSmallDisplay)
-                {
+                if (IsSmallDisplay) {
                     vertLineHeight -= 3;
                 }
                 dc.setPenWidth(1);
                 dc.drawLine(centerX, self.locY + 10, centerX, self.locY + vertLineHeight);
 
                 //maximum temperature
-                var maxPosX = centerX + (iconSize / 2) + horPadding;
+                var maxPosX = centerX + (iconSize / 2).toNumber() + horPadding;
                 var maxPosY = self.locY + 10;
-                if (IsSmallDisplay)
-                {
+                if (IsSmallDisplay) {
                     maxPosY -= 4;
                 }
                 dc.drawText(maxPosX, maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
@@ -79,15 +72,13 @@ module Widgets
 
                 //horizontal line
                 var horLineWidth = txt1;
-                if (horLineWidth < txt2)
-                {
+                if (horLineWidth < txt2) {
                     horLineWidth = txt2;
                 }
 
-                var horLineX = maxPosX - (horLineWidth / 2) - 3;
+                var horLineX = maxPosX - (horLineWidth / 2).toNumber() - 3;
                 var horLineY = maxPosY + textheight + 5;
-                if (IsSmallDisplay)
-                {
+                if (IsSmallDisplay) {
                     horLineY -= 3;
                     horLineX += 2;
                 }
@@ -96,69 +87,54 @@ module Widgets
                 //minimum temperature
                 var minPosX = maxPosX;
                 var minPosY = maxPosY + textheight + 6;
-                if (IsSmallDisplay)
-                {
+                if (IsSmallDisplay) {
                     minPosY -= 2;
                 }
                 dc.drawText(minPosX, minPosY, HGfx.Fonts.Small, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
             }
         }
 
-        function OnShow()
-        {
+        function OnShow() {
             //get current weather
             var current = Weather.getCurrentConditions();
-            if (current != null)
-            {
+            if (current != null) {
                 var settings = Toybox.System.getDeviceSettings();
-                var maxtemp = current.highTemperature;
-                var mintemp = current.lowTemperature;
-                var ctemp = current.temperature;
+                var maxtemp = current.highTemperature.toNumber();
+                var mintemp = current.lowTemperature.toNumber();
+                var ctemp = current.temperature.toNumber();
 
                 var location = current.observationLocationPosition;
-                if (location == null)
-                {
+                if (location == null) {
                     var info = Toybox.Position.getInfo();
-                    if (info != null)
-                    {
+                    if (info != null) {
                         location = info.position;
                     }
                 }
-                
+
                 var isNight = false;
 
-                if (location != null)
-                {
+                if (location != null) {
                     var now = Toybox.Time.now();
                     var sunrise = Weather.getSunrise(location, now);
                     var sunset = Weather.getSunset(location, now);
 
-                    if (sunrise != null && sunset != null)
-                    {
-                        if (sunrise.greaterThan(now) || sunset.lessThan(now))
-                        {
+                    if (sunrise != null && sunset != null) {
+                        if (sunrise.greaterThan(now) || sunset.lessThan(now)) {
                             isNight = true;
                         }
                     }
                 }
 
-                if (settings.temperatureUnits == Toybox.System.UNIT_STATUTE)
-                {
+                if (settings.temperatureUnits == Toybox.System.UNIT_STATUTE) {
                     //calc to fahrenheit
-                    if (ctemp != null)
-                    {
-                        ctemp = (ctemp.toFloat() * (9.0/5.0)) + 32.0;
-                        ctemp = ctemp.toNumber();
+                    if (ctemp != null) {
+                        ctemp = (ctemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
-                    if (mintemp != null)
-                    {
-                        mintemp = (mintemp.toFloat() * (9.0/5.0)) + 32.0;
-                        mintemp = mintemp.toNumber();
+                    if (mintemp != null) {
+                        mintemp = (mintemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
-                    if (maxtemp != null)
-                    {
-                        maxtemp = (maxtemp.toFloat() * (9.0/5.0)) + 32.0;
-                        maxtemp = maxtemp.toNumber();
+                    if (maxtemp != null) {
+                        maxtemp = (maxtemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
                     }
                 }
 
@@ -168,41 +144,30 @@ module Widgets
 
                 self._currentWeatherIcon = null;
                 var condition = current.condition;
-                if (condition != null)
-                {
-                    switch (condition)
-                    {
+                if (condition != null) {
+                    switch (condition) {
                         case Toybox.Weather.CONDITION_CLEAR:
                         case Toybox.Weather.CONDITION_MOSTLY_CLEAR:
                         case Toybox.Weather.CONDITION_FAIR:
-                            if (isNight)
-                            {
+                            if (isNight) {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear_Night);
-                            }
-                            else
-                            {
+                            } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear);
                             }
                             break;
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
                         case Toybox.Weather.CONDITION_PARTLY_CLEAR:
                         case Toybox.Weather.CONDITION_THIN_CLOUDS:
-                            if (isNight)
-                            {
+                            if (isNight) {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds_Night);
-                            }
-                            else
-                            {
+                            } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds);
                             }
                             break;
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
-                            if (isNight)
-                            {
+                            if (isNight) {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy_Night);
-                            }
-                            else
-                            {
+                            } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy);
                             }
                             break;
@@ -214,12 +179,9 @@ module Widgets
                         case Toybox.Weather.CONDITION_LIGHT_SHOWERS:
                         case Toybox.Weather.CONDITION_SHOWERS:
                         case Toybox.Weather.CONDITION_CHANCE_OF_SHOWERS:
-                            if (isNight)
-                            {
+                            if (isNight) {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain_Night);
-                            }
-                            else
-                            {
+                            } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain);
                             }
                             break;
@@ -285,9 +247,7 @@ module Widgets
                         case Toybox.Weather.CONDITION_UNKNOWN:
                     }
                 }
-            }
-            else
-            {
+            } else {
                 self._currentTemp = null;
                 self._maxTemp = null;
                 self._minTemp = null;
@@ -295,8 +255,7 @@ module Widgets
             }
         }
 
-        function OnSleep()
-        {
+        function OnSleep() {
             self._currentTemp = null;
             self._maxTemp = null;
             self._minTemp = null;
