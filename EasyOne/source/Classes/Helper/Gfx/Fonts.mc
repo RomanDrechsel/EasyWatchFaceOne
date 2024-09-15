@@ -22,13 +22,14 @@ module Helper {
             static function Load(delayed as Boolean) as Void {
                 //date font
                 var prop = Helper.Properties.Get("FDate", -1) as Number;
+                var view = $.getView();
                 if (prop != self.DateFontProp) {
-                    if (delayed) {
+                    if (delayed && view != null) {
                         self.Date = Graphics.FONT_TINY;
-                        if ($.getView().OneTimePerTick == null) {
-                            $.getView().OneTimePerTick = [1];
+                        if (view.OneTimePerTick == null) {
+                            view.OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadDateFont));
+                        view.OneTimePerTick.add(new Lang.Method(self, :loadDateFont));
                     } else {
                         self.loadDateFont(prop);
                     }
@@ -38,15 +39,15 @@ module Helper {
                 //Time fonts
                 prop = Helper.Properties.Get("FTime", -1) as Number;
                 if (prop != self.TimeFontProp) {
-                    if (delayed) {
+                    if (delayed && view != null) {
                         self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
                         self.Minute = self.Hour;
                         self.Seconds = Graphics.FONT_XTINY;
 
-                        if ($.getView().OneTimePerTick == null) {
-                            $.getView().OneTimePerTick = [1];
+                        if (view.OneTimePerTick == null) {
+                            view.OneTimePerTick = [1];
                         }
-                        $.getView().OneTimePerTick.add(new Lang.Method(self, :loadTimeFont));
+                        view.OneTimePerTick.add(new Lang.Method(self, :loadTimeFont));
                     } else {
                         self.loadTimeFont(prop);
                     }

@@ -57,7 +57,7 @@
         <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
             <settingConfig type="list">
                 <listEntry value="0">@Strings.No</listEntry>
-                <listEntry value="1">@Strings.Yes</listEntry>                
+                <listEntry value="1">@Strings.Yes</listEntry>
             </settingConfig>
         </setting>
 
@@ -105,11 +105,11 @@
         <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
             <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
-                <listEntry value="1">@Strings.Yes</listEntry>                
+                <listEntry value="1">@Strings.Yes</listEntry>
             </settingConfig>
         </setting>
     </group>
-    
+
     <!-- widget arrangement -->
     <group id="groupLayout" title="@Strings.SLo">
         <!-- top left corner -->
@@ -243,7 +243,7 @@
 
         <!-- show age of stress data -->
         <setting propertyKey="@Properties.StressA" title="@Strings.SStressA">
-            <settingConfig type="list" required="true"> 
+            <settingConfig type="list" required="true">
                 <listEntry value="1">@Strings.Yes</listEntry>
                 <listEntry value="0">@Strings.No</listEntry>
             </settingConfig>

@@ -34,7 +34,7 @@ module Helper {
 
             for (var i = 0; i < texts.size(); i++) {
                 var text = texts[i];
-                if (text.Text.length() == 0) {
+                if (text.Text == null || text.Text.length() == 0 || text.Font == null) {
                     continue;
                 }
                 var yoffset = dim[1] - Graphics.getFontAscent(text.Font);
@@ -42,7 +42,9 @@ module Helper {
                     yoffset *= 1.2;
                 }
 
-                dc.setColor(text.Color, Graphics.COLOR_TRANSPARENT);
+                if (text.Color != null) {
+                    dc.setColor(text.Color, Graphics.COLOR_TRANSPARENT);
+                }
                 dc.drawText(posx, self.AnchorY + yoffset, text.Font, text.Text, Graphics.TEXT_JUSTIFY_LEFT);
                 posx += dc.getTextWidthInPixels(text.Text, text.Font);
             }
@@ -54,7 +56,7 @@ module Helper {
             var totalwidth = 0;
             var totalheight = 0;
             for (var i = 0; i < texts.size(); i++) {
-                if (texts[i].Text.length() == 0) {
+                if (texts[i].Text == null || texts[i].Text.length() == 0) {
                     continue;
                 }
                 var width = dc.getTextWidthInPixels(texts[i].Text, texts[i].Font);
@@ -70,11 +72,11 @@ module Helper {
     }
 
     class ExtTextPart {
-        var Text as String;
-        var Color as Number;
-        var Font as FontResource;
+        var Text as String?;
+        var Color as Number?;
+        var Font as FontResource?;
 
-        function initialize(text as String, color as Number, font as FontResource) {
+        function initialize(text as String?, color as Number?, font as FontResource?) {
             self.Text = text;
             self.Color = color;
             self.Font = font;

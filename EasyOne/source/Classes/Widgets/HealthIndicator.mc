@@ -29,7 +29,7 @@ module Widgets {
 
         private var _indicatorPadding as Number = 10;
         private var _display as Object? = null;
-        private var _showIndicator as Boolean = true;
+        private var _showIndicator as Boolean;
 
         function initialize(params as Dictionary) {
             WidgetBase.initialize(params, "Health");
@@ -43,10 +43,7 @@ module Widgets {
                 self.locX = self.locX - self.WidgetSize;
             }
 
-            if ((Helper.Properties.Get("Deco", 1) as Number) <= 0) {
-                self._showIndicator = false;
-            }
-
+            self._showIndicator = (Helper.Properties.Get("Deco", 1) as Number) > 0;
             self.StressWarningLevel = Helper.Properties.Get("StressW", 90) as Number;
             if (self.StressWarningLevel <= 0 || self.StressWarningLevel > 100) {
                 self.StressWarningLevel = 999;
@@ -82,16 +79,19 @@ module Widgets {
             }
 
             self.TextContainer = new Helper.ExtText(centerX, textPosY, Graphics.TEXT_JUSTIFY_CENTER);
-            $.getView().OnShow.add(self);
+            var view = $.getView();
+            if (view != null) {
+                view.OnShow.add(self);
+            }
             $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
-            if (self._display == null) {
-                self.OnShow();
-            } else if ($.getView().IsBackground) {
+            if ($.getView() != null && $.getView().IsBackground) {
                 //update cache
                 Indi.Breath.getBreath();
+            } else if (self._display == null) {
+                self.OnShow();
             }
 
             if (self._display != null) {
@@ -117,12 +117,15 @@ module Widgets {
 
                 indicator = INDICATOR_RANDOM;
                 if (heartrate >= Indi.Heartbeat.HeartbeatZones[2]) {
+                    //heartrate is too high
                     indicator = INDICATOR_HEARTRATE;
                 } else {
                     if (breath >= self.BreathWarningLevel) {
+                        //breath rate is too high
                         indicator = INDICATOR_BREATH;
                     } else {
                         if (stress >= self.StressWarningLevel) {
+                            //stress level is too high
                             indicator = INDICATOR_STRESS;
                         }
                     }
@@ -154,14 +157,13 @@ module Widgets {
         }
 
         function DrawAttentionIcon(dc as Dc) as Void {
-            var offsetX = IsSmallDisplay ? 3 : 5;
-            var offsetY = IsSmallDisplay ? -8 : -10;
-
             if (self._attentionIcon == null) {
                 self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
             }
 
             if (self._attentionIcon != null) {
+                var offsetX = IsSmallDisplay ? 3 : 5;
+                var offsetY = IsSmallDisplay ? -8 : -10;
                 dc.drawBitmap(self._iconPosX + offsetX, self._iconPosY + offsetY, self._attentionIcon);
             }
         }
@@ -182,14 +184,12 @@ module Widgets {
                 if (self.Texts.size() > 0) {
                     return self.TextContainer.draw(self.Texts, dc);
                 }
-                return 0;
             } else if (HGfx.Fonts.Normal != null) {
                 dc.setColor($.getTheme().IconsOff, Graphics.COLOR_TRANSPARENT);
                 dc.drawText(self.TextContainer.AnchorX, self.TextContainer.AnchorY, HGfx.Fonts.Normal, "-", Graphics.TEXT_JUSTIFY_CENTER);
                 return dc.getTextWidthInPixels("-", HGfx.Fonts.Normal);
-            } else {
-                return 0;
             }
+            return 0;
         }
 
         function drawIndicator(dc as Dc, amount as Float, color as Number) as Void {
@@ -208,34 +208,21 @@ module Widgets {
         }
 
         private function getRandomWidget(s as Number, b as Number) as Indicator {
-            var stress = 1;
-            var breath = 1;
-
-            if (s <= 0) {
-                stress = 0;
-            }
-
-            if (b <= 0) {
-                breath = 0;
-            }
+            var stress = s > 0 ? 1 : 0;
+            var breath = b > 0 ? 1 : 0;
 
             var max = 1 + stress + breath;
             if (max <= 1) {
                 return INDICATOR_HEARTRATE;
             }
 
-            Math.srand(Time.now().value());
-            var rdm = Math.rand() % max;
-            if (rdm <= 0) {
-                return INDICATOR_HEARTRATE;
-            } else if (rdm == 1) {
-                if (stress > 0) {
-                    return INDICATOR_STRESS;
-                } else {
-                    return INDICATOR_BREATH;
-                }
-            } else {
+            var rdm = Time.now().value() % max;
+            if (stress > 0 && (rdm == 1 || (rdm > 1 && breath == 0))) {
+                return INDICATOR_STRESS;
+            } else if (rdm >= 1 && breath > 0) {
                 return INDICATOR_BREATH;
+            } else {
+                return INDICATOR_HEARTRATE;
             }
         }
     }

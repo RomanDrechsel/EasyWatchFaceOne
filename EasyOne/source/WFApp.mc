@@ -36,12 +36,13 @@ class WFApp extends Application.AppBase {
     }
 }
 
-function getApp() as WFApp {
-    return Application.getApp() as WFApp;
-}
-
-function getView() as WFView {
-    return getApp().WatchfaceView;
+function getView() as WFView? {
+    var app = Application.getApp() as WFApp;
+    if (app != null) {
+        return app.WatchfaceView;
+    } else {
+        return null;
+    }
 }
 
 function Log(obj as String) {

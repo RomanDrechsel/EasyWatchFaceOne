@@ -3,7 +3,7 @@
     <string id="AppName">Easy WatchFace One</string>
 
     <string id="Yes">Ja</string>
-    <string id="No">Nein</string> 
+    <string id="No">Nein</string>
 
     <string id="SettingsTh">Theme</string>
 
@@ -11,7 +11,7 @@
     <string id="STBTh">Theme Hintergrund</string>
     <string id="STBResource">Ressource</string>
     <string id="STBColor">Farbe</string>
-   
+
     <string id="STBSystem">System-Hintergrundfarbe</string>
     <string id="STBFixedColorSelect">feste Farbe verwenden</string>
     <string id="STBFixedColor">Welche feste Farbe verwenden</string>
@@ -73,14 +73,15 @@
     <string id="SBat0">nur Balken</string>
     <string id="SBat1">Prozent</string>
     <string id="SWZero">Führende Null bei der Uhrzeit</string>
-    <string id="SSgoal">Prozentsatz des tägl. Schrittziels</string>    
+    <string id="SSgoal">Prozentsatz des tägl. Schrittziels</string>
     <string id="SStressW">Warnung bei Stress-Level</string>
     <string id="SStressD">Veränderung des Stress-Levels anzeigen</string>
     <string id="SRrW">Warnung ab Atemzüge pro Minute</string>
     <string id="SDeco">Deko-Linien in den Ecken</string>
 
     <string id="ThDarkBlue">Dunkelblau</string>
-    <string id="ThFire">Feuer &amp; Eis</string>    
+    <string id="ThFire">Feuer &amp; Eis</string>
+    <string id="ThL">Hell</string>
     <string id="ThSunset">Sonnenuntergang</string>
     <string id="ThBaW">Schwarz-Weiß</string>
 

@@ -18,7 +18,6 @@ module Widgets {
                 self._arcWidth = 6;
             }
 
-            self._BatteryDaysText = null;
             var settings = Helper.Properties.Get("Bat", -1) as Number;
             var max_settings = IsSmallDisplay ? 1 : 3;
             if (settings < 0 || settings > max_settings) {
@@ -29,6 +28,8 @@ module Widgets {
 
             if (self._BatteryDisplay >= 2 && Rez.Strings has :ShortBatteryDays) {
                 self._BatteryDaysText = Application.loadResource(Rez.Strings.ShortBatteryDays) as String;
+            } else {
+                self._BatteryDaysText = null;
             }
 
             //adjust position to center of widget
@@ -69,7 +70,7 @@ module Widgets {
                 }
             } else if (HGfx.Fonts.Small != null) {
                 var txt = null;
-                if (self._BatteryDisplay == 1 || (IsSmallDisplay && self._BatteryDisplay != 0)) {
+                if (self._BatteryDisplay == 1 || (IsSmallDisplay && self._BatteryDisplay > 1)) {
                     txt = stats.battery.format("%2d") + "%";
                 } else if (self._BatteryDisplay == 2 && self._BatteryDaysText != null) {
                     txt = stats.batteryInDays.format("%2d") + self._BatteryDaysText;
@@ -96,7 +97,7 @@ module Widgets {
                 arcStart = -40.0;
             }
 
-            var length = (arcLength * percent) / 100.0;
+            var length = (arcLength * percent).toFloat() / 100.0;
             var end = arcStart - length * arcFactor;
 
             dc.setPenWidth(self._arcWidth);

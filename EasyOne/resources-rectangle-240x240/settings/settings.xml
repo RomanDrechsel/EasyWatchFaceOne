@@ -56,7 +56,7 @@
         <setting propertyKey="@Properties.CC" title="@Strings.SCCustomize">
             <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
-                <listEntry value="1">@Strings.Yes</listEntry>                
+                <listEntry value="1">@Strings.Yes</listEntry>
             </settingConfig>
         </setting>
 
@@ -104,7 +104,7 @@
         <setting propertyKey="@Properties.IconC" title="@Strings.SCIcons">
             <settingConfig type="list" required="true">
                 <listEntry value="0">@Strings.No</listEntry>
-                <listEntry value="1">@Strings.Yes</listEntry>                
+                <listEntry value="1">@Strings.Yes</listEntry>
             </settingConfig>
         </setting>
     </group>
@@ -182,7 +182,7 @@
                 <listEntry value="-1">@Strings.SFSystem</listEntry>
             </settingConfig>
         </setting>
-        
+
         <!-- date font -->
         <setting propertyKey="@Properties.FDate" title="@Strings.SFDate">
             <settingConfig type="list" required="true">

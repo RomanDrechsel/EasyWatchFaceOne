@@ -26,9 +26,9 @@ module Widgets {
                 return;
             } else if (self._texts == null) {
                 self._texts = [];
-                self._texts.add(new Helper.ExtTextPart("", Themes.Colors.DateWeekday, HGfx.Fonts.Date));
-                self._texts.add(new Helper.ExtTextPart("", Themes.Colors.DateDay, HGfx.Fonts.Date));
-                self._texts.add(new Helper.ExtTextPart("", Themes.Colors.DateYear, HGfx.Fonts.Date));
+                self._texts.add(new Helper.ExtTextPart(null, Themes.Colors.DateWeekday, HGfx.Fonts.Date));
+                self._texts.add(new Helper.ExtTextPart(null, Themes.Colors.DateDay, HGfx.Fonts.Date));
+                self._texts.add(new Helper.ExtTextPart(null, Themes.Colors.DateYear, HGfx.Fonts.Date));
             } else {
                 self._texts[0].Font = HGfx.Fonts.Date;
                 self._texts[1].Font = HGfx.Fonts.Date;

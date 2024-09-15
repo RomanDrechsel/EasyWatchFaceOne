@@ -44,7 +44,7 @@ module Widgets {
             //show distance in miles
             self._inMiles = System.getDeviceSettings().distanceUnits == System.UNIT_STATUTE;
             //show steps percentage
-            self._showStepsPercentage = (Helper.Properties.Get("StepPer", 1) as Number) <= 0;
+            self._showStepsPercentage = (Helper.Properties.Get("StepPer", 1) as Number) > 0;
 
             $.Log(self.Name + " Widget at " + self.Justification);
         }
@@ -209,13 +209,13 @@ module Widgets {
             var dist = centimeters.toFloat() * 0.0328084; //feet
             if (dist >= 5280.0) {
                 dist = dist / 5280.0; //miles
-                if (dist >= 100) {
+                if (dist >= 100.0) {
                     return Math.round(dist).toNumber() + " mi"; //only show full miles
                 }
 
                 return dist.format("%.2f") + " mi";
             } else {
-                return Math.round(dist).toNumber().toString() + " ft";
+                return Math.round(dist).toNumber() + " ft";
             }
         }
 
@@ -228,7 +228,7 @@ module Widgets {
                 }
                 return Helper.String.stringReplace(dist.format("%.2f"), ".", ",") + " km";
             } else {
-                return Math.round(dist).toNumber().toString() + " m";
+                return Math.round(dist).toNumber() + " m";
             }
         }
     }

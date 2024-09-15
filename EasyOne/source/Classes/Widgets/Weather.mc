@@ -13,8 +13,11 @@ module Widgets {
 
         function initialize(params as Dictionary) {
             WidgetBase.initialize(params, "Weather");
-            $.getView().OnShow.add(self);
-            $.getView().OnSleep.add(self);
+            var view = $.getView();
+            if (view != null) {
+                view.OnShow.add(self);
+                view.OnSleep.add(self);
+            }
             self.OnShow();
             $.Log(self.Name + " widget at " + self.Justification);
         }

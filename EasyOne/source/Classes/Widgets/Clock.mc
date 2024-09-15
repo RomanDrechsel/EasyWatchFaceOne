@@ -22,7 +22,7 @@ module Widgets {
             var clockTime = System.getClockTime();
             var hour = clockTime.hour;
             var m = clockTime.min.format("%02d");
-            var h = hour.format("%02d");
+            var h = hour.toString();
             var ampm = "";
             if (System.getDeviceSettings().is24Hour == false) {
                 if (hour == 0) {
@@ -39,10 +39,10 @@ module Widgets {
                     hour -= 12;
                     ampm = "PM";
                 }
+            }
 
-                if (self._showLeadingZero == true && hour > 0 && hour < 10) {
-                    h = "0" + h;
-                }
+            if (self._showLeadingZero == true && hour >= 0 && hour < 10) {
+                h = "0" + h;
             }
 
             var settings = System.getDeviceSettings() as DeviceSettings;
@@ -75,47 +75,39 @@ module Widgets {
                     sec_pos += 5;
                     sec_posY += 5;
                     amp_posY += 3;
-                } else if (HGfx.Fonts.TimeFontProp == 3) {
-                    /* Komikazoom */
+                } else if (HGfx.Fonts.TimeFontProp == 3 /* Komikazoom */) {
                     sec_pos += 3;
                     sec_posY += 5;
                     amp_posY -= 2;
-                } else if (HGfx.Fonts.TimeFontProp == 4) {
-                    /* Roboto */
+                } else if (HGfx.Fonts.TimeFontProp == 4 /* Roboto */) {
                     sec_posY += 3;
                     amp_posY -= 4;
-                } else if (HGfx.Fonts.TimeFontProp == 5) {
-                    /* Typesauce */
+                } else if (HGfx.Fonts.TimeFontProp == 5 /* Typesauce */) {
                     hours_posY += 10;
                     sec_posY += 5;
                     amp_posY += 7;
                 }
             } else {
-                if (HGfx.Fonts.TimeFontProp == 1) {
-                    /*ConsolaMono*/
+                if (HGfx.Fonts.TimeFontProp == 1 /*ConsolaMono*/) {
                     hours_posY -= 10;
                     sec_posY += 3;
                     sec_pos -= 8;
                     amp_posY -= 11;
-                } else if (HGfx.Fonts.TimeFontProp == 2) {
-                    /*Impossible*/
+                } else if (HGfx.Fonts.TimeFontProp == 2 /*Impossible*/) {
                     hours_posY += 4;
                     sec_pos += 5;
                     sec_posY += 5;
                     amp_posY += 2;
-                } else if (HGfx.Fonts.TimeFontProp == 3) {
-                    /* Komikazoom */
+                } else if (HGfx.Fonts.TimeFontProp == 3 /* Komikazoom */) {
                     sec_pos += 5;
                     sec_posY += 5;
                     amp_posY -= 2;
-                } else if (HGfx.Fonts.TimeFontProp == 4) {
-                    /* Roboto */
+                } else if (HGfx.Fonts.TimeFontProp == 4 /* Roboto */) {
                     hours_pos += 10;
                     sec_pos -= 8;
                     sec_posY += 2;
                     amp_posY -= 1;
-                } else if (HGfx.Fonts.TimeFontProp == 5) {
-                    /* Typesauce */
+                } else if (HGfx.Fonts.TimeFontProp == 5 /* Typesauce */) {
                     hours_posY += 10;
                     amp_posY += 8;
                 }

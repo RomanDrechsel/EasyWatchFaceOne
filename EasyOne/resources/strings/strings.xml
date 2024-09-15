@@ -11,7 +11,7 @@
     <string id="STBTh">Theme background</string>
     <string id="STBResource">Resource</string>
     <string id="STBColor">Background Color</string>
-    
+
     <string id="STBSystem">system background color</string>
     <string id="STBFixedColorSelect">use fixed color</string>
     <string id="STBFixedColor">What fixed color to use</string>
@@ -64,7 +64,7 @@
     <string id="SN">Noto Sans (Chinese, Japanese, Korean)</string>
     <string id="SFSystem">System</string>
     <string id="SFSM">Self made</string>
-    
+
     <string id="SgWT">Widget settings</string>
     <string id="DF">Date format</string>
     <string id="DF1">THU 28. APR 1983</string>
@@ -73,15 +73,16 @@
     <string id="SBat0">Bars only</string>
     <string id="SBat1">Percentage</string>
     <string id="SWZero">Leading zero for time</string>
-    <string id="SSgoal">Percentage of steps goal</string>    
+    <string id="SSgoal">Percentage of steps goal</string>
     <string id="SStressW">Stress warning level</string>
     <string id="SStressD">Direction of change of stress level</string>
     <string id="SRrW">Respiratory rate Warning level</string>
 
     <string id="SDeco">Decorative lines in corners</string>
-    
+
     <string id="ThDarkBlue">Dark Blue</string>
     <string id="ThFire">Fire &amp; Ice</string>
+    <string id="ThL">Light</string>
     <string id="ThSunset">Sunset</string>
     <string id="ThBaW">Black &amp; White</string>
 
