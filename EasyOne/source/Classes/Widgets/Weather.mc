@@ -12,11 +12,11 @@ module Widgets {
         private var _minTemp as String? = null;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Weather");
             $.getView().OnShow.add(self);
             $.getView().OnSleep.add(self);
             self.OnShow();
-            $.Log("Initialized Weather Widget at " + self.Justification);
+            $.Log(self.Name + " widget at " + self.Justification);
         }
 
         function draw(dc as Gfx.Dc) as Void {

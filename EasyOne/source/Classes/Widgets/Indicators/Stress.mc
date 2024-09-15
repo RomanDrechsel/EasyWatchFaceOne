@@ -8,6 +8,7 @@ using Toybox.Time.Gregorian as D;
 module Widgets {
     module Indicators {
         class Stress {
+            var Name = "Stress";
             static var _stressLevel = 0;
             private var _color = Gfx.COLOR_WHITE;
             private var _iconColor = Gfx.COLOR_WHITE;
@@ -129,9 +130,9 @@ module Widgets {
                     self._lastSampleDate = null;
                 }
 
-                /*self._sampleDeltaRise = false;
-                self._lastSampleDate = Time.now().subtract(new Time.Duration(345));
-                self._stressLevel = 85.0;*/
+                /*self._sampleDeltaRise = true;
+                self._lastSampleDate = Time.now().subtract(new Time.Duration(645));
+                self._stressLevel = 92;*/
 
                 return self._stressLevel;
             }

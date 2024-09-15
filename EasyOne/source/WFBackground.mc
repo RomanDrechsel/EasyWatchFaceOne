@@ -34,7 +34,7 @@ class WFBackground extends WatchUi.Drawable {
             if (bgimage != null) {
                 self._image = Application.loadResource(bgimage) as BitmapResource;
                 if (self._image != null) {
-                    $.Log("Background initialized with image " + bgimage);
+                    $.Log("Background initialized with image " + theme.BackgroundImage);
                 }
             }
             self._color = theme.BackgroundColor;

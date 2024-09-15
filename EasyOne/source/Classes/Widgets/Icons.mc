@@ -6,8 +6,8 @@ using Helper.Gfx as HGfx;
 module Widgets {
     class Icons extends WidgetBase {
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
-            $.Log("Initialized Weather Widget at " + self.Justification);
+            WidgetBase.initialize(params, "Icons");
+            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Gfx.Dc) as Void {
@@ -16,10 +16,7 @@ module Widgets {
             }
             var btWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_BLUETOOTH, HGfx.Fonts.Icons);
             var msgWidth = dc.getTextWidthInPixels(Helper.Gfx.ICONS_NEWMESSAGES, HGfx.Fonts.Icons);
-            var padding = 12;
-            if (IsSmallDisplay) {
-                padding = 8;
-            }
+            var padding = IsSmallDisplay ? 8 : 12;
 
             var posX = self.locX;
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT) {
@@ -31,11 +28,7 @@ module Widgets {
                 posX = self.locX - width / 2;
             }
 
-            var posY = self.locY + 17;
-            if (IsSmallDisplay) {
-                posY -= 7;
-            }
-
+            var posY = IsSmallDisplay ? self.locY + 10 : self.locY + 17;
             var settings = System.getDeviceSettings();
             var theme = $.getTheme();
 
@@ -49,12 +42,8 @@ module Widgets {
                     msgstr = "9+";
                 }
 
-                var xOffset = 35;
-                var yOffset = 10;
-                if (IsSmallDisplay) {
-                    xOffset = 23;
-                    yOffset = 9;
-                }
+                var xOffset = IsSmallDisplay ? 23 : 35;
+                var yOffset = IsSmallDisplay ? 9 : 10;
 
                 dc.setColor(theme.IconsOn, Gfx.COLOR_TRANSPARENT);
                 if (HGfx.Fonts.Small != null) {

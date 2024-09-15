@@ -11,7 +11,7 @@ module Widgets {
         private var _arcWidth = 9;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Battery");
 
             if (IsSmallDisplay) {
                 self._arcRadius = 25;
@@ -19,7 +19,6 @@ module Widgets {
             }
 
             self._BatteryDaysText = null;
-
             var settings = Helper.Properties.Get("Bat", -1) as Number;
             var max_settings = IsSmallDisplay ? 1 : 3;
             if (settings < 0 || settings > max_settings) {
@@ -40,6 +39,7 @@ module Widgets {
             }
 
             self.locY = self.locY + self._arcRadius + (self._arcWidth / 2).toNumber() + 3;
+            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {

@@ -32,7 +32,7 @@ module Widgets {
         private var _showIndicator as Boolean = true;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Health");
 
             self.WidgetSize = params.get("W");
             if (self.WidgetSize == null) {
@@ -66,19 +66,10 @@ module Widgets {
             }
 
             var indicatorPadding = IsSmallDisplay ? 8 : 12;
-            var centerX;
-            if (IsSmallDisplay) {
-                centerX = self.locX + (self.WidgetSize / 2.2).toNumber();
-            } else {
-                centerX = self.locX + (self.WidgetSize / 2.4).toNumber();
-            }
+            var centerX = self.locX + (IsSmallDisplay ? (self.WidgetSize / 2.2).toNumber() : (self.WidgetSize / 2.4).toNumber());
 
             if (self.Justification == Widgets.WIDGET_JUSTIFICATION_LEFT) {
-                if (IsSmallDisplay) {
-                    centerX += 5;
-                } else {
-                    centerX += 20;
-                }
+                centerX += IsSmallDisplay ? 5 : 20;
             }
 
             var textPosY = self.locY - indicatorPadding - fontHeight - 25;
@@ -92,7 +83,7 @@ module Widgets {
 
             self.TextContainer = new Helper.ExtText(centerX, textPosY, Graphics.TEXT_JUSTIFY_CENTER);
             $.getView().OnShow.add(self);
-            $.Log("Initialized Health Widget at " + self.Justification);
+            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
@@ -159,6 +150,7 @@ module Widgets {
             } else if (self._display instanceof Indi.Stress && self._display has :calcColor) {
                 self._display.calcColor(self);
             }
+            $.Log(self._display.Name + " indicator in " + self.Name + " widget");
         }
 
         function DrawAttentionIcon(dc as Dc) as Void {

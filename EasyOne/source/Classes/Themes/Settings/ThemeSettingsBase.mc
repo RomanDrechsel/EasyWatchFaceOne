@@ -8,7 +8,7 @@ module Themes {
 
         //Background
         var BackgroundColor = 0;
-        var BackgroundImage = null;
+        var BackgroundImage as Lang.ResourceId? = null;
 
         //Clock Widget
         var ClockHourColor = 0xffffff;

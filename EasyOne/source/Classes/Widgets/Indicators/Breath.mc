@@ -6,6 +6,7 @@ using Helper.Gfx as HGfx;
 module Widgets {
     module Indicators {
         class Breath {
+            var Name = "Breath";
             static var MaxRespirationRate as Number = 40;
             private static var _lastRespirationRate as Number = 0;
             private static var _lastSample as Toybox.Time.Moment? = null;

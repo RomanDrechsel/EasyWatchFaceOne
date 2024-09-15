@@ -14,9 +14,10 @@ module Widgets {
         private var _dateFormat as Number;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Date");
             self._textContainer = new Helper.ExtText(self.locX, self.locY, Graphics.TEXT_JUSTIFY_CENTER);
             self._dateFormat = Helper.Properties.Get("DF", 1) as Number;
+            $.Log(self.Name + " Widget initialized");
         }
 
         function draw(dc as Dc) {

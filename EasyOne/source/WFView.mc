@@ -46,8 +46,11 @@ class WFView extends WatchUi.WatchFace {
                 self.OneTimePerTick = null;
             }
         }
-
-        View.onUpdate(dc);
+        try {
+            View.onUpdate(dc);
+        } catch (ex instanceof Lang.Exception) {
+            $.Log("Exception in onUpdate(): " + ex.getErrorMessage());
+        }
     }
 
     function onExitSleep() as Void {
@@ -85,7 +88,11 @@ class WFView extends WatchUi.WatchFace {
         for (var i = 0; i < ids.size(); i++) {
             var drawable = View.findDrawableById(ids[i]);
             if (drawable != null && drawable has :Init) {
-                drawable.Init();
+                try {
+                    drawable.Init();
+                } catch (ex instanceof Lang.Exception) {
+                    $.Log("Drawable " + ids[i] + " init failed: " + ex.getErrorMessage());
+                }
             } else {
                 $.Log("Drawable " + ids[i] + " can't be initialized");
             }

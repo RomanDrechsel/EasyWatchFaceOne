@@ -26,7 +26,7 @@ module Themes {
                     self.Theme = new BSoD();
                     break;
             }
-            $.Log("Loaded Theme " + theme.toString());
+            $.Log("Theme loaded: " + theme.toString());
         }
     }
 }

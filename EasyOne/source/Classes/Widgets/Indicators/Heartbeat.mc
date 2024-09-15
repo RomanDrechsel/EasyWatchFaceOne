@@ -6,6 +6,7 @@ using Helper.Gfx as HGfx;
 module Widgets {
     module Indicators {
         class Heartbeat {
+            var Name = "Heartbeat";
             static var HeartbeatZones as Array<Number> = [];
             static var HeartbeatMin = 0;
 

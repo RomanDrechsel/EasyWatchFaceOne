@@ -33,6 +33,7 @@ module Helper {
                         self.loadDateFont(prop);
                     }
                 }
+                $.Log("Date font: " + prop);
 
                 //Time fonts
                 prop = Helper.Properties.Get("FTime", -1) as Number;
@@ -50,6 +51,7 @@ module Helper {
                         self.loadTimeFont(prop);
                     }
                 }
+                $.Log("Time font: " + prop);
 
                 //texts
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);
@@ -78,7 +80,7 @@ module Helper {
                     $.Log("Could not load font " + rez.toString());
                     if (WatchUi has :showToast) {
                         var txt = Application.loadResource(Rez.Strings.FError) as String;
-                        if (txt.length() > 0) {
+                        if (txt.length() > 1) {
                             WatchUi.showToast(txt, { :icon => Rez.Drawables.Attention });
                         }
                     }
@@ -108,19 +110,11 @@ module Helper {
                     self.Hour = WatchUi.loadResource(rez[0]);
                 }
                 if (self.Hour == null) {
-                    if (IsSmallDisplay) {
-                        self.Hour = Graphics.FONT_NUMBER_THAI_HOT;
-                    } else {
-                        self.Hour = Graphics.FONT_NUMBER_MEDIUM;
-                    }
+                    self.Hour = IsSmallDisplay ? Graphics.FONT_NUMBER_THAI_HOT : FONT_NUMBER_MEDIUM;
                 }
 
                 if (rez[1] instanceof Lang.ResourceId) {
-                    if (rez[0] == rez[1]) {
-                        self.Minute = self.Hour;
-                    } else {
-                        self.Minute = WatchUi.loadResource(rez[1]);
-                    }
+                    self.Minute = rez[0] == rez[1] ? self.Hour : WatchUi.loadResource(rez[1]);
                 }
                 if (self.Minute == null) {
                     self.Minute = self.Hour;

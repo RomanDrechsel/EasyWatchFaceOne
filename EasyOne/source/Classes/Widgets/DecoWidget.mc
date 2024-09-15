@@ -8,7 +8,7 @@ module Widgets {
         private var _pos;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Deco");
 
             self._size = params.get("W");
             if (self._size == null) {
@@ -37,6 +37,7 @@ module Widgets {
                     self._pos = HGfx.DrawRoundAngle.JUST_BOTTOMLEFT;
                 }
             }
+            $.Log(self.Name + " Widget at " + self.Justification + " - " + self._pos);
         }
 
         function draw(dc as Gfx.Dc) as Void {

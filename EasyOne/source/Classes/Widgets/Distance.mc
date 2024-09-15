@@ -18,7 +18,7 @@ module Widgets {
         private var _showStepsPercentage = true;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params);
+            WidgetBase.initialize(params, "Distance");
 
             self._WidgetSize = params.get("W");
             if (self._WidgetSize == null) {
@@ -41,18 +41,12 @@ module Widgets {
                 self._textJust = Graphics.TEXT_JUSTIFY_LEFT;
             }
 
-            //Show distane in miles
-            if (System.getDeviceSettings().distanceUnits == System.UNIT_STATUTE) {
-                self._inMiles = true;
-            } else {
-                self._inMiles = false;
-            }
+            //show distance in miles
+            self._inMiles = System.getDeviceSettings().distanceUnits == System.UNIT_STATUTE;
+            //show steps percentage
+            self._showStepsPercentage = (Helper.Properties.Get("StepPer", 1) as Number) <= 0;
 
-            if ((Helper.Properties.Get("StepPer", 1) as Number) <= 0) {
-                self._showStepsPercentage = false;
-            } else {
-                self._showStepsPercentage = true;
-            }
+            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
