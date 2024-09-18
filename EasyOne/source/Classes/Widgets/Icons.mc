@@ -6,8 +6,7 @@ using Helper.Gfx as HGfx;
 module Widgets {
     class Icons extends WidgetBase {
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Icons");
-            $.Log(self.Name + " Widget at " + self.Justification);
+            WidgetBase.initialize(params);
         }
 
         function draw(dc as Gfx.Dc) as Void {

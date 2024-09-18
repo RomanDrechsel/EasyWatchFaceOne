@@ -33,9 +33,6 @@ class WFBackground extends WatchUi.Drawable {
             var bgimage = theme.BackgroundImage;
             if (bgimage != null) {
                 self._image = Application.loadResource(bgimage) as BitmapResource;
-                if (self._image != null) {
-                    $.Log("Background initialized with image " + theme.BackgroundImage);
-                }
             }
             self._color = theme.BackgroundColor;
         } else if (bgResource == 1) {
@@ -76,9 +73,6 @@ class WFBackground extends WatchUi.Drawable {
                     self._color = Graphics.COLOR_TRANSPARENT;
                 }
             }
-        }
-        if (self._image == null) {
-            $.Log("Background initialized with color " + self._color);
         }
     }
 }

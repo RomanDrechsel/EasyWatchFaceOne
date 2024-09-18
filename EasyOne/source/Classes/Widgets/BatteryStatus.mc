@@ -11,7 +11,7 @@ module Widgets {
         private var _arcWidth = 9;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Battery");
+            WidgetBase.initialize(params);
 
             if (IsSmallDisplay) {
                 self._arcRadius = 25;
@@ -40,7 +40,6 @@ module Widgets {
             }
 
             self.locY = self.locY + self._arcRadius + (self._arcWidth / 2).toNumber() + 3;
-            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
@@ -63,7 +62,7 @@ module Widgets {
             dc.setColor(color, Graphics.COLOR_TRANSPARENT);
             self.drawArc(dc, stats.battery);
 
-            if (self._BatteryDisplay == 3 && self._BatteryDaysText != null) {
+            if (self._BatteryDisplay == 3 && self._BatteryDaysText != null && stats has :batteryInDays) {
                 if (HGfx.Fonts.Tiny != null) {
                     dc.drawText(self.locX, self.locY - dc.getFontHeight(HGfx.Fonts.Tiny), HGfx.Fonts.Tiny, stats.battery.format("%2d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
                     dc.drawText(self.locX, self.locY - 2, HGfx.Fonts.Tiny, stats.batteryInDays.format("%2d") + self._BatteryDaysText, Graphics.TEXT_JUSTIFY_CENTER);
@@ -72,7 +71,7 @@ module Widgets {
                 var txt = null;
                 if (self._BatteryDisplay == 1 || (IsSmallDisplay && self._BatteryDisplay > 1)) {
                     txt = stats.battery.format("%2d") + "%";
-                } else if (self._BatteryDisplay == 2 && self._BatteryDaysText != null) {
+                } else if (self._BatteryDisplay == 2 && self._BatteryDaysText != null && stats has :batteryInDays) {
                     txt = stats.batteryInDays.format("%2d") + self._BatteryDaysText;
                 }
 

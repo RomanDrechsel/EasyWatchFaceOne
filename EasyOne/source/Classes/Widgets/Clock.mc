@@ -9,9 +9,8 @@ module Widgets {
         private var _showLeadingZero = true;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Clock");
+            WidgetBase.initialize(params);
             self._showLeadingZero = (Helper.Properties.Get("ClZero", 1) as Number) > 0;
-            $.Log(self.Name + " widget initialized");
         }
 
         function draw(dc as Gfx.Dc) as Void {

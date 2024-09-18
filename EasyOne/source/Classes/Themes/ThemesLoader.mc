@@ -1,5 +1,4 @@
 import Toybox.Lang;
-import Toybox.Application;
 
 module Themes {
     class ThemesLoader {
@@ -26,7 +25,6 @@ module Themes {
                     self.Theme = new BSoD();
                     break;
             }
-            $.Log("Theme loaded: " + theme.toString());
         }
     }
 }

@@ -16,7 +16,6 @@ class WFView extends WatchUi.WatchFace {
     }
 
     function onLayout(dc as Dc) as Void {
-        $.Log("WFView:onLayout");
         self.setLayout(Rez.Layouts.WatchFace(dc));
         self.IsBackground = false;
     }
@@ -55,7 +54,6 @@ class WFView extends WatchUi.WatchFace {
 
     function onExitSleep() as Void {
         self.IsBackground = false;
-        $.Log("Watchface exit sleep");
         for (var i = 0; i < self.OnShow.size(); i++) {
             if (self.OnShow[i] != null && self.OnShow[i] has :OnShow) {
                 try {
@@ -69,7 +67,6 @@ class WFView extends WatchUi.WatchFace {
 
     function onEnterSleep() as Void {
         self.IsBackground = true;
-        $.Log("Watchface enter sleep");
         for (var i = 0; i < self.OnSleep.size(); i++) {
             if (self.OnSleep[i] != null && self.OnSleep[i] has :OnSleep) {
                 try {
@@ -93,8 +90,6 @@ class WFView extends WatchUi.WatchFace {
                 } catch (ex instanceof Lang.Exception) {
                     $.Log("Drawable " + ids[i] + " init failed: " + ex.getErrorMessage());
                 }
-            } else {
-                $.Log("Drawable " + ids[i] + " can't be initialized");
             }
         }
     }
