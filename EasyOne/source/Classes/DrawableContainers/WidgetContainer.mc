@@ -32,7 +32,6 @@ module DrawableContainers {
                 self.isVisible = false;
             } else {
                 self.isVisible = true;
-                $.Log("Initialized Container " + self.identifier + " with " + self._Widget.Name + " widget");
             }
         }
     }

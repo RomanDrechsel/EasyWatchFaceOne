@@ -1,4 +1,3 @@
-using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 
 module Widgets {
@@ -14,9 +13,8 @@ module Widgets {
         var locX = 0;
         var locY = 0;
         var Justification = WIDGET_JUSTIFICATION_LEFT;
-        var Name = "Base";
 
-        function initialize(container_params as Dictionary, name as String?) {
+        function initialize(container_params as Dictionary) {
             self.locX = container_params.get("X");
             if (self.locX == null) {
                 self.locX = 0;
@@ -29,9 +27,6 @@ module Widgets {
             self.Justification = container_params.get("J") as Number;
             if (self.Justification == null) {
                 self.Justification = WIDGET_JUSTIFICATION_LEFT;
-            }
-            if (name != null) {
-                self.Name = name;
             }
         }
     }

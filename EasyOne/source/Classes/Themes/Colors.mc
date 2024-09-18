@@ -1,5 +1,4 @@
 import Toybox.Lang;
-import Toybox.Application;
 
 module Themes {
     class Colors {

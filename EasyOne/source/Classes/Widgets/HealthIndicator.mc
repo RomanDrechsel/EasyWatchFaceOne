@@ -32,7 +32,7 @@ module Widgets {
         private var _showIndicator as Boolean;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Health");
+            WidgetBase.initialize(params);
 
             self.WidgetSize = params.get("W");
             if (self.WidgetSize == null) {
@@ -83,7 +83,6 @@ module Widgets {
             if (view != null) {
                 view.OnShow.add(self);
             }
-            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
@@ -153,7 +152,6 @@ module Widgets {
             } else if (self._display instanceof Indi.Stress && self._display has :calcColor) {
                 self._display.calcColor(self);
             }
-            $.Log(self._display.Name + " indicator in " + self.Name + " widget");
         }
 
         function DrawAttentionIcon(dc as Dc) as Void {

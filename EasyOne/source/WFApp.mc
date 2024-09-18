@@ -16,7 +16,6 @@ class WFApp extends Application.AppBase {
     }
 
     function onStart(state as Dictionary?) as Void {
-        $.Log("WFApp:OnStart()");
         Themes.ThemesLoader.loadTheme();
         Themes.Colors.ResetColors();
         Helper.Gfx.Fonts.Load(false);

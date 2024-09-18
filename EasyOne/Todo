@@ -6,3 +6,9 @@ TODO:
 
 Feature-Requests:
 - customize informations on info-widget & Health Widget
+
+
+
+Fixes:
+Get Stacktrace from pc
+https://forums.garmin.com/developer/connect-iq/f/discussion/231129/so-you-have-a-ciq_log-file-but-all-you-see-is-pc-without-a-friendly-stack-trace---what-to-do

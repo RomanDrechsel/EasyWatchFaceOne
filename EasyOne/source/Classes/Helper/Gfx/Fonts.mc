@@ -34,7 +34,6 @@ module Helper {
                         self.loadDateFont(prop);
                     }
                 }
-                $.Log("Date font: " + prop);
 
                 //Time fonts
                 prop = Helper.Properties.Get("FTime", -1) as Number;
@@ -52,7 +51,6 @@ module Helper {
                         self.loadTimeFont(prop);
                     }
                 }
-                $.Log("Time font: " + prop);
 
                 //texts
                 self.Small = WatchUi.loadResource(Rez.Fonts.Small);

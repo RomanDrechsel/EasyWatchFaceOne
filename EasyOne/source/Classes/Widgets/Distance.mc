@@ -18,7 +18,7 @@ module Widgets {
         private var _showStepsPercentage = true;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Distance");
+            WidgetBase.initialize(params);
 
             self._WidgetSize = params.get("W");
             if (self._WidgetSize == null) {
@@ -45,8 +45,6 @@ module Widgets {
             self._inMiles = System.getDeviceSettings().distanceUnits == System.UNIT_STATUTE;
             //show steps percentage
             self._showStepsPercentage = (Helper.Properties.Get("StepPer", 1) as Number) > 0;
-
-            $.Log(self.Name + " Widget at " + self.Justification);
         }
 
         function draw(dc as Dc) as Void {
@@ -91,7 +89,7 @@ module Widgets {
             if (HGfx.Fonts.Small != null) {
                 dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
                 var text = "-";
-                if (info != null) {
+                if (info != null && info.calories != null) {
                     text = info.calories.toString();
                 }
                 dc.drawText(self._textPosX, drawYpos + 3, HGfx.Fonts.Small, text, self._textJust);
@@ -113,7 +111,7 @@ module Widgets {
             //text
             if (HGfx.Fonts.Small != null) {
                 var text = "-";
-                if (info != null) {
+                if (info != null && info.distance != null) {
                     if (self._inMiles == true) {
                         text = self.FormatMiles(info.distance);
                     } else {
@@ -141,12 +139,12 @@ module Widgets {
             //text
             if (HGfx.Fonts.Small != null) {
                 dc.setColor(Themes.Colors.Text2, Graphics.COLOR_TRANSPARENT);
-                if (info != null) {
+                if (info != null && info.steps != null) {
                     var yOffset = IsSmallDisplay ? 3 : 6;
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);
                     var percent_width = 0;
-                    if (self._showStepsPercentage == true) {
-                        var amount = info.steps.toFloat() / info.stepGoal.toFloat();
+                    if (self._showStepsPercentage == true && info.stepGoal != null) {
+                        var amount = info.steps.toFloat() / info.stepGoal.toFloat(); //WIP: Check if stepsGloal ios set
                         if (self._textJust == Graphics.TEXT_JUSTIFY_LEFT) {
                             if (amount >= 1.0 && HGfx.Fonts.Icons != null) {
                                 if (IsSmallDisplay) {
@@ -178,7 +176,7 @@ module Widgets {
 
         private function drawStepsIndicator(dc as Dc, info as ActivityMonitor.Info?) as Void {
             var amount = 0.0;
-            if (info != null) {
+            if (info != null && info.steps != null && info.stepGoal != null) {
                 amount = info.steps.toFloat() / info.stepGoal.toFloat();
             }
 

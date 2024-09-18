@@ -12,85 +12,100 @@ module Widgets {
         private var _minTemp as String? = null;
 
         function initialize(params as Dictionary) {
-            WidgetBase.initialize(params, "Weather");
+            WidgetBase.initialize(params);
             var view = $.getView();
             if (view != null) {
                 view.OnShow.add(self);
                 view.OnSleep.add(self);
             }
             self.OnShow();
-            $.Log(self.Name + " widget at " + self.Justification);
         }
 
         function draw(dc as Gfx.Dc) as Void {
+            var iconPosX = null;
+            var iconPosY = null;
+            var tempPosX = null;
+            var tempPosY = null;
+            var vertLineHeight = null;
+            var maxPosX = null;
+            var maxPosY = null;
+            var minPosY = null;
+            var textHeight = dc.getFontHeight(HGfx.Fonts.Small);
+            var horPadding = 3;
+            var tempAlign = Gfx.TEXT_JUSTIFY_CENTER;
+
+            var centerX = self.locX;
+            if (self.Justification == WIDGET_JUSTIFICATION_RIGHT) {
+                centerX = self.locX + 10;
+            } else if (self.Justification == WIDGET_JUSTIFICATION_LEFT) {
+                centerX = self.locX + (IsSmallDisplay ? 5 : 15);
+            }
+
+            dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
+
             if (self._currentWeatherIcon != null && self._currentTemp != null && HGfx.Fonts.Small != null) {
                 var iconSize = self._currentWeatherIcon.getWidth();
-                var textheight = dc.getFontHeight(HGfx.Fonts.Small);
-                var horPadding = 3;
+                vertLineHeight = iconSize + textHeight - (IsSmallDisplay ? 8 : 5);
 
-                var centerX = self.locX;
                 if (self.Justification == WIDGET_JUSTIFICATION_RIGHT) {
-                    centerX = self.locX - iconSize + 10;
+                    centerX -= iconSize;
                 } else if (self.Justification == WIDGET_JUSTIFICATION_LEFT) {
-                    centerX = self.locX + iconSize + 15;
-                    if (IsSmallDisplay) {
-                        centerX -= 10;
-                    }
+                    centerX += iconSize;
                 }
 
-                var iconPosX = centerX - iconSize - horPadding;
-                var iconPosY = self.locY;
+                iconPosX = centerX - iconSize - horPadding;
+                iconPosY = self.locY;
 
-                var tempPosX = iconPosX + (iconSize / 2).toNumber();
-                var tempPosY = iconPosY + iconSize;
+                if (self._minTemp != null && self._maxTemp != null) {
+                    tempPosX = iconPosX + (iconSize / 2).toNumber();
+                    tempPosY = iconPosY + iconSize;
+                    maxPosX = centerX + (iconSize / 2).toNumber() + horPadding;
+                    maxPosY = self.locY + (IsSmallDisplay ? 6 : 10);
+                    minPosY = maxPosY + textHeight + (IsSmallDisplay ? 4 : 6);
+                } else {
+                    iconPosY += IsSmallDisplay ? 6 : 10;
+                    tempPosX = centerX + horPadding * 2;
+                    tempAlign = Gfx.TEXT_JUSTIFY_LEFT | Gfx.TEXT_JUSTIFY_VCENTER;
+                    tempPosY = iconPosY + (iconSize / 2).toNumber() + 2;
+                }
+            }
 
-                dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
-
-                //Icon
+            //Icon
+            if (self._currentWeatherIcon != null && iconPosX != null && iconPosY != null) {
                 dc.drawBitmap(iconPosX, iconPosY, self._currentWeatherIcon);
-                dc.drawText(tempPosX, tempPosY, HGfx.Fonts.Small, self._currentTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+            }
 
-                //vertical line
-                var vertLineHeight = iconSize + textheight - 5;
-                if (IsSmallDisplay) {
-                    vertLineHeight -= 3;
-                }
+            //current temperature
+            if (self._currentTemp != null && tempPosX != null && tempPosY != null) {
+                dc.drawText(tempPosX, tempPosY, HGfx.Fonts.Small, self._currentTemp, tempAlign);
+            }
+
+            //vertical line
+            if (vertLineHeight != null) {
                 dc.setPenWidth(1);
                 dc.drawLine(centerX, self.locY + 10, centerX, self.locY + vertLineHeight);
+            }
 
-                //maximum temperature
-                var maxPosX = centerX + (iconSize / 2).toNumber() + horPadding;
-                var maxPosY = self.locY + 10;
-                if (IsSmallDisplay) {
-                    maxPosY -= 4;
-                }
-                dc.drawText(maxPosX, maxPosY, HGfx.Fonts.Small, self._maxTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
-                dc.setPenWidth(2);
-
-                var txt1 = dc.getTextWidthInPixels(self._maxTemp + "°", HGfx.Fonts.Small);
-                var txt2 = dc.getTextWidthInPixels(self._minTemp + "°", HGfx.Fonts.Small);
+            //minimum and maximum temperature
+            if (self._maxTemp != null && self._minTemp != null && maxPosX != null && maxPosY != null && minPosY != null) {
+                //maximum
+                dc.drawText(maxPosX, maxPosY, HGfx.Fonts.Small, self._maxTemp, Gfx.TEXT_JUSTIFY_CENTER);
 
                 //horizontal line
+                dc.setPenWidth(2);
+                var txt1 = dc.getTextWidthInPixels(self._maxTemp, HGfx.Fonts.Small);
+                var txt2 = dc.getTextWidthInPixels(self._minTemp, HGfx.Fonts.Small);
                 var horLineWidth = txt1;
                 if (horLineWidth < txt2) {
                     horLineWidth = txt2;
                 }
 
-                var horLineX = maxPosX - (horLineWidth / 2).toNumber() - 3;
-                var horLineY = maxPosY + textheight + 5;
-                if (IsSmallDisplay) {
-                    horLineY -= 3;
-                    horLineX += 2;
-                }
+                var horLineX = maxPosX - (horLineWidth / 2).toNumber() - (IsSmallDisplay ? 1 : 3);
+                var horLineY = maxPosY + textHeight + (IsSmallDisplay ? 2 : 5);
                 dc.drawLine(horLineX, horLineY, horLineX + horLineWidth, horLineY);
 
-                //minimum temperature
-                var minPosX = maxPosX;
-                var minPosY = maxPosY + textheight + 6;
-                if (IsSmallDisplay) {
-                    minPosY -= 2;
-                }
-                dc.drawText(minPosX, minPosY, HGfx.Fonts.Small, self._minTemp + "°", Gfx.TEXT_JUSTIFY_CENTER);
+                //minimum
+                dc.drawText(maxPosX, minPosY, HGfx.Fonts.Small, self._minTemp, Gfx.TEXT_JUSTIFY_CENTER);
             }
         }
 
@@ -99,9 +114,9 @@ module Widgets {
             var current = Weather.getCurrentConditions();
             if (current != null) {
                 var settings = Toybox.System.getDeviceSettings();
-                var maxtemp = current.highTemperature.toNumber();
-                var mintemp = current.lowTemperature.toNumber();
-                var ctemp = current.temperature.toNumber();
+                var maxtemp = current.highTemperature != null ? current.highTemperature.toNumber() : null;
+                var mintemp = current.lowTemperature != null ? current.lowTemperature.toNumber() : null;
+                var ctemp = current.temperature != null ? current.temperature.toNumber() : null;
 
                 var location = current.observationLocationPosition;
                 if (location == null) {
@@ -138,9 +153,9 @@ module Widgets {
                     }
                 }
 
-                self._currentTemp = ctemp;
-                self._maxTemp = maxtemp;
-                self._minTemp = mintemp;
+                self._currentTemp = ctemp != null ? ctemp + "°" : null;
+                self._maxTemp = maxtemp != null ? maxtemp + "°" : null;
+                self._minTemp = mintemp != null ? mintemp + "°" : null;
 
                 self._currentWeatherIcon = null;
                 var condition = current.condition;
