@@ -3,7 +3,7 @@ import Toybox.Lang;
 (:debug)
 module Debug {
     class MergeSort {
-        static function Sort(array as Array) as Array {
+        static function Sort(array as Array?) as Array? {
             if (array == null || !(array instanceof Lang.Array)) {
                 return null;
             } else if (array.size() <= 1) {

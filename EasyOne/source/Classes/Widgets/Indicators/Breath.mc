@@ -24,7 +24,7 @@ module Widgets {
                 if (breath > 0) {
                     color = Themes.Colors.Text2;
                     iconcolor = Themes.Colors.IconsInTextColor ? color : theme.HealthBreathIconColor;
-                    var colors = $.getTheme().IndivatorLevel;
+                    var colors = $.getTheme().IndicatorLevel as Array<Number>;
                     indicatorcolor = colors[0];
                     if (breath >= 20) {
                         if (breath > self.MaxRespirationRate) {

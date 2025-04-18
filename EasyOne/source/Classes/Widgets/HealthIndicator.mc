@@ -27,7 +27,6 @@ module Widgets {
         var StressWarningLevel as Number = 90;
         var BreathWarningLevel as Number = 30;
 
-        private var _indicatorPadding as Number = 10;
         private var _display as Object? = null;
         private var _showIndicator as Boolean;
 
@@ -93,7 +92,7 @@ module Widgets {
                 self.OnShow();
             }
 
-            if (self._display != null) {
+            if (self._display != null && self._display has :draw) {
                 if (self._display instanceof Indi.Heartbeat == false && Indi.Heartbeat.getHeartrate() <= 0) {
                     self.Texts = null;
                     self._display = new Indi.Heartbeat();
@@ -156,7 +155,7 @@ module Widgets {
 
         function DrawAttentionIcon(dc as Dc) as Void {
             if (self._attentionIcon == null) {
-                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource;
+                self._attentionIcon = Application.loadResource(Rez.Drawables.Attention) as BitmapResource?;
             }
 
             if (self._attentionIcon != null) {

@@ -25,7 +25,7 @@ module Widgets {
                     color = Themes.Colors.Text2;
                     iconcolor = Themes.Colors.IconsInTextColor ? color : theme.HealthHeartIconColor;
 
-                    var colors = $.getTheme().IndivatorLevel;
+                    var colors = $.getTheme().IndicatorLevel as Array<Number>;
                     indicatorcolor = colors[0];
                     if (self.HeartbeatZones.size() > 1) {
                         for (var i = 1; i < self.HeartbeatZones.size(); i++) {

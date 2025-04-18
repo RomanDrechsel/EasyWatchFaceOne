@@ -10,6 +10,12 @@ class WFBackground extends WatchUi.Drawable {
     function initialize(params) {
         Drawable.initialize(params);
         self.Init();
+
+        var view = $.getView();
+        if (view != null) {
+            view.OnShow.add(self);
+            view.OnSleep.add(self);
+        }
     }
 
     function draw(dc as Dc) as Void {
@@ -64,9 +70,9 @@ class WFBackground extends WatchUi.Drawable {
                 //custom color
                 var customcolor = Helper.Properties.Get("BGCCu", "#000000") as String;
                 if (customcolor.length() == 0) {
-                    self._color = null;
+                    self._color = 0;
                 } else {
-                    self._color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
+                    self._color = Helper.StringUtil.stringReplace(customcolor, "#", "").toNumberWithBase(16);
                 }
 
                 if (self._color == null) {
@@ -74,5 +80,13 @@ class WFBackground extends WatchUi.Drawable {
                 }
             }
         }
+    }
+
+    public function OnShow() as Void {
+        self.Init();
+    }
+
+    public function OnSleep() as Void {
+        self._image = null;
     }
 }

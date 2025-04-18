@@ -1,1 +1,6 @@
 project.manifest = manifest.xml
+
+venusq.sourcePath = "source"
+venusqm.sourcePath = "source"
+venusq2.sourcePath = "source"
+venusq2m.sourcePath = "source"

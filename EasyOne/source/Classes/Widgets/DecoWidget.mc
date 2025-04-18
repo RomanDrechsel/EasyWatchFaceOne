@@ -41,7 +41,7 @@ module Widgets {
 
         function draw(dc as Gfx.Dc) as Void {
             HGfx.DrawRoundAngle.Configure(self.locX, self.locY, self._size, self._size, self._pos);
-            HGfx.DrawRoundAngle.draw(dc, 0, 0);
+            HGfx.DrawRoundAngle.draw(dc, 0.0, 0);
         }
     }
 }

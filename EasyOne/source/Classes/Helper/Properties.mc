@@ -3,9 +3,9 @@ import Toybox.Lang;
 
 module Helper {
     class Properties {
-        typedef ValueType as Number or String or Null;
+        typedef ValueType as Lang.Number or Lang.String or Null;
 
-        static function Get(key as String, def_val as ValueType) as ValueType {
+        static function Get(key as Lang.String, def_val as ValueType) as ValueType {
             try {
                 return Properties.getValue(key);
             } catch (ex instanceof Lang.Exception) {

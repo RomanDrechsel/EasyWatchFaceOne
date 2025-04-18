@@ -1,8 +1,8 @@
 import Toybox.Lang;
 
 module Helper {
-    class String {
-        static function stringReplace(str, oldString, newString) as String {
+    class StringUtil {
+        static function stringReplace(str, oldString, newString) as Lang.String {
             var result = str;
             var index = result.find(oldString);
             while (index != null) {

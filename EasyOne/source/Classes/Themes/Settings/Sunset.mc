@@ -1,6 +1,7 @@
 module Themes {
     class Sunset extends ThemeSettingsBase {
         function initialize() {
+            ThemeSettingsBase.initialize();
             if (Rez.Drawables has :BackgroundImageSunset) {
                 self.BackgroundImage = Rez.Drawables.BackgroundImageSunset;
             } else {

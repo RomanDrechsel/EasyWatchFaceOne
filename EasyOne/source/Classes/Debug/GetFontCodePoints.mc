@@ -5,54 +5,44 @@ import Toybox.Time.Gregorian;
 import Toybox.System;
 
 (:debug)
-module Debug
-{
-    class GetCodepoints
-    {
+module Debug {
+    class GetCodepoints {
         private static var lastlang = null;
 
-        function GetFontCodePoints() as Void
-        {
-            if (self.lastlang == System.getDeviceSettings().systemLanguage)
-            {
-                return; 
+        function GetFontCodePoints() as Void {
+            if (self.lastlang == System.getDeviceSettings().systemLanguage) {
+                return;
             }
 
             self.lastlang = System.getDeviceSettings().systemLanguage;
-            var lang = getLang(self.lastlang);
+            var lang = self.getLang(self.lastlang);
 
             var codepoints = [];
 
             var chars = " 0123456789.".toCharArray();
-            for (var i = 0; i < chars.size(); i++)
-            {
-                if (codepoints.indexOf(chars[i]) < 0)
-                {
+            for (var i = 0; i < chars.size(); i++) {
+                if (codepoints.indexOf(chars[i]) < 0) {
                     codepoints.add(chars[i]);
                 }
             }
 
-            //Weekdays 
-            if (lang != "GRE" && lang != "VIE")
-            {
+            //Weekdays
+            if (lang != "GRE" && lang != "VIE") {
                 var day = 1;
-                while (day <= 7)
-                {
+                while (day <= 7) {
                     var options = {
-                        :year   => 1970,
-                        :month  => 1,
-                        :day    => day,
-                        :hour   => 12
+                        :year => 1970,
+                        :month => 1,
+                        :day => day,
+                        :hour => 12,
                     };
 
                     var date = Gregorian.moment(options);
                     var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
 
                     chars = info.day_of_week.toUpper().toCharArray();
-                    for (var i = 0; i < chars.size(); i++)
-                    {
-                        if (codepoints.indexOf(chars[i]) < 0)
-                        {
+                    for (var i = 0; i < chars.size(); i++) {
+                        if (codepoints.indexOf(chars[i]) < 0) {
                             codepoints.add(chars[i]);
                         }
                     }
@@ -62,23 +52,20 @@ module Debug
             }
 
             var month = 1;
-            while (month <= 12)
-            {
+            while (month <= 12) {
                 var options = {
-                    :year   => 1970,
-                    :month  => month,
-                    :day    => 1,
-                    :hour   => 12
+                    :year => 1970,
+                    :month => month,
+                    :day => 1,
+                    :hour => 12,
                 };
 
                 var date = Gregorian.moment(options);
                 var info = Gregorian.utcInfo(date, Time.FORMAT_MEDIUM);
 
                 chars = info.month.toUpper().toCharArray();
-                for (var i = 0; i < chars.size(); i++)
-                {
-                    if (codepoints.indexOf(chars[i]) < 0)
-                    {
+                for (var i = 0; i < chars.size(); i++) {
+                    if (codepoints.indexOf(chars[i]) < 0) {
                         codepoints.add(chars[i]);
                     }
                 }
@@ -89,18 +76,14 @@ module Debug
             codepoints = MergeSort.Sort(codepoints);
             System.println(lang + ": " + codepoints.size() + " Codepoints");
 
-            var storage = Application.Storage.getValue("codepoints");
-            if (storage == null)
-            {
+            var storage = Application.Storage.getValue("codepoints") as Dictionary<String, Array<Number> >?;
+            if (storage == null) {
                 storage = {};
             }
 
-            if (storage.hasKey(lang))
-            {
+            if (storage.hasKey(lang)) {
                 storage[lang] = codepoints;
-            }
-            else
-            {
+            } else {
                 storage.put(lang, codepoints);
             }
 
@@ -114,75 +97,61 @@ module Debug
             self.OutputChatset(storage, [lang]);
         }
 
-        private function OutputLatin(storage as Dictionary) as Void
-        {
-            var latin = [ "ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "HEB", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE", "TUR", "VIE" ];
+        private function OutputLatin(storage as Dictionary) as Void {
+            var latin = ["ARA", "HRV", "CES", "DAN", "DUT", "DEU", "ENG", "EST", "FIN", "HUN", "HEB", "IND", "ITA", "LIT", "ZSM", "NOB", "POL", "POR", "RON", "SLO", "SLV", "SPA", "SWE", "TUR", "VIE"];
             self.OutputChatset(storage, latin);
         }
 
-        private function OutputGreek(storage as Dictionary) as Void
-        {
-            self.OutputChatset(storage, [ "GRE" ]);
+        private function OutputGreek(storage as Dictionary) as Void {
+            self.OutputChatset(storage, ["GRE"]);
         }
 
-        private function OutputCyrillic(storage as Dictionary) as Void
-        {
-            var cyrilic = [ "RUS", "BUL", "UKR" ];
+        private function OutputCyrillic(storage as Dictionary) as Void {
+            var cyrilic = ["RUS", "BUL", "UKR"];
             self.OutputChatset(storage, cyrilic);
         }
 
-        private function OutputLogogram(storage as Dictionary) as Void
-        {
-            var logogram = [ "CHS", "CHT", "JPN", "KOR" ];
+        private function OutputLogogram(storage as Dictionary) as Void {
+            var logogram = ["CHS", "CHT", "JPN", "KOR"];
             self.OutputChatset(storage, logogram);
         }
 
-        private function OutputThai(storage as Dictionary) as Void
-        {
-            self.OutputChatset(storage, [ "THA" ]);
+        private function OutputThai(storage as Dictionary) as Void {
+            self.OutputChatset(storage, ["THA"]);
         }
 
-        private function OutputChatset(storage as Dictionary, languages as Array) as Void
-        {
+        private function OutputChatset(storage as Dictionary<String, Array<Number> >, languages as Array) as Void {
             var all = [];
             var notfound = false;
-            for (var i = 0; i < languages.size(); i++)
-            {
-                if (!storage.hasKey(languages[i]))
-                {
+            for (var i = 0; i < languages.size(); i++) {
+                if (!storage.hasKey(languages[i])) {
                     System.println("Language " + languages[i] + " not found!");
                     notfound = true;
                     continue;
                 }
 
                 var codepoints = storage[languages[i]];
-                for (var j = 0; j < codepoints.size(); j++)
-                {
-                    var c = codepoints[j]. toNumber();
-                    if (all.indexOf(c) < 0)
-                    {
+                for (var j = 0; j < codepoints.size(); j++) {
+                    var c = codepoints[j] as Number;
+                    if (all.indexOf(c) < 0) {
                         all.add(c);
                     }
                 }
             }
 
-            if (notfound) 
-            {
+            if (notfound) {
                 return;
             }
 
             all = MergeSort.Sort(all);
             System.println("CodePoints: " + all.size() + " characters\n");
-            for (var i = 0; i < all.size(); i++)
-            {
+            for (var i = 0; i < all.size(); i++) {
                 System.print(all[i] + " ");
             }
         }
 
-        private function getLang(code as Number) as String
-        {
-            switch (code)
-            {
+        private function getLang(code as Number) as String {
+            switch (code) {
                 case 8389920:
                     return "ARA"; //Latin
                 case 8389921:

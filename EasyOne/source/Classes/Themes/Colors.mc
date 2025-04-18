@@ -51,7 +51,7 @@ module Themes {
             var fallbackColor = 0xffffff;
             var customcolor = Helper.Properties.Get(key, "") as String;
             if (customcolor.length() > 0) {
-                var color = Helper.String.stringReplace(customcolor, "#", "").toNumberWithBase(16);
+                var color = Helper.StringUtil.stringReplace(customcolor, "#", "").toNumberWithBase(16);
 
                 if (color == null) {
                     color = fallbackColor;

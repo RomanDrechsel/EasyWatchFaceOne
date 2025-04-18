@@ -1,6 +1,8 @@
 module Themes {
     class BSoD extends ThemeSettingsBase {
         function initialize() {
+            ThemeSettingsBase.initialize();
+
             self.MainTextColor = 0xffffff;
             self.MainTextColor2 = 0xffffff;
 

@@ -27,7 +27,7 @@ module DrawableContainers {
                 "H" => self.height,
             };
 
-            self._Widget = WidgetFactory.GetWidget(self.identifier, params);
+            self._Widget = WidgetFactory.GetWidget(self.identifier as String, params);
             if (self._Widget == null) {
                 self.isVisible = false;
             } else {

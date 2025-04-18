@@ -45,21 +45,18 @@ class WFView extends WatchUi.WatchFace {
                 self.OneTimePerTick = null;
             }
         }
-        try {
-            View.onUpdate(dc);
-        } catch (ex instanceof Lang.Exception) {
-            $.Log("Exception in onUpdate(): " + ex.getErrorMessage());
-        }
+        View.onUpdate(dc);
     }
 
     function onExitSleep() as Void {
         self.IsBackground = false;
+        Helper.Gfx.Fonts.Load(false);
         for (var i = 0; i < self.OnShow.size(); i++) {
-            if (self.OnShow[i] != null && self.OnShow[i] has :OnShow) {
+            if (self.OnShow[i] has :OnShow) {
                 try {
                     self.OnShow[i].OnShow();
                 } catch (ex instanceof Lang.Exception) {
-                    $.Log("Could not invole OnShow Method: " + ex.getErrorMessage());
+                    $.Log("Could not invoke OnShow Method: " + ex.getErrorMessage());
                 }
             }
         }
@@ -68,14 +65,15 @@ class WFView extends WatchUi.WatchFace {
     function onEnterSleep() as Void {
         self.IsBackground = true;
         for (var i = 0; i < self.OnSleep.size(); i++) {
-            if (self.OnSleep[i] != null && self.OnSleep[i] has :OnSleep) {
+            if (self.OnSleep[i] has :OnSleep) {
                 try {
                     self.OnSleep[i].OnSleep();
                 } catch (ex instanceof Lang.Exception) {
-                    $.Log("Could not invole OnSleep Method: " + ex.getErrorMessage());
+                    $.Log("Could not invoke OnSleep Method: " + ex.getErrorMessage());
                 }
             }
         }
+        Helper.Gfx.Fonts.Unload();
     }
 
     function onSettingsChanged() {
