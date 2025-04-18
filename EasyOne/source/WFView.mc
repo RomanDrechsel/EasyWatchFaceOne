@@ -45,11 +45,7 @@ class WFView extends WatchUi.WatchFace {
                 self.OneTimePerTick = null;
             }
         }
-        //try {
         View.onUpdate(dc);
-        /*} catch (ex instanceof Lang.Exception) {
-            $.Log("Exception in onUpdate(): " + ex.getErrorMessage());
-        }*/
     }
 
     function onExitSleep() as Void {
@@ -60,7 +56,7 @@ class WFView extends WatchUi.WatchFace {
                 try {
                     self.OnShow[i].OnShow();
                 } catch (ex instanceof Lang.Exception) {
-                    $.Log("Could not invole OnShow Method: " + ex.getErrorMessage());
+                    $.Log("Could not invoke OnShow Method: " + ex.getErrorMessage());
                 }
             }
         }
@@ -73,7 +69,7 @@ class WFView extends WatchUi.WatchFace {
                 try {
                     self.OnSleep[i].OnSleep();
                 } catch (ex instanceof Lang.Exception) {
-                    $.Log("Could not invole OnSleep Method: " + ex.getErrorMessage());
+                    $.Log("Could not invoke OnSleep Method: " + ex.getErrorMessage());
                 }
             }
         }

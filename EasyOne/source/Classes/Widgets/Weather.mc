@@ -30,7 +30,7 @@ module Widgets {
             var maxPosX = null;
             var maxPosY = null;
             var minPosY = null;
-            var textHeight = dc.getFontHeight(HGfx.Fonts.Small);
+            var textHeight = 0;
             var horPadding = 3;
             var tempAlign = Gfx.TEXT_JUSTIFY_CENTER;
 
@@ -44,6 +44,7 @@ module Widgets {
             dc.setColor(Themes.Colors.Text, Gfx.COLOR_TRANSPARENT);
 
             if (self._currentWeatherIcon != null && self._currentTemp != null && HGfx.Fonts.Small != null) {
+                textHeight = dc.getFontHeight(HGfx.Fonts.Small);
                 var iconSize = self._currentWeatherIcon.getWidth();
                 vertLineHeight = iconSize + textHeight - (IsSmallDisplay ? 8 : 5);
 
@@ -154,8 +155,7 @@ module Widgets {
                     self._currentTemp = ctemp.toString() + "°";
                 } else if (ctemp instanceof Float || ctemp instanceof Double) {
                     self._currentTemp = ctemp.format("%.0d") + "°";
-                }
-                else {
+                } else {
                     self._currentTemp = null;
                 }
 
@@ -163,18 +163,15 @@ module Widgets {
                     self._maxTemp = maxtemp.toString() + "°";
                 } else if (maxtemp instanceof Float || maxtemp instanceof Double) {
                     self._maxTemp = maxtemp.format("%.0d") + "°";
-                }
-                else {
+                } else {
                     self._maxTemp = null;
                 }
 
                 if (mintemp instanceof Number) {
                     self._minTemp = mintemp.toString() + "°";
-                }
-                else if (mintemp instanceof Float || mintemp instanceof Double) {
+                } else if (mintemp instanceof Float || mintemp instanceof Double) {
                     self._minTemp = mintemp.format("%.0d") + "°";
-                }
-                else {
+                } else {
                     self._minTemp = null;
                 }
 

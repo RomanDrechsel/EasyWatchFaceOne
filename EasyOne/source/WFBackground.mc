@@ -4,7 +4,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 class WFBackground extends WatchUi.Drawable {
-    private var _color as Number? = 0;
+    private var _color as Number = 0;
     private var _image as BitmapResource? = null;
 
     function initialize(params) {
@@ -70,7 +70,7 @@ class WFBackground extends WatchUi.Drawable {
                 //custom color
                 var customcolor = Helper.Properties.Get("BGCCu", "#000000") as String;
                 if (customcolor.length() == 0) {
-                    self._color = null;
+                    self._color = 0;
                 } else {
                     self._color = Helper.StringUtil.stringReplace(customcolor, "#", "").toNumberWithBase(16);
                 }
@@ -84,12 +84,9 @@ class WFBackground extends WatchUi.Drawable {
 
     public function OnShow() as Void {
         self.Init();
-        $.Log("Background Show");
     }
 
     public function OnSleep() as Void {
-        self._color = null;
         self._image = null;
-        $.Log("Background Hide");
     }
 }
