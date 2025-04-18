@@ -55,7 +55,7 @@ module Widgets {
                 self._indicatorColor = theme.IconsOff;
                 self._iconColor = Themes.Colors.IconsInTextColor ? self._color : theme.HealthStressIconColor;
 
-                var colors = $.getTheme().IndivatorLevel;
+                var colors = $.getTheme().IndicatorLevel as Array<Number>;
                 self._indicatorColor = colors[0];
                 if (self._stressLevel >= 60) {
                     if (self._stressLevel >= 90) {

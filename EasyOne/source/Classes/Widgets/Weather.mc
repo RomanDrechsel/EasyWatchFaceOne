@@ -109,21 +109,18 @@ module Widgets {
             }
         }
 
-        function OnShow() {
+        function OnShow() as Void {
             //get current weather
             var current = Weather.getCurrentConditions();
             if (current != null) {
                 var settings = Toybox.System.getDeviceSettings();
-                var maxtemp = current.highTemperature != null ? current.highTemperature.toNumber() : null;
-                var mintemp = current.lowTemperature != null ? current.lowTemperature.toNumber() : null;
-                var ctemp = current.temperature != null ? current.temperature.toNumber() : null;
+                var maxtemp = current.highTemperature != null ? current.highTemperature : null;
+                var mintemp = current.lowTemperature != null ? current.lowTemperature : null;
+                var ctemp = current.temperature != null ? current.temperature : null;
 
                 var location = current.observationLocationPosition;
                 if (location == null) {
-                    var info = Toybox.Position.getInfo();
-                    if (info != null) {
-                        location = info.position;
-                    }
+                    location = Toybox.Position.getInfo().position;
                 }
 
                 var isNight = false;
@@ -143,19 +140,43 @@ module Widgets {
                 if (settings.temperatureUnits == Toybox.System.UNIT_STATUTE) {
                     //calc to fahrenheit
                     if (ctemp != null) {
-                        ctemp = (ctemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
+                        ctemp = ctemp.toFloat() * (9.0 / 5.0) + 32.0;
                     }
                     if (mintemp != null) {
-                        mintemp = (mintemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
+                        mintemp = mintemp.toFloat() * (9.0 / 5.0) + 32.0;
                     }
                     if (maxtemp != null) {
-                        maxtemp = (maxtemp.toFloat() * (9.0 / 5.0) + 32.0).toNumber();
+                        maxtemp = maxtemp.toFloat() * (9.0 / 5.0) + 32.0;
                     }
                 }
 
-                self._currentTemp = ctemp != null ? ctemp + "°" : null;
-                self._maxTemp = maxtemp != null ? maxtemp + "°" : null;
-                self._minTemp = mintemp != null ? mintemp + "°" : null;
+                if (ctemp instanceof Number) {
+                    self._currentTemp = ctemp.toString() + "°";
+                } else if (ctemp instanceof Float || ctemp instanceof Double) {
+                    self._currentTemp = ctemp.format("%.0d") + "°";
+                }
+                else {
+                    self._currentTemp = null;
+                }
+
+                if (maxtemp instanceof Number) {
+                    self._maxTemp = maxtemp.toString() + "°";
+                } else if (maxtemp instanceof Float || maxtemp instanceof Double) {
+                    self._maxTemp = maxtemp.format("%.0d") + "°";
+                }
+                else {
+                    self._maxTemp = null;
+                }
+
+                if (mintemp instanceof Number) {
+                    self._minTemp = mintemp.toString() + "°";
+                }
+                else if (mintemp instanceof Float || mintemp instanceof Double) {
+                    self._minTemp = mintemp.format("%.0d") + "°";
+                }
+                else {
+                    self._minTemp = null;
+                }
 
                 self._currentWeatherIcon = null;
                 var condition = current.condition;
@@ -169,6 +190,7 @@ module Widgets {
                             } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherClear);
                             }
+                            $.Log("WeatherClear");
                             break;
                         case Toybox.Weather.CONDITION_PARTLY_CLOUDY:
                         case Toybox.Weather.CONDITION_PARTLY_CLEAR:
@@ -178,6 +200,7 @@ module Widgets {
                             } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThinClouds);
                             }
+                            $.Log("WeatherThinClouds");
                             break;
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
                             if (isNight) {
@@ -185,10 +208,12 @@ module Widgets {
                             } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherMostlyCloudy);
                             }
+                            $.Log("WeatherMostlyCloudy");
                             break;
                         case Toybox.Weather.CONDITION_CLOUDY:
                         case Toybox.Weather.CONDITION_MOSTLY_CLOUDY:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherCloudy);
+                            $.Log("WeatherCloudy");
                             break;
                         case Toybox.Weather.CONDITION_LIGHT_RAIN:
                         case Toybox.Weather.CONDITION_LIGHT_SHOWERS:
@@ -199,6 +224,7 @@ module Widgets {
                             } else {
                                 self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherLightRain);
                             }
+                            $.Log("WeatherLightRain");
                             break;
                         case Toybox.Weather.CONDITION_RAIN:
                         case Toybox.Weather.CONDITION_SCATTERED_SHOWERS:
@@ -206,6 +232,7 @@ module Widgets {
                         case Toybox.Weather.CONDITION_CHANCE_OF_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRain);
+                            $.Log("WeatherRain");
                             break;
                         case Toybox.Weather.CONDITION_SNOW:
                         case Toybox.Weather.CONDITION_HAIL:
@@ -213,15 +240,18 @@ module Widgets {
                         case Toybox.Weather.CONDITION_CHANCE_OF_SNOW:
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_SNOW:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherSnow);
+                            $.Log("WeatherSnow");
                             break;
                         case Toybox.Weather.CONDITION_WINDY:
                         case Toybox.Weather.CONDITION_SQUALL:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherWindy);
+                            $.Log("WeatherWindy");
                             break;
                         case Toybox.Weather.CONDITION_THUNDERSTORMS:
                         case Toybox.Weather.CONDITION_SCATTERED_THUNDERSTORMS:
                         case Toybox.Weather.CONDITION_CHANCE_OF_THUNDERSTORMS:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherThunder);
+                            $.Log("WeatherThunder");
                             break;
                         case Toybox.Weather.CONDITION_WINTRY_MIX:
                         case Toybox.Weather.CONDITION_LIGHT_RAIN_SNOW:
@@ -230,16 +260,19 @@ module Widgets {
                         case Toybox.Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN_SNOW:
                         case Toybox.Weather.CONDITION_SLEET:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherRainSnow);
+                            $.Log("WeatherRainSnow");
                             break;
                         case Toybox.Weather.CONDITION_FOG:
                         case Toybox.Weather.CONDITION_HAZY:
                         case Toybox.Weather.CONDITION_MIST:
                         case Toybox.Weather.CONDITION_DUST:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherFog);
+                            $.Log("WeatherFog");
                             break;
                         case Toybox.Weather.CONDITION_HEAVY_RAIN:
                         case Toybox.Weather.CONDITION_HEAVY_SHOWERS:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavyRain);
+                            $.Log("WeatherHeavyRain");
                             break;
                         case Toybox.Weather.CONDITION_HEAVY_SNOW:
                         case Toybox.Weather.CONDITION_ICE:
@@ -247,6 +280,7 @@ module Widgets {
                         case Toybox.Weather.CONDITION_FREEZING_RAIN:
                         case Toybox.Weather.CONDITION_ICE_SNOW:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherHeavySnow);
+                            $.Log("WeatherHeavySnow");
                             break;
                         case Toybox.Weather.CONDITION_TORNADO:
                         case Toybox.Weather.CONDITION_SMOKE:
@@ -257,9 +291,13 @@ module Widgets {
                         case Toybox.Weather.CONDITION_TROPICAL_STORM:
                         case Toybox.Weather.CONDITION_FLURRIES:
                             self._currentWeatherIcon = Application.loadResource(Rez.Drawables.WeatherExtreme);
+                            $.Log("WeatherExtreme");
                             break;
                         case Toybox.Weather.CONDITION_UNKNOWN_PRECIPITATION:
                         case Toybox.Weather.CONDITION_UNKNOWN:
+                        default:
+                            $.Log("Weather Unknown");
+                            break;
                     }
                 }
             } else {
@@ -270,7 +308,7 @@ module Widgets {
             }
         }
 
-        function OnSleep() {
+        public function OnSleep() as Void {
             self._currentTemp = null;
             self._maxTemp = null;
             self._minTemp = null;

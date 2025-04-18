@@ -16,8 +16,8 @@ module Helper {
             static var Tiny as Graphics.FontType? = null;
             static var Icons as Graphics.FontType? = null;
 
-            static var DateFontProp = -999;
-            static var TimeFontProp = -999;
+            static var DateFontProp as Number? = null;
+            static var TimeFontProp as Number? = null;
 
             static function Load(delayed as Boolean) as Void {
                 //date font
@@ -69,16 +69,29 @@ module Helper {
                 self.Icons = WatchUi.loadResource(Rez.Fonts.Icons);
             }
 
-            static function loadDateFont(prop as Number) as Void {
+            public static function Unload() as Void {
+                self.Hour = null;
+                self.Minute = null;
+                self.Seconds = null;
+                self.Date = null;
+                self.Normal = null;
+                self.Small = null;
+                self.Tiny = null;
+                self.Icons = null;
+                self.DateFontProp = null;
+                self.TimeFontProp = null;
+            }
+
+            static function loadDateFont(prop as Number?) as Void {
                 if (prop == null) {
-                    prop = Helper.Properties.Get("FDate", -1) as Number;
+                    prop = Helper.Properties.Get("FDate", -1) as Lang.Number;
                 }
 
                 var rez = self.getDateFontRez(prop);
                 if (rez.size() > 1) {
                     $.Log("Could not load font " + rez.toString());
-                    if (WatchUi has :showToast) {
-                        var txt = Application.loadResource(Rez.Strings.FError) as String;
+                    if (WatchUi has :showToast && Rez.Strings has :FError) {
+                        var txt = Application.loadResource(Rez.Strings.FError) as Lang.String;
                         if (txt.length() > 1) {
                             WatchUi.showToast(txt, { :icon => Rez.Drawables.Attention });
                         }
@@ -99,7 +112,7 @@ module Helper {
                 }
             }
 
-            static function loadTimeFont(prop as Number) as Void {
+            static function loadTimeFont(prop as Number?) as Void {
                 if (prop == null) {
                     prop = Helper.Properties.Get("FTime", -1) as Number;
                 }
@@ -109,7 +122,7 @@ module Helper {
                     self.Hour = WatchUi.loadResource(rez[0]);
                 }
                 if (self.Hour == null) {
-                    self.Hour = IsSmallDisplay ? Graphics.FONT_NUMBER_THAI_HOT : FONT_NUMBER_MEDIUM;
+                    self.Hour = IsSmallDisplay ? Graphics.FONT_NUMBER_THAI_HOT : Graphics.FONT_NUMBER_MEDIUM;
                 }
 
                 if (rez[1] instanceof Lang.ResourceId) {
@@ -127,7 +140,7 @@ module Helper {
                 }
             }
 
-            private static function getDateFontRez(prop as Number) as Array<Lang.ResourceId?> {
+            private static function getDateFontRez(prop as Number) as Array<Lang.ResourceId or Boolean or Null> {
                 var systemlang = System.getDeviceSettings().systemLanguage;
 
                 if (prop < -1) {
@@ -262,7 +275,7 @@ module Helper {
                     return [Rez.Fonts.TypesauceTime, Rez.Fonts.TypesauceTime, Rez.Fonts.TypesauceSecond];
                 } else {
                     if (prop > 0) {
-                        Application.Properties.getValue("FTime", -1);
+                        Application.Properties.setValue("FTime", -1);
                     }
                     self.TimeFontProp = -1;
                     return [null, null, null];

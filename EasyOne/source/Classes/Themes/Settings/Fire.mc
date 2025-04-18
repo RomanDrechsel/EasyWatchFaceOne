@@ -1,6 +1,7 @@
 module Themes {
     class Fire extends ThemeSettingsBase {
         function initialize() {
+            ThemeSettingsBase.initialize();
             if (Rez.Drawables has :BackgroundImageFire) {
                 self.BackgroundImage = Rez.Drawables.BackgroundImageFire;
             } else {

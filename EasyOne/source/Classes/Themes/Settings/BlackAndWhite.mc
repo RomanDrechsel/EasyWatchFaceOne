@@ -1,6 +1,8 @@
 module Themes {
     class BlackAndWhite extends ThemeSettingsBase {
         function initialize() {
+            ThemeSettingsBase.initialize();
+
             //Global
             self.MainTextColor = 0xffffff;
             self.MainTextColor2 = 0xffffff;
@@ -30,7 +32,7 @@ module Themes {
 
             //Indicatoren
             self.IndicatorBackground = 0xffffff;
-            self.IndivatorLevel = [0xffffff, 0xffffff, 0xffffff, 0xffffff];
+            self.IndicatorLevel = [0xffffff, 0xffffff, 0xffffff, 0xffffff];
 
             //Distance Widget
             self.DistanceStepsIconColor = 0xffffff;

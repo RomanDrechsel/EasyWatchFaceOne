@@ -21,9 +21,9 @@ class WFApp extends Application.AppBase {
         Helper.Gfx.Fonts.Load(false);
     }
 
-    function getInitialView() as Array<Views or InputDelegates>? {
+    function getInitialView() as [WatchUi.Views] or [WatchUi.Views, WatchUi.InputDelegates] {
         self.WatchfaceView = new WFView();
-        return [self.WatchfaceView] as Array<Views or InputDelegates>;
+        return [self.WatchfaceView];
     }
 
     function onSettingsChanged() as Void {
@@ -36,15 +36,10 @@ class WFApp extends Application.AppBase {
 }
 
 function getView() as WFView? {
-    var app = Application.getApp() as WFApp;
-    if (app != null) {
-        return app.WatchfaceView;
-    } else {
-        return null;
-    }
+    return (Application.getApp() as WFApp).WatchfaceView;
 }
 
-function Log(obj as String) {
+function Log(obj as String) as Void {
     var info = Time.Gregorian.info(Time.now(), Time.FORMAT_SHORT);
     var str = info.year + "-" + info.month.format("%02d") + "-" + info.day.format("%02d") + "T" + info.hour.format("%02d") + ":" + info.min.format("%02d") + ":" + info.sec.format("%02d");
     Toybox.System.println(str + ": " + obj);

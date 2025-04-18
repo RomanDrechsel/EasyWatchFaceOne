@@ -144,7 +144,7 @@ module Widgets {
                     var width = dc.getTextWidthInPixels(info.steps.toString(), HGfx.Fonts.Small);
                     var percent_width = 0;
                     if (self._showStepsPercentage == true && info.stepGoal != null) {
-                        var amount = info.steps.toFloat() / info.stepGoal.toFloat(); //WIP: Check if stepsGloal ios set
+                        var amount = info.steps.toFloat() / info.stepGoal.toFloat();
                         if (self._textJust == Graphics.TEXT_JUSTIFY_LEFT) {
                             if (amount >= 1.0 && HGfx.Fonts.Icons != null) {
                                 if (IsSmallDisplay) {
@@ -184,7 +184,7 @@ module Widgets {
             if (self.Justification == WIDGET_JUSTIFICATION_RIGHT) {
                 pos = HGfx.DrawRoundAngle.JUST_BOTTOMRIGHT;
             }
-            var colors = $.getTheme().IndicatorSteps;
+            var colors = $.getTheme().IndicatorSteps as Array<Number>;
             var factor = 1.0 / colors.size().toFloat();
             var color = colors[0];
 
@@ -224,7 +224,7 @@ module Widgets {
                 if (dist >= 100.0) {
                     return Math.round(dist).toNumber() + " km";
                 }
-                return Helper.String.stringReplace(dist.format("%.2f"), ".", ",") + " km";
+                return Helper.StringUtil.stringReplace(dist.format("%.2f"), ".", ",") + " km";
             } else {
                 return Math.round(dist).toNumber() + " m";
             }

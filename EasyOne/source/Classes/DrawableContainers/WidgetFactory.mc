@@ -3,7 +3,7 @@ import Toybox.Lang;
 
 module DrawableContainers {
     class WidgetFactory {
-        static function GetWidget(pos as String, container_params as Dictionary) as WidgetBase? {
+        static function GetWidget(pos as String, container_params as Dictionary?) as WidgetBase? {
             if (container_params == null) {
                 container_params = {};
             }

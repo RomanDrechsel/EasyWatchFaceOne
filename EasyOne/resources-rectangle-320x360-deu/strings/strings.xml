@@ -3,5 +3,5 @@
     <string id="SBat2">verbleibende Tage</string>
     <string id="SBat3">Beides</string>
     <string id="ShortBatteryDays">T</string>
-    <string id="FError">Font in dieser Sprache nicht verfügbar!</string>
+    <string id="FError">Font nicht verfügbar!</string>
 </strings>

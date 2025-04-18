@@ -34,19 +34,18 @@ module Helper {
 
             for (var i = 0; i < texts.size(); i++) {
                 var text = texts[i];
-                if (text.Text == null || text.Text.length() == 0 || text.Font == null) {
-                    continue;
-                }
-                var yoffset = dim[1] - Graphics.getFontAscent(text.Font);
-                if ($.IsSmallDisplay) {
-                    yoffset *= 1.2;
-                }
+                if (text.Text != null && text.Text.length() > 0 && text.Font != null) {
+                    var yoffset = dim[1] - Graphics.getFontAscent(text.Font);
+                    if ($.IsSmallDisplay) {
+                        yoffset *= 1.2;
+                    }
 
-                if (text.Color != null) {
-                    dc.setColor(text.Color, Graphics.COLOR_TRANSPARENT);
+                    if (text.Color != null) {
+                        dc.setColor(text.Color, Graphics.COLOR_TRANSPARENT);
+                    }
+                    dc.drawText(posx, self.AnchorY + yoffset, text.Font, text.Text, Graphics.TEXT_JUSTIFY_LEFT);
+                    posx += dc.getTextWidthInPixels(text.Text, text.Font);
                 }
-                dc.drawText(posx, self.AnchorY + yoffset, text.Font, text.Text, Graphics.TEXT_JUSTIFY_LEFT);
-                posx += dc.getTextWidthInPixels(text.Text, text.Font);
             }
 
             return dim[0];
@@ -72,9 +71,9 @@ module Helper {
     }
 
     class ExtTextPart {
-        var Text as String?;
-        var Color as Number?;
-        var Font as FontResource?;
+        var Text as Lang.String?;
+        var Color as Lang.Number?;
+        var Font as WatchUi.FontResource?;
 
         function initialize(text as String?, color as Number?, font as FontResource?) {
             self.Text = text;

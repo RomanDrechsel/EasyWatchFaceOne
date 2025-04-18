@@ -10,7 +10,7 @@ using Helper.Gfx as HGfx;
 module Widgets {
     class Date extends WidgetBase {
         private var _textContainer as ExtText;
-        private var _texts as Array<ExtTextPart>;
+        private var _texts as Array<ExtTextPart>?;
         private var _dateFormat as Number;
 
         function initialize(params as Dictionary) {
